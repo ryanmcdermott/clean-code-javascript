@@ -30,7 +30,7 @@ getUser();
 
 ## **Functions**
 ### Limit the amount of function parameters (2 or less)
-Use an object if you are finding yourself needing a lot of parameters
+Use an object if you are finding yourself needing a lot of parameters.
 
 **Bad:**
 ```javascript
@@ -53,6 +53,24 @@ function createMenu(config) {
 }
 
 ```
+
+### Use default arguments instead of short circuiting
+**Bad:**
+```javascript
+function writeForumComment(subject, body) {
+  subject = subject || 'No Subject';
+  body = body || 'No text';
+}
+```
+
+**Good**:
+```javascript
+function writeForumComment(subject='No subject', body='No text') {
+  ...
+}
+
+```
+
 
 ### Don't use flags as function parameters
 Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
