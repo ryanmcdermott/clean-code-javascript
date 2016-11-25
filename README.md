@@ -98,6 +98,42 @@ function createFile(name) {
 }
 ```
 
+
+### Avoid Side Effects
+A function produces a side effect if it does anything other than take a value in
+and return another value or values. A side effect could be writing to a file,
+modifying some global variable, or accidentally wiring all your money to a
+Nigerian prince.
+
+**Bad:**
+```javascript
+// Global variable referenced by following function.
+// If we had another function that used this name, now it'd be an array and it could break it.
+var name = 'Ryan McDermott';
+
+function splitIntoFirstAndLastName() {
+  name = name.split(' ');
+}
+
+console.log(name); // ['Ryan', 'McDermott'];
+
+```
+
+**Good**:
+```javascript
+function splitIntoFirstAndLastName(name) {
+  return name.split(' ');
+}
+
+var name = 'Ryan McDermott'
+var newName = splitIntoFirstAndLastName(name);
+
+console.log(name); // 'Ryan McDermott';
+console.log(newName); // ['Ryan', 'McDermott'];
+```
+
+
+
 ## **Comments**
 ### Only comment things that have business logic complexity.
 Comments are an apology, not a requirement. Good code *mostly* documents itself.
