@@ -28,6 +28,26 @@ getCustomerRecord();
 getUser();
 ```
 
+### Use searchable names
+We will read more code than we will ever write. It's important that the code we do write is readable and searchable. By *not* naming variables that end up being meaningful for understanding our program, we hurt our readers. Make your names searchable.
+
+**Bad:**
+```javascript
+// What the heck is 525600 for?
+for (var i = 0; i < 525600; i++) {
+  runCronJob();
+}
+```
+
+**Good**:
+```javascript
+// Declare them as capitalized `var` globals.
+var MINUTES_IN_A_YEAR = 525600;
+for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
+  runCronJob();
+}
+```
+
 ## **Functions**
 ### Limit the amount of function parameters (2 or less)
 Use an object if you are finding yourself needing a lot of parameters.
