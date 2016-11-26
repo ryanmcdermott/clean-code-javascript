@@ -48,6 +48,36 @@ for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
 }
 ```
 
+### Avoid Mental Mapping
+Explicit is better than implicit.
+
+**Bad:**
+```javascript
+var locations = ['Austin', 'New York', 'San Francisco'];
+locations.forEach((l) => {
+  doStuff();
+  doSomeOtherStuff();
+  ...
+  ...
+  ...
+  // Wait, what is `l` for again?
+  dispatch(l);
+});
+```
+
+**Good**:
+```javascript
+var locations = ['Austin', 'New York', 'San Francisco'];
+locations.forEach((location) => {
+  doStuff();
+  doSomeOtherStuff();
+  ...
+  ...
+  ...
+  dispatch(location);
+});
+```
+
 ## **Functions**
 ### Limit the amount of function parameters (2 or less)
 Use an object if you are finding yourself needing a lot of parameters.
