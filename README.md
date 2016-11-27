@@ -78,6 +78,41 @@ locations.forEach((location) => {
 });
 ```
 
+### Use consistent capitalization
+JavaScript is untyped, so capitalization tells you a lot about your variables,
+functions, etc. These rules are subjective, so your team can choose whatever
+they want. The point is, no matter what you all choose, just be consistent.
+
+**Bad:**
+```javascript
+var DAYS_IN_WEEK = 7;
+var daysInMonth = 30;
+
+var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+var Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+
+function eraseDatabase() {}
+function restore_database() {}
+
+class animal {}
+class Alpaca {}
+```
+
+**Good**:
+```javascript
+var DAYS_IN_WEEK = 7;
+var DAYS_IN_MONTH = 30;
+
+var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+var artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+
+function eraseDatabase() {}
+function restoreDatabase() {}
+
+class Animal {}
+class Alpaca {}
+```
+
 ## **Functions**
 ### Limit the amount of function parameters (2 or less)
 Use an object if you are finding yourself needing a lot of parameters.
