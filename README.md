@@ -113,6 +113,36 @@ class Animal {}
 class Alpaca {}
 ```
 
+### Don't add unneeded context
+If your class/object name tells you something, don't repeat that in your
+variable name.
+
+**Bad:**
+```javascript
+var Car = {
+  carMake: 'Honda',
+  carModel: 'Accord',
+  carColor: 'Blue'
+};
+
+function paintCar(car) {
+  car.carColor = 'Red';
+}
+```
+
+**Good**:
+```javascript
+var Car = {
+  make: 'Honda',
+  model: 'Accord',
+  color: 'Blue'
+};
+
+function paintCar(car) {
+  car.color = 'Red';
+}
+```
+
 ## **Functions**
 ### Limit the amount of function parameters (2 or less)
 Use an object if you are finding yourself needing a lot of parameters.
