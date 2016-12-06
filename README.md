@@ -1,5 +1,14 @@
 # clean-code-javascript
-Software engineering principles, from Robert C. Martin's wonderful book *Clean Code*, adapted for JavaScript.
+Software engineering principles, from Robert C. Martin's wonderful book
+*Clean Code*, adapted for JavaScript. This is not a style guide, it's something
+much more. It's a guide to producing readable, reusable, and refactorable
+JavaScript software. Enjoy!
+
+## Table of Contents
+  1. [Variables](#variables)
+  2. [Functions](#functions)
+  3. [Classes](#classes)
+  4. [Comments](#comments)
 
 ## **Variables**
 ### Use meaningful and pronounceable variable names
