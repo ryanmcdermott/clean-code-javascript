@@ -245,6 +245,63 @@ console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
 
+### Don't write to global functions
+Polluting globals is a bad practice in JavaScript because you could clash with another
+library and the user of your API would be none-the-wiser until they get an
+exception in production. Let's think about an example: what if you wanted to
+extend JavaScript's native Array method to have a `diff` method that could
+show the difference between two arrays? You could write your new function
+to the `Array.prototype`, but it could clash with another library that tried
+to do the same thing. What if that other library was just using `diff` to find
+the difference between the first and last elements of an array? This is why it
+would be much better to just use ES6 classes and simply extend the `Array` global.
+
+**Bad:**
+```javascript
+Array.prototype.diff = function(comparisonArray) {
+  var values = [];
+  var hash = {};
+
+  for (var i of comparisonArray) {
+    hash[i] = true;
+  }
+
+  for (var i of this) {
+    if (!hash[i]) {
+      values.push(i);
+    }
+  }
+
+  return values;
+}
+```
+
+**Good:**
+```javascript
+class SuperArray extends Array {
+  constructor(...args) {
+    super(...args);
+  }
+
+  diff(comparisonArray) {
+    var values = [];
+    var hash = {};
+
+    for (var i of comparisonArray) {
+      hash[i] = true;
+    }
+
+    for (var i of this) {
+      if (!hash[i]) {
+        values.push(i);
+      }
+    }
+
+    return values;
+  }
+}
+```
+
 ## **Classes**
 ### Prefer ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
