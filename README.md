@@ -37,6 +37,8 @@ getCustomerRecord();
 getUser();
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 ### Use searchable names
 We will read more code than we will ever write. It's important that the code we do write is readable and searchable. By *not* naming variables that end up being meaningful for understanding our program, we hurt our readers. Make your names searchable.
 
