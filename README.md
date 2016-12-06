@@ -22,6 +22,7 @@ var yyyymmdstr = moment().format('YYYY/MM/DD');
 ```javascript
 var yearMonthDay = moment().format('YYYY/MM/DD');
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Use the same vocabulary for the same type of variable
 
@@ -36,7 +37,6 @@ getCustomerRecord();
 ```javascript
 getUser();
 ```
-
 **[⬆ back to top](#table-of-contents)**
 
 ### Use searchable names
@@ -58,6 +58,7 @@ for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
   runCronJob();
 }
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Avoid Mental Mapping
 Explicit is better than implicit.
@@ -88,6 +89,7 @@ locations.forEach((location) => {
   dispatch(location);
 });
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Use consistent capitalization
 JavaScript is untyped, so capitalization tells you a lot about your variables,
@@ -123,6 +125,7 @@ function restoreDatabase() {}
 class Animal {}
 class Alpaca {}
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Don't add unneeded context
 If your class/object name tells you something, don't repeat that in your
@@ -153,6 +156,7 @@ function paintCar(car) {
   car.color = 'Red';
 }
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ## **Functions**
 ### Limit the amount of function parameters (2 or less)
@@ -179,6 +183,7 @@ function createMenu(config) {
 }
 
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Use default arguments instead of short circuiting
 **Bad:**
@@ -187,6 +192,7 @@ function writeForumComment(subject, body) {
   subject = subject || 'No Subject';
   body = body || 'No text';
 }
+
 ```
 
 **Good**:
@@ -196,6 +202,7 @@ function writeForumComment(subject='No subject', body='No text') {
 }
 
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Don't use flags as function parameters
 Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
@@ -209,7 +216,6 @@ function createFile(name, temp) {
     fs.create(name);
   }
 }
-
 ```
 
 **Good**:
@@ -222,6 +228,7 @@ function createFile(name) {
   fs.create(name);
 }
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Avoid Side Effects
 A function produces a side effect if it does anything other than take a value in
@@ -255,6 +262,7 @@ var newName = splitIntoFirstAndLastName(name);
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Don't write to global functions
 Polluting globals is a bad practice in JavaScript because you could clash with another
@@ -312,6 +320,7 @@ class SuperArray extends Array {
   }
 }
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ## **Classes**
 ### Prefer ES6 classes over ES5 plain functions
@@ -387,6 +396,7 @@ class Human extends Mammal {
     speak() {}
 }
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ## **Comments**
 ### Only comment things that have business logic complexity.
@@ -430,6 +440,7 @@ function hashIt(data) {
 }
 
 ```
+**[⬆ back to top](#table-of-contents)**
 
 ### Don't leave commented code in your codebase
 Version control exists for a reason. Leave old code in your history.
@@ -446,3 +457,4 @@ doStuff();
 ```javascript
 doStuff();
 ```
+**[⬆ back to top](#table-of-contents)**
