@@ -439,6 +439,45 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Async/Await are even cleaner than Promises
+Promises are a very clean alternative to callbacks, but ES7 brings async and await
+which offer an even cleaner solution. All you need is a function that is prefixed
+in an `async` keyword, and then you can write your logic imperatively without
+a `then` chain of functions. Use this if you can take advantage of ES7 features
+today!
+
+**Bad:**
+```javascript
+require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+  .then(function(response) {
+    return require('fs-promise').writeFile('article.html', response);
+  })
+  .then(function() {
+    console.log('File written');
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+
+```
+
+**Good**:
+```javascript
+async function getCleanCodeArticle() {
+  try {
+    var request = await require('request-promise')
+    var response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
+    var fileHandle = await require('fs-promise');
+
+    await fileHandle.writeFile('article.html', response);
+    console.log('File written');
+  } catch(err) {
+      console.log(err);
+    }
+  }
+```
+**[⬆ back to top](#table-of-contents)**
+
 
 ## **Comments**
 ### Only comment things that have business logic complexity.
