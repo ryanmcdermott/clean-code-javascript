@@ -1,8 +1,8 @@
 # clean-code-javascript
-Software engineering principles, from Robert C. Martin's wonderful book
-*Clean Code*, adapted for JavaScript. This is not a style guide, it's something
-much more. It's a guide to producing readable, reusable, and refactorable
-JavaScript software. Enjoy!
+Software engineering principles, from Robert C. Martin's book
+[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
+adapted for JavaScript. This is not a style guide. It's a guide to producing
+readable, reusable, and refactorable software in JavaScript. Enjoy!
 
 ## Table of Contents
   1. [Variables](#variables)
@@ -322,6 +322,62 @@ class SuperArray extends Array {
 }
 ```
 **[⬆ back to top](#table-of-contents)**
+
+### Favor functional programming over imperative programming
+If Haskell were an IPA then JavaScript would be an O'Douls. That is to say,
+JavaScript isn't a functional language in the way that Haskell is, but it has
+a functional flavor to it. Functional languages are cleaner and easier to test.
+Favor this style of programming when you can.
+
+**Bad:**
+```javascript
+const programmerOutput = [
+  {
+    name: 'Uncle Bobby',
+    linesOfCode: 500
+  }, {
+    name: 'Suzie Q',
+    linesOfCode: 1500
+  }, {
+    name: 'Jimmy Gosling',
+    linesOfCode: 150
+  }, {
+    name: 'Gracie Hopper',
+    linesOfCode: 1000
+  }
+];
+
+var totalOutput = 0;
+
+for (var i = 0; i < programmerOutput.length; i++) {
+  totalOutput += programmerOutput[i].linesOfCode;
+}
+```
+
+**Good**:
+```javascript
+const programmerOutput = [
+  {
+    name: 'Uncle Bobby',
+    linesOfCode: 500
+  }, {
+    name: 'Suzie Q',
+    linesOfCode: 1500
+  }, {
+    name: 'Jimmy Gosling',
+    linesOfCode: 150
+  }, {
+    name: 'Gracie Hopper',
+    linesOfCode: 1000
+  }
+];
+
+var totalOutput = programmerOutput
+  .map((programmer) => programmer.linesOfCode)
+  .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
+```
+**[⬆ back to top](#table-of-contents)**
+
 
 ## **Classes**
 ### Prefer ES6 classes over ES5 plain functions
