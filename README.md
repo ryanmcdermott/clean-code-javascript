@@ -8,7 +8,8 @@ JavaScript software. Enjoy!
   1. [Variables](#variables)
   2. [Functions](#functions)
   3. [Classes](#classes)
-  4. [Comments](#comments)
+  4. [Concurrency](#concurrency)
+  5. [Comments](#comments)
 
 ## **Variables**
 ### Use meaningful and pronounceable variable names
@@ -397,6 +398,47 @@ class Human extends Mammal {
 }
 ```
 **[⬆ back to top](#table-of-contents)**
+
+## **Concurrency**
+### Use Promises, not callbacks
+Callbacks aren't clean, and they cause excessive amounts of nesting. With ES6,
+Promises are a built-in global type. Use them!
+
+**Bad:**
+```javascript
+require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', function(err, response) {
+  if (err) {
+    console.error(err);
+  }
+  else {
+    require('fs').writeFile('article.html', response.body, function(err) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log('File written');
+      }
+    })
+  }
+})
+
+```
+
+**Good**:
+```javascript
+require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+  .then(function(response) {
+    return require('fs-promise').writeFile('article.html', response);
+  })
+  .then(function() {
+    console.log('File written');
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+
+```
+**[⬆ back to top](#table-of-contents)**
+
 
 ## **Comments**
 ### Only comment things that have business logic complexity.
