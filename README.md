@@ -205,6 +205,52 @@ function writeForumComment(subject='No subject', body='No text') {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Set default objects with Object.assign
+
+**Bad:**
+```javascript
+var menuConfig = {
+  title: null,
+  body: 'Bar',
+  buttonText: null
+  cancellable: true
+}
+
+function createMenu(config) {
+  config.title = config.title || 'Foo'
+  config.body = config.body || 'Bar'
+  config.buttonText = config.title || 'Baz'
+  config.cancellable = config.cancellable === undefined ? config.cancellable : true;
+
+}
+
+createMenu(menuConfig);
+```
+
+**Good**:
+```javascript
+var menuConfig = {
+  title: null,
+  body: 'Bar',
+  buttonText: null
+  cancellable: true
+}
+
+function createMenu(config) {
+  Object.assign(config, {
+    title: 'Foo',
+    body: 'Bar',
+    buttonText: 'Baz',
+    cancellable: true
+  });
+}
+
+createMenu(menuConfig);
+```
+**[⬆ back to top](#table-of-contents)**
+
+
+
 ### Don't use flags as function parameters
 Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
 
