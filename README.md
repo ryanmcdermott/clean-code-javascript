@@ -434,6 +434,64 @@ var totalOutput = programmerOutput
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Avoid conditionals
+This seems like an impossible task. Upon first hearing this, most people say,
+"how am I supposed to do anything without an `if` statement?" The answer is that
+you can use polymorphism to achieve the same task in many cases. The second
+question is usually, "well that's great but why would I want to do that?" The
+answer is a previous clean code concept we learned: a function should only do
+one thing. When you have classes and functions that have `if` statements, you
+are telling your user that your function does more than one thing. Remember,
+just do one thing.
+
+**Bad:**
+```javascript
+class Airplane {
+  //...
+  getCruisingAltitude() {
+    switch (this.type) {
+      case '777':
+        return getMaxAltitude() - getPassengerCount();
+      case 'Air Force One':
+        return getMaxAltitude();
+      case 'Cesna':
+        return getMaxAltitude() - getFuelExpenditure();
+    }
+  }
+}
+```
+
+**Good**:
+```javascript
+class Airplane {
+  //...
+}
+
+class Boeing777 extends Airplane {
+  //...
+  getCruisingAltitude() {
+    return getMaxAltitude() - getPassengerCount();
+  }
+}
+
+class AirForceOne extends Airplane {
+  //...
+  getCruisingAltitude() {
+    return getMaxAltitude();
+  }
+}
+
+class Cesna extends Airplane {
+  //...
+  getCruisingAltitude() {
+    return getMaxAltitude() - getFuelExpenditure();
+  }
+}
+```
+
+maxAltitude = plane.getMaxAltitude();
+**[⬆ back to top](#table-of-contents)**
+
 
 ## **Classes**
 ### Prefer ES6 classes over ES5 plain functions
