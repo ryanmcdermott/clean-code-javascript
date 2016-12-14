@@ -186,6 +186,48 @@ function createMenu(config) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+
+### Functions should do one thing
+This is by far the most important rule in software engineering. When functions
+do more than one thing, they are harder to compose, test, and reason about.
+When you can isolate a function to just one action, they can be refactored
+easily and your code will read much cleaner. If you take nothing else away from
+this guide other than this, you'll be ahead of many developers.
+
+**Bad:**
+```javascript
+function emailClients(clients) {
+  clients.forEach(client => {
+    let clientRecord = database.lookup(client);
+    if (clientRecord.isActive()) {
+      email(client);
+    }
+  });
+}
+```
+
+**Good**:
+```javascript
+function emailClients(clients) {
+  clients.forEach(client => {
+    emailClientIfNeeded();
+  });
+}
+
+function emailClientIfNeeded(client) {
+  if (isClientActive(client)) {
+    email(client);
+  }
+}
+
+function isClientActive(client) {
+  let clientRecord = database.lookup(client);
+  return clientRecord.isActive();
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
+
 ### Use default arguments instead of short circuiting
 **Bad:**
 ```javascript
