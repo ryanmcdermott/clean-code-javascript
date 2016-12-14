@@ -227,6 +227,72 @@ function isClientActive(client) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Remove duplicate code
+Never ever, ever, under any circumstance, have duplicate code. There's no reason
+for it and it's quite possibly the worst sin you can commit as a professional
+developer. Duplicate code means there's more than one place to alter something
+if you need to change some logic. JavaScript is untyped, so it makes having
+generic functions quite easy. Take advantage of that!
+
+**Bad:**
+```javascript
+function showDeveloperList(developers) {
+  developers.forEach(developers => {
+    var expectedSalary = developer.calculateExpectedSalary();
+    var experience = developer.getExperience();
+    var githubLink = developer.getGithubLink();
+    var data = {
+      expectedSalary: expectedSalary,
+      experience: experience,
+      githubLink: githubLink
+    };
+
+    render(data);
+  });
+}
+
+function showManagerList(managers) {
+  managers.forEach(manager => {
+    var expectedSalary = manager.calculateExpectedSalary();
+    var experience = manager.getExperience();
+    var portfolio = manager.getMBAProjects();
+    var data = {
+      expectedSalary: expectedSalary,
+      experience: experience,
+      portfolio: portfolio
+    };
+
+    render(data);
+  });
+}
+```
+
+**Good**:
+```javascript
+function showList(employees) {
+  employees.forEach(employee => {
+    var expectedSalary = employee.calculateExpectedSalary();
+    var experience = employee.getExperience();
+    var portfolio;
+
+    if (employee.type === 'manager') {
+      portfolio = employee.getMBAProjects();
+    } else {
+      portfolio = employee.getGithubLink();
+    }
+
+    var favoriteManagerBooks = getMBAList()
+    var data = {
+      expectedSalary: expectedSalary,
+      experience: experience,
+      portfolio: portfolio
+    };
+
+    render(data);
+  });
+}
+```
+**[⬆ back to top](#table-of-contents)**
 
 ### Use default arguments instead of short circuiting
 **Bad:**
