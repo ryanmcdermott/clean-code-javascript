@@ -596,9 +596,35 @@ class Cesna extends Airplane {
   }
 }
 ```
-
-maxAltitude = plane.getMaxAltitude();
 **[⬆ back to top](#table-of-contents)**
+
+
+### Avoid type-checking (part 1)
+JavaScript is untyped, which means your functions can take any type of argument.
+Sometimes you are bitten by this freedom and it becomes tempting to do
+type-checking in your functions. There are many ways to avoid having to do this.
+The first thing to consider is consistent APIs.
+
+**Bad:**
+```javascript
+function travelToTexas(vehicle) {
+  if (obj instanceof Bicylce) {
+    vehicle.peddle(this.currentLocation, new Location('texas'));
+  } else if (obj instanceof Car) {
+    vehicle.drive(this.currentLocation, new Location('texas'));
+  }
+}
+```
+
+**Good**:
+```javascript
+function travelToTexas(vehicle) {
+  vehicle.move(this.currentLocation, new Location('texas'));
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
+
 
 
 ## **Classes**
