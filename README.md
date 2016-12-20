@@ -733,6 +733,90 @@ class Human extends Mammal {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+
+### Use method chaining
+Against the advice of Clean Code, this is one place where we will have to differ.
+It has been argued that method chaining is unclean and violates the (Law of Demeter)
+[https://en.wikipedia.org/wiki/Law_of_Demeter]. Maybe it's true, but this pattern
+is very useful in JavaScript and you see it in many libraries such as jQuery and
+Lodash. It allows your code to be expressive, and less verbose. For that reason,
+I say, use method chaining and take a look at how clean your code will be.
+In your class functions, simply return `this` at the end of every function, and
+you can chain further class methods onto it.
+
+**Bad:**
+```javascript
+class Car {
+  constructor() {
+    this.make = 'Honda';
+    this.model = 'Accord';
+    this.color = 'white';
+  }
+
+  setMake(make) {
+    this.name = name;
+  }
+
+  setModel(model) {
+    this.model = model;
+  }
+
+  setColor(color) {
+    this.color = color;
+  }
+
+  save() {
+    console.log(this.make, this.model, this.color);
+  }
+}
+
+let car = new Car();
+car.setColor('pink');
+car.setMake('Ford');
+car.setModel('F-150')
+car.save();
+```
+
+**Good**:
+```javascript
+class Car {
+  constructor() {
+    this.make = 'Honda';
+    this.model = 'Accord';
+    this.color = 'white';
+  }
+
+  setMake(make) {
+    this.name = name;
+    // NOTE: Returning this for chaining
+    return this;
+  }
+
+  setModel(model) {
+    this.model = model;
+    // NOTE: Returning this for chaining
+    return this;
+  }
+
+  setColor(color) {
+    this.color = color;
+    // NOTE: Returning this for chaining
+    return this;
+  }
+
+  save() {
+    console.log(this.make, this.model, this.color);
+  }
+}
+
+let car = new Car()
+  .setColor('pink')
+  .setMake('Ford')
+  .setModel('F-150')
+  .save();
+```
+**[⬆ back to top](#table-of-contents)**
+
 ## **Concurrency**
 ### Use Promises, not callbacks
 Callbacks aren't clean, and they cause excessive amounts of nesting. With ES6,
