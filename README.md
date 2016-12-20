@@ -736,13 +736,12 @@ class Human extends Mammal {
 
 ### Use method chaining
 Against the advice of Clean Code, this is one place where we will have to differ.
-It has been argued that method chaining is unclean and violates the (Law of Demeter)
-[https://en.wikipedia.org/wiki/Law_of_Demeter]. Maybe it's true, but this pattern
-is very useful in JavaScript and you see it in many libraries such as jQuery and
-Lodash. It allows your code to be expressive, and less verbose. For that reason,
-I say, use method chaining and take a look at how clean your code will be.
-In your class functions, simply return `this` at the end of every function, and
-you can chain further class methods onto it.
+It has been argued that method chaining is unclean and violates the [Law of Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter).
+Maybe it's true, but this pattern is very useful in JavaScript and you see it in
+many libraries such as jQuery and Lodash. It allows your code to be expressive,
+and less verbose. For that reason, I say, use method chaining and take a look at
+how clean your code will be. In your class functions, simply return `this` at
+the end of every function, and you can chain further class methods onto it.
 
 **Bad:**
 ```javascript
