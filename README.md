@@ -7,9 +7,10 @@ readable, reusable, and refactorable software in JavaScript. Enjoy!
 ## Table of Contents
   1. [Variables](#variables)
   2. [Functions](#functions)
-  3. [Classes](#classes)
-  4. [Concurrency](#concurrency)
-  5. [Comments](#comments)
+  3. [Objects and Data Structures](#objects-and-data-structures)
+  4. [Classes](#classes)
+  5. [Concurrency](#concurrency)
+  6. [Comments](#comments)
 
 ## **Variables**
 ### Use meaningful and pronounceable variable names
@@ -655,6 +656,57 @@ function combine(val1, val2) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+## **Objects and Data Structures**
+### Use getters and setters 
+JavaScript doesn't have interfaces or types so it is very hard to enforce this
+pattern, because we don't have keywords like `public` and `private`. As it is,
+using getters and setters to access data on objects if far better than simply
+looking for a property on an object. "Why?" you might ask. Well, here's an
+unorganized list of reasons why:
+
+1. When you want to do more beyond getting an object property, you don't have 
+to look up and change every accessor in your codebase.
+2. Makes adding validation simple when doing a `set`. 
+3. Encapsulates the internal representation.
+4. Easy to add logging and error handling when getting and setting. 
+5. Inheriting this class, you can override default functionality.
+6. You can lazy load your object's properties, let's say getting it from a 
+server. 
+
+
+**Bad:**
+```javascript
+class BankAccount {
+  constructor() {
+	this.balance = 1000; 
+  }
+}
+
+let bankAccount = new BankAccount();
+// Buy shoes...
+bankAccount.balance = bankAccount.balance - 100;
+```
+
+**Good**:
+```javascript
+class BankAccount {
+  constructor() {
+	this.balance = 1000; 
+  }
+
+  // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
+  withdraw(amount) {
+	if (verifyAmountCanBeDeducted(amount)) {
+	  this.balance -= amount;
+	}
+  }
+}
+
+let bankAccount = new BankAccount();
+// Buy shoes...
+bankAccount.withdraw(100);
+```
+**[⬆ back to top](#table-of-contents)**
 
 
 ## **Classes**
