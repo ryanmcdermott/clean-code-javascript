@@ -623,28 +623,28 @@ function combine(val1, val2) {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Objects and Data Structures**
-### Use getters and setters 
+### Use getters and setters
 JavaScript doesn't have interfaces or types so it is very hard to enforce this
 pattern, because we don't have keywords like `public` and `private`. As it is,
 using getters and setters to access data on objects if far better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
 unorganized list of reasons why:
 
-1. When you want to do more beyond getting an object property, you don't have 
+1. When you want to do more beyond getting an object property, you don't have
 to look up and change every accessor in your codebase.
-2. Makes adding validation simple when doing a `set`. 
+2. Makes adding validation simple when doing a `set`.
 3. Encapsulates the internal representation.
-4. Easy to add logging and error handling when getting and setting. 
+4. Easy to add logging and error handling when getting and setting.
 5. Inheriting this class, you can override default functionality.
-6. You can lazy load your object's properties, let's say getting it from a 
-server. 
+6. You can lazy load your object's properties, let's say getting it from a
+server.
 
 
 **Bad:**
 ```javascript
 class BankAccount {
   constructor() {
-	this.balance = 1000; 
+	this.balance = 1000;
   }
 }
 
@@ -657,7 +657,7 @@ bankAccount.balance = bankAccount.balance - 100;
 ```javascript
 class BankAccount {
   constructor() {
-	this.balance = 1000; 
+	this.balance = 1000;
   }
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
@@ -692,7 +692,7 @@ class UserSettings {
   constructor(user) {
     this.user = user;
   }
-  
+
   changeSettings(settings) {
     if (this.verifyCredentials(user)) {
       // ...
@@ -723,7 +723,7 @@ class UserSettings {
     this.user = user;
     this.auth = new UserAuth(user)
   }
-  
+
   changeSettings(settings) {
     if (this.auth.verifyCredentials()) {
       // ...
@@ -972,6 +972,13 @@ async function getCleanCodeArticle() {
 
 
 ## **Formatting**
+Formatting is subjective. Like many rules herein, there is no hard and fast
+rule that you must follow. The main point is DO NOT ARGUE over formatting.
+There are [tons of tools](http://standardjs.com/rules.html) to automate this.
+Use one! For things that don't fall under the purview of automatic formatting
+(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
+for some guidance.
+
 ### Use consistent capitalization
 JavaScript is untyped, so capitalization tells you a lot about your variables,
 functions, etc. These rules are subjective, so your team can choose whatever
@@ -1008,6 +1015,91 @@ class Alpaca {}
 ```
 **[⬆ back to top](#table-of-contents)**
 
+
+### Function callers and callees should be close
+If a function calls another, keep those functions vertically close in the source
+file. Ideally, keep the caller right above the callee. We tend to read code from
+top-to-bottom, like a newspaper. Because of this, make your code read that way.
+
+**Bad:**
+```javascript
+class PerformanceReview {
+  constructor(employee) {
+    this.employee = employee;
+  }
+
+  lookupPeers() {
+    return db.lookup(this.employee, 'peers');
+  }
+
+  lookupMananger() {
+    return db.lookup(this.employee, 'manager');
+  }
+
+  getPeerReviews() {
+    let peers = this.lookupPeers();
+    // ...
+  }
+
+  perfReview() {
+      getPeerReviews();
+      getManagerReview();
+      getSelfReview();
+  }
+
+  getManagerReview() {
+    let manager = this.lookupManager();
+  }
+
+  getSelfReview() {
+    // ...
+  }
+}
+
+let review = new PerformanceReview(user);
+review.perfReview();
+```
+
+**Good**:
+```javascript
+class PerformanceReview {
+  constructor(employee) {
+    this.employee = employee;
+  }
+
+  perfReview() {
+      getPeerReviews();
+      getManagerReview();
+      getSelfReview();
+  }
+
+  getPeerReviews() {
+    let peers = this.lookupPeers();
+    // ...
+  }
+
+  lookupPeers() {
+    return db.lookup(this.employee, 'peers');
+  }
+
+  getManagerReview() {
+    let manager = this.lookupManager();
+  }
+
+  lookupMananger() {
+    return db.lookup(this.employee, 'manager');
+  }
+
+  getSelfReview() {
+    // ...
+  }
+}
+
+let review = new PerformanceReview(employee);
+review.perfReview();
+```
+
+**[⬆ back to top](#table-of-contents)**
 
 ## **Comments**
 ### Only comment things that have business logic complexity.
