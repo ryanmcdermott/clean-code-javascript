@@ -10,7 +10,8 @@ readable, reusable, and refactorable software in JavaScript. Enjoy!
   3. [Objects and Data Structures](#objects-and-data-structures)
   4. [Classes](#classes)
   5. [Concurrency](#concurrency)
-  6. [Comments](#comments)
+  6. [Formatting](#formatting)
+  7. [Comments](#comments)
 
 ## **Variables**
 ### Use meaningful and pronounceable variable names
@@ -93,41 +94,6 @@ locations.forEach((location) => {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Use consistent capitalization
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
-
-**Bad:**
-```javascript
-var DAYS_IN_WEEK = 7;
-var daysInMonth = 30;
-
-var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-var Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
-
-function eraseDatabase() {}
-function restore_database() {}
-
-class animal {}
-class Alpaca {}
-```
-
-**Good**:
-```javascript
-var DAYS_IN_WEEK = 7;
-var DAYS_IN_MONTH = 30;
-
-var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-var artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
-
-function eraseDatabase() {}
-function restoreDatabase() {}
-
-class Animal {}
-class Alpaca {}
-```
-**[⬆ back to top](#table-of-contents)**
 
 ### Don't add unneeded context
 If your class/object name tells you something, don't repeat that in your
@@ -1001,6 +967,44 @@ async function getCleanCodeArticle() {
       console.log(err);
     }
   }
+```
+**[⬆ back to top](#table-of-contents)**
+
+
+## **Formatting**
+### Use consistent capitalization
+JavaScript is untyped, so capitalization tells you a lot about your variables,
+functions, etc. These rules are subjective, so your team can choose whatever
+they want. The point is, no matter what you all choose, just be consistent.
+
+**Bad:**
+```javascript
+var DAYS_IN_WEEK = 7;
+var daysInMonth = 30;
+
+var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+var Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+
+function eraseDatabase() {}
+function restore_database() {}
+
+class animal {}
+class Alpaca {}
+```
+
+**Good**:
+```javascript
+var DAYS_IN_WEEK = 7;
+var DAYS_IN_MONTH = 30;
+
+var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+var artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+
+function eraseDatabase() {}
+function restoreDatabase() {}
+
+class Animal {}
+class Alpaca {}
 ```
 **[⬆ back to top](#table-of-contents)**
 
