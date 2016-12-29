@@ -644,11 +644,12 @@ server.
 ```javascript
 class BankAccount {
   constructor() {
-	this.balance = 1000;
+	   this.balance = 1000;
   }
 }
 
 let bankAccount = new BankAccount();
+
 // Buy shoes...
 bankAccount.balance = bankAccount.balance - 100;
 ```
@@ -657,18 +658,19 @@ bankAccount.balance = bankAccount.balance - 100;
 ```javascript
 class BankAccount {
   constructor() {
-	this.balance = 1000;
+	   this.balance = 1000;
   }
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
   withdraw(amount) {
-	if (verifyAmountCanBeDeducted(amount)) {
-	  this.balance -= amount;
-	}
+  	if (verifyAmountCanBeDeducted(amount)) {
+  	  this.balance -= amount;
+  	}
   }
 }
 
 let bankAccount = new BankAccount();
+
 // Buy shoes...
 bankAccount.withdraw(100);
 ```
