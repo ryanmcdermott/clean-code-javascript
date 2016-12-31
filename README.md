@@ -94,7 +94,6 @@ locations.forEach((location) => {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-
 ### Don't add unneeded context
 If your class/object name tells you something, don't repeat that in your
 variable name.
@@ -122,6 +121,28 @@ var Car = {
 
 function paintCar(car) {
   car.color = 'Red';
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
+### Short-circuiting is cleaner than conditionals
+
+**Bad:**
+```javascript
+function createMicrobrewery(name) {
+  var breweryName;
+  if (name) {
+    breweryName = name;
+  } else {
+    breweryName = 'Hipster Brew Co.';
+  }
+}
+```
+
+**Good**:
+```javascript
+function createMicrobrewery(name) {
+  var breweryName = name || 'Hipster Brew Co.'
 }
 ```
 **[⬆ back to top](#table-of-contents)**
