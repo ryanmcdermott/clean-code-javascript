@@ -325,7 +325,6 @@ createMenu(menuConfig);
 **[⬆ back to top](#table-of-contents)**
 
 
-
 ### Don't use flags as function parameters
 Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
 
@@ -379,7 +378,6 @@ function splitIntoFirstAndLastName() {
 }
 
 console.log(name); // ['Ryan', 'McDermott'];
-
 ```
 
 **Good**:
@@ -621,6 +619,32 @@ function combine(val1, val2) {
 }
 ```
 **[⬆ back to top](#table-of-contents)**
+
+### Don't over-optimize
+Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
+times, if you are optimizing then you are just wasting your time. [There are good
+resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+for seeing where optimization is lacking. Target those in the meantime, until
+they are fixed if they can be.
+
+**Bad:**
+```javascript
+
+// On old browsers, each iteration would be costly because `len` would be
+// recomputed. In modern browsers, this is optimized.
+for (var i = 0, len = list.length; i < len; i++) {
+  // ...
+}
+```
+
+**Good**:
+```javascript
+for (var i = 0; i < list.length; i++) {
+  // ...
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
 
 ## **Objects and Data Structures**
 ### Use getters and setters
