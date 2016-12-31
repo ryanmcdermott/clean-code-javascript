@@ -677,6 +677,46 @@ bankAccount.withdraw(100);
 **[⬆ back to top](#table-of-contents)**
 
 
+### Make objects have private members
+This can be accomplished through closures (for ES5 and below).
+
+**Bad:**
+```javascript
+
+var Employee = function(name) {
+  this.name = name;
+}
+
+Employee.prototype.getName = function() {
+  return this.name;
+}
+
+var employee = new Employee('John Doe');
+console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+delete employee.name;
+console.log('Employee name: ' + employee.getName()); // Employee name: undefined
+```
+
+**Good**:
+```javascript
+var Employee = (function() {
+  function Employee(name) {
+    this.getName = function() {
+      return name;
+    };
+  }
+
+  return Employee;
+}());
+
+var employee = new Employee('John Doe');
+console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+delete employee.name;
+console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+```
+**[⬆ back to top](#table-of-contents)**
+
+
 ## **Classes**
 ### Classes should obey Single Responsibility Principle (SRP)
 As stated in Clean Code, "There should never be more than one reason for a class
