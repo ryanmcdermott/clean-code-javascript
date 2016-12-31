@@ -763,7 +763,7 @@ console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
 
 
 ## **Classes**
-### Classes should obey Single Responsibility Principle (SRP)
+### Single Responsibility Principle (SRP)
 As stated in Clean Code, "There should never be more than one reason for a class
 to change". It's tempting to jam-pack a class with a lot of functionality, like
 when you can only take one suitcase on your flight. The issue with this is
@@ -815,6 +815,47 @@ class UserSettings {
     if (this.auth.verifyCredentials()) {
       // ...
     }
+  }
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
+### Open/Closed Principle (OCP)
+As stated by Bertrand Meyer, "software entities (classes, modules, functions,
+etc.) should be open for extension, but closed for modification." What does that
+mean though? This principle basically states that you should allow users to
+extend the functionality of your module without having to open up the `.js`
+source code file and manually manipulate it.
+
+**Bad:**
+```javascript
+class AjaxRequester {
+  constructor() {
+    // What if we wanted another HTTP Method, like DELETE? We would have to
+    // open this file up and modify this and put it in manually.
+    this.HTTP_METHODS = ['POST', 'PUT', 'GET'];
+  }
+
+  get(url) {
+    // ...
+  }
+
+}
+```
+
+**Good**:
+```javascript
+class AjaxRequester {
+  constructor() {
+    this.HTTP_METHODS = ['POST', 'PUT', 'GET'];
+  }
+
+  get(url) {
+    // ...
+  }
+
+  addHTTPMethod(method) {
+    this.HTTP_METHODS.push(method);
   }
 }
 ```
