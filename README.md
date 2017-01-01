@@ -861,6 +861,144 @@ class AjaxRequester {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+
+### Liskov Substitution Principle (LSP)
+This is a scary term for a very simple concept. It's formally defined as "If S
+is a subtype of T, then objects of type T may be replaced with objects of type S
+(i.e., objects of type S may substitute objects of type T) without altering any
+of the desirable properties of that program (correctness, task performed,
+etc.)." That's an even scarier definition.
+
+The best explanation for this is if you have a parent class and a child class,
+then the base class and child class can be used interchangeably without getting
+incorrect results. This might still be confusing, so let's take a look at the
+classic Square-Rectangle example. Mathematically, a square is a rectangle, but
+if you model it using the "is-a" relationship via inheritance, you quickly
+get into trouble.
+
+**Bad:**
+```javascript
+class Rectangle {
+  constructor() {
+    this.width = 0;
+    this.height = 0;
+  }
+
+  setColor(color) {
+    // ...
+  }
+
+  render(area) {
+    // ...
+  }
+
+  setWidth(width) {
+    this.width = width;
+  }
+
+  setHeight(height) {
+    this.height = height;
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  constructor() {
+    super();
+  }
+
+  setWidth(width) {
+    this.width = width;
+    this.height = width;
+  }
+
+  setHeight(height) {
+    this.width = height;
+    this.height = height;
+  }
+}
+
+function renderLargeRectangles(rectangles) {
+  rectangles.forEach((rectangle) => {
+    rectangle.setWidth(4);
+    rectangle.setHeight(5);
+    let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
+    rectangle.render(area);
+  })
+}
+
+let rectangles = [new Rectangle(), new Rectangle(), new Square()];
+renderLargeRectangles(rectangles);
+```
+
+**Good**:
+```javascript
+class Shape {
+  constructor() {}
+
+  setColor(color) {
+    // ...
+  }
+
+  render(area) {
+    // ...
+  }
+}
+
+class Rectangle extends Shape {
+  constructor() {
+    super();
+    this.width = 0;
+    this.height = 0;
+  }
+
+  setWidth(width) {
+    this.width = width;
+  }
+
+  setHeight(height) {
+    this.height = height;
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Shape {
+  constructor() {
+    super();
+    this.length = 0;
+  }
+
+  setLength(length) {
+    this.length = length;
+  }
+}
+
+function renderLargeShapes(shapes) {
+  shapes.forEach((shape) => {
+    switch (shape.constructor.name) {
+      case 'Square':
+        shape.setLength(5);
+      case 'Rectangle':
+        shape.setWidth(4);
+        shape.setHeight(5);
+    }
+
+    let area = shape.getArea();
+    shape.render(area);
+  })
+}
+
+let shapes = [new Rectangle(), new Rectangle(), new Square()];
+renderLargeShapes();
+```
+**[⬆ back to top](#table-of-contents)**
+
 ### Prefer ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
 definitions for classical ES5 classes. If you need inheritance (and be aware
