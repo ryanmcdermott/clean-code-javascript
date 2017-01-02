@@ -68,7 +68,10 @@ getUser();
 **[⬆ back to top](#table-of-contents)**
 
 ### Use searchable names
-We will read more code than we will ever write. It's important that the code we do write is readable and searchable. By *not* naming variables that end up being meaningful for understanding our program, we hurt our readers. Make your names searchable.
+We will read more code than we will ever write. It's important that the code we
+do write is readable and searchable. By *not* naming variables that end up
+being meaningful for understanding our program, we hurt our readers.
+Make your names searchable.
 
 **Bad:**
 ```javascript
@@ -85,6 +88,23 @@ var MINUTES_IN_A_YEAR = 525600;
 for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
   runCronJob();
 }
+```
+**[⬆ back to top](#table-of-contents)**
+
+### Use explanatory variables
+**Bad:**
+```javascript
+let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
+saveCityState(cityStateRegex.match(cityStateRegex)[0], cityStateRegex.match(cityStateRegex)[0]);
+```
+
+**Good**:
+```javascript
+let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
+let match = cityStateRegex.match(cityStateRegex)
+let city = match[1];
+let state = match[2];
+saveCityState(city, state);
 ```
 **[⬆ back to top](#table-of-contents)**
 
