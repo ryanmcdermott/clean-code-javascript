@@ -9,9 +9,10 @@ readable, reusable, and refactorable software in JavaScript. Enjoy!
   2. [Functions](#functions)
   3. [Objects and Data Structures](#objects-and-data-structures)
   4. [Classes](#classes)
-  5. [Concurrency](#concurrency)
-  6. [Formatting](#formatting)
-  7. [Comments](#comments)
+  5. [Testing](#testing)
+  6. [Concurrency](#concurrency)
+  7. [Formatting](#formatting)
+  8. [Comments](#comments)
 
 ## **Variables**
 ### Use meaningful and pronounceable variable names
@@ -1392,6 +1393,21 @@ class EmployeeTaxData {
 }
 ```
 **[⬆ back to top](#table-of-contents)**
+
+## **Testing**
+Testing is more important than shipping. If you have have no tests or an
+inadequate amount, then every time you ship code you won't be sure that you
+didn't break anything. Deciding on what constitutes an adequate amount is up
+to your team, but having 100% coverage (all statements and branches) is how
+you achieve very high confidence and developer peace of mind.
+
+There's no excuse to not write tests. There's [plenty of good JS test frameworks]
+(http://jstherightway.org/#testing-tools), so find one that your team prefers.
+When you find one that works for your team, then aim to always write tests
+for every new feature/module you introduce. If your preferred method is
+Test Driven Development (TDD), that is great, but the main point is to just
+make sure you are reaching your coverage goals before launching any feature,
+or refactoring an existing one.
 
 ## **Concurrency**
 ### Use Promises, not callbacks
