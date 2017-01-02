@@ -629,7 +629,6 @@ class Cesna extends Airplane {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-
 ### Avoid type-checking (part 1)
 JavaScript is untyped, which means your functions can take any type of argument.
 Sometimes you are bitten by this freedom and it becomes tempting to do
@@ -711,6 +710,36 @@ for (var i = 0; i < list.length; i++) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Remove dead code
+Dead code is just as bad as duplicate code. There's no reason to keep it in
+your codebase. If it's not being called, get rid of it! It will still be safe
+in your version history if you still need it.
+
+**Bad:**
+```javascript
+function oldRequestModule(url) {
+  // ...
+}
+
+function newRequestModule(url) {
+  // ...
+}
+
+var req = newRequestModule;
+inventoryTracker('apples', req, 'www.inventory-awesome.io');
+
+```
+
+**Good**:
+```javascript
+function newRequestModule(url) {
+  // ...
+}
+
+var req = newRequestModule;
+inventoryTracker('apples', req, 'www.inventory-awesome.io');
+```
+**[⬆ back to top](#table-of-contents)**
 
 ## **Objects and Data Structures**
 ### Use getters and setters
