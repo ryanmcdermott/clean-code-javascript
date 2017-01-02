@@ -1399,7 +1399,9 @@ Testing is more important than shipping. If you have have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
 didn't break anything. Deciding on what constitutes an adequate amount is up
 to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind.
+you achieve very high confidence and developer peace of mind. This means that
+in addition to having a great testing framework, you also need to use a
+[good coverage tool](http://gotwarlost.github.io/istanbul/).
 
 There's no excuse to not write tests. There's [plenty of good JS test frameworks]
 (http://jstherightway.org/#testing-tools), so find one that your team prefers.
