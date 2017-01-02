@@ -1,15 +1,15 @@
 # clean-code-javascript
 
 ## Table of Contents
-  0. [Introduction](#introduction)
-  1. [Variables](#variables)
-  2. [Functions](#functions)
-  3. [Objects and Data Structures](#objects-and-data-structures)
-  4. [Classes](#classes)
-  5. [Testing](#testing)
-  6. [Concurrency](#concurrency)
-  7. [Formatting](#formatting)
-  8. [Comments](#comments)
+  1. [Introduction](#introduction)
+  2. [Variables](#variables)
+  3. [Functions](#functions)
+  4. [Objects and Data Structures](#objects-and-data-structures)
+  5. [Classes](#classes)
+  6. [Testing](#testing)
+  7. [Concurrency](#concurrency)
+  8. [Formatting](#formatting)
+  9. [Comments](#comments)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -1554,6 +1554,57 @@ for every new feature/module you introduce. If your preferred method is
 Test Driven Development (TDD), that is great, but the main point is to just
 make sure you are reaching your coverage goals before launching any feature,
 or refactoring an existing one.
+
+### Single concept per test
+
+**Bad:**
+```javascript
+const assert = require('assert');
+
+describe('MakeMomentJSGreatAgain', function() {
+  it('handles date boundaries', function() {
+    let date;
+
+    date = new MakeMomentJSGreatAgain('1/1/2015');
+    date.addDays(30);
+    date.shouldEqual('1/31/2015');
+
+    date = new MakeMomentJSGreatAgain('2/1/2016');
+    date.addDays(28);
+    assert.equal('02/29/2016', date);
+
+    date = new MakeMomentJSGreatAgain('2/1/2015');
+    date.addDays(28);
+    assert.equal('03/01/2015', date);
+  });
+});
+```
+
+**Good**:
+```javascript
+const assert = require('assert');
+
+describe('MakeMomentJSGreatAgain', function() {
+  it('handles 30-day months', function() {
+    let date = new MakeMomentJSGreatAgain('1/1/2015');
+    date.addDays(30);
+    date.shouldEqual('1/31/2015');
+  });
+
+  it('handles leap year', function() {
+    let date = new MakeMomentJSGreatAgain('2/1/2016');
+    date.addDays(28);
+    assert.equal('02/29/2016', date);
+  });
+
+  it('handles non-leap year', function() {
+    let date = new MakeMomentJSGreatAgain('2/1/2015');
+    date.addDays(28);
+    assert.equal('03/01/2015', date);
+  });
+});
+```
+**[⬆ back to top](#table-of-contents)**
 
 ## **Concurrency**
 ### Use Promises, not callbacks
