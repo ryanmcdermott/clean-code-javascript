@@ -260,6 +260,31 @@ function isClientActive(client) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Function names should say what they do
+
+**Bad:**
+```javascript
+function dateAdd(date, month) {
+  // ...
+}
+
+let date = new Date();
+
+// It's hard to to tell from the function name what is added
+dateAdd(date, 1);
+```
+
+**Good**:
+```javascript
+function dateAddMonth(date, month) {
+  // ...
+}
+
+let date = new Date();
+dateAddMonth(date, 1);
+```
+**[⬆ back to top](#table-of-contents)**
+
 ### Remove duplicate code
 Never ever, ever, under any circumstance, have duplicate code. There's no reason
 for it and it's quite possibly the worst sin you can commit as a professional
