@@ -598,6 +598,27 @@ var totalOutput = programmerOutput
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Encapsulate conditionals
+
+**Bad:**
+```javascript
+if (fsm.state === 'fetching' && isEmpty(listNode)) {
+  /// ...
+}
+```
+
+**Good**:
+```javascript
+function shouldShowSpinner() {
+  return fsm.state === 'fetching' && isEmpty(listNode);
+}
+
+if (shouldShowSpinner()) {
+  // ...
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
 ### Avoid negative conditionals
 
 **Bad:**
