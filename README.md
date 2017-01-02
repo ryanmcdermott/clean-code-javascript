@@ -598,6 +598,31 @@ var totalOutput = programmerOutput
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Avoid negative conditionals
+
+**Bad:**
+```javascript
+function isDOMNodeNotPresent(node) {
+  // ...
+}
+
+if (!isDOMNodeNotPresent(node)) {
+  // ...
+}
+```
+
+**Good**:
+```javascript
+function isDOMNodePresent(node) {
+  // ...
+}
+
+if (isDOMNodePresent(node)) {
+  // ...
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
 ### Avoid conditionals
 This seems like an impossible task. Upon first hearing this, most people say,
 "how am I supposed to do anything without an `if` statement?" The answer is that
