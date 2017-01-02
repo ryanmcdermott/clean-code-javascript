@@ -1753,6 +1753,41 @@ function combine(a, b) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Avoid positional markers
+They usually just add noise. Let the functions and variable names along with the
+proper indentation and formatting give the visual structure to your code.
+
+**Bad:**
+```javascript
+////////////////////////////////////////////////////////////////////////////////
+// Scope Model Instantiation
+////////////////////////////////////////////////////////////////////////////////
+let $scope.model = {
+  menu: 'foo',
+  nav: 'bar'
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// Action setup
+////////////////////////////////////////////////////////////////////////////////
+let actions = function() {
+  // ...
+}
+```
+
+**Good**:
+```javascript
+let $scope.model = {
+  menu: 'foo',
+  nav: 'bar'
+};
+
+let actions = function() {
+  // ...
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
 ### Avoid legal comments in source files
 That's what your `LICENSE` file at the top of your source tree is for.
 
