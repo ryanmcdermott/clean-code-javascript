@@ -39,8 +39,7 @@ we review it with our peers. Don't beat yourself up for first drafts that need
 improvement. Beat up the code instead!
 
 ## **Variables**
-<a name="variables--meaningful"></a><a name="1.1"></a>
-### [1.1](#variables--meaningful) Use meaningful and pronounceable variable names
+### [1.1][] Use meaningful and pronounceable variable names
 
 **Bad:**
 ```javascript
