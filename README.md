@@ -193,8 +193,21 @@ function createMicrobrewery(name) {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Functions**
-### Limit the amount of function parameters (2 or less)
-Use an object if you are finding yourself needing a lot of parameters.
+### Function arguments (2 or less ideally)
+Limiting the amount of function parameters is incredibly important because it
+makes testing your function easier. Having more than three leads to a
+combinatorial explosion where you have to test tons of different cases with
+each separate argument.
+
+Zero arguments is the ideal case. One or two arguments is ok, and three should
+be avoided. Anything more than that should be consolidated. Usually, if you have
+more than two arguments then your function is trying to do too much. In cases
+where it's not, most of the time a higher-level object will suffice as an
+argument.
+
+Since JavaScript allows us to make objects on the fly, without a lot of class
+boilerplate, you can use an object if you are finding yourself needing a
+lot of arguments.
 
 **Bad:**
 ```javascript
