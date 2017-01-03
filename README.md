@@ -39,7 +39,7 @@ we review it with our peers. Don't beat yourself up for first drafts that need
 improvement. Beat up the code instead!
 
 ## **Variables**
-### [1.1][] Use meaningful and pronounceable variable names
+### Use meaningful and pronounceable variable names
 
 **Bad:**
 ```javascript
