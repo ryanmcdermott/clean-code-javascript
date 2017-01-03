@@ -298,6 +298,74 @@ dateAddMonth(date, 1);
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Functions should only be one level of abstraction
+When you have more than one level of abstraction your function is usually
+doing too much. Splitting up functions leads to reusability and easier
+testing.
+
+**Bad:**
+```javascript
+function parseBetterJSAlternative(code) {
+  let REGEXES = [
+    // ...
+  ];
+
+  let statements = code.split(' ');
+  let tokens;
+  REGEXES.forEach((REGEX) => {
+    statements.forEach((statement) => {
+      // ...
+    })
+  });
+
+  let ast;
+  tokens.forEach((token) => {
+    // lex...
+  });
+
+  ast.forEach((node) => {
+    // parse...
+  })
+}
+```
+
+**Good**:
+```javascript
+function tokenize() {
+  let REGEXES = [
+    // ...
+  ];
+
+  let statements = code.split(' ');
+  let tokens;
+  REGEXES.forEach((REGEX) => {
+    statements.forEach((statement) => {
+      // ...
+    })
+  });
+
+  return tokens;
+}
+
+function lexer() {
+  let ast;
+  tokens.forEach((token) => {
+    // lex...
+  });
+
+  return ast;
+}
+
+function parseBetterJSAlternative(code) {
+  let tokens = tokenize(code);
+  let ast = lexer(ast);
+  ast.forEach((node) => {
+    // parse...
+  })  
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
 ### Remove duplicate code
 Never ever, ever, under any circumstance, have duplicate code. There's no reason
 for it and it's quite possibly the worst sin you can commit as a professional
