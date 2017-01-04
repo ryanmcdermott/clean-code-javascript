@@ -256,7 +256,7 @@ function emailClients(clients) {
 ```javascript
 function emailClients(clients) {
   clients.forEach(client => {
-    emailClientIfNeeded();
+    emailClientIfNeeded(client);
   });
 }
 
