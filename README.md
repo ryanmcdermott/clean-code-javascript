@@ -95,7 +95,7 @@ for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
 **Bad:**
 ```javascript
 let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-saveCityState(cityStateRegex.match(cityStateRegex)[0], cityStateRegex.match(cityStateRegex)[0]);
+saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(cityStateRegex)[2]);
 ```
 
 **Good**:
