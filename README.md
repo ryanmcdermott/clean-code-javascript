@@ -221,7 +221,7 @@ function createMenu(title, body, buttonText, cancellable) {
 var menuConfig = {
   title: 'Foo',
   body: 'Bar',
-  buttonText: 'Baz'
+  buttonText: 'Baz',
   cancellable: true
 }
 
@@ -459,7 +459,7 @@ function writeForumComment(subject='No subject', body='No text') {
 var menuConfig = {
   title: null,
   body: 'Bar',
-  buttonText: null
+  buttonText: null,
   cancellable: true
 }
 
@@ -479,7 +479,7 @@ createMenu(menuConfig);
 var menuConfig = {
   title: null,
   body: 'Bar',
-  buttonText: null
+  buttonText: null,
   cancellable: true
 }
 
