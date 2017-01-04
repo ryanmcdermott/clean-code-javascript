@@ -1221,7 +1221,7 @@ function renderLargeShapes(shapes) {
 }
 
 let shapes = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeShapes();
+renderLargeShapes(shapes);
 ```
 **[⬆ back to top](#table-of-contents)**
 
