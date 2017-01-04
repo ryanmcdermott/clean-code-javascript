@@ -1202,6 +1202,10 @@ class Square extends Shape {
   setLength(length) {
     this.length = length;
   }
+  
+  getArea() {
+    return this.length * this.length;
+  }
 }
 
 function renderLargeShapes(shapes) {
