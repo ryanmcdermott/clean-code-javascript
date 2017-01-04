@@ -445,7 +445,7 @@ function writeForumComment(subject, body) {
 
 **Good**:
 ```javascript
-function writeForumComment(subject='No subject', body='No text') {
+function writeForumComment(subject = 'No subject', body = 'No text') {
   ...
 }
 
@@ -790,7 +790,7 @@ The first thing to consider is consistent APIs.
 **Bad:**
 ```javascript
 function travelToTexas(vehicle) {
-  if (obj instanceof Bicylce) {
+  if (obj instanceof Bicycle) {
     vehicle.peddle(this.currentLocation, new Location('texas'));
   } else if (obj instanceof Car) {
     vehicle.drive(this.currentLocation, new Location('texas'));
@@ -897,7 +897,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ### Use getters and setters
 JavaScript doesn't have interfaces or types so it is very hard to enforce this
 pattern, because we don't have keywords like `public` and `private`. As it is,
-using getters and setters to access data on objects if far better than simply
+using getters and setters to access data on objects is far better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
 unorganized list of reasons why:
 
@@ -1558,7 +1558,7 @@ you should prefer composition over inheritance where you can. There are lots of
 good reasons to use inheritance and lots of good reasons to use composition.
 The main point for this maxim is that if your mind instinctively goes for
 inheritance, try to think if composition could model your problem better. In some
-cases it can. Inheritance is great for preventing
+cases it can.
 
 You might be wondering then, "when should I use inheritance?" It
 depends on your problem at hand, but this is a decent list of when inheritance
