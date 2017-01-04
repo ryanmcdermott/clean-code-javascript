@@ -484,12 +484,12 @@ var menuConfig = {
 }
 
 function createMenu(config) {
-  Object.assign(config, {
+  Object.assign({
     title: 'Foo',
     body: 'Bar',
     buttonText: 'Baz',
     cancellable: true
-  });
+  }, config);
 }
 
 createMenu(menuConfig);
