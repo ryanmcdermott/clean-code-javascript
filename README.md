@@ -331,7 +331,7 @@ function parseBetterJSAlternative(code) {
 
 **Good**:
 ```javascript
-function tokenize() {
+function tokenize(code) {
   let REGEXES = [
     // ...
   ];
@@ -347,7 +347,7 @@ function tokenize() {
   return tokens;
 }
 
-function lexer() {
+function lexer(tokens) {
   let ast;
   tokens.forEach((token) => {
     // lex...
@@ -358,7 +358,7 @@ function lexer() {
 
 function parseBetterJSAlternative(code) {
   let tokens = tokenize(code);
-  let ast = lexer(ast);
+  let ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
   })  
