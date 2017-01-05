@@ -52,6 +52,24 @@ var yearMonthDay = moment().format('YYYY/MM/DD');
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Use ES6 constants when variable values do not change
+In the bad example, the variable can be changed.
+When you declare a constant, the variable should stay
+the same throughout the program.
+
+
+**Bad:**
+```javascript
+var FIRST_US_PRESIDENT = "George Washington";
+```
+
+**Good**:
+```javascript
+const FIRST_US_PRESIDENT = "George Washington";
+```
+**[⬆ back to top](#table-of-contents)**
+
+
 ### Use the same vocabulary for the same type of variable
 
 **Bad:**
@@ -1951,7 +1969,7 @@ function hashIt(data) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Don't leave commented code in your codebase
+### Don't leave commented out code in your codebase
 Version control exists for a reason. Leave old code in your history.
 
 **Bad:**
