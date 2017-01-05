@@ -465,7 +465,7 @@ var menuConfig = {
 function createMenu(config) {
   config.title = config.title || 'Foo'
   config.body = config.body || 'Bar'
-  config.buttonText = config.title || 'Baz'
+  config.buttonText = config.buttonText || 'Baz'
   config.cancellable = config.cancellable === undefined ? config.cancellable : true;
 
 }
