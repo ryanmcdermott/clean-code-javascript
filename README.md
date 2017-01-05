@@ -1918,7 +1918,7 @@ function hashIt(data) {
   // Loop through every character in data
   for (var i = 0; i < length; i++) {
     // Get character code.
-    var char = i.charCodeAt(i);
+    var char = data.charCodeAt(i);
     // Make the hash
     hash = ((hash << 5) - hash) + char;
     // Convert to 32-bit integer
@@ -1935,7 +1935,7 @@ function hashIt(data) {
   var length = data.length;
 
   for (var i = 0; i < length; i++) {
-    var char = i.charCodeAt(i);
+    var char = data.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
 
     // Convert to 32-bit integer
