@@ -476,23 +476,35 @@ createMenu(menuConfig);
 **Good**:
 ```javascript
 var menuConfig = {
-  title: null,
-  body: 'Bar',
-  buttonText: null,
-  cancellable: true
+  title: "Welcome to the year 2017",
+  body: 'Hello and welcome to the year 2017. What a year this whole 2016 was, right?',
+  cancellable: false
 }
 
 function createMenu(config) {
-  Object.assign(config, {
-    title: 'Foo',
-    body: 'Bar',
-    buttonText: 'Baz',
+  config = Object.assign({
+    title: 'Untitled element',
+    body: 'Please provide element description.',
+    buttonText: 'See more',
     cancellable: true
-  });
+  }, config);
+  
+  /**
+  * After calling the function with `menuConfig` as the parameter, the config object will be:
+  * {
+  * title: "Welcome to the year 2017",
+  * body: 'Hello and welcome to the year 2017. What a year this whole 2016 was, right?',
+  * buttonText: 'See more',
+  * cancellable: false
+  * }
+  */
 }
 
 createMenu(menuConfig);
 ```
+
+The example above will create a local scoped copy of `config` (thus preventing mutation of the original object) and all the missing fields will be populated by default values.
+
 **[⬆ back to top](#table-of-contents)**
 
 
