@@ -529,7 +529,7 @@ function createFile(name) {
 A function produces a side effect if it does anything other than take a value in
 and return another value or values. A side effect could be writing to a file,
 modifying some global variable, or accidentally wiring all your money to a
-Nigerian prince.
+stranger.
 
 Now, you do need to have side effects in a program on occasion. Like the previous
 example, you might need to write to a file. What you want to do is to
