@@ -420,7 +420,6 @@ function showList(employees) {
       portfolio = employee.getGithubLink();
     }
 
-    var favoriteManagerBooks = getMBAList()
     var data = {
       expectedSalary: expectedSalary,
       experience: experience,
