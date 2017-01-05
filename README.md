@@ -548,6 +548,8 @@ function splitIntoFirstAndLastName() {
   name = name.split(' ');
 }
 
+splitIntoFirstAndLastName();
+
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
