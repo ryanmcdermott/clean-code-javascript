@@ -95,7 +95,7 @@ for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
 **Bad:**
 ```javascript
 let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-saveCityState(cityStateRegex.match(cityStateRegex)[0], cityStateRegex.match(cityStateRegex)[0]);
+saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(cityStateRegex)[2]);
 ```
 
 **Good**:
@@ -221,11 +221,11 @@ function createMenu(title, body, buttonText, cancellable) {
 var menuConfig = {
   title: 'Foo',
   body: 'Bar',
-  buttonText: 'Baz'
+  buttonText: 'Baz',
   cancellable: true
 }
 
-function createMenu(config) {
+function createMenu(menuConfig) {
   ...
 }
 
@@ -331,7 +331,7 @@ function parseBetterJSAlternative(code) {
 
 **Good**:
 ```javascript
-function tokenize() {
+function tokenize(code) {
   let REGEXES = [
     // ...
   ];
@@ -347,7 +347,7 @@ function tokenize() {
   return tokens;
 }
 
-function lexer() {
+function lexer(tokens) {
   let ast;
   tokens.forEach((token) => {
     // lex...
@@ -358,7 +358,7 @@ function lexer() {
 
 function parseBetterJSAlternative(code) {
   let tokens = tokenize(code);
-  let ast = lexer(ast);
+  let ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
   })  
@@ -420,7 +420,6 @@ function showList(employees) {
       portfolio = employee.getGithubLink();
     }
 
-    var favoriteManagerBooks = getMBAList()
     var data = {
       expectedSalary: expectedSalary,
       experience: experience,
@@ -445,7 +444,7 @@ function writeForumComment(subject, body) {
 
 **Good**:
 ```javascript
-function writeForumComment(subject='No subject', body='No text') {
+function writeForumComment(subject = 'No subject', body = 'No text') {
   ...
 }
 
@@ -459,7 +458,7 @@ function writeForumComment(subject='No subject', body='No text') {
 var menuConfig = {
   title: null,
   body: 'Bar',
-  buttonText: null
+  buttonText: null,
   cancellable: true
 }
 
@@ -702,11 +701,11 @@ if (fsm.state === 'fetching' && isEmpty(listNode)) {
 
 **Good**:
 ```javascript
-function shouldShowSpinner() {
+function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
 }
 
-if (shouldShowSpinner()) {
+if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
 ```
@@ -802,7 +801,7 @@ The first thing to consider is consistent APIs.
 **Bad:**
 ```javascript
 function travelToTexas(vehicle) {
-  if (obj instanceof Bicylce) {
+  if (obj instanceof Bicycle) {
     vehicle.peddle(this.currentLocation, new Location('texas'));
   } else if (obj instanceof Car) {
     vehicle.drive(this.currentLocation, new Location('texas'));
@@ -909,7 +908,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ### Use getters and setters
 JavaScript doesn't have interfaces or types so it is very hard to enforce this
 pattern, because we don't have keywords like `public` and `private`. As it is,
-using getters and setters to access data on objects if far better than simply
+using getters and setters to access data on objects is far better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
 unorganized list of reasons why:
 
@@ -1215,6 +1214,10 @@ class Square extends Shape {
   setLength(length) {
     this.length = length;
   }
+  
+  getArea() {
+    return this.length * this.length;
+  }
 }
 
 function renderLargeShapes(shapes) {
@@ -1233,7 +1236,7 @@ function renderLargeShapes(shapes) {
 }
 
 let shapes = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeShapes();
+renderLargeShapes(shapes);
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -1570,7 +1573,7 @@ you should prefer composition over inheritance where you can. There are lots of
 good reasons to use inheritance and lots of good reasons to use composition.
 The main point for this maxim is that if your mind instinctively goes for
 inheritance, try to think if composition could model your problem better. In some
-cases it can. Inheritance is great for preventing
+cases it can.
 
 You might be wondering then, "when should I use inheritance?" It
 depends on your problem at hand, but this is a decent list of when inheritance
@@ -1927,7 +1930,7 @@ function hashIt(data) {
   // Loop through every character in data
   for (var i = 0; i < length; i++) {
     // Get character code.
-    var char = i.charCodeAt(i);
+    var char = data.charCodeAt(i);
     // Make the hash
     hash = ((hash << 5) - hash) + char;
     // Convert to 32-bit integer
@@ -1944,7 +1947,7 @@ function hashIt(data) {
   var length = data.length;
 
   for (var i = 0; i < length; i++) {
-    var char = i.charCodeAt(i);
+    var char = data.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
 
     // Convert to 32-bit integer
