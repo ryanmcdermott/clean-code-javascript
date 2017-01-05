@@ -483,7 +483,7 @@ var menuConfig = {
 }
 
 function createMenu(config) {
-  Object.assign(config, {
+  config = Object.assign({}, config, {
     title: 'Foo',
     body: 'Bar',
     buttonText: 'Baz',
