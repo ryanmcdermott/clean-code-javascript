@@ -1202,6 +1202,10 @@ class Square extends Shape {
   setLength(length) {
     this.length = length;
   }
+  
+  getArea() {
+    return this.length * this.length;
+  }
 }
 
 function renderLargeShapes(shapes) {
@@ -1220,7 +1224,7 @@ function renderLargeShapes(shapes) {
 }
 
 let shapes = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeShapes();
+renderLargeShapes(shapes);
 ```
 **[⬆ back to top](#table-of-contents)**
 
