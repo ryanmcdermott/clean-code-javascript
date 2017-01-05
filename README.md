@@ -789,9 +789,9 @@ The first thing to consider is consistent APIs.
 **Bad:**
 ```javascript
 function travelToTexas(vehicle) {
-  if (obj instanceof Bicycle) {
+  if (vehicle instanceof Bicycle) {
     vehicle.peddle(this.currentLocation, new Location('texas'));
-  } else if (obj instanceof Car) {
+  } else if (vehicle instanceof Car) {
     vehicle.drive(this.currentLocation, new Location('texas'));
   }
 }
