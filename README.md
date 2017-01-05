@@ -490,7 +490,7 @@ function createMenu(config) {
   }, config);
   
   /**
-  * The config object will now look like this:
+  * After calling the function with `menuConfig` as the parameter, the config object will be:
   * {
   * title: "Welcome to the year 2017",
   * body: 'Hello and welcome to the year 2017. What a year this whole 2016 was, right?',
