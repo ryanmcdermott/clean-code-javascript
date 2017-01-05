@@ -476,19 +476,22 @@ createMenu(menuConfig);
 **Good**:
 ```javascript
 var menuConfig = {
-  title: null,
-  body: 'Bar',
-  buttonText: null,
+  title: 'Order',
+  // User did not include 'body' key
+  buttonText: 'Send',
   cancellable: true
 }
 
 function createMenu(config) {
-  Object.assign(config, {
+  config = Object.assign({}, {
     title: 'Foo',
     body: 'Bar',
     buttonText: 'Baz',
     cancellable: true
-  });
+  }, config);
+
+  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // ...
 }
 
 createMenu(menuConfig);
@@ -1204,7 +1207,7 @@ class Square extends Shape {
   setLength(length) {
     this.length = length;
   }
-  
+
   getArea() {
     return this.length * this.length;
   }
