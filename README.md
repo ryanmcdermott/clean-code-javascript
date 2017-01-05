@@ -689,11 +689,11 @@ if (fsm.state === 'fetching' && isEmpty(listNode)) {
 
 **Good**:
 ```javascript
-function shouldShowSpinner() {
+function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
 }
 
-if (shouldShowSpinner()) {
+if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
 ```
