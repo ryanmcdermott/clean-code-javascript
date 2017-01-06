@@ -112,16 +112,16 @@ for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
 ### Use explanatory variables
 **Bad:**
 ```javascript
-let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
+const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
 saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(cityStateRegex)[2]);
 ```
 
 **Good**:
 ```javascript
-let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-let match = cityStateRegex.match(cityStateRegex)
-let city = match[1];
-let state = match[2];
+const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
+const match = cityStateRegex.match(cityStateRegex)
+const city = match[1];
+const state = match[2];
 saveCityState(city, state);
 ```
 **[⬆ back to top](#table-of-contents)**
