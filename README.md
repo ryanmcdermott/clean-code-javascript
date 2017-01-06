@@ -119,9 +119,7 @@ saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(city
 **Good**:
 ```javascript
 const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-const match = cityStateRegex.match(cityStateRegex)
-const city = match[1];
-const state = match[2];
+const [, city, state] = cityStateRegex.match(cityStateRegex);
 saveCityState(city, state);
 ```
 **[⬆ back to top](#table-of-contents)**
