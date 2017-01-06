@@ -93,19 +93,21 @@ Make your names searchable.
 
 **Bad:**
 ```javascript
-// What the heck is 525600 for?
-for (var i = 0; i < 525600; i++) {
-  runCronJob();
-}
+// What the heck is 86400 for?
+setTimeout(() => {
+  this.blastOff()
+}, 86400);
 ```
 
 **Good**:
 ```javascript
 // Declare them as capitalized `const` globals.
-const MINUTES_IN_A_YEAR = 525600;
-for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
-  runCronJob();
-}
+const SECONDS_IN_DAY = 86400;
+
+setTimeout(() => {
+  this.blastOff()
+}, SECONDS_IN_A_DAY);
+
 ```
 **[⬆ back to top](#table-of-contents)**
 
