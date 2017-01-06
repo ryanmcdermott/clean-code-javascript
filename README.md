@@ -295,24 +295,24 @@ function isClientActive(client) {
 
 **Bad:**
 ```javascript
-function dateAdd(date, month) {
+function addToDate(date, month) {
   // ...
 }
 
 let date = new Date();
 
 // It's hard to to tell from the function name what is added
-dateAdd(date, 1);
+addToDate(date, 1);
 ```
 
 **Good**:
 ```javascript
-function dateAddMonth(date, month) {
+function addMonthToDate(date, month) {
   // ...
 }
 
 let date = new Date();
-dateAddMonth(date, 1);
+addMonthToDate(date, 1);
 ```
 **[⬆ back to top](#table-of-contents)**
 
