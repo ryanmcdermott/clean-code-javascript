@@ -1810,11 +1810,11 @@ they want. The point is, no matter what you all choose, just be consistent.
 
 **Bad:**
 ```javascript
-var DAYS_IN_WEEK = 7;
-var daysInMonth = 30;
+const DAYS_IN_WEEK = 7;
+const daysInMonth = 30;
 
-var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-var Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+let songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+let Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 
 function eraseDatabase() {}
 function restore_database() {}
@@ -1825,11 +1825,11 @@ class Alpaca {}
 
 **Good**:
 ```javascript
-var DAYS_IN_WEEK = 7;
-var DAYS_IN_MONTH = 30;
+const DAYS_IN_WEEK = 7;
+const DAYS_IN_MONTH = 30;
 
-var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-var artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+let songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+let artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 
 function eraseDatabase() {}
 function restoreDatabase() {}
