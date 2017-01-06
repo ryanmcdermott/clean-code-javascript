@@ -1747,7 +1747,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
     console.log('File written');
   })
   .catch(function(err) {
-    console.log(err);
+    console.error(err);
   })
 
 ```
@@ -1770,7 +1770,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
     console.log('File written');
   })
   .catch(function(err) {
-    console.log(err);
+    console.error(err);
   })
 
 ```
