@@ -428,17 +428,13 @@ function showManagerList(managers) {
 ```javascript
 function showList(employees) {
   employees.forEach(employee => {
-    var expectedSalary = employee.calculateExpectedSalary();
-    var experience = employee.getExperience();
-    var portfolio;
+    const expectedSalary = employee.calculateExpectedSalary();
+    const experience = employee.getExperience();
+    const portfolio = (employee.type === 'manager')
+      ? employee.getMBAProjects()
+      : employee.getGithubLink();
 
-    if (employee.type === 'manager') {
-      portfolio = employee.getMBAProjects();
-    } else {
-      portfolio = employee.getGithubLink();
-    }
-
-    var data = {
+    const data = {
       expectedSalary: expectedSalary,
       experience: experience,
       portfolio: portfolio
