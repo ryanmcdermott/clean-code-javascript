@@ -1579,7 +1579,7 @@ let car = new Car()
 **[⬆ back to top](#table-of-contents)**
 
 ### Prefer composition over inheritance
-As stated famously in the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns),
+As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
 you should prefer composition over inheritance where you can. There are lots of
 good reasons to use inheritance and lots of good reasons to use composition.
 The main point for this maxim is that if your mind instinctively goes for
