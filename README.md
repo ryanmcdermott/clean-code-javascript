@@ -102,7 +102,7 @@ for (var i = 0; i < 525600; i++) {
 **Good**:
 ```javascript
 // Declare them as capitalized `var` globals.
-var MINUTES_IN_A_YEAR = 525600;
+const MINUTES_IN_A_YEAR = 525600;
 for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
   runCronJob();
 }
