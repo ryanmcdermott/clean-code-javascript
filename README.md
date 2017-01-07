@@ -1563,6 +1563,8 @@ class Car {
 
   save() {
     console.log(this.make, this.model, this.color);
+    // NOTE: Returning this for chaining
+    return this;
   }
 }
 
