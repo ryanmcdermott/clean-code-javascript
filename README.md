@@ -509,7 +509,7 @@ function createMenu(config) {
     cancellable: true
   }, config);
 
-  // config now equals: {title: "Foo", body: "Bar", buttonText: "Baz", cancellable: true}
+  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
