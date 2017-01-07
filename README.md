@@ -767,7 +767,7 @@ class Airplane {
         return getMaxAltitude() - getPassengerCount();
       case 'Air Force One':
         return getMaxAltitude();
-      case 'Cesna':
+      case 'Cessna':
         return getMaxAltitude() - getFuelExpenditure();
     }
   }
@@ -794,7 +794,7 @@ class AirForceOne extends Airplane {
   }
 }
 
-class Cesna extends Airplane {
+class Cessna extends Airplane {
   //...
   getCruisingAltitude() {
     return getMaxAltitude() - getFuelExpenditure();
