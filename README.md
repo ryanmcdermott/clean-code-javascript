@@ -44,19 +44,20 @@ improvement. Beat up the code instead!
 
 **Bad:**
 ```javascript
-const yyyymmdstr = moment().format('YYYY/MM/DD');
+var yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
 **Good**:
 ```javascript
-const yearMonthDay = moment().format('YYYY/MM/DD');
+var yearMonthDay = moment().format('YYYY/MM/DD');
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Use ES6 constants when variable will not be reassigned
-In the bad example, the variable can be reassigned.
-When you declare a constant, the variable can only be altered.
-If you want to reassign a variable use `let`.
+### Use ES6 constants when variable values do not change
+In the bad example, the variable can be changed.
+When you declare a constant, the variable should stay
+the same throughout the program.
+
 
 **Bad:**
 ```javascript
@@ -66,11 +67,6 @@ var FIRST_US_PRESIDENT = "George Washington";
 **Good**:
 ```javascript
 const FIRST_US_PRESIDENT = "George Washington";
-
-let CURRENT_US_PRESIDENT = "Donald Trump";
-if (bool) {
-  CURRENT_US_PRESIDENT = "somone else";
-}
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -99,16 +95,16 @@ Make your names searchable.
 **Bad:**
 ```javascript
 // What the heck is 525600 for?
-for (let i = 0; i < 525600; i++) {
+for (var i = 0; i < 525600; i++) {
   runCronJob();
 }
 ```
 
 **Good**:
 ```javascript
-// Declare them as capitalized `const` globals.
-const MINUTES_IN_A_YEAR = 525600;
-for (let i = 0; i < MINUTES_IN_A_YEAR; i++) {
+// Declare them as capitalized `var` globals.
+var MINUTES_IN_A_YEAR = 525600;
+for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
   runCronJob();
 }
 ```
@@ -136,7 +132,7 @@ Explicit is better than implicit.
 
 **Bad:**
 ```javascript
-const locations = ['Austin', 'New York', 'San Francisco'];
+var locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
@@ -150,7 +146,7 @@ locations.forEach((l) => {
 
 **Good**:
 ```javascript
-const locations = ['Austin', 'New York', 'San Francisco'];
+var locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
   doStuff();
   doSomeOtherStuff();
@@ -168,7 +164,7 @@ variable name.
 
 **Bad:**
 ```javascript
-const Car = {
+var Car = {
   carMake: 'Honda',
   carModel: 'Accord',
   carColor: 'Blue'
@@ -181,7 +177,7 @@ function paintCar(car) {
 
 **Good**:
 ```javascript
-const Car = {
+var Car = {
   make: 'Honda',
   model: 'Accord',
   color: 'Blue'
@@ -198,7 +194,7 @@ function paintCar(car) {
 **Bad:**
 ```javascript
 function createMicrobrewery(name) {
-  let breweryName;
+  var breweryName;
   if (name) {
     breweryName = name;
   } else {
@@ -210,7 +206,7 @@ function createMicrobrewery(name) {
 **Good**:
 ```javascript
 function createMicrobrewery(name) {
-  const breweryName = name || 'Hipster Brew Co.'
+  var breweryName = name || 'Hipster Brew Co.'
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -241,7 +237,7 @@ function createMenu(title, body, buttonText, cancellable) {
 
 **Good**:
 ```javascript
-const menuConfig = {
+var menuConfig = {
   title: 'Foo',
   body: 'Bar',
   buttonText: 'Baz',
@@ -267,7 +263,7 @@ this guide other than this, you'll be ahead of many developers.
 ```javascript
 function emailClients(clients) {
   clients.forEach(client => {
-    const clientRecord = database.lookup(client);
+    let clientRecord = database.lookup(client);
     if (clientRecord.isActive()) {
       email(client);
     }
@@ -290,7 +286,7 @@ function emailClientIfNeeded(client) {
 }
 
 function isClientActive(client) {
-  const clientRecord = database.lookup(client);
+  let clientRecord = database.lookup(client);
   return clientRecord.isActive();
 }
 ```
@@ -304,7 +300,7 @@ function dateAdd(date, month) {
   // ...
 }
 
-const date = new Date();
+let date = new Date();
 
 // It's hard to to tell from the function name what is added
 dateAdd(date, 1);
@@ -316,7 +312,7 @@ function dateAddMonth(date, month) {
   // ...
 }
 
-const date = new Date();
+let date = new Date();
 dateAddMonth(date, 1);
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -329,19 +325,19 @@ testing.
 **Bad:**
 ```javascript
 function parseBetterJSAlternative(code) {
-  const REGEXES = [
+  let REGEXES = [
     // ...
   ];
 
-  const statements = code.split(' ');
-  const tokens = [];
+  let statements = code.split(' ');
+  let tokens;
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
       // ...
     })
   });
 
-  const ast = [];
+  let ast;
   tokens.forEach((token) => {
     // lex...
   });
@@ -355,15 +351,15 @@ function parseBetterJSAlternative(code) {
 **Good**:
 ```javascript
 function tokenize(code) {
-  const REGEXES = [
+  let REGEXES = [
     // ...
   ];
 
-  const statements = code.split(' ');
-  const tokens = [];
+  let statements = code.split(' ');
+  let tokens;
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
-      tokens.push( // ... );
+      // ...
     })
   });
 
@@ -371,17 +367,17 @@ function tokenize(code) {
 }
 
 function lexer(tokens) {
-  const ast = [];
+  let ast;
   tokens.forEach((token) => {
-    ast.push( // ... );
+    // lex...
   });
 
   return ast;
 }
 
 function parseBetterJSAlternative(code) {
-  const tokens = tokenize(code);
-  const ast = lexer(tokens);
+  let tokens = tokenize(code);
+  let ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
   })
@@ -400,10 +396,10 @@ generic functions quite easy. Take advantage of that!
 ```javascript
 function showDeveloperList(developers) {
   developers.forEach(developers => {
-    const expectedSalary = developer.calculateExpectedSalary();
-    const experience = developer.getExperience();
-    const githubLink = developer.getGithubLink();
-    const data = {
+    var expectedSalary = developer.calculateExpectedSalary();
+    var experience = developer.getExperience();
+    var githubLink = developer.getGithubLink();
+    var data = {
       expectedSalary: expectedSalary,
       experience: experience,
       githubLink: githubLink
@@ -415,10 +411,10 @@ function showDeveloperList(developers) {
 
 function showManagerList(managers) {
   managers.forEach(manager => {
-    const expectedSalary = manager.calculateExpectedSalary();
-    const experience = manager.getExperience();
-    const portfolio = manager.getMBAProjects();
-    const data = {
+    var expectedSalary = manager.calculateExpectedSalary();
+    var experience = manager.getExperience();
+    var portfolio = manager.getMBAProjects();
+    var data = {
       expectedSalary: expectedSalary,
       experience: experience,
       portfolio: portfolio
@@ -433,16 +429,17 @@ function showManagerList(managers) {
 ```javascript
 function showList(employees) {
   employees.forEach(employee => {
-    const expectedSalary = employee.calculateExpectedSalary();
-    const experience = employee.getExperience();
-
-    let portfolio = employee.getGithubLink();
+    var expectedSalary = employee.calculateExpectedSalary();
+    var experience = employee.getExperience();
+    var portfolio;
 
     if (employee.type === 'manager') {
       portfolio = employee.getMBAProjects();
+    } else {
+      portfolio = employee.getGithubLink();
     }
 
-    const data = {
+    var data = {
       expectedSalary: expectedSalary,
       experience: experience,
       portfolio: portfolio
@@ -477,7 +474,7 @@ function writeForumComment(subject = 'No subject', body = 'No text') {
 
 **Bad:**
 ```javascript
-const menuConfig = {
+var menuConfig = {
   title: null,
   body: 'Bar',
   buttonText: null,
@@ -497,7 +494,7 @@ createMenu(menuConfig);
 
 **Good**:
 ```javascript
-const menuConfig = {
+var menuConfig = {
   title: 'Order',
   // User did not include 'body' key
   buttonText: 'Send',
@@ -567,7 +564,7 @@ be happier than the vast majority of other programmers.
 ```javascript
 // Global variable referenced by following function.
 // If we had another function that used this name, now it'd be an array and it could break it.
-let name = 'Ryan McDermott';
+var name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
   name = name.split(' ');
@@ -584,8 +581,8 @@ function splitIntoFirstAndLastName(name) {
   return name.split(' ');
 }
 
-const name = 'Ryan McDermott'
-const newName = splitIntoFirstAndLastName(name);
+var name = 'Ryan McDermott'
+var newName = splitIntoFirstAndLastName(name);
 
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
@@ -606,14 +603,14 @@ would be much better to just use ES6 classes and simply extend the `Array` globa
 **Bad:**
 ```javascript
 Array.prototype.diff = function(comparisonArray) {
-  const values = [];
-  const hash = {};
+  var values = [];
+  var hash = {};
 
-  for (let i of comparisonArray) {
+  for (var i of comparisonArray) {
     hash[i] = true;
   }
 
-  for (let i of this) {
+  for (var i of this) {
     if (!hash[i]) {
       values.push(i);
     }
@@ -631,14 +628,14 @@ class SuperArray extends Array {
   }
 
   diff(comparisonArray) {
-    const values = [];
-    const hash = {};
+    var values = [];
+    var hash = {};
 
-    for (let i of comparisonArray) {
+    for (var i of comparisonArray) {
       hash[i] = true;
     }
 
-    for (let i of this) {
+    for (var i of this) {
       if (!hash[i]) {
         values.push(i);
       }
@@ -674,9 +671,9 @@ const programmerOutput = [
   }
 ];
 
-let totalOutput = 0;
+var totalOutput = 0;
 
-for (let i = 0; i < programmerOutput.length; i++) {
+for (var i = 0; i < programmerOutput.length; i++) {
   totalOutput += programmerOutput[i].linesOfCode;
 }
 ```
@@ -699,7 +696,7 @@ const programmerOutput = [
   }
 ];
 
-const totalOutput = programmerOutput
+var totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
 ```
@@ -875,14 +872,14 @@ they are fixed if they can be.
 
 // On old browsers, each iteration would be costly because `len` would be
 // recomputed. In modern browsers, this is optimized.
-for (let i = 0, len = list.length; i < len; i++) {
+for (var i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
 **Good**:
 ```javascript
-for (let i = 0; i < list.length; i++) {
+for (var i = 0; i < list.length; i++) {
   // ...
 }
 ```
@@ -903,7 +900,7 @@ function newRequestModule(url) {
   // ...
 }
 
-const req = newRequestModule;
+var req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ```
@@ -914,7 +911,7 @@ function newRequestModule(url) {
   // ...
 }
 
-const req = newRequestModule;
+var req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -945,7 +942,7 @@ class BankAccount {
   }
 }
 
-const bankAccount = new BankAccount();
+let bankAccount = new BankAccount();
 
 // Buy shoes...
 bankAccount.balance = bankAccount.balance - 100;
@@ -966,7 +963,7 @@ class BankAccount {
   }
 }
 
-const bankAccount = new BankAccount();
+let bankAccount = new BankAccount();
 
 // Buy shoes...
 bankAccount.withdraw(100);
@@ -980,7 +977,7 @@ This can be accomplished through closures (for ES5 and below).
 **Bad:**
 ```javascript
 
-const Employee = function(name) {
+var Employee = function(name) {
   this.name = name;
 }
 
@@ -988,7 +985,7 @@ Employee.prototype.getName = function() {
   return this.name;
 }
 
-const employee = new Employee('John Doe');
+var employee = new Employee('John Doe');
 console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
 delete employee.name;
 console.log('Employee name: ' + employee.getName()); // Employee name: undefined
@@ -996,7 +993,7 @@ console.log('Employee name: ' + employee.getName()); // Employee name: undefined
 
 **Good**:
 ```javascript
-const Employee = (function() {
+var Employee = (function() {
   function Employee(name) {
     this.getName = function() {
       return name;
@@ -1006,7 +1003,7 @@ const Employee = (function() {
   return Employee;
 }());
 
-const employee = new Employee('John Doe');
+var employee = new Employee('John Doe');
 console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
 delete employee.name;
 console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
@@ -1245,12 +1242,12 @@ function renderLargeShapes(shapes) {
         shape.setHeight(5);
     }
 
-    const area = shape.getArea();
+    let area = shape.getArea();
     shape.render(area);
   })
 }
 
-const shapes = [new Rectangle(), new Rectangle(), new Square()];
+let shapes = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeShapes(shapes);
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1287,7 +1284,7 @@ class DOMTraverser {
   }
 }
 
-const $ = new DOMTraverser({
+let $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
   animationModule: function() {} // Most of the time, we won't need to animate when traversing.
   // ...
@@ -1320,7 +1317,7 @@ class DOMTraverser {
   }
 }
 
-const $ = new DOMTraverser({
+let $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
   options: {
     animationModule: function() {}
@@ -1378,7 +1375,7 @@ class InventoryRequester {
   }
 }
 
-const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
+let inventoryTracker = new InventoryTracker(['apples', 'bananas']);
 inventoryTracker.requestItems();
 ```
 
@@ -1419,7 +1416,7 @@ class InventoryRequesterV2 {
 
 // By constructing our dependencies externally and injecting them, we can easily
 // substitute our request module for a fancy new one that uses WebSockets.
-const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
+let inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1432,7 +1429,7 @@ classes until you find yourself needing larger and more complex objects.
 
 **Bad:**
 ```javascript
-const Animal = function(age) {
+var Animal = function(age) {
     if (!(this instanceof Animal)) {
         throw new Error("Instantiate Animal with `new`");
     }
@@ -1442,7 +1439,7 @@ const Animal = function(age) {
 
 Animal.prototype.move = function() {};
 
-const Mammal = function(age, furColor) {
+var Mammal = function(age, furColor) {
     if (!(this instanceof Mammal)) {
         throw new Error("Instantiate Mammal with `new`");
     }
@@ -1455,7 +1452,7 @@ Mammal.prototype = Object.create(Animal.prototype);
 Mammal.prototype.constructor = Mammal;
 Mammal.prototype.liveBirth = function() {};
 
-const Human = function(age, furColor, languageSpoken) {
+var Human = function(age, furColor, languageSpoken) {
     if (!(this instanceof Human)) {
         throw new Error("Instantiate Human with `new`");
     }
@@ -1535,7 +1532,7 @@ class Car {
   }
 }
 
-const car = new Car();
+let car = new Car();
 car.setColor('pink');
 car.setMake('Ford');
 car.setModel('F-150')
@@ -1574,7 +1571,7 @@ class Car {
   }
 }
 
-const car = new Car()
+let car = new Car()
   .setColor('pink')
   .setMake('Ford')
   .setModel('F-150')
@@ -1697,19 +1694,19 @@ const assert = require('assert');
 
 describe('MakeMomentJSGreatAgain', function() {
   it('handles 30-day months', function() {
-    const date = new MakeMomentJSGreatAgain('1/1/2015');
+    let date = new MakeMomentJSGreatAgain('1/1/2015');
     date.addDays(30);
     date.shouldEqual('1/31/2015');
   });
 
   it('handles leap year', function() {
-    const date = new MakeMomentJSGreatAgain('2/1/2016');
+    let date = new MakeMomentJSGreatAgain('2/1/2016');
     date.addDays(28);
     assert.equal('02/29/2016', date);
   });
 
   it('handles non-leap year', function() {
-    const date = new MakeMomentJSGreatAgain('2/1/2015');
+    let date = new MakeMomentJSGreatAgain('2/1/2015');
     date.addDays(28);
     assert.equal('03/01/2015', date);
   });
@@ -1783,9 +1780,9 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```javascript
 async function getCleanCodeArticle() {
   try {
-    const request = await require('request-promise')
-    const response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
-    const fileHandle = await require('fs-promise');
+    var request = await require('request-promise')
+    var response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
+    var fileHandle = await require('fs-promise');
 
     await fileHandle.writeFile('article.html', response);
     console.log('File written');
@@ -1887,11 +1884,11 @@ they want. The point is, no matter what you all choose, just be consistent.
 
 **Bad:**
 ```javascript
-const DAYS_IN_WEEK = 7;
-const daysInMonth = 30;
+var DAYS_IN_WEEK = 7;
+var daysInMonth = 30;
 
-const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-const Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+var Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 
 function eraseDatabase() {}
 function restore_database() {}
@@ -1902,11 +1899,11 @@ class Alpaca {}
 
 **Good**:
 ```javascript
-const DAYS_IN_WEEK = 7;
-const DAYS_IN_MONTH = 30;
+var DAYS_IN_WEEK = 7;
+var DAYS_IN_MONTH = 30;
 
-const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-const artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+var artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 
 function eraseDatabase() {}
 function restoreDatabase() {}
@@ -1938,7 +1935,7 @@ class PerformanceReview {
   }
 
   getPeerReviews() {
-    const peers = this.lookupPeers();
+    let peers = this.lookupPeers();
     // ...
   }
 
@@ -1949,7 +1946,7 @@ class PerformanceReview {
   }
 
   getManagerReview() {
-    const manager = this.lookupManager();
+    let manager = this.lookupManager();
   }
 
   getSelfReview() {
@@ -1975,7 +1972,7 @@ class PerformanceReview {
   }
 
   getPeerReviews() {
-    const peers = this.lookupPeers();
+    let peers = this.lookupPeers();
     // ...
   }
 
@@ -1984,7 +1981,7 @@ class PerformanceReview {
   }
 
   getManagerReview() {
-    const manager = this.lookupManager();
+    let manager = this.lookupManager();
   }
 
   lookupMananger() {
@@ -2010,15 +2007,15 @@ Comments are an apology, not a requirement. Good code *mostly* documents itself.
 ```javascript
 function hashIt(data) {
   // The hash
-  let hash = 0;
+  var hash = 0;
 
   // Length of string
-  const length = data.length;
+  var length = data.length;
 
   // Loop through every character in data
-  for (let i = 0; i < length; i++) {
+  for (var i = 0; i < length; i++) {
     // Get character code.
-    const char = data.charCodeAt(i);
+    var char = data.charCodeAt(i);
     // Make the hash
     hash = ((hash << 5) - hash) + char;
     // Convert to 32-bit integer
@@ -2031,11 +2028,11 @@ function hashIt(data) {
 ```javascript
 
 function hashIt(data) {
-  let hash = 0;
-  const length = data.length;
+  var hash = 0;
+  var length = data.length;
 
-  for (let i = 0; i < length; i++) {
-    const char = data.charCodeAt(i);
+  for (var i = 0; i < length; i++) {
+    var char = data.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
 
     // Convert to 32-bit integer
@@ -2097,7 +2094,7 @@ proper indentation and formatting give the visual structure to your code.
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
 ////////////////////////////////////////////////////////////////////////////////
-const $scope.model = {
+let $scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
@@ -2105,19 +2102,19 @@ const $scope.model = {
 ////////////////////////////////////////////////////////////////////////////////
 // Action setup
 ////////////////////////////////////////////////////////////////////////////////
-const actions = function() {
+let actions = function() {
   // ...
 }
 ```
 
 **Good**:
 ```javascript
-const $scope.model = {
+let $scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
 
-const actions = function() {
+let actions = function() {
   // ...
 }
 ```
