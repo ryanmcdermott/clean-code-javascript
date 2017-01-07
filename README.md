@@ -1698,13 +1698,13 @@ describe('MakeMomentJSGreatAgain', function() {
   });
 
   it('handles leap year', function() {
-    cosnt date = new MakeMomentJSGreatAgain('2/1/2016');
+    const date = new MakeMomentJSGreatAgain('2/1/2016');
     date.addDays(28);
     assert.equal('02/29/2016', date);
   });
 
   it('handles non-leap year', function() {
-    cosnt date = new MakeMomentJSGreatAgain('2/1/2015');
+    const date = new MakeMomentJSGreatAgain('2/1/2015');
     date.addDays(28);
     assert.equal('03/01/2015', date);
   });
