@@ -836,7 +836,7 @@ you should consider using TypeScript. It is an excellent alternative to normal
 JavaScript, as it provides you with static typing on top of standard JavaScript
 syntax. The problem with manually type-checking normal JavaScript is that
 doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript, clean, write
+doesn't make up for the lost readability. Keep your JavaScript clean, write
 good tests, and have good code reviews. Otherwise, do all of that but with
 TypeScript (which, like I said, is a great alternative!).
 
@@ -870,8 +870,8 @@ they are fixed if they can be.
 **Bad:**
 ```javascript
 
-// On old browsers, each iteration would be costly because `len` would be
-// recomputed. In modern browsers, this is optimized.
+// On old browsers, each iteration with uncached `list.length` would be costly
+// because of `list.length` recomputation. In modern browsers, this is optimized.
 for (var i = 0, len = list.length; i < len; i++) {
   // ...
 }
