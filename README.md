@@ -53,7 +53,7 @@ const yearMonthDay = moment().format('YYYY/MM/DD');
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Use ES6 constants when variable values do not change
+### Use ES2015/ES6 constants when variable values do not change
 In the bad example, the variable can be changed.
 When you declare a constant, the variable should stay
 the same throughout the program.
@@ -593,7 +593,7 @@ show the difference between two arrays? You could write your new function
 to the `Array.prototype`, but it could clash with another library that tried
 to do the same thing. What if that other library was just using `diff` to find
 the difference between the first and last elements of an array? This is why it
-would be much better to just use ES6 classes and simply extend the `Array` global.
+would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 
 **Bad:**
 ```javascript
@@ -1416,7 +1416,7 @@ inventoryTracker.requestItems();
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Prefer ES6 classes over ES5 plain functions
+### Prefer ES2015/ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
 definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer classes. However, prefer small functions over
@@ -1713,7 +1713,7 @@ describe('MakeMomentJSGreatAgain', function() {
 
 ## **Concurrency**
 ### Use Promises, not callbacks
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES6,
+Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
 
 **Bad:**
@@ -1752,10 +1752,10 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 **[⬆ back to top](#table-of-contents)**
 
 ### Async/Await are even cleaner than Promises
-Promises are a very clean alternative to callbacks, but ES7 brings async and await
+Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
 which offer an even cleaner solution. All you need is a function that is prefixed
 in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES7 features
+a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
 today!
 
 **Bad:**
