@@ -44,12 +44,12 @@ improvement. Beat up the code instead!
 
 **Bad:**
 ```javascript
-var yyyymmdstr = moment().format('YYYY/MM/DD');
+const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
 **Good**:
 ```javascript
-var yearMonthDay = moment().format('YYYY/MM/DD');
+const yearMonthDay = moment().format('YYYY/MM/DD');
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -132,7 +132,7 @@ Explicit is better than implicit.
 
 **Bad:**
 ```javascript
-var locations = ['Austin', 'New York', 'San Francisco'];
+const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
@@ -146,7 +146,7 @@ locations.forEach((l) => {
 
 **Good**:
 ```javascript
-var locations = ['Austin', 'New York', 'San Francisco'];
+const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
   doStuff();
   doSomeOtherStuff();
@@ -164,7 +164,7 @@ variable name.
 
 **Bad:**
 ```javascript
-var Car = {
+const Car = {
   carMake: 'Honda',
   carModel: 'Accord',
   carColor: 'Blue'
@@ -177,7 +177,7 @@ function paintCar(car) {
 
 **Good**:
 ```javascript
-var Car = {
+const Car = {
   make: 'Honda',
   model: 'Accord',
   color: 'Blue'
@@ -206,7 +206,7 @@ function createMicrobrewery(name) {
 **Good**:
 ```javascript
 function createMicrobrewery(name) {
-  var breweryName = name || 'Hipster Brew Co.'
+  const breweryName = name || 'Hipster Brew Co.'
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -237,7 +237,7 @@ function createMenu(title, body, buttonText, cancellable) {
 
 **Good**:
 ```javascript
-var menuConfig = {
+const menuConfig = {
   title: 'Foo',
   body: 'Bar',
   buttonText: 'Baz',
@@ -263,7 +263,7 @@ this guide other than this, you'll be ahead of many developers.
 ```javascript
 function emailClients(clients) {
   clients.forEach(client => {
-    let clientRecord = database.lookup(client);
+    const clientRecord = database.lookup(client);
     if (clientRecord.isActive()) {
       email(client);
     }
@@ -286,7 +286,7 @@ function emailClientIfNeeded(client) {
 }
 
 function isClientActive(client) {
-  let clientRecord = database.lookup(client);
+  const clientRecord = database.lookup(client);
   return clientRecord.isActive();
 }
 ```
@@ -312,7 +312,7 @@ function dateAddMonth(date, month) {
   // ...
 }
 
-let date = new Date();
+const date = new Date();
 dateAddMonth(date, 1);
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -325,11 +325,11 @@ testing.
 **Bad:**
 ```javascript
 function parseBetterJSAlternative(code) {
-  let REGEXES = [
+  const REGEXES = [
     // ...
   ];
 
-  let statements = code.split(' ');
+  const statements = code.split(' ');
   let tokens;
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
@@ -351,11 +351,11 @@ function parseBetterJSAlternative(code) {
 **Good**:
 ```javascript
 function tokenize(code) {
-  let REGEXES = [
+  const REGEXES = [
     // ...
   ];
 
-  let statements = code.split(' ');
+  const statements = code.split(' ');
   let tokens;
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
@@ -376,8 +376,8 @@ function lexer(tokens) {
 }
 
 function parseBetterJSAlternative(code) {
-  let tokens = tokenize(code);
-  let ast = lexer(tokens);
+  const tokens = tokenize(code);
+  const ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
   })
@@ -396,10 +396,10 @@ generic functions quite easy. Take advantage of that!
 ```javascript
 function showDeveloperList(developers) {
   developers.forEach(developers => {
-    var expectedSalary = developer.calculateExpectedSalary();
-    var experience = developer.getExperience();
-    var githubLink = developer.getGithubLink();
-    var data = {
+    const expectedSalary = developer.calculateExpectedSalary();
+    const experience = developer.getExperience();
+    const githubLink = developer.getGithubLink();
+    const data = {
       expectedSalary: expectedSalary,
       experience: experience,
       githubLink: githubLink
@@ -411,10 +411,10 @@ function showDeveloperList(developers) {
 
 function showManagerList(managers) {
   managers.forEach(manager => {
-    var expectedSalary = manager.calculateExpectedSalary();
-    var experience = manager.getExperience();
-    var portfolio = manager.getMBAProjects();
-    var data = {
+    const expectedSalary = manager.calculateExpectedSalary();
+    const experience = manager.getExperience();
+    const portfolio = manager.getMBAProjects();
+    const data = {
       expectedSalary: expectedSalary,
       experience: experience,
       portfolio: portfolio
@@ -429,8 +429,8 @@ function showManagerList(managers) {
 ```javascript
 function showList(employees) {
   employees.forEach(employee => {
-    var expectedSalary = employee.calculateExpectedSalary();
-    var experience = employee.getExperience();
+    const expectedSalary = employee.calculateExpectedSalary();
+    const experience = employee.getExperience();
     var portfolio;
 
     if (employee.type === 'manager') {
@@ -439,7 +439,7 @@ function showList(employees) {
       portfolio = employee.getGithubLink();
     }
 
-    var data = {
+    const data = {
       expectedSalary: expectedSalary,
       experience: experience,
       portfolio: portfolio
@@ -494,7 +494,7 @@ createMenu(menuConfig);
 
 **Good**:
 ```javascript
-var menuConfig = {
+const menuConfig = {
   title: 'Order',
   // User did not include 'body' key
   buttonText: 'Send',
@@ -581,8 +581,8 @@ function splitIntoFirstAndLastName(name) {
   return name.split(' ');
 }
 
-var name = 'Ryan McDermott'
-var newName = splitIntoFirstAndLastName(name);
+const name = 'Ryan McDermott'
+const newName = splitIntoFirstAndLastName(name);
 
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
@@ -696,7 +696,7 @@ const programmerOutput = [
   }
 ];
 
-var totalOutput = programmerOutput
+const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
 ```
@@ -900,7 +900,7 @@ function newRequestModule(url) {
   // ...
 }
 
-var req = newRequestModule;
+const req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ```
@@ -911,7 +911,7 @@ function newRequestModule(url) {
   // ...
 }
 
-var req = newRequestModule;
+const req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 **[⬆ back to top](#table-of-contents)**
