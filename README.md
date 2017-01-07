@@ -623,10 +623,6 @@ Array.prototype.diff = function(comparisonArray) {
 **Good:**
 ```javascript
 class SuperArray extends Array {
-  constructor(...args) {
-    super(...args);
-  }
-
   diff(comparisonArray) {
     var values = [];
     var hash = {};
@@ -1155,10 +1151,6 @@ class Rectangle {
 }
 
 class Square extends Rectangle {
-  constructor() {
-    super();
-  }
-
   setWidth(width) {
     this.width = width;
     this.height = width;
@@ -1186,8 +1178,6 @@ renderLargeRectangles(rectangles);
 **Good**:
 ```javascript
 class Shape {
-  constructor() {}
-
   setColor(color) {
     // ...
   }
