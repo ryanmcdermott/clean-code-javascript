@@ -8,8 +8,9 @@
   5. [Classes](#classes)
   6. [Testing](#testing)
   7. [Concurrency](#concurrency)
-  8. [Formatting](#formatting)
-  9. [Comments](#comments)
+  8. [Error Handling](#error-handling)
+  9. [Formatting](#formatting)
+  10. [Comments](#comments)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -51,6 +52,24 @@ var yyyymmdstr = moment().format('YYYY/MM/DD');
 var yearMonthDay = moment().format('YYYY/MM/DD');
 ```
 **[⬆ back to top](#table-of-contents)**
+
+### Use ES6 constants when variable values do not change
+In the bad example, the variable can be changed.
+When you declare a constant, the variable should stay
+the same throughout the program.
+
+
+**Bad:**
+```javascript
+var FIRST_US_PRESIDENT = "George Washington";
+```
+
+**Good**:
+```javascript
+const FIRST_US_PRESIDENT = "George Washington";
+```
+**[⬆ back to top](#table-of-contents)**
+
 
 ### Use the same vocabulary for the same type of variable
 
@@ -94,16 +113,16 @@ for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
 ### Use explanatory variables
 **Bad:**
 ```javascript
-let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
+const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
 saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(cityStateRegex)[2]);
 ```
 
 **Good**:
 ```javascript
-let cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-let match = cityStateRegex.match(cityStateRegex)
-let city = match[1];
-let state = match[2];
+const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
+const match = cityStateRegex.match(cityStateRegex)
+const city = match[1];
+const state = match[2];
 saveCityState(city, state);
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -361,7 +380,7 @@ function parseBetterJSAlternative(code) {
   let ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
-  })  
+  })
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -465,7 +484,7 @@ var menuConfig = {
 function createMenu(config) {
   config.title = config.title || 'Foo'
   config.body = config.body || 'Bar'
-  config.buttonText = config.title || 'Baz'
+  config.buttonText = config.buttonText || 'Baz'
   config.cancellable = config.cancellable === undefined ? config.cancellable : true;
 
 }
@@ -476,19 +495,22 @@ createMenu(menuConfig);
 **Good**:
 ```javascript
 var menuConfig = {
-  title: null,
-  body: 'Bar',
-  buttonText: null,
+  title: 'Order',
+  // User did not include 'body' key
+  buttonText: 'Send',
   cancellable: true
 }
 
 function createMenu(config) {
-  Object.assign(config, {
+  config = Object.assign({
     title: 'Foo',
     body: 'Bar',
     buttonText: 'Baz',
     cancellable: true
-  });
+  }, config);
+
+  // config now equals: {title: "Foo", body: "Bar", buttonText: "Baz", cancellable: true}
+  // ...
 }
 
 createMenu(menuConfig);
@@ -526,7 +548,7 @@ function createFile(name) {
 A function produces a side effect if it does anything other than take a value in
 and return another value or values. A side effect could be writing to a file,
 modifying some global variable, or accidentally wiring all your money to a
-Nigerian prince.
+stranger.
 
 Now, you do need to have side effects in a program on occasion. Like the previous
 example, you might need to write to a file. What you want to do is to
@@ -547,6 +569,8 @@ var name = 'Ryan McDermott';
 function splitIntoFirstAndLastName() {
   name = name.split(' ');
 }
+
+splitIntoFirstAndLastName();
 
 console.log(name); // ['Ryan', 'McDermott'];
 ```
@@ -744,7 +768,7 @@ class Airplane {
         return getMaxAltitude() - getPassengerCount();
       case 'Air Force One':
         return getMaxAltitude();
-      case 'Cesna':
+      case 'Cessna':
         return getMaxAltitude() - getFuelExpenditure();
     }
   }
@@ -771,7 +795,7 @@ class AirForceOne extends Airplane {
   }
 }
 
-class Cesna extends Airplane {
+class Cessna extends Airplane {
   //...
   getCruisingAltitude() {
     return getMaxAltitude() - getFuelExpenditure();
@@ -789,9 +813,9 @@ The first thing to consider is consistent APIs.
 **Bad:**
 ```javascript
 function travelToTexas(vehicle) {
-  if (obj instanceof Bicycle) {
+  if (vehicle instanceof Bicycle) {
     vehicle.peddle(this.currentLocation, new Location('texas'));
-  } else if (obj instanceof Car) {
+  } else if (vehicle instanceof Car) {
     vehicle.drive(this.currentLocation, new Location('texas'));
   }
 }
@@ -994,7 +1018,7 @@ to change". It's tempting to jam-pack a class with a lot of functionality, like
 when you can only take one suitcase on your flight. The issue with this is
 that your class won't be conceptually cohesive and it will give it many reasons
 to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functioanlity is in one class and you modify a piece of it,
+It's important because if too much functionality is in one class and you modify a piece of it,
 it can be difficult to understand how that will affect other dependent modules in
 your codebase.
 
@@ -1202,7 +1226,7 @@ class Square extends Shape {
   setLength(length) {
     this.length = length;
   }
-  
+
   getArea() {
     return this.length * this.length;
   }
@@ -1295,7 +1319,7 @@ class DOMTraverser {
 
 let $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  options: {  
+  options: {
     animationModule: function() {}
   }
 });
@@ -1556,7 +1580,7 @@ let car = new Car()
 **[⬆ back to top](#table-of-contents)**
 
 ### Prefer composition over inheritance
-As stated famously in the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns),
+As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
 you should prefer composition over inheritance where you can. There are lots of
 good reasons to use inheritance and lots of good reasons to use composition.
 The main point for this maxim is that if your mind instinctively goes for
@@ -1724,7 +1748,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
     console.log('File written');
   })
   .catch(function(err) {
-    console.log(err);
+    console.error(err);
   })
 
 ```
@@ -1747,7 +1771,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
     console.log('File written');
   })
   .catch(function(err) {
-    console.log(err);
+    console.error(err);
   })
 
 ```
@@ -1767,6 +1791,79 @@ async function getCleanCodeArticle() {
     }
   }
 ```
+**[⬆ back to top](#table-of-contents)**
+
+
+## **Error Handling**
+Thrown errors are a good thing! They mean the runtime has successfully
+identified when something in your program has gone wrong and it's letting
+you know by stopping function execution on the current stack, killing the
+process (in Node), and notifying you in the console with a stack trace.
+
+### Don't ignore caught errors
+Doing nothing with a caught error doesn't give you the ability to ever fix
+or react to said error. Logging the error to the console (`console.log`)
+isn't much better as often times it can get lost in a sea of things printed
+to the console. If you wrap any bit of code in a `try/catch` it means you
+think an error may occur there and therefore you should have a plan,
+or create a code path, for when it occurs.
+
+**Bad:**
+```javascript
+try {
+  functionThatMightThrow();
+} catch (error) {
+  console.log(error);
+}
+```
+
+**Good:**
+```javascript
+try {
+  functionThatMightThrow();
+} catch (error) {
+  // One option (more noisy than console.log):
+  console.error(error);
+  // Another option:
+  notifyUserOfError(error);
+  // Another option:
+  reportErrorToService(error);
+  // OR do all three!
+}
+```
+
+### Don't ignore rejected promises
+For the same reason you shouldn't ignore caught errors
+from `try/catch`.
+
+**Bad:**
+```javascript
+getdata()
+.then(data => {
+  functionThatMightThrow(data);
+})
+.catch(error => {
+  console.log(error);
+});
+```
+
+**Good:**
+```javascript
+getdata()
+.then(data => {
+  functionThatMightThrow(data);
+})
+.catch(error => {
+  // One option (more noisy than console.log):
+  console.error(error);
+  // Another option:
+  notifyUserOfError(error);
+  // Another option:
+  reportErrorToService(error);
+  // OR do all three!
+});
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 
@@ -1946,7 +2043,7 @@ function hashIt(data) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Don't leave commented code in your codebase
+### Don't leave commented out code in your codebase
 Version control exists for a reason. Leave old code in your history.
 
 **Bad:**
