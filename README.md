@@ -203,7 +203,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Better:**
+**Bad:**
 ```javascript
 function createMicrobrewery(name) {
   const breweryName = name || 'Hipster Brew Co.';
@@ -212,7 +212,7 @@ function createMicrobrewery(name) {
 
 ```
 
-**Best**:
+**Good**:
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
   ...
