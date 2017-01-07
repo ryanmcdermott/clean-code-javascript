@@ -120,7 +120,7 @@ saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(city
 **Good**:
 ```javascript
 const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-const match = cityStateRegex.match(cityStateRegex)
+const match = cityStateRegex.match(cityStateRegex);
 const city = match[1];
 const state = match[2];
 saveCityState(city, state);
@@ -206,7 +206,7 @@ function createMicrobrewery(name) {
 **Good**:
 ```javascript
 function createMicrobrewery(name) {
-  var breweryName = name || 'Hipster Brew Co.'
+  var breweryName = name || 'Hipster Brew Co.';
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -242,7 +242,7 @@ var menuConfig = {
   body: 'Bar',
   buttonText: 'Baz',
   cancellable: true
-}
+};
 
 function createMenu(menuConfig) {
   ...
@@ -334,7 +334,7 @@ function parseBetterJSAlternative(code) {
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
       // ...
-    })
+    });
   });
 
   let ast;
@@ -344,7 +344,7 @@ function parseBetterJSAlternative(code) {
 
   ast.forEach((node) => {
     // parse...
-  })
+  });
 }
 ```
 
@@ -360,7 +360,7 @@ function tokenize(code) {
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
       // ...
-    })
+    });
   });
 
   return tokens;
@@ -380,7 +380,7 @@ function parseBetterJSAlternative(code) {
   let ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
-  })
+  });
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -479,12 +479,12 @@ var menuConfig = {
   body: 'Bar',
   buttonText: null,
   cancellable: true
-}
+};
 
 function createMenu(config) {
-  config.title = config.title || 'Foo'
-  config.body = config.body || 'Bar'
-  config.buttonText = config.buttonText || 'Baz'
+  config.title = config.title || 'Foo';
+  config.body = config.body || 'Bar';
+  config.buttonText = config.buttonText || 'Baz';
   config.cancellable = config.cancellable === undefined ? config.cancellable : true;
 
 }
@@ -499,7 +499,7 @@ var menuConfig = {
   // User did not include 'body' key
   buttonText: 'Send',
   cancellable: true
-}
+};
 
 function createMenu(config) {
   config = Object.assign({
@@ -581,7 +581,7 @@ function splitIntoFirstAndLastName(name) {
   return name.split(' ');
 }
 
-var name = 'Ryan McDermott'
+var name = 'Ryan McDermott';
 var newName = splitIntoFirstAndLastName(name);
 
 console.log(name); // 'Ryan McDermott';
@@ -979,11 +979,11 @@ This can be accomplished through closures (for ES5 and below).
 
 var Employee = function(name) {
   this.name = name;
-}
+};
 
 Employee.prototype.getName = function() {
   return this.name;
-}
+};
 
 var employee = new Employee('John Doe');
 console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
@@ -1057,7 +1057,7 @@ class UserAuth {
 class UserSettings {
   constructor(user) {
     this.user = user;
-    this.auth = new UserAuth(user)
+    this.auth = new UserAuth(user);
   }
 
   changeSettings(settings) {
@@ -1176,7 +1176,7 @@ function renderLargeRectangles(rectangles) {
     rectangle.setHeight(5);
     let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
     rectangle.render(area);
-  })
+  });
 }
 
 let rectangles = [new Rectangle(), new Rectangle(), new Square()];
@@ -1244,7 +1244,7 @@ function renderLargeShapes(shapes) {
 
     let area = shape.getArea();
     shape.render(area);
-  })
+  });
 }
 
 let shapes = [new Rectangle(), new Rectangle(), new Square()];
@@ -1732,9 +1732,9 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', func
       } else {
         console.log('File written');
       }
-    })
+    });
   }
-})
+});
 
 ```
 
@@ -1749,7 +1749,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   })
   .catch(function(err) {
     console.error(err);
-  })
+  });
 
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1772,7 +1772,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   })
   .catch(function(err) {
     console.error(err);
-  })
+  });
 
 ```
 
@@ -1780,7 +1780,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```javascript
 async function getCleanCodeArticle() {
   try {
-    var request = await require('request-promise')
+    var request = await require('request-promise');
     var response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
     var fileHandle = await require('fs-promise');
 
@@ -2104,7 +2104,7 @@ let $scope.model = {
 ////////////////////////////////////////////////////////////////////////////////
 let actions = function() {
   // ...
-}
+};
 ```
 
 **Good**:
@@ -2116,7 +2116,7 @@ let $scope.model = {
 
 let actions = function() {
   // ...
-}
+};
 ```
 **[⬆ back to top](#table-of-contents)**
 
