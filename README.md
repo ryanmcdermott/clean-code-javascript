@@ -274,15 +274,9 @@ function emailClients(clients) {
 **Good**:
 ```javascript
 function emailClients(clients) {
-  clients.forEach(client => {
-    emailClientIfNeeded(client);
-  });
-}
-
-function emailClientIfNeeded(client) {
-  if (isClientActive(client)) {
-    email(client);
-  }
+  clients
+    .filter(isClientActive)
+    .forEach(email);
 }
 
 function isClientActive(client) {
