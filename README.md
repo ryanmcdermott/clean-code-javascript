@@ -400,9 +400,9 @@ function showDeveloperList(developers) {
     var experience = developer.getExperience();
     var githubLink = developer.getGithubLink();
     var data = {
-      expectedSalary: expectedSalary,
-      experience: experience,
-      githubLink: githubLink
+      expectedSalary,
+      experience,
+      githubLink
     };
 
     render(data);
@@ -415,9 +415,9 @@ function showManagerList(managers) {
     var experience = manager.getExperience();
     var portfolio = manager.getMBAProjects();
     var data = {
-      expectedSalary: expectedSalary,
-      experience: experience,
-      portfolio: portfolio
+      expectedSalary,
+      experience,
+      portfolio
     };
 
     render(data);
@@ -440,9 +440,9 @@ function showList(employees) {
     }
 
     var data = {
-      expectedSalary: expectedSalary,
-      experience: experience,
-      portfolio: portfolio
+      expectedSalary,
+      experience,
+      portfolio
     };
 
     render(data);
