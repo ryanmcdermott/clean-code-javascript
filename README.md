@@ -643,7 +643,6 @@ class SuperArray extends Array {
 **[⬆ back to top](#table-of-contents)**
 
 ### Favor functional programming over imperative programming
-If Haskell were an IPA then JavaScript would be an O'Douls. That is to say,
 JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages are cleaner and easier to test.
 Favor this style of programming when you can.
