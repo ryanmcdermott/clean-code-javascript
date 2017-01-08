@@ -511,12 +511,12 @@ function createFile(name, temp) {
 
 **Good**:
 ```javascript
-function createTempFile(name) {
-  fs.create('./temp/' + name);
-}
-
 function createFile(name) {
   fs.create(name);
+}
+
+function createTempFile(name) {
+  createFile('./temp/' + name);
 }
 ```
 **[⬆ back to top](#table-of-contents)**
