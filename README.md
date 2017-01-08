@@ -53,24 +53,6 @@ const yearMonthDay = moment().format('YYYY/MM/DD');
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Use ES2015/ES6 constants when variable values do not change
-In the bad example, the variable can be changed.
-When you declare a constant, the variable should stay
-the same throughout the program.
-
-
-**Bad:**
-```javascript
-var FIRST_US_PRESIDENT = "George Washington";
-```
-
-**Good**:
-```javascript
-const FIRST_US_PRESIDENT = "George Washington";
-```
-**[⬆ back to top](#table-of-contents)**
-
-
 ### Use the same vocabulary for the same type of variable
 
 **Bad:**
