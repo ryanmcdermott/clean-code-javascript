@@ -1095,17 +1095,14 @@ class AjaxRequester {
 **Good**:
 ```javascript
 class AjaxRequester {
-  constructor() {
-    this.HTTP_METHODS = ['POST', 'PUT', 'GET'];
+  constructor(HTTP_METHODS) {
+    this.HTTP_METHODS = HTTP_METHODS;
   }
 
   get(url) {
     // ...
   }
 
-  addHTTPMethod(method) {
-    this.HTTP_METHODS.push(method);
-  }
 }
 ```
 **[⬆ back to top](#table-of-contents)**
