@@ -1510,7 +1510,7 @@ class Car {
   }
 
   setMake(make) {
-    this.name = name;
+    this.make = make;
   }
 
   setModel(model) {
@@ -1543,7 +1543,7 @@ class Car {
   }
 
   setMake(make) {
-    this.name = name;
+    this.make = make;
     // NOTE: Returning this for chaining
     return this;
   }
