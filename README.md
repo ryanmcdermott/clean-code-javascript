@@ -384,7 +384,9 @@ Never ever, ever, under any circumstance, have duplicate code. There's no reason
 for it and it's quite possibly the worst sin you can commit as a professional
 developer. Duplicate code means there's more than one place to alter something
 if you need to change some logic. JavaScript is untyped, so it makes having
-generic functions quite easy. Take advantage of that!
+generic functions quite easy. Take advantage of that! Tools like
+[jsinpect](https://github.com/danielstjules/jsinspect) can help you find duplicate
+code eligible for refactoring.
 
 **Bad:**
 ```javascript
