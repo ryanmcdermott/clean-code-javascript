@@ -579,7 +579,7 @@ would be much better to just use ES2015/ES6 classes and simply extend the `Array
 
 **Bad:**
 ```javascript
-Array.prototype.diff = function(comparisonArray) {
+Array.prototype.diff = function diff(comparisonArray) {
   const values = [];
   const hash = {};
 
@@ -957,7 +957,7 @@ const Employee = function(name) {
   this.name = name;
 }
 
-Employee.prototype.getName = function() {
+Employee.prototype.getName = function getName() {
   return this.name;
 }
 
@@ -969,15 +969,11 @@ console.log('Employee name: ' + employee.getName()); // Employee name: undefined
 
 **Good**:
 ```javascript
-const Employee = (function() {
-  function Employee(name) {
-    this.getName = function() {
-      return name;
-    };
-  }
-
-  return Employee;
-}());
+const Employee = function (name) {
+  this.getName = function getName() {
+    return name;
+  };
+};
 
 const employee = new Employee('John Doe');
 console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
@@ -1262,7 +1258,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  animationModule: function() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // Most of the time, we won't need to animate when traversing.
   // ...
 });
 
@@ -1296,7 +1292,7 @@ class DOMTraverser {
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
   options: {
-    animationModule: function() {}
+    animationModul() {}
   }
 });
 ```
@@ -1413,7 +1409,7 @@ const Animal = function(age) {
     this.age = age;
 };
 
-Animal.prototype.move = function() {};
+Animal.prototype.move = function move() {};
 
 const Mammal = function(age, furColor) {
     if (!(this instanceof Mammal)) {
@@ -1426,7 +1422,7 @@ const Mammal = function(age, furColor) {
 
 Mammal.prototype = Object.create(Animal.prototype);
 Mammal.prototype.constructor = Mammal;
-Mammal.prototype.liveBirth = function() {};
+Mammal.prototype.liveBirth = function liveBirth() {};
 
 const Human = function(age, furColor, languageSpoken) {
     if (!(this instanceof Human)) {
@@ -1439,7 +1435,7 @@ const Human = function(age, furColor, languageSpoken) {
 
 Human.prototype = Object.create(Mammal.prototype);
 Human.prototype.constructor = Human;
-Human.prototype.speak = function() {};
+Human.prototype.speak = function speak() {};
 ```
 
 **Good:**
@@ -1647,8 +1643,8 @@ or refactoring an existing one.
 ```javascript
 const assert = require('assert');
 
-describe('MakeMomentJSGreatAgain', function() {
-  it('handles date boundaries', function() {
+describe('MakeMomentJSGreatAgain', () => {
+  it('handles date boundaries', () => {
     let date;
 
     date = new MakeMomentJSGreatAgain('1/1/2015');
@@ -1670,20 +1666,20 @@ describe('MakeMomentJSGreatAgain', function() {
 ```javascript
 const assert = require('assert');
 
-describe('MakeMomentJSGreatAgain', function() {
-  it('handles 30-day months', function() {
+describe('MakeMomentJSGreatAgain', () => {
+  it('handles 30-day months', () => {
     const date = new MakeMomentJSGreatAgain('1/1/2015');
     date.addDays(30);
     date.shouldEqual('1/31/2015');
   });
 
-  it('handles leap year', function() {
+  it('handles leap year', () => {
     const date = new MakeMomentJSGreatAgain('2/1/2016');
     date.addDays(28);
     assert.equal('02/29/2016', date);
   });
 
-  it('handles non-leap year', function() {
+  it('handles non-leap year', () => {
     const date = new MakeMomentJSGreatAgain('2/1/2015');
     date.addDays(28);
     assert.equal('03/01/2015', date);
@@ -1699,12 +1695,12 @@ Promises are a built-in global type. Use them!
 
 **Bad:**
 ```javascript
-require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', function(err, response) {
+require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (err, response) => {
   if (err) {
     console.error(err);
   }
   else {
-    require('fs').writeFile('article.html', response.body, function(err) {
+    require('fs').writeFile('article.html', response.body, (err) => {
       if (err) {
         console.error(err);
       } else {
@@ -1719,13 +1715,13 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', func
 **Good**:
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
-  .then(function(response) {
+  .then((response) => {
     return require('fs-promise').writeFile('article.html', response);
   })
-  .then(function() {
+  .then(() => {
     console.log('File written');
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.error(err);
   })
 
@@ -1742,13 +1738,13 @@ today!
 **Bad:**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
-  .then(function(response) {
+  .then((response) => {
     return require('fs-promise').writeFile('article.html', response);
   })
-  .then(function() {
+  .then(() => {
     console.log('File written');
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.error(err);
   })
 
