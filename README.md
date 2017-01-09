@@ -21,7 +21,7 @@ Software engineering principles, from Robert C. Martin's book
 adapted for JavaScript. This is not a style guide. It's a guide to producing
 readable, reusable, and refactorable software in JavaScript.
 
-Not every principle herein has to be strictly followed, and even less will be
+Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
 ones codified over many years of collective experience by the authors of
 *Clean Code*.
@@ -52,24 +52,6 @@ const yyyymmdstr = moment().format('YYYY/MM/DD');
 const yearMonthDay = moment().format('YYYY/MM/DD');
 ```
 **[⬆ back to top](#table-of-contents)**
-
-### Use ES2015/ES6 constants when variable values do not change
-In the bad example, the variable can be changed.
-When you declare a constant, the variable should stay
-the same throughout the program.
-
-
-**Bad:**
-```javascript
-var FIRST_US_PRESIDENT = "George Washington";
-```
-
-**Good**:
-```javascript
-const FIRST_US_PRESIDENT = "George Washington";
-```
-**[⬆ back to top](#table-of-contents)**
-
 
 ### Use the same vocabulary for the same type of variable
 
@@ -136,9 +118,9 @@ const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   // Wait, what is `l` for again?
   dispatch(l);
 });
@@ -150,9 +132,9 @@ const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   dispatch(location);
 });
 ```
@@ -212,7 +194,7 @@ function createMicrobrewery(name) {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Functions**
-### Function arguments (2 or less ideally)
+### Function arguments (2 or fewer ideally)
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
@@ -231,7 +213,7 @@ lot of arguments.
 **Bad:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
-  ...
+  // ...
 }
 ```
 
@@ -245,7 +227,7 @@ const menuConfig = {
 }
 
 function createMenu(menuConfig) {
-  ...
+  // ...
 }
 
 ```
@@ -353,7 +335,7 @@ function tokenize(code) {
   const tokens = [];
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
-      tokens.push( // ... );
+      tokens.push( /* ... */ );
     })
   });
 
@@ -363,7 +345,7 @@ function tokenize(code) {
 function lexer(tokens) {
   const ast = [];
   tokens.forEach((token) => {
-    ast.push( // ... );
+    ast.push( /* ... */ );
   });
 
   return ast;
@@ -391,7 +373,7 @@ code eligible for refactoring.
 **Bad:**
 ```javascript
 function showDeveloperList(developers) {
-  developers.forEach(developers => {
+  developers.forEach(developer => {
     const expectedSalary = developer.calculateExpectedSalary();
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
@@ -459,7 +441,7 @@ function writeForumComment(subject, body) {
 **Good**:
 ```javascript
 function writeForumComment(subject = 'No subject', body = 'No text') {
-  ...
+  // ...
 }
 
 ```
@@ -529,12 +511,12 @@ function createFile(name, temp) {
 
 **Good**:
 ```javascript
-function createTempFile(name) {
-  fs.create('./temp/' + name);
-}
-
 function createFile(name) {
   fs.create(name);
+}
+
+function createTempFile(name) {
+  createFile('./temp/' + name);
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -601,11 +583,11 @@ Array.prototype.diff = function(comparisonArray) {
   const values = [];
   const hash = {};
 
-  for (let i of comparisonArray) {
+  for (const i of comparisonArray) {
     hash[i] = true;
   }
 
-  for (let i of this) {
+  for (const i of this) {
     if (!hash[i]) {
       values.push(i);
     }
@@ -626,7 +608,6 @@ class SuperArray extends Array {
 **[⬆ back to top](#table-of-contents)**
 
 ### Favor functional programming over imperative programming
-If Haskell were an IPA then JavaScript would be an O'Douls. That is to say,
 JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages are cleaner and easier to test.
 Favor this style of programming when you can.
@@ -685,7 +666,7 @@ const totalOutput = programmerOutput
 **Bad:**
 ```javascript
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
-  /// ...
+  // ...
 }
 ```
 
@@ -739,7 +720,7 @@ just do one thing.
 **Bad:**
 ```javascript
 class Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     switch (this.type) {
       case '777':
@@ -756,25 +737,25 @@ class Airplane {
 **Good**:
 ```javascript
 class Airplane {
-  //...
+  // ...
 }
 
 class Boeing777 extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude() - getPassengerCount();
   }
 }
 
 class AirForceOne extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude();
   }
 }
 
 class Cessna extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude() - getFuelExpenditure();
   }
@@ -814,7 +795,7 @@ you should consider using TypeScript. It is an excellent alternative to normal
 JavaScript, as it provides you with static typing on top of standard JavaScript
 syntax. The problem with manually type-checking normal JavaScript is that
 doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript, clean, write
+doesn't make up for the lost readability. Keep your JavaScript clean, write
 good tests, and have good code reviews. Otherwise, do all of that but with
 TypeScript (which, like I said, is a great alternative!).
 
@@ -848,8 +829,8 @@ they are fixed if they can be.
 **Bad:**
 ```javascript
 
-// On old browsers, each iteration would be costly because `len` would be
-// recomputed. In modern browsers, this is optimized.
+// On old browsers, each iteration with uncached `list.length` would be costly
+// because of `list.length` recomputation. In modern browsers, this is optimized.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
@@ -916,7 +897,7 @@ server.
 ```javascript
 class BankAccount {
   constructor() {
-	   this.balance = 1000;
+    this.balance = 1000;
   }
 }
 
@@ -930,14 +911,14 @@ bankAccount.balance = bankAccount.balance - 100;
 ```javascript
 class BankAccount {
   constructor() {
-	   this.balance = 1000;
+    this.balance = 1000;
   }
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
   withdraw(amount) {
-  	if (verifyAmountCanBeDeducted(amount)) {
-  	  this.balance -= amount;
-  	}
+    if (verifyAmountCanBeDeducted(amount)) {
+      this.balance -= amount;
+    }
   }
 }
 
@@ -1148,12 +1129,12 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
     rectangle.render(area);
   })
 }
 
-let rectangles = [new Rectangle(), new Rectangle(), new Square()];
+const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
@@ -1488,7 +1469,7 @@ class Car {
   }
 
   setMake(make) {
-    this.name = name;
+    this.make = make;
   }
 
   setModel(model) {
@@ -1521,7 +1502,7 @@ class Car {
   }
 
   setMake(make) {
-    this.name = name;
+    this.make = make;
     // NOTE: Returning this for chaining
     return this;
   }
@@ -1914,9 +1895,9 @@ class PerformanceReview {
   }
 
   perfReview() {
-      getPeerReviews();
-      getManagerReview();
-      getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getManagerReview() {
@@ -1928,7 +1909,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(user);
+const review = new PerformanceReview(user);
 review.perfReview();
 ```
 
@@ -1940,9 +1921,9 @@ class PerformanceReview {
   }
 
   perfReview() {
-      getPeerReviews();
-      getManagerReview();
-      getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getPeerReviews() {
@@ -1967,7 +1948,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(employee);
+const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
@@ -2068,7 +2049,7 @@ proper indentation and formatting give the visual structure to your code.
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
 ////////////////////////////////////////////////////////////////////////////////
-const $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
@@ -2083,54 +2064,12 @@ const actions = function() {
 
 **Good**:
 ```javascript
-const $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
 
 const actions = function() {
-  // ...
-}
-```
-**[⬆ back to top](#table-of-contents)**
-
-### Avoid legal comments in source files
-That's what your `LICENSE` file at the top of your source tree is for.
-
-**Bad:**
-```javascript
-/*
-The MIT License (MIT)
-
-Copyright (c) 2016 Ryan McDermott
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE
-*/
-
-function calculateBill() {
-  // ...
-}
-```
-
-**Good**:
-```javascript
-function calculateBill() {
   // ...
 }
 ```
