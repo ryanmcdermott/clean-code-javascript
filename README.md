@@ -118,9 +118,9 @@ const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   // Wait, what is `l` for again?
   dispatch(l);
 });
@@ -132,9 +132,9 @@ const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   dispatch(location);
 });
 ```
@@ -213,7 +213,7 @@ lot of arguments.
 **Bad:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
-  ...
+  // ...
 }
 ```
 
@@ -227,7 +227,7 @@ const menuConfig = {
 }
 
 function createMenu(menuConfig) {
-  ...
+  // ...
 }
 
 ```
@@ -335,7 +335,7 @@ function tokenize(code) {
   const tokens = [];
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
-      tokens.push( // ... );
+      tokens.push( /* ... */ );
     })
   });
 
@@ -345,7 +345,7 @@ function tokenize(code) {
 function lexer(tokens) {
   const ast = [];
   tokens.forEach((token) => {
-    ast.push( // ... );
+    ast.push( /* ... */ );
   });
 
   return ast;
@@ -441,7 +441,7 @@ function writeForumComment(subject, body) {
 **Good**:
 ```javascript
 function writeForumComment(subject = 'No subject', body = 'No text') {
-  ...
+  // ...
 }
 
 ```
@@ -683,7 +683,7 @@ const totalOutput = programmerOutput
 **Bad:**
 ```javascript
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
-  /// ...
+  // ...
 }
 ```
 
@@ -737,7 +737,7 @@ just do one thing.
 **Bad:**
 ```javascript
 class Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     switch (this.type) {
       case '777':
@@ -754,25 +754,25 @@ class Airplane {
 **Good**:
 ```javascript
 class Airplane {
-  //...
+  // ...
 }
 
 class Boeing777 extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude() - getPassengerCount();
   }
 }
 
 class AirForceOne extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude();
   }
 }
 
 class Cessna extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude() - getFuelExpenditure();
   }
