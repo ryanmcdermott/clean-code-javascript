@@ -1702,8 +1702,7 @@ Promises are a built-in global type. Use them!
 require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', function(err, response) {
   if (err) {
     console.error(err);
-  }
-  else {
+  } else {
     require('fs').writeFile('article.html', response.body, function(err) {
       if (err) {
         console.error(err);
