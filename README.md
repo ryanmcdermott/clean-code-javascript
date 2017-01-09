@@ -21,7 +21,7 @@ Software engineering principles, from Robert C. Martin's book
 adapted for JavaScript. This is not a style guide. It's a guide to producing
 readable, reusable, and refactorable software in JavaScript.
 
-Not every principle herein has to be strictly followed, and even less will be
+Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
 ones codified over many years of collective experience by the authors of
 *Clean Code*.
@@ -118,9 +118,9 @@ const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   // Wait, what is `l` for again?
   dispatch(l);
 });
@@ -132,9 +132,9 @@ const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   dispatch(location);
 });
 ```
@@ -194,7 +194,7 @@ function createMicrobrewery(name) {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Functions**
-### Function arguments (2 or less ideally)
+### Function arguments (2 or fewer ideally)
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
@@ -213,7 +213,7 @@ lot of arguments.
 **Bad:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
-  ...
+  // ...
 }
 ```
 
@@ -227,7 +227,7 @@ const menuConfig = {
 }
 
 function createMenu(menuConfig) {
-  ...
+  // ...
 }
 
 ```
@@ -335,7 +335,7 @@ function tokenize(code) {
   const tokens = [];
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
-      tokens.push( // ... );
+      tokens.push( /* ... */ );
     })
   });
 
@@ -345,7 +345,7 @@ function tokenize(code) {
 function lexer(tokens) {
   const ast = [];
   tokens.forEach((token) => {
-    ast.push( // ... );
+    ast.push( /* ... */ );
   });
 
   return ast;
@@ -373,7 +373,7 @@ code eligible for refactoring.
 **Bad:**
 ```javascript
 function showDeveloperList(developers) {
-  developers.forEach((developers) => {
+  developers.forEach((developer) => {
     const expectedSalary = developer.calculateExpectedSalary();
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
@@ -441,7 +441,7 @@ function writeForumComment(subject, body) {
 **Good**:
 ```javascript
 function writeForumComment(subject = 'No subject', body = 'No text') {
-  ...
+  // ...
 }
 
 ```
@@ -583,11 +583,11 @@ Array.prototype.diff = function(comparisonArray) {
   const values = [];
   const hash = {};
 
-  for (let i of comparisonArray) {
+  for (const i of comparisonArray) {
     hash[i] = true;
   }
 
-  for (let i of this) {
+  for (const i of this) {
     if (!hash[i]) {
       values.push(i);
     }
@@ -608,11 +608,11 @@ class SuperArray extends Array {
     const values = [];
     const hash = {};
 
-    for (let i of comparisonArray) {
+    for (const i of comparisonArray) {
       hash[i] = true;
     }
 
-    for (let i of this) {
+    for (const i of this) {
       if (!hash[i]) {
         values.push(i);
       }
@@ -683,7 +683,7 @@ const totalOutput = programmerOutput
 **Bad:**
 ```javascript
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
-  /// ...
+  // ...
 }
 ```
 
@@ -737,7 +737,7 @@ just do one thing.
 **Bad:**
 ```javascript
 class Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     switch (this.type) {
       case '777':
@@ -754,25 +754,25 @@ class Airplane {
 **Good**:
 ```javascript
 class Airplane {
-  //...
+  // ...
 }
 
 class Boeing777 extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude() - getPassengerCount();
   }
 }
 
 class AirForceOne extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude();
   }
 }
 
 class Cessna extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     return getMaxAltitude() - getFuelExpenditure();
   }
@@ -914,7 +914,7 @@ server.
 ```javascript
 class BankAccount {
   constructor() {
-	   this.balance = 1000;
+    this.balance = 1000;
   }
 }
 
@@ -928,14 +928,14 @@ bankAccount.balance = bankAccount.balance - 100;
 ```javascript
 class BankAccount {
   constructor() {
-	   this.balance = 1000;
+    this.balance = 1000;
   }
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
   withdraw(amount) {
-  	if (verifyAmountCanBeDeducted(amount)) {
-  	  this.balance -= amount;
-  	}
+    if (verifyAmountCanBeDeducted(amount)) {
+      this.balance -= amount;
+    }
   }
 }
 
@@ -1150,12 +1150,12 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
     rectangle.render(area);
   })
 }
 
-let rectangles = [new Rectangle(), new Rectangle(), new Square()];
+const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
@@ -1918,9 +1918,9 @@ class PerformanceReview {
   }
 
   perfReview() {
-      this.getPeerReviews();
-      this.getManagerReview();
-      this.getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getManagerReview() {
@@ -1932,7 +1932,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(user);
+const review = new PerformanceReview(user);
 review.perfReview();
 ```
 
@@ -1944,9 +1944,9 @@ class PerformanceReview {
   }
 
   perfReview() {
-      this.getPeerReviews();
-      this.getManagerReview();
-      this.getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getPeerReviews() {
@@ -1971,7 +1971,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(employee);
+const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
@@ -2072,7 +2072,7 @@ proper indentation and formatting give the visual structure to your code.
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
 ////////////////////////////////////////////////////////////////////////////////
-const $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
@@ -2087,7 +2087,7 @@ const actions = function() {
 
 **Good**:
 ```javascript
-const $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
