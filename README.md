@@ -921,7 +921,7 @@ class BankAccount {
 const bankAccount = new BankAccount();
 
 // Buy shoes...
-bankAccount.balance = bankAccount.balance - 100;
+bankAccount.balance -= 100;
 ```
 
 **Good**:
@@ -1997,7 +1997,7 @@ function hashIt(data) {
     // Make the hash
     hash = ((hash << 5) - hash) + char;
     // Convert to 32-bit integer
-    hash = hash & hash;
+    hash &= hash;
   }
 }
 ```
@@ -2014,7 +2014,7 @@ function hashIt(data) {
     hash = ((hash << 5) - hash) + char;
 
     // Convert to 32-bit integer
-    hash = hash & hash;
+    hash &= hash;
   }
 }
 
