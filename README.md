@@ -1918,9 +1918,9 @@ class PerformanceReview {
   }
 
   perfReview() {
-      this.getPeerReviews();
-      this.getManagerReview();
-      this.getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getManagerReview() {
@@ -1944,9 +1944,9 @@ class PerformanceReview {
   }
 
   perfReview() {
-      this.getPeerReviews();
-      this.getManagerReview();
-      this.getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getPeerReviews() {
