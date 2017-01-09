@@ -819,12 +819,12 @@ TypeScript (which, like I said, is a great alternative!).
 **Bad:**
 ```javascript
 function combine(val1, val2) {
-  if (typeof val1 == "number" && typeof val2 == "number" ||
-      typeof val1 == "string" && typeof val2 == "string") {
+  if (typeof val1 === 'number' && typeof val2 === 'number' ||
+      typeof val1 === 'string' && typeof val2 === 'string') {
     return val1 + val2;
-  } else {
-    throw new Error('Must be of type String or Number');
   }
+
+  throw new Error('Must be of type String or Number');
 }
 ```
 
