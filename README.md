@@ -102,7 +102,7 @@ saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(city
 **Good**:
 ```javascript
 const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-const match = cityStateRegex.match(cityStateRegex)
+const match = cityStateRegex.match(cityStateRegex);
 const city = match[1];
 const state = match[2];
 saveCityState(city, state);
@@ -310,7 +310,7 @@ function parseBetterJSAlternative(code) {
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
       // ...
-    })
+    });
   });
 
   const ast = [];
@@ -320,7 +320,7 @@ function parseBetterJSAlternative(code) {
 
   ast.forEach((node) => {
     // parse...
-  })
+  });
 }
 ```
 
@@ -336,7 +336,7 @@ function tokenize(code) {
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
       tokens.push( // ... );
-    })
+    });
   });
 
   return tokens;
@@ -356,7 +356,7 @@ function parseBetterJSAlternative(code) {
   const ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
-  })
+  });
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1033,7 +1033,7 @@ class UserAuth {
 class UserSettings {
   constructor(user) {
     this.user = user;
-    this.auth = new UserAuth(user)
+    this.auth = new UserAuth(user);
   }
 
   changeSettings(settings) {
@@ -1152,7 +1152,7 @@ function renderLargeRectangles(rectangles) {
     rectangle.setHeight(5);
     let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
     rectangle.render(area);
-  })
+  });
 }
 
 let rectangles = [new Rectangle(), new Rectangle(), new Square()];
@@ -1220,7 +1220,7 @@ function renderLargeShapes(shapes) {
 
     const area = shape.getArea();
     shape.render(area);
-  })
+  });
 }
 
 const shapes = [new Rectangle(), new Rectangle(), new Square()];
@@ -1511,7 +1511,7 @@ class Car {
 const car = new Car();
 car.setColor('pink');
 car.setMake('Ford');
-car.setModel('F-150')
+car.setModel('F-150');
 car.save();
 ```
 
@@ -1710,9 +1710,9 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', func
       } else {
         console.log('File written');
       }
-    })
+    });
   }
-})
+});
 
 ```
 
@@ -1727,7 +1727,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   })
   .catch(function(err) {
     console.error(err);
-  })
+  });
 
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1750,7 +1750,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   })
   .catch(function(err) {
     console.error(err);
-  })
+  });
 
 ```
 
@@ -1758,7 +1758,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```javascript
 async function getCleanCodeArticle() {
   try {
-    const request = await require('request-promise')
+    const request = await require('request-promise');
     const response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
     const fileHandle = await require('fs-promise');
 
