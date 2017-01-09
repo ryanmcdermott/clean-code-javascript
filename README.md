@@ -819,8 +819,8 @@ TypeScript (which, like I said, is a great alternative!).
 **Bad:**
 ```javascript
 function combine(val1, val2) {
-  if (typeof val1 == "number" && typeof val2 == "number" ||
-      typeof val1 == "string" && typeof val2 == "string") {
+  if (typeof val1 == 'number' && typeof val2 == 'number' ||
+      typeof val1 == 'string' && typeof val2 == 'string') {
     return val1 + val2;
   } else {
     throw new Error('Must be of type String or Number');
@@ -1407,7 +1407,7 @@ classes until you find yourself needing larger and more complex objects.
 ```javascript
 const Animal = function(age) {
     if (!(this instanceof Animal)) {
-        throw new Error("Instantiate Animal with `new`");
+        throw new Error('Instantiate Animal with `new`');
     }
 
     this.age = age;
@@ -1417,7 +1417,7 @@ Animal.prototype.move = function() {};
 
 const Mammal = function(age, furColor) {
     if (!(this instanceof Mammal)) {
-        throw new Error("Instantiate Mammal with `new`");
+        throw new Error('Instantiate Mammal with `new`');
     }
 
     Animal.call(this, age);
@@ -1430,7 +1430,7 @@ Mammal.prototype.liveBirth = function() {};
 
 const Human = function(age, furColor, languageSpoken) {
     if (!(this instanceof Human)) {
-        throw new Error("Instantiate Human with `new`");
+        throw new Error('Instantiate Human with `new`');
     }
 
     Mammal.call(this, age, furColor);
