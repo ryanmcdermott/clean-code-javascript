@@ -583,11 +583,11 @@ Array.prototype.diff = function(comparisonArray) {
   const values = [];
   const hash = {};
 
-  for (let i of comparisonArray) {
+  for (const i of comparisonArray) {
     hash[i] = true;
   }
 
-  for (let i of this) {
+  for (const i of this) {
     if (!hash[i]) {
       values.push(i);
     }
@@ -608,11 +608,11 @@ class SuperArray extends Array {
     const values = [];
     const hash = {};
 
-    for (let i of comparisonArray) {
+    for (const i of comparisonArray) {
       hash[i] = true;
     }
 
-    for (let i of this) {
+    for (const i of this) {
       if (!hash[i]) {
         values.push(i);
       }
@@ -1150,12 +1150,12 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
     rectangle.render(area);
   })
 }
 
-let rectangles = [new Rectangle(), new Rectangle(), new Square()];
+const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
@@ -1932,7 +1932,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(user);
+const review = new PerformanceReview(user);
 review.perfReview();
 ```
 
@@ -1971,7 +1971,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(employee);
+const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
@@ -2072,7 +2072,7 @@ proper indentation and formatting give the visual structure to your code.
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
 ////////////////////////////////////////////////////////////////////////////////
-const $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
@@ -2087,7 +2087,7 @@ const actions = function() {
 
 **Good**:
 ```javascript
-const $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
