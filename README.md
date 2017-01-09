@@ -502,7 +502,7 @@ Flags tell your user that this function does more than one thing. Functions shou
 ```javascript
 function createFile(name, temp) {
   if (temp) {
-    fs.create('./temp/' + name);
+    fs.create(`./temp/${name}`);
   } else {
     fs.create(name);
   }
@@ -516,7 +516,7 @@ function createFile(name) {
 }
 
 function createTempFile(name) {
-  createFile('./temp/' + name);
+  createFile(`./temp/${name}`);
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -962,9 +962,9 @@ Employee.prototype.getName = function() {
 }
 
 const employee = new Employee('John Doe');
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
-console.log('Employee name: ' + employee.getName()); // Employee name: undefined
+console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
 **Good**:
@@ -980,9 +980,9 @@ const Employee = (function() {
 }());
 
 const employee = new Employee('John Doe');
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 **[⬆ back to top](#table-of-contents)**
 
