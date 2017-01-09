@@ -741,11 +741,11 @@ class Airplane {
   getCruisingAltitude() {
     switch (this.type) {
       case '777':
-        return getMaxAltitude() - getPassengerCount();
+        return this.getMaxAltitude() - this.getPassengerCount();
       case 'Air Force One':
-        return getMaxAltitude();
+        return this.getMaxAltitude();
       case 'Cessna':
-        return getMaxAltitude() - getFuelExpenditure();
+        return this.getMaxAltitude() - this.getFuelExpenditure();
     }
   }
 }
@@ -760,21 +760,21 @@ class Airplane {
 class Boeing777 extends Airplane {
   // ...
   getCruisingAltitude() {
-    return getMaxAltitude() - getPassengerCount();
+    return this.getMaxAltitude() - this.getPassengerCount();
   }
 }
 
 class AirForceOne extends Airplane {
   // ...
   getCruisingAltitude() {
-    return getMaxAltitude();
+    return this.getMaxAltitude();
   }
 }
 
 class Cessna extends Airplane {
   // ...
   getCruisingAltitude() {
-    return getMaxAltitude() - getFuelExpenditure();
+    return this.getMaxAltitude() - this.getFuelExpenditure();
   }
 }
 ```
@@ -1006,12 +1006,12 @@ class UserSettings {
   }
 
   changeSettings(settings) {
-    if (this.verifyCredentials(user)) {
+    if (this.verifyCredentials()) {
       // ...
     }
   }
 
-  verifyCredentials(user) {
+  verifyCredentials() {
     // ...
   }
 }
@@ -1406,22 +1406,22 @@ classes until you find yourself needing larger and more complex objects.
 **Bad:**
 ```javascript
 const Animal = function(age) {
-    if (!(this instanceof Animal)) {
-        throw new Error("Instantiate Animal with `new`");
-    }
+  if (!(this instanceof Animal)) {
+    throw new Error("Instantiate Animal with `new`");
+  }
 
-    this.age = age;
+  this.age = age;
 };
 
 Animal.prototype.move = function() {};
 
 const Mammal = function(age, furColor) {
-    if (!(this instanceof Mammal)) {
-        throw new Error("Instantiate Mammal with `new`");
-    }
+  if (!(this instanceof Mammal)) {
+    throw new Error("Instantiate Mammal with `new`");
+  }
 
-    Animal.call(this, age);
-    this.furColor = furColor;
+  Animal.call(this, age);
+  this.furColor = furColor;
 };
 
 Mammal.prototype = Object.create(Animal.prototype);
@@ -1429,12 +1429,12 @@ Mammal.prototype.constructor = Mammal;
 Mammal.prototype.liveBirth = function() {};
 
 const Human = function(age, furColor, languageSpoken) {
-    if (!(this instanceof Human)) {
-        throw new Error("Instantiate Human with `new`");
-    }
+  if (!(this instanceof Human)) {
+    throw new Error("Instantiate Human with `new`");
+  }
 
-    Mammal.call(this, age, furColor);
-    this.languageSpoken = languageSpoken;
+  Mammal.call(this, age, furColor);
+  this.languageSpoken = languageSpoken;
 };
 
 Human.prototype = Object.create(Mammal.prototype);
@@ -1445,29 +1445,29 @@ Human.prototype.speak = function() {};
 **Good:**
 ```javascript
 class Animal {
-    constructor(age) {
-        this.age = age;
-    }
+  constructor(age) {
+    this.age = age;
+  }
 
-    move() {}
+  move() { /* ... */ }
 }
 
 class Mammal extends Animal {
-    constructor(age, furColor) {
-        super(age);
-        this.furColor = furColor;
-    }
+  constructor(age, furColor) {
+    super(age);
+    this.furColor = furColor;
+  }
 
-    liveBirth() {}
+  liveBirth() { /* ... */ }
 }
 
 class Human extends Mammal {
-    constructor(age, furColor, languageSpoken) {
-        super(age, furColor);
-        this.languageSpoken = languageSpoken;
-    }
+  constructor(age, furColor, languageSpoken) {
+    super(age, furColor);
+    this.languageSpoken = languageSpoken;
+  }
 
-    speak() {}
+  speak() { /* ... */ }
 }
 ```
 **[⬆ back to top](#table-of-contents)**
