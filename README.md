@@ -1325,6 +1325,16 @@ example below, the implicit contract is that any Request module for an
 
 **Bad:**
 ```javascript
+class InventoryRequester {
+  constructor() {
+    this.REQ_METHODS = ['HTTP'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
 class InventoryTracker {
   constructor(items) {
     this.items = items;
@@ -1338,16 +1348,6 @@ class InventoryTracker {
     this.items.forEach((item) => {
       this.requester.requestItem(item);
     });
-  }
-}
-
-class InventoryRequester {
-  constructor() {
-    this.REQ_METHODS = ['HTTP'];
-  }
-
-  requestItem(item) {
-    // ...
   }
 }
 
@@ -1600,6 +1600,15 @@ class EmployeeTaxData extends Employee {
 
 **Good**:
 ```javascript
+class EmployeeTaxData {
+  constructor(ssn, salary) {
+    this.ssn = ssn;
+    this.salary = salary;
+  }
+
+  // ...
+}
+
 class Employee {
   constructor(name, email) {
     this.name = name;
@@ -1610,15 +1619,6 @@ class Employee {
   setTaxData(ssn, salary) {
     this.taxData = new EmployeeTaxData(ssn, salary);
   }
-  // ...
-}
-
-class EmployeeTaxData {
-  constructor(ssn, salary) {
-    this.ssn = ssn;
-    this.salary = salary;
-  }
-
   // ...
 }
 ```
