@@ -373,7 +373,7 @@ code eligible for refactoring.
 **Bad:**
 ```javascript
 function showDeveloperList(developers) {
-  developers.forEach(developers => {
+  developers.forEach(developer => {
     const expectedSalary = developer.calculateExpectedSalary();
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
