@@ -21,7 +21,7 @@ Software engineering principles, from Robert C. Martin's book
 adapted for JavaScript. This is not a style guide. It's a guide to producing
 readable, reusable, and refactorable software in JavaScript.
 
-Not every principle herein has to be strictly followed, and even less will be
+Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
 ones codified over many years of collective experience by the authors of
 *Clean Code*.
@@ -194,7 +194,7 @@ function createMicrobrewery(name) {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Functions**
-### Function arguments (2 or less ideally)
+### Function arguments (2 or fewer ideally)
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
