@@ -176,19 +176,6 @@ function paintCar(car) {
 **Bad:**
 ```javascript
 function createMicrobrewery(name) {
-  let breweryName;
-  if (name) {
-    breweryName = name;
-  } else {
-    breweryName = 'Hipster Brew Co.';
-  }
-  ...
-}
-```
-
-**Bad:**
-```javascript
-function createMicrobrewery(name) {
   const breweryName = name || 'Hipster Brew Co.';
   ...
 }
