@@ -21,7 +21,7 @@ Software engineering principles, from Robert C. Martin's book
 adapted for JavaScript. This is not a style guide. It's a guide to producing
 readable, reusable, and refactorable software in JavaScript.
 
-Not every principle herein has to be strictly followed, and even less will be
+Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
 ones codified over many years of collective experience by the authors of
 *Clean Code*.
@@ -72,7 +72,10 @@ getUser();
 We will read more code than we will ever write. It's important that the code we
 do write is readable and searchable. By *not* naming variables that end up
 being meaningful for understanding our program, we hurt our readers.
-Make your names searchable.
+Make your names searchable. Tools like
+[buddy.js](https://github.com/danielstjules/buddy.js) and
+[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
+can help identify unnamed constants.
 
 **Bad:**
 ```javascript
@@ -118,9 +121,9 @@ const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   // Wait, what is `l` for again?
   dispatch(l);
 });
@@ -132,9 +135,9 @@ const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   dispatch(location);
 });
 ```
@@ -194,7 +197,7 @@ function createMicrobrewery(name) {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Functions**
-### Function arguments (2 or less ideally)
+### Function arguments (2 or fewer ideally)
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
@@ -213,7 +216,7 @@ lot of arguments.
 **Bad:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
-  ...
+  // ...
 }
 ```
 
@@ -226,8 +229,8 @@ const menuConfig = {
   cancellable: true
 };
 
-function createMenu(menuConfig) {
-  ...
+function createMenu(config) {
+  // ...
 }
 
 ```
@@ -335,7 +338,7 @@ function tokenize(code) {
   const tokens = [];
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
-      tokens.push( // ... );
+      tokens.push( /* ... */ );
     });
   });
 
@@ -345,7 +348,7 @@ function tokenize(code) {
 function lexer(tokens) {
   const ast = [];
   tokens.forEach((token) => {
-    ast.push( // ... );
+    ast.push( /* ... */ );
   });
 
   return ast;
@@ -367,13 +370,13 @@ for it and it's quite possibly the worst sin you can commit as a professional
 developer. Duplicate code means there's more than one place to alter something
 if you need to change some logic. JavaScript is untyped, so it makes having
 generic functions quite easy. Take advantage of that! Tools like
-[jsinpect](https://github.com/danielstjules/jsinspect) can help you find duplicate
+[jsinspect](https://github.com/danielstjules/jsinspect) can help you find duplicate
 code eligible for refactoring.
 
 **Bad:**
 ```javascript
 function showDeveloperList(developers) {
-  developers.forEach(developers => {
+  developers.forEach(developer => {
     const expectedSalary = developer.calculateExpectedSalary();
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
@@ -441,7 +444,7 @@ function writeForumComment(subject, body) {
 **Good**:
 ```javascript
 function writeForumComment(subject = 'No subject', body = 'No text') {
-  ...
+  // ...
 }
 
 ```
@@ -583,18 +586,18 @@ Array.prototype.diff = function(comparisonArray) {
   const values = [];
   const hash = {};
 
-  for (let i of comparisonArray) {
+  for (const i of comparisonArray) {
     hash[i] = true;
   }
 
-  for (let i of this) {
+  for (const i of this) {
     if (!hash[i]) {
       values.push(i);
     }
   }
 
   return values;
-}
+};
 ```
 
 **Good:**
@@ -608,11 +611,11 @@ class SuperArray extends Array {
     const values = [];
     const hash = {};
 
-    for (let i of comparisonArray) {
+    for (const i of comparisonArray) {
       hash[i] = true;
     }
 
-    for (let i of this) {
+    for (const i of this) {
       if (!hash[i]) {
         values.push(i);
       }
@@ -683,7 +686,7 @@ const totalOutput = programmerOutput
 **Bad:**
 ```javascript
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
-  /// ...
+  // ...
 }
 ```
 
@@ -737,15 +740,15 @@ just do one thing.
 **Bad:**
 ```javascript
 class Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     switch (this.type) {
       case '777':
-        return getMaxAltitude() - getPassengerCount();
+        return this.getMaxAltitude() - this.getPassengerCount();
       case 'Air Force One':
-        return getMaxAltitude();
+        return this.getMaxAltitude();
       case 'Cessna':
-        return getMaxAltitude() - getFuelExpenditure();
+        return this.getMaxAltitude() - this.getFuelExpenditure();
     }
   }
 }
@@ -754,27 +757,27 @@ class Airplane {
 **Good**:
 ```javascript
 class Airplane {
-  //...
+  // ...
 }
 
 class Boeing777 extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
-    return getMaxAltitude() - getPassengerCount();
+    return this.getMaxAltitude() - this.getPassengerCount();
   }
 }
 
 class AirForceOne extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
-    return getMaxAltitude();
+    return this.getMaxAltitude();
   }
 }
 
 class Cessna extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
-    return getMaxAltitude() - getFuelExpenditure();
+    return this.getMaxAltitude() - this.getFuelExpenditure();
   }
 }
 ```
@@ -819,12 +822,12 @@ TypeScript (which, like I said, is a great alternative!).
 **Bad:**
 ```javascript
 function combine(val1, val2) {
-  if (typeof val1 == "number" && typeof val2 == "number" ||
-      typeof val1 == "string" && typeof val2 == "string") {
+  if (typeof val1 === 'number' && typeof val2 === 'number' ||
+      typeof val1 === 'string' && typeof val2 === 'string') {
     return val1 + val2;
-  } else {
-    throw new Error('Must be of type String or Number');
   }
+
+  throw new Error('Must be of type String or Number');
 }
 ```
 
@@ -914,28 +917,28 @@ server.
 ```javascript
 class BankAccount {
   constructor() {
-	   this.balance = 1000;
+    this.balance = 1000;
   }
 }
 
 const bankAccount = new BankAccount();
 
 // Buy shoes...
-bankAccount.balance = bankAccount.balance - 100;
+bankAccount.balance -= 100;
 ```
 
 **Good**:
 ```javascript
 class BankAccount {
   constructor() {
-	   this.balance = 1000;
+    this.balance = 1000;
   }
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
   withdraw(amount) {
-  	if (verifyAmountCanBeDeducted(amount)) {
-  	  this.balance -= amount;
-  	}
+    if (verifyAmountCanBeDeducted(amount)) {
+      this.balance -= amount;
+    }
   }
 }
 
@@ -1006,12 +1009,12 @@ class UserSettings {
   }
 
   changeSettings(settings) {
-    if (this.verifyCredentials(user)) {
+    if (this.verifyCredentials()) {
       // ...
     }
   }
 
-  verifyCredentials(user) {
+  verifyCredentials() {
     // ...
   }
 }
@@ -1150,12 +1153,12 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
     rectangle.render(area);
   });
 }
 
-let rectangles = [new Rectangle(), new Rectangle(), new Square()];
+const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
@@ -1213,6 +1216,7 @@ function renderLargeShapes(shapes) {
     switch (shape.constructor.name) {
       case 'Square':
         shape.setLength(5);
+        break;
       case 'Rectangle':
         shape.setWidth(4);
         shape.setHeight(5);
@@ -1325,6 +1329,16 @@ example below, the implicit contract is that any Request module for an
 
 **Bad:**
 ```javascript
+class InventoryRequester {
+  constructor() {
+    this.REQ_METHODS = ['HTTP'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
 class InventoryTracker {
   constructor(items) {
     this.items = items;
@@ -1338,16 +1352,6 @@ class InventoryTracker {
     this.items.forEach((item) => {
       this.requester.requestItem(item);
     });
-  }
-}
-
-class InventoryRequester {
-  constructor() {
-    this.REQ_METHODS = ['HTTP'];
-  }
-
-  requestItem(item) {
-    // ...
   }
 }
 
@@ -1406,22 +1410,22 @@ classes until you find yourself needing larger and more complex objects.
 **Bad:**
 ```javascript
 const Animal = function(age) {
-    if (!(this instanceof Animal)) {
-        throw new Error("Instantiate Animal with `new`");
-    }
+  if (!(this instanceof Animal)) {
+    throw new Error("Instantiate Animal with `new`");
+  }
 
-    this.age = age;
+  this.age = age;
 };
 
 Animal.prototype.move = function() {};
 
 const Mammal = function(age, furColor) {
-    if (!(this instanceof Mammal)) {
-        throw new Error("Instantiate Mammal with `new`");
-    }
+  if (!(this instanceof Mammal)) {
+    throw new Error("Instantiate Mammal with `new`");
+  }
 
-    Animal.call(this, age);
-    this.furColor = furColor;
+  Animal.call(this, age);
+  this.furColor = furColor;
 };
 
 Mammal.prototype = Object.create(Animal.prototype);
@@ -1429,12 +1433,12 @@ Mammal.prototype.constructor = Mammal;
 Mammal.prototype.liveBirth = function() {};
 
 const Human = function(age, furColor, languageSpoken) {
-    if (!(this instanceof Human)) {
-        throw new Error("Instantiate Human with `new`");
-    }
+  if (!(this instanceof Human)) {
+    throw new Error("Instantiate Human with `new`");
+  }
 
-    Mammal.call(this, age, furColor);
-    this.languageSpoken = languageSpoken;
+  Mammal.call(this, age, furColor);
+  this.languageSpoken = languageSpoken;
 };
 
 Human.prototype = Object.create(Mammal.prototype);
@@ -1445,29 +1449,29 @@ Human.prototype.speak = function() {};
 **Good:**
 ```javascript
 class Animal {
-    constructor(age) {
-        this.age = age;
-    }
+  constructor(age) {
+    this.age = age;
+  }
 
-    move() {}
+  move() { /* ... */ }
 }
 
 class Mammal extends Animal {
-    constructor(age, furColor) {
-        super(age);
-        this.furColor = furColor;
-    }
+  constructor(age, furColor) {
+    super(age);
+    this.furColor = furColor;
+  }
 
-    liveBirth() {}
+  liveBirth() { /* ... */ }
 }
 
 class Human extends Mammal {
-    constructor(age, furColor, languageSpoken) {
-        super(age, furColor);
-        this.languageSpoken = languageSpoken;
-    }
+  constructor(age, furColor, languageSpoken) {
+    super(age, furColor);
+    this.languageSpoken = languageSpoken;
+  }
 
-    speak() {}
+  speak() { /* ... */ }
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1511,7 +1515,7 @@ class Car {
 const car = new Car();
 car.setColor('pink');
 car.setMake('Ford');
-car.setModel('F-150')
+car.setModel('F-150');
 car.save();
 ```
 
@@ -1600,6 +1604,15 @@ class EmployeeTaxData extends Employee {
 
 **Good**:
 ```javascript
+class EmployeeTaxData {
+  constructor(ssn, salary) {
+    this.ssn = ssn;
+    this.salary = salary;
+  }
+
+  // ...
+}
+
 class Employee {
   constructor(name, email) {
     this.name = name;
@@ -1610,15 +1623,6 @@ class Employee {
   setTaxData(ssn, salary) {
     this.taxData = new EmployeeTaxData(ssn, salary);
   }
-  // ...
-}
-
-class EmployeeTaxData {
-  constructor(ssn, salary) {
-    this.ssn = ssn;
-    this.salary = salary;
-  }
-
   // ...
 }
 ```
@@ -1699,14 +1703,14 @@ Promises are a built-in global type. Use them!
 
 **Bad:**
 ```javascript
-require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', function(err, response) {
-  if (err) {
-    console.error(err);
+require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
+  if (requestErr) {
+    console.error(requestErr);
   }
   else {
-    require('fs').writeFile('article.html', response.body, function(err) {
-      if (err) {
-        console.error(err);
+    require('fs').writeFile('article.html', response.body, (writeErr) => {
+      if (writeErr) {
+        console.error(writeErr);
       } else {
         console.log('File written');
       }
@@ -1918,9 +1922,9 @@ class PerformanceReview {
   }
 
   perfReview() {
-      this.getPeerReviews();
-      this.getManagerReview();
-      this.getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getManagerReview() {
@@ -1932,7 +1936,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(user);
+const review = new PerformanceReview(user);
 review.perfReview();
 ```
 
@@ -1944,9 +1948,9 @@ class PerformanceReview {
   }
 
   perfReview() {
-      this.getPeerReviews();
-      this.getManagerReview();
-      this.getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getPeerReviews() {
@@ -1971,7 +1975,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(employee);
+const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
@@ -1997,7 +2001,7 @@ function hashIt(data) {
     // Make the hash
     hash = ((hash << 5) - hash) + char;
     // Convert to 32-bit integer
-    hash = hash & hash;
+    hash &= hash;
   }
 }
 ```
@@ -2014,7 +2018,7 @@ function hashIt(data) {
     hash = ((hash << 5) - hash) + char;
 
     // Convert to 32-bit integer
-    hash = hash & hash;
+    hash &= hash;
   }
 }
 
@@ -2072,7 +2076,7 @@ proper indentation and formatting give the visual structure to your code.
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
 ////////////////////////////////////////////////////////////////////////////////
-const $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
@@ -2087,7 +2091,7 @@ const actions = function() {
 
 **Good**:
 ```javascript
-const $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
