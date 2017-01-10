@@ -72,7 +72,10 @@ getUser();
 We will read more code than we will ever write. It's important that the code we
 do write is readable and searchable. By *not* naming variables that end up
 being meaningful for understanding our program, we hurt our readers.
-Make your names searchable.
+Make your names searchable. Tools like
+[buddy.js](https://github.com/danielstjules/buddy.js) and
+[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
+can help identify unnamed constants.
 
 **Bad:**
 ```javascript
@@ -367,7 +370,7 @@ for it and it's quite possibly the worst sin you can commit as a professional
 developer. Duplicate code means there's more than one place to alter something
 if you need to change some logic. JavaScript is untyped, so it makes having
 generic functions quite easy. Take advantage of that! Tools like
-[jsinpect](https://github.com/danielstjules/jsinspect) can help you find duplicate
+[jsinspect](https://github.com/danielstjules/jsinspect) can help you find duplicate
 code eligible for refactoring.
 
 **Bad:**
