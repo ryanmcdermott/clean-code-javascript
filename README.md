@@ -229,7 +229,7 @@ const menuConfig = {
   cancellable: true
 }
 
-function createMenu(menuConfig) {
+function createMenu(config) {
   // ...
 }
 
@@ -1702,14 +1702,14 @@ Promises are a built-in global type. Use them!
 
 **Bad:**
 ```javascript
-require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', function(err, response) {
-  if (err) {
-    console.error(err);
+require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
+  if (requestErr) {
+    console.error(requestErr);
   }
   else {
-    require('fs').writeFile('article.html', response.body, function(err) {
-      if (err) {
-        console.error(err);
+    require('fs').writeFile('article.html', response.body, (writeErr) => {
+      if (writeErr) {
+        console.error(writeErr);
       } else {
         console.log('File written');
       }
