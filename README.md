@@ -1296,7 +1296,7 @@ class DOMTraverser {
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
   options: {
-    animationModul() {}
+    animationModule() {}
   }
 });
 ```
@@ -1702,8 +1702,7 @@ Promises are a built-in global type. Use them!
 require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
   if (requestErr) {
     console.error(requestErr);
-  }
-  else {
+  } else {
     require('fs').writeFile('article.html', response.body, (writeErr) => {
       if (writeErr) {
         console.error(writeErr);
