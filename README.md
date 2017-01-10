@@ -952,7 +952,7 @@ bankAccount.withdraw(100);
 ```javascript
 class BankAccount {
   constructor(balance = 1000) {
-    this_balance = balance;
+    this._balance = balance;
   }
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
