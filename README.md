@@ -948,7 +948,7 @@ const bankAccount = new BankAccount();
 bankAccount.withdraw(100);
 ```
 
-**Good with getter/setter**:
+**Good**:
 ```javascript
 class BankAccount {
   constructor(balance = 1000) {
@@ -964,6 +964,10 @@ class BankAccount {
   
   get balance() {
     return this._balance;
+  }
+  
+  verifyAmountCanBeSetted(val) {
+    // ...
   }
 }
 
