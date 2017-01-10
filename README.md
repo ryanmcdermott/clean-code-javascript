@@ -1216,6 +1216,7 @@ function renderLargeShapes(shapes) {
     switch (shape.constructor.name) {
       case 'Square':
         shape.setLength(5);
+        break;
       case 'Rectangle':
         shape.setWidth(4);
         shape.setHeight(5);
