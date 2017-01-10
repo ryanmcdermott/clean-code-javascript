@@ -408,22 +408,29 @@ function showManagerList(managers) {
 
 **Good**:
 ```javascript
-function showList(employees) {
-  employees.forEach(employee => {
-    const expectedSalary = employee.calculateExpectedSalary();
-    const experience = employee.getExperience();
+function getCommonEmployeeData(employee) {
+  const expectedSalary = developer.calculateExpectedSalary();
+  const experience = developer.getExperience();
 
-    let portfolio = employee.getGithubLink();
+  return {
+    expectedSalary: expectedSalary,
+    experience: experience,
+  };
+}
 
-    if (employee.type === 'manager') {
-      portfolio = employee.getMBAProjects();
-    }
+function showDeveloperList(developers) {
+  developers.forEach(developer => {
+    const data = getCommonEmployeeData(developer);
+    data.githubLink = developer.getGithubLink();
 
-    const data = {
-      expectedSalary: expectedSalary,
-      experience: experience,
-      portfolio: portfolio
-    };
+    render(data);
+  });
+}
+
+function showManagerList(managers) {
+  managers.forEach(manager => {
+    const data = getCommonEmployeeData(developer);
+    data.portfolio = manager.getMBAProjects();
 
     render(data);
   });
