@@ -1629,7 +1629,7 @@ class Employee {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Testing**
-Testing is more important than shipping. If you have have no tests or an
+Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
 didn't break anything. Deciding on what constitutes an adequate amount is up
 to your team, but having 100% coverage (all statements and branches) is how
