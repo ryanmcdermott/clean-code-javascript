@@ -72,7 +72,10 @@ getUser();
 We will read more code than we will ever write. It's important that the code we
 do write is readable and searchable. By *not* naming variables that end up
 being meaningful for understanding our program, we hurt our readers.
-Make your names searchable.
+Make your names searchable. Tools like
+[buddy.js](https://github.com/danielstjules/buddy.js) and
+[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
+can help identify unnamed constants.
 
 **Bad:**
 ```javascript
@@ -226,7 +229,7 @@ const menuConfig = {
   cancellable: true
 }
 
-function createMenu(menuConfig) {
+function createMenu(config) {
   // ...
 }
 
@@ -367,7 +370,7 @@ for it and it's quite possibly the worst sin you can commit as a professional
 developer. Duplicate code means there's more than one place to alter something
 if you need to change some logic. JavaScript is untyped, so it makes having
 generic functions quite easy. Take advantage of that! Tools like
-[jsinpect](https://github.com/danielstjules/jsinspect) can help you find duplicate
+[jsinspect](https://github.com/danielstjules/jsinspect) can help you find duplicate
 code eligible for refactoring.
 
 **Bad:**
@@ -741,11 +744,11 @@ class Airplane {
   getCruisingAltitude() {
     switch (this.type) {
       case '777':
-        return getMaxAltitude() - getPassengerCount();
+        return this.getMaxAltitude() - this.getPassengerCount();
       case 'Air Force One':
-        return getMaxAltitude();
+        return this.getMaxAltitude();
       case 'Cessna':
-        return getMaxAltitude() - getFuelExpenditure();
+        return this.getMaxAltitude() - this.getFuelExpenditure();
     }
   }
 }
@@ -760,21 +763,21 @@ class Airplane {
 class Boeing777 extends Airplane {
   // ...
   getCruisingAltitude() {
-    return getMaxAltitude() - getPassengerCount();
+    return this.getMaxAltitude() - this.getPassengerCount();
   }
 }
 
 class AirForceOne extends Airplane {
   // ...
   getCruisingAltitude() {
-    return getMaxAltitude();
+    return this.getMaxAltitude();
   }
 }
 
 class Cessna extends Airplane {
   // ...
   getCruisingAltitude() {
-    return getMaxAltitude() - getFuelExpenditure();
+    return this.getMaxAltitude() - this.getFuelExpenditure();
   }
 }
 ```
@@ -819,12 +822,12 @@ TypeScript (which, like I said, is a great alternative!).
 **Bad:**
 ```javascript
 function combine(val1, val2) {
-  if (typeof val1 == "number" && typeof val2 == "number" ||
-      typeof val1 == "string" && typeof val2 == "string") {
+  if (typeof val1 === 'number' && typeof val2 === 'number' ||
+      typeof val1 === 'string' && typeof val2 === 'string') {
     return val1 + val2;
-  } else {
-    throw new Error('Must be of type String or Number');
   }
+
+  throw new Error('Must be of type String or Number');
 }
 ```
 
@@ -921,7 +924,7 @@ class BankAccount {
 const bankAccount = new BankAccount();
 
 // Buy shoes...
-bankAccount.balance = bankAccount.balance - 100;
+bankAccount.balance -= 100;
 ```
 
 **Good**:
@@ -1002,12 +1005,12 @@ class UserSettings {
   }
 
   changeSettings(settings) {
-    if (this.verifyCredentials(user)) {
+    if (this.verifyCredentials()) {
       // ...
     }
   }
 
-  verifyCredentials(user) {
+  verifyCredentials() {
     // ...
   }
 }
@@ -1209,6 +1212,7 @@ function renderLargeShapes(shapes) {
     switch (shape.constructor.name) {
       case 'Square':
         shape.setLength(5);
+        break;
       case 'Rectangle':
         shape.setWidth(4);
         shape.setHeight(5);
@@ -1321,6 +1325,16 @@ example below, the implicit contract is that any Request module for an
 
 **Bad:**
 ```javascript
+class InventoryRequester {
+  constructor() {
+    this.REQ_METHODS = ['HTTP'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
 class InventoryTracker {
   constructor(items) {
     this.items = items;
@@ -1334,16 +1348,6 @@ class InventoryTracker {
     this.items.forEach((item) => {
       this.requester.requestItem(item);
     });
-  }
-}
-
-class InventoryRequester {
-  constructor() {
-    this.REQ_METHODS = ['HTTP'];
-  }
-
-  requestItem(item) {
-    // ...
   }
 }
 
@@ -1402,22 +1406,22 @@ classes until you find yourself needing larger and more complex objects.
 **Bad:**
 ```javascript
 const Animal = function(age) {
-    if (!(this instanceof Animal)) {
-        throw new Error("Instantiate Animal with `new`");
-    }
+  if (!(this instanceof Animal)) {
+    throw new Error("Instantiate Animal with `new`");
+  }
 
-    this.age = age;
+  this.age = age;
 };
 
 Animal.prototype.move = function move() {};
 
 const Mammal = function(age, furColor) {
-    if (!(this instanceof Mammal)) {
-        throw new Error("Instantiate Mammal with `new`");
-    }
+  if (!(this instanceof Mammal)) {
+    throw new Error("Instantiate Mammal with `new`");
+  }
 
-    Animal.call(this, age);
-    this.furColor = furColor;
+  Animal.call(this, age);
+  this.furColor = furColor;
 };
 
 Mammal.prototype = Object.create(Animal.prototype);
@@ -1425,12 +1429,12 @@ Mammal.prototype.constructor = Mammal;
 Mammal.prototype.liveBirth = function liveBirth() {};
 
 const Human = function(age, furColor, languageSpoken) {
-    if (!(this instanceof Human)) {
-        throw new Error("Instantiate Human with `new`");
-    }
+  if (!(this instanceof Human)) {
+    throw new Error("Instantiate Human with `new`");
+  }
 
-    Mammal.call(this, age, furColor);
-    this.languageSpoken = languageSpoken;
+  Mammal.call(this, age, furColor);
+  this.languageSpoken = languageSpoken;
 };
 
 Human.prototype = Object.create(Mammal.prototype);
@@ -1441,29 +1445,29 @@ Human.prototype.speak = function speak() {};
 **Good:**
 ```javascript
 class Animal {
-    constructor(age) {
-        this.age = age;
-    }
+  constructor(age) {
+    this.age = age;
+  }
 
-    move() {}
+  move() { /* ... */ }
 }
 
 class Mammal extends Animal {
-    constructor(age, furColor) {
-        super(age);
-        this.furColor = furColor;
-    }
+  constructor(age, furColor) {
+    super(age);
+    this.furColor = furColor;
+  }
 
-    liveBirth() {}
+  liveBirth() { /* ... */ }
 }
 
 class Human extends Mammal {
-    constructor(age, furColor, languageSpoken) {
-        super(age, furColor);
-        this.languageSpoken = languageSpoken;
-    }
+  constructor(age, furColor, languageSpoken) {
+    super(age, furColor);
+    this.languageSpoken = languageSpoken;
+  }
 
-    speak() {}
+  speak() { /* ... */ }
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1596,6 +1600,15 @@ class EmployeeTaxData extends Employee {
 
 **Good**:
 ```javascript
+class EmployeeTaxData {
+  constructor(ssn, salary) {
+    this.ssn = ssn;
+    this.salary = salary;
+  }
+
+  // ...
+}
+
 class Employee {
   constructor(name, email) {
     this.name = name;
@@ -1606,15 +1619,6 @@ class Employee {
   setTaxData(ssn, salary) {
     this.taxData = new EmployeeTaxData(ssn, salary);
   }
-  // ...
-}
-
-class EmployeeTaxData {
-  constructor(ssn, salary) {
-    this.ssn = ssn;
-    this.salary = salary;
-  }
-
   // ...
 }
 ```
@@ -1695,14 +1699,14 @@ Promises are a built-in global type. Use them!
 
 **Bad:**
 ```javascript
-require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (err, response) => {
-  if (err) {
-    console.error(err);
+require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
+  if (requestErr) {
+    console.error(requestErr);
   }
   else {
-    require('fs').writeFile('article.html', response.body, (err) => {
-      if (err) {
-        console.error(err);
+    require('fs').writeFile('article.html', response.body, (writeErr) => {
+      if (writeErr) {
+        console.error(writeErr);
       } else {
         console.log('File written');
       }
@@ -1993,7 +1997,7 @@ function hashIt(data) {
     // Make the hash
     hash = ((hash << 5) - hash) + char;
     // Convert to 32-bit integer
-    hash = hash & hash;
+    hash &= hash;
   }
 }
 ```
@@ -2010,7 +2014,7 @@ function hashIt(data) {
     hash = ((hash << 5) - hash) + char;
 
     // Convert to 32-bit integer
-    hash = hash & hash;
+    hash &= hash;
   }
 }
 
