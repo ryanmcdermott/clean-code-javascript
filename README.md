@@ -957,7 +957,7 @@ class BankAccount {
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
   set balance(amount) {
-    if (verifyAmountCanBeSetted(amount)) {
+    if (verifyIfAmountCanBeSetted(amount)) {
       this._balance = amount;
     }
   }
@@ -966,7 +966,7 @@ class BankAccount {
     return this._balance;
   }
   
-  verifyAmountCanBeSetted(val) {
+  verifyIfAmountCanBeSetted(val) {
     // ...
   }
 }
