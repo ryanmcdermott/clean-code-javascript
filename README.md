@@ -383,7 +383,7 @@ function showDeveloperList(developers) {
     const data = {
       expectedSalary: expectedSalary,
       experience: experience,
-      githubLink: githubLink
+      portfolio: githubLink
     };
 
     render(data);
