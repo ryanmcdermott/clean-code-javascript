@@ -8,8 +8,9 @@
   5. [Classes](#classes)
   6. [Testing](#testing)
   7. [Concurrency](#concurrency)
-  8. [Formatting](#formatting)
-  9. [Comments](#comments)
+  8. [Error Handling](#error-handling)
+  9. [Formatting](#formatting)
+  10. [Comments](#comments)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -20,7 +21,7 @@ Software engineering principles, from Robert C. Martin's book
 adapted for JavaScript. This is not a style guide. It's a guide to producing
 readable, reusable, and refactorable software in JavaScript.
 
-Not every principle herein has to be strictly followed, and even less will be
+Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
 ones codified over many years of collective experience by the authors of
 *Clean Code*.
@@ -43,32 +44,14 @@ improvement. Beat up the code instead!
 
 **Bad:**
 ```javascript
-var yyyymmdstr = moment().format('YYYY/MM/DD');
+const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
 **Good**:
 ```javascript
-var yearMonthDay = moment().format('YYYY/MM/DD');
+const yearMonthDay = moment().format('YYYY/MM/DD');
 ```
 **[⬆ back to top](#table-of-contents)**
-
-### Use ES6 constants when variable values do not change
-In the bad example, the variable can be changed.
-When you declare a constant, the variable should stay
-the same throughout the program.
-
-
-**Bad:**
-```javascript
-var FIRST_US_PRESIDENT = "George Washington";
-```
-
-**Good**:
-```javascript
-const FIRST_US_PRESIDENT = "George Washington";
-```
-**[⬆ back to top](#table-of-contents)**
-
 
 ### Use the same vocabulary for the same type of variable
 
@@ -89,21 +72,24 @@ getUser();
 We will read more code than we will ever write. It's important that the code we
 do write is readable and searchable. By *not* naming variables that end up
 being meaningful for understanding our program, we hurt our readers.
-Make your names searchable.
+Make your names searchable. Tools like
+[buddy.js](https://github.com/danielstjules/buddy.js) and
+[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
+can help identify unnamed constants.
 
 **Bad:**
 ```javascript
 // What the heck is 525600 for?
-for (var i = 0; i < 525600; i++) {
+for (let i = 0; i < 525600; i++) {
   runCronJob();
 }
 ```
 
 **Good**:
 ```javascript
-// Declare them as capitalized `var` globals.
-var MINUTES_IN_A_YEAR = 525600;
-for (var i = 0; i < MINUTES_IN_A_YEAR; i++) {
+// Declare them as capitalized `const` globals.
+const MINUTES_IN_A_YEAR = 525600;
+for (let i = 0; i < MINUTES_IN_A_YEAR; i++) {
   runCronJob();
 }
 ```
@@ -131,13 +117,13 @@ Explicit is better than implicit.
 
 **Bad:**
 ```javascript
-var locations = ['Austin', 'New York', 'San Francisco'];
+const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   // Wait, what is `l` for again?
   dispatch(l);
 });
@@ -145,13 +131,13 @@ locations.forEach((l) => {
 
 **Good**:
 ```javascript
-var locations = ['Austin', 'New York', 'San Francisco'];
+const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
   doStuff();
   doSomeOtherStuff();
-  ...
-  ...
-  ...
+  // ...
+  // ...
+  // ...
   dispatch(location);
 });
 ```
@@ -163,7 +149,7 @@ variable name.
 
 **Bad:**
 ```javascript
-var Car = {
+const Car = {
   carMake: 'Honda',
   carModel: 'Accord',
   carColor: 'Blue'
@@ -176,7 +162,7 @@ function paintCar(car) {
 
 **Good**:
 ```javascript
-var Car = {
+const Car = {
   make: 'Honda',
   model: 'Accord',
   color: 'Blue'
@@ -193,7 +179,7 @@ function paintCar(car) {
 **Bad:**
 ```javascript
 function createMicrobrewery(name) {
-  var breweryName;
+  let breweryName;
   if (name) {
     breweryName = name;
   } else {
@@ -205,13 +191,13 @@ function createMicrobrewery(name) {
 **Good**:
 ```javascript
 function createMicrobrewery(name) {
-  var breweryName = name || 'Hipster Brew Co.'
+  const breweryName = name || 'Hipster Brew Co.'
 }
 ```
 **[⬆ back to top](#table-of-contents)**
 
 ## **Functions**
-### Function arguments (2 or less ideally)
+### Function arguments (2 or fewer ideally)
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
@@ -230,21 +216,21 @@ lot of arguments.
 **Bad:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
-  ...
+  // ...
 }
 ```
 
 **Good**:
 ```javascript
-var menuConfig = {
+const menuConfig = {
   title: 'Foo',
   body: 'Bar',
   buttonText: 'Baz',
   cancellable: true
 }
 
-function createMenu(menuConfig) {
-  ...
+function createMenu(config) {
+  // ...
 }
 
 ```
@@ -261,8 +247,8 @@ this guide other than this, you'll be ahead of many developers.
 **Bad:**
 ```javascript
 function emailClients(clients) {
-  clients.forEach(client => {
-    let clientRecord = database.lookup(client);
+  clients.forEach((client) => {
+    const clientRecord = database.lookup(client);
     if (clientRecord.isActive()) {
       email(client);
     }
@@ -273,19 +259,13 @@ function emailClients(clients) {
 **Good**:
 ```javascript
 function emailClients(clients) {
-  clients.forEach(client => {
-    emailClientIfNeeded(client);
-  });
-}
-
-function emailClientIfNeeded(client) {
-  if (isClientActive(client)) {
-    email(client);
-  }
+  clients
+    .filter(isClientActive)
+    .forEach(email);
 }
 
 function isClientActive(client) {
-  let clientRecord = database.lookup(client);
+  const clientRecord = database.lookup(client);
   return clientRecord.isActive();
 }
 ```
@@ -299,7 +279,7 @@ function addToDate(date, month) {
   // ...
 }
 
-let date = new Date();
+const date = new Date();
 
 // It's hard to to tell from the function name what is added
 addToDate(date, 1);
@@ -307,11 +287,11 @@ addToDate(date, 1);
 
 **Good**:
 ```javascript
-function addMonthToDate(date, month) {
+function addMonthToDate(month, date) {
   // ...
 }
 
-let date = new Date();
+const date = new Date();
 addMonthToDate(date, 1);
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -324,19 +304,19 @@ testing.
 **Bad:**
 ```javascript
 function parseBetterJSAlternative(code) {
-  let REGEXES = [
+  const REGEXES = [
     // ...
   ];
 
-  let statements = code.split(' ');
-  let tokens;
+  const statements = code.split(' ');
+  const tokens = [];
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
       // ...
     })
   });
 
-  let ast;
+  const ast = [];
   tokens.forEach((token) => {
     // lex...
   });
@@ -350,15 +330,15 @@ function parseBetterJSAlternative(code) {
 **Good**:
 ```javascript
 function tokenize(code) {
-  let REGEXES = [
+  const REGEXES = [
     // ...
   ];
 
-  let statements = code.split(' ');
-  let tokens;
+  const statements = code.split(' ');
+  const tokens = [];
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
-      // ...
+      tokens.push( /* ... */ );
     })
   });
 
@@ -366,20 +346,20 @@ function tokenize(code) {
 }
 
 function lexer(tokens) {
-  let ast;
+  const ast = [];
   tokens.forEach((token) => {
-    // lex...
+    ast.push( /* ... */ );
   });
 
   return ast;
 }
 
 function parseBetterJSAlternative(code) {
-  let tokens = tokenize(code);
-  let ast = lexer(tokens);
+  const tokens = tokenize(code);
+  const ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
-  })  
+  })
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -389,16 +369,18 @@ Never ever, ever, under any circumstance, have duplicate code. There's no reason
 for it and it's quite possibly the worst sin you can commit as a professional
 developer. Duplicate code means there's more than one place to alter something
 if you need to change some logic. JavaScript is untyped, so it makes having
-generic functions quite easy. Take advantage of that!
+generic functions quite easy. Take advantage of that! Tools like
+[jsinspect](https://github.com/danielstjules/jsinspect) can help you find duplicate
+code eligible for refactoring.
 
 **Bad:**
 ```javascript
 function showDeveloperList(developers) {
-  developers.forEach(developers => {
-    var expectedSalary = developer.calculateExpectedSalary();
-    var experience = developer.getExperience();
-    var githubLink = developer.getGithubLink();
-    var data = {
+  developers.forEach((developer) => {
+    const expectedSalary = developer.calculateExpectedSalary();
+    const experience = developer.getExperience();
+    const githubLink = developer.getGithubLink();
+    const data = {
       expectedSalary: expectedSalary,
       experience: experience,
       githubLink: githubLink
@@ -409,11 +391,11 @@ function showDeveloperList(developers) {
 }
 
 function showManagerList(managers) {
-  managers.forEach(manager => {
-    var expectedSalary = manager.calculateExpectedSalary();
-    var experience = manager.getExperience();
-    var portfolio = manager.getMBAProjects();
-    var data = {
+  managers.forEach((manager) => {
+    const expectedSalary = manager.calculateExpectedSalary();
+    const experience = manager.getExperience();
+    const portfolio = manager.getMBAProjects();
+    const data = {
       expectedSalary: expectedSalary,
       experience: experience,
       portfolio: portfolio
@@ -427,18 +409,17 @@ function showManagerList(managers) {
 **Good**:
 ```javascript
 function showList(employees) {
-  employees.forEach(employee => {
-    var expectedSalary = employee.calculateExpectedSalary();
-    var experience = employee.getExperience();
-    var portfolio;
+  employees.forEach((employee) => {
+    const expectedSalary = employee.calculateExpectedSalary();
+    const experience = employee.getExperience();
+
+    let portfolio = employee.getGithubLink();
 
     if (employee.type === 'manager') {
       portfolio = employee.getMBAProjects();
-    } else {
-      portfolio = employee.getGithubLink();
     }
 
-    var data = {
+    const data = {
       expectedSalary: expectedSalary,
       experience: experience,
       portfolio: portfolio
@@ -463,7 +444,7 @@ function writeForumComment(subject, body) {
 **Good**:
 ```javascript
 function writeForumComment(subject = 'No subject', body = 'No text') {
-  ...
+  // ...
 }
 
 ```
@@ -473,7 +454,7 @@ function writeForumComment(subject = 'No subject', body = 'No text') {
 
 **Bad:**
 ```javascript
-var menuConfig = {
+const menuConfig = {
   title: null,
   body: 'Bar',
   buttonText: null,
@@ -493,7 +474,7 @@ createMenu(menuConfig);
 
 **Good**:
 ```javascript
-var menuConfig = {
+const menuConfig = {
   title: 'Order',
   // User did not include 'body' key
   buttonText: 'Send',
@@ -524,7 +505,7 @@ Flags tell your user that this function does more than one thing. Functions shou
 ```javascript
 function createFile(name, temp) {
   if (temp) {
-    fs.create('./temp/' + name);
+    fs.create(`./temp/${name}`);
   } else {
     fs.create(name);
   }
@@ -533,12 +514,12 @@ function createFile(name, temp) {
 
 **Good**:
 ```javascript
-function createTempFile(name) {
-  fs.create('./temp/' + name);
-}
-
 function createFile(name) {
   fs.create(name);
+}
+
+function createTempFile(name) {
+  createFile(`./temp/${name}`);
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -563,7 +544,7 @@ be happier than the vast majority of other programmers.
 ```javascript
 // Global variable referenced by following function.
 // If we had another function that used this name, now it'd be an array and it could break it.
-var name = 'Ryan McDermott';
+let name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
   name = name.split(' ');
@@ -580,8 +561,8 @@ function splitIntoFirstAndLastName(name) {
   return name.split(' ');
 }
 
-var name = 'Ryan McDermott'
-var newName = splitIntoFirstAndLastName(name);
+const name = 'Ryan McDermott'
+const newName = splitIntoFirstAndLastName(name);
 
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
@@ -597,19 +578,19 @@ show the difference between two arrays? You could write your new function
 to the `Array.prototype`, but it could clash with another library that tried
 to do the same thing. What if that other library was just using `diff` to find
 the difference between the first and last elements of an array? This is why it
-would be much better to just use ES6 classes and simply extend the `Array` global.
+would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 
 **Bad:**
 ```javascript
-Array.prototype.diff = function(comparisonArray) {
-  var values = [];
-  var hash = {};
+Array.prototype.diff = function diff(comparisonArray) {
+  const values = [];
+  const hash = {};
 
-  for (var i of comparisonArray) {
+  for (const i of comparisonArray) {
     hash[i] = true;
   }
 
-  for (var i of this) {
+  for (const i of this) {
     if (!hash[i]) {
       values.push(i);
     }
@@ -627,14 +608,14 @@ class SuperArray extends Array {
   }
 
   diff(comparisonArray) {
-    var values = [];
-    var hash = {};
+    const values = [];
+    const hash = {};
 
-    for (var i of comparisonArray) {
+    for (const i of comparisonArray) {
       hash[i] = true;
     }
 
-    for (var i of this) {
+    for (const i of this) {
       if (!hash[i]) {
         values.push(i);
       }
@@ -647,7 +628,6 @@ class SuperArray extends Array {
 **[⬆ back to top](#table-of-contents)**
 
 ### Favor functional programming over imperative programming
-If Haskell were an IPA then JavaScript would be an O'Douls. That is to say,
 JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages are cleaner and easier to test.
 Favor this style of programming when you can.
@@ -670,9 +650,9 @@ const programmerOutput = [
   }
 ];
 
-var totalOutput = 0;
+let totalOutput = 0;
 
-for (var i = 0; i < programmerOutput.length; i++) {
+for (let i = 0; i < programmerOutput.length; i++) {
   totalOutput += programmerOutput[i].linesOfCode;
 }
 ```
@@ -695,7 +675,7 @@ const programmerOutput = [
   }
 ];
 
-var totalOutput = programmerOutput
+const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
 ```
@@ -706,7 +686,7 @@ var totalOutput = programmerOutput
 **Bad:**
 ```javascript
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
-  /// ...
+  // ...
 }
 ```
 
@@ -760,15 +740,15 @@ just do one thing.
 **Bad:**
 ```javascript
 class Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
     switch (this.type) {
       case '777':
-        return getMaxAltitude() - getPassengerCount();
+        return this.getMaxAltitude() - this.getPassengerCount();
       case 'Air Force One':
-        return getMaxAltitude();
-      case 'Cesna':
-        return getMaxAltitude() - getFuelExpenditure();
+        return this.getMaxAltitude();
+      case 'Cessna':
+        return this.getMaxAltitude() - this.getFuelExpenditure();
     }
   }
 }
@@ -777,27 +757,27 @@ class Airplane {
 **Good**:
 ```javascript
 class Airplane {
-  //...
+  // ...
 }
 
 class Boeing777 extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
-    return getMaxAltitude() - getPassengerCount();
+    return this.getMaxAltitude() - this.getPassengerCount();
   }
 }
 
 class AirForceOne extends Airplane {
-  //...
+  // ...
   getCruisingAltitude() {
-    return getMaxAltitude();
+    return this.getMaxAltitude();
   }
 }
 
-class Cesna extends Airplane {
-  //...
+class Cessna extends Airplane {
+  // ...
   getCruisingAltitude() {
-    return getMaxAltitude() - getFuelExpenditure();
+    return this.getMaxAltitude() - this.getFuelExpenditure();
   }
 }
 ```
@@ -835,19 +815,19 @@ you should consider using TypeScript. It is an excellent alternative to normal
 JavaScript, as it provides you with static typing on top of standard JavaScript
 syntax. The problem with manually type-checking normal JavaScript is that
 doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript, clean, write
+doesn't make up for the lost readability. Keep your JavaScript clean, write
 good tests, and have good code reviews. Otherwise, do all of that but with
 TypeScript (which, like I said, is a great alternative!).
 
 **Bad:**
 ```javascript
 function combine(val1, val2) {
-  if (typeof val1 == "number" && typeof val2 == "number" ||
-      typeof val1 == "string" && typeof val2 == "string") {
+  if (typeof val1 === 'number' && typeof val2 === 'number' ||
+      typeof val1 === 'string' && typeof val2 === 'string') {
     return val1 + val2;
-  } else {
-    throw new Error('Must be of type String or Number');
   }
+
+  throw new Error('Must be of type String or Number');
 }
 ```
 
@@ -869,16 +849,16 @@ they are fixed if they can be.
 **Bad:**
 ```javascript
 
-// On old browsers, each iteration would be costly because `len` would be
-// recomputed. In modern browsers, this is optimized.
-for (var i = 0, len = list.length; i < len; i++) {
+// On old browsers, each iteration with uncached `list.length` would be costly
+// because of `list.length` recomputation. In modern browsers, this is optimized.
+for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
 **Good**:
 ```javascript
-for (var i = 0; i < list.length; i++) {
+for (let i = 0; i < list.length; i++) {
   // ...
 }
 ```
@@ -899,7 +879,7 @@ function newRequestModule(url) {
   // ...
 }
 
-var req = newRequestModule;
+const req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ```
@@ -910,7 +890,7 @@ function newRequestModule(url) {
   // ...
 }
 
-var req = newRequestModule;
+const req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -937,35 +917,47 @@ server.
 ```javascript
 class BankAccount {
   constructor() {
-	   this.balance = 1000;
+    this.balance = 1000;
   }
 }
 
-let bankAccount = new BankAccount();
+const bankAccount = new BankAccount();
 
 // Buy shoes...
-bankAccount.balance = bankAccount.balance - 100;
+bankAccount.balance -= 100;
 ```
 
 **Good**:
 ```javascript
 class BankAccount {
-  constructor() {
-	   this.balance = 1000;
+  constructor(balance = 1000) {
+    this._balance = balance;
   }
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
-  withdraw(amount) {
-  	if (verifyAmountCanBeDeducted(amount)) {
-  	  this.balance -= amount;
-  	}
+  set balance(amount) {
+    if (verifyIfAmountCanBeSetted(amount)) {
+      this._balance = amount;
+    }
+  }
+  
+  get balance() {
+    return this._balance;
+  }
+  
+  verifyIfAmountCanBeSetted(val) {
+    // ...
   }
 }
 
-let bankAccount = new BankAccount();
+const bankAccount = new BankAccount();
 
 // Buy shoes...
-bankAccount.withdraw(100);
+bankAccount.balance -= shoesPrice;
+
+// Get balance
+let balance = bankAccount.balance;
+
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -976,36 +968,32 @@ This can be accomplished through closures (for ES5 and below).
 **Bad:**
 ```javascript
 
-var Employee = function(name) {
+const Employee = function(name) {
   this.name = name;
 }
 
-Employee.prototype.getName = function() {
+Employee.prototype.getName = function getName() {
   return this.name;
 }
 
-var employee = new Employee('John Doe');
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+const employee = new Employee('John Doe');
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
-console.log('Employee name: ' + employee.getName()); // Employee name: undefined
+console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
 **Good**:
 ```javascript
-var Employee = (function() {
-  function Employee(name) {
-    this.getName = function() {
-      return name;
-    };
-  }
+const Employee = function (name) {
+  this.getName = function getName() {
+    return name;
+  };
+};
 
-  return Employee;
-}());
-
-var employee = new Employee('John Doe');
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+const employee = new Employee('John Doe');
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -1029,12 +1017,12 @@ class UserSettings {
   }
 
   changeSettings(settings) {
-    if (this.verifyCredentials(user)) {
+    if (this.verifyCredentials()) {
       // ...
     }
   }
 
-  verifyCredentials(user) {
+  verifyCredentials() {
     // ...
   }
 }
@@ -1173,12 +1161,12 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
     rectangle.render(area);
   })
 }
 
-let rectangles = [new Rectangle(), new Rectangle(), new Square()];
+const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
@@ -1236,17 +1224,18 @@ function renderLargeShapes(shapes) {
     switch (shape.constructor.name) {
       case 'Square':
         shape.setLength(5);
+        break;
       case 'Rectangle':
         shape.setWidth(4);
         shape.setHeight(5);
     }
 
-    let area = shape.getArea();
+    const area = shape.getArea();
     shape.render(area);
   })
 }
 
-let shapes = [new Rectangle(), new Rectangle(), new Square()];
+const shapes = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeShapes(shapes);
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1283,9 +1272,9 @@ class DOMTraverser {
   }
 }
 
-let $ = new DOMTraverser({
+const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  animationModule: function() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // Most of the time, we won't need to animate when traversing.
   // ...
 });
 
@@ -1316,10 +1305,10 @@ class DOMTraverser {
   }
 }
 
-let $ = new DOMTraverser({
+const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  options: {  
-    animationModule: function() {}
+  options: {
+    animationModule() {}
   }
 });
 ```
@@ -1348,6 +1337,16 @@ example below, the implicit contract is that any Request module for an
 
 **Bad:**
 ```javascript
+class InventoryRequester {
+  constructor() {
+    this.REQ_METHODS = ['HTTP'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
 class InventoryTracker {
   constructor(items) {
     this.items = items;
@@ -1364,17 +1363,7 @@ class InventoryTracker {
   }
 }
 
-class InventoryRequester {
-  constructor() {
-    this.REQ_METHODS = ['HTTP'];
-  }
-
-  requestItem(item) {
-    // ...
-  }
-}
-
-let inventoryTracker = new InventoryTracker(['apples', 'bananas']);
+const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
 inventoryTracker.requestItems();
 ```
 
@@ -1415,12 +1404,12 @@ class InventoryRequesterV2 {
 
 // By constructing our dependencies externally and injecting them, we can easily
 // substitute our request module for a fancy new one that uses WebSockets.
-let inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
+const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Prefer ES6 classes over ES5 plain functions
+### Prefer ES2015/ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
 definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer classes. However, prefer small functions over
@@ -1428,69 +1417,69 @@ classes until you find yourself needing larger and more complex objects.
 
 **Bad:**
 ```javascript
-var Animal = function(age) {
-    if (!(this instanceof Animal)) {
-        throw new Error("Instantiate Animal with `new`");
-    }
+const Animal = function(age) {
+  if (!(this instanceof Animal)) {
+    throw new Error('Instantiate Animal with `new`');
+  }
 
-    this.age = age;
+  this.age = age;
 };
 
-Animal.prototype.move = function() {};
+Animal.prototype.move = function move() {};
 
-var Mammal = function(age, furColor) {
-    if (!(this instanceof Mammal)) {
-        throw new Error("Instantiate Mammal with `new`");
-    }
+const Mammal = function(age, furColor) {
+  if (!(this instanceof Mammal)) {
+    throw new Error('Instantiate Mammal with `new`');
+  }
 
-    Animal.call(this, age);
-    this.furColor = furColor;
+  Animal.call(this, age);
+  this.furColor = furColor;
 };
 
 Mammal.prototype = Object.create(Animal.prototype);
 Mammal.prototype.constructor = Mammal;
-Mammal.prototype.liveBirth = function() {};
+Mammal.prototype.liveBirth = function liveBirth() {};
 
-var Human = function(age, furColor, languageSpoken) {
-    if (!(this instanceof Human)) {
-        throw new Error("Instantiate Human with `new`");
-    }
+const Human = function(age, furColor, languageSpoken) {
+  if (!(this instanceof Human)) {
+    throw new Error('Instantiate Human with `new`');
+  }
 
-    Mammal.call(this, age, furColor);
-    this.languageSpoken = languageSpoken;
+  Mammal.call(this, age, furColor);
+  this.languageSpoken = languageSpoken;
 };
 
 Human.prototype = Object.create(Mammal.prototype);
 Human.prototype.constructor = Human;
-Human.prototype.speak = function() {};
+Human.prototype.speak = function speak() {};
 ```
 
 **Good:**
 ```javascript
 class Animal {
-    constructor(age) {
-        this.age = age;
-    }
+  constructor(age) {
+    this.age = age;
+  }
 
-    move() {}
+  move() { /* ... */ }
 }
 
 class Mammal extends Animal {
-    constructor(age, furColor) {
-        super(age);
-        this.furColor = furColor;
-    }
+  constructor(age, furColor) {
+    super(age);
+    this.furColor = furColor;
+  }
 
-    liveBirth() {}
+  liveBirth() { /* ... */ }
 }
 
 class Human extends Mammal {
-    constructor(age, furColor, languageSpoken) {
-        super(age, furColor);
-        this.languageSpoken = languageSpoken;
-    }
+  constructor(age, furColor, languageSpoken) {
+    super(age, furColor);
+    this.languageSpoken = languageSpoken;
+  }
 
-    speak() {}
+  speak() { /* ... */ }
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1515,7 +1504,7 @@ class Car {
   }
 
   setMake(make) {
-    this.name = name;
+    this.make = make;
   }
 
   setModel(model) {
@@ -1531,7 +1520,7 @@ class Car {
   }
 }
 
-let car = new Car();
+const car = new Car();
 car.setColor('pink');
 car.setMake('Ford');
 car.setModel('F-150')
@@ -1548,7 +1537,7 @@ class Car {
   }
 
   setMake(make) {
-    this.name = name;
+    this.make = make;
     // NOTE: Returning this for chaining
     return this;
   }
@@ -1567,10 +1556,12 @@ class Car {
 
   save() {
     console.log(this.make, this.model, this.color);
+    // NOTE: Returning this for chaining
+    return this;
   }
 }
 
-let car = new Car()
+const car = new Car()
   .setColor('pink')
   .setMake('Ford')
   .setModel('F-150')
@@ -1621,6 +1612,15 @@ class EmployeeTaxData extends Employee {
 
 **Good**:
 ```javascript
+class EmployeeTaxData {
+  constructor(ssn, salary) {
+    this.ssn = ssn;
+    this.salary = salary;
+  }
+
+  // ...
+}
+
 class Employee {
   constructor(name, email) {
     this.name = name;
@@ -1633,20 +1633,11 @@ class Employee {
   }
   // ...
 }
-
-class EmployeeTaxData {
-  constructor(ssn, salary) {
-    this.ssn = ssn;
-    this.salary = salary;
-  }
-
-  // ...
-}
 ```
 **[⬆ back to top](#table-of-contents)**
 
 ## **Testing**
-Testing is more important than shipping. If you have have no tests or an
+Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
 didn't break anything. Deciding on what constitutes an adequate amount is up
 to your team, but having 100% coverage (all statements and branches) is how
@@ -1668,8 +1659,8 @@ or refactoring an existing one.
 ```javascript
 const assert = require('assert');
 
-describe('MakeMomentJSGreatAgain', function() {
-  it('handles date boundaries', function() {
+describe('MakeMomentJSGreatAgain', () => {
+  it('handles date boundaries', () => {
     let date;
 
     date = new MakeMomentJSGreatAgain('1/1/2015');
@@ -1691,21 +1682,21 @@ describe('MakeMomentJSGreatAgain', function() {
 ```javascript
 const assert = require('assert');
 
-describe('MakeMomentJSGreatAgain', function() {
-  it('handles 30-day months', function() {
-    let date = new MakeMomentJSGreatAgain('1/1/2015');
+describe('MakeMomentJSGreatAgain', () => {
+  it('handles 30-day months', () => {
+    const date = new MakeMomentJSGreatAgain('1/1/2015');
     date.addDays(30);
     date.shouldEqual('1/31/2015');
   });
 
-  it('handles leap year', function() {
-    let date = new MakeMomentJSGreatAgain('2/1/2016');
+  it('handles leap year', () => {
+    const date = new MakeMomentJSGreatAgain('2/1/2016');
     date.addDays(28);
     assert.equal('02/29/2016', date);
   });
 
-  it('handles non-leap year', function() {
-    let date = new MakeMomentJSGreatAgain('2/1/2015');
+  it('handles non-leap year', () => {
+    const date = new MakeMomentJSGreatAgain('2/1/2015');
     date.addDays(28);
     assert.equal('03/01/2015', date);
   });
@@ -1715,19 +1706,18 @@ describe('MakeMomentJSGreatAgain', function() {
 
 ## **Concurrency**
 ### Use Promises, not callbacks
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES6,
+Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
 
 **Bad:**
 ```javascript
-require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', function(err, response) {
-  if (err) {
-    console.error(err);
-  }
-  else {
-    require('fs').writeFile('article.html', response.body, function(err) {
-      if (err) {
-        console.error(err);
+require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
+  if (requestErr) {
+    console.error(requestErr);
+  } else {
+    require('fs').writeFile('article.html', response.body, (writeErr) => {
+      if (writeErr) {
+        console.error(writeErr);
       } else {
         console.log('File written');
       }
@@ -1740,13 +1730,13 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', func
 **Good**:
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
-  .then(function(response) {
+  .then((response) => {
     return require('fs-promise').writeFile('article.html', response);
   })
-  .then(function() {
+  .then(() => {
     console.log('File written');
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.error(err);
   })
 
@@ -1754,22 +1744,22 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 **[⬆ back to top](#table-of-contents)**
 
 ### Async/Await are even cleaner than Promises
-Promises are a very clean alternative to callbacks, but ES7 brings async and await
+Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
 which offer an even cleaner solution. All you need is a function that is prefixed
 in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES7 features
+a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
 today!
 
 **Bad:**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
-  .then(function(response) {
+  .then((response) => {
     return require('fs-promise').writeFile('article.html', response);
   })
-  .then(function() {
+  .then(() => {
     console.log('File written');
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.error(err);
   })
 
@@ -1779,17 +1769,90 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```javascript
 async function getCleanCodeArticle() {
   try {
-    var request = await require('request-promise')
-    var response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
-    var fileHandle = await require('fs-promise');
+    const request = await require('request-promise')
+    const response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
+    const fileHandle = await require('fs-promise');
 
     await fileHandle.writeFile('article.html', response);
     console.log('File written');
   } catch(err) {
-      console.log(err);
-    }
+    console.error(err);
   }
+}
 ```
+**[⬆ back to top](#table-of-contents)**
+
+
+## **Error Handling**
+Thrown errors are a good thing! They mean the runtime has successfully
+identified when something in your program has gone wrong and it's letting
+you know by stopping function execution on the current stack, killing the
+process (in Node), and notifying you in the console with a stack trace.
+
+### Don't ignore caught errors
+Doing nothing with a caught error doesn't give you the ability to ever fix
+or react to said error. Logging the error to the console (`console.log`)
+isn't much better as often times it can get lost in a sea of things printed
+to the console. If you wrap any bit of code in a `try/catch` it means you
+think an error may occur there and therefore you should have a plan,
+or create a code path, for when it occurs.
+
+**Bad:**
+```javascript
+try {
+  functionThatMightThrow();
+} catch (error) {
+  console.log(error);
+}
+```
+
+**Good:**
+```javascript
+try {
+  functionThatMightThrow();
+} catch (error) {
+  // One option (more noisy than console.log):
+  console.error(error);
+  // Another option:
+  notifyUserOfError(error);
+  // Another option:
+  reportErrorToService(error);
+  // OR do all three!
+}
+```
+
+### Don't ignore rejected promises
+For the same reason you shouldn't ignore caught errors
+from `try/catch`.
+
+**Bad:**
+```javascript
+getdata()
+.then((data) => {
+  functionThatMightThrow(data);
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+**Good:**
+```javascript
+getdata()
+.then((data) => {
+  functionThatMightThrow(data);
+})
+.catch((error) => {
+  // One option (more noisy than console.log):
+  console.error(error);
+  // Another option:
+  notifyUserOfError(error);
+  // Another option:
+  reportErrorToService(error);
+  // OR do all three!
+});
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 
@@ -1810,11 +1873,11 @@ they want. The point is, no matter what you all choose, just be consistent.
 
 **Bad:**
 ```javascript
-var DAYS_IN_WEEK = 7;
-var daysInMonth = 30;
+const DAYS_IN_WEEK = 7;
+const daysInMonth = 30;
 
-var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-var Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+const Artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 
 function eraseDatabase() {}
 function restore_database() {}
@@ -1825,11 +1888,11 @@ class Alpaca {}
 
 **Good**:
 ```javascript
-var DAYS_IN_WEEK = 7;
-var DAYS_IN_MONTH = 30;
+const DAYS_IN_WEEK = 7;
+const DAYS_IN_MONTH = 30;
 
-var songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-var artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+const artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 
 function eraseDatabase() {}
 function restoreDatabase() {}
@@ -1861,18 +1924,18 @@ class PerformanceReview {
   }
 
   getPeerReviews() {
-    let peers = this.lookupPeers();
+    const peers = this.lookupPeers();
     // ...
   }
 
   perfReview() {
-      getPeerReviews();
-      getManagerReview();
-      getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getManagerReview() {
-    let manager = this.lookupManager();
+    const manager = this.lookupManager();
   }
 
   getSelfReview() {
@@ -1880,7 +1943,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(user);
+const review = new PerformanceReview(user);
 review.perfReview();
 ```
 
@@ -1892,13 +1955,13 @@ class PerformanceReview {
   }
 
   perfReview() {
-      getPeerReviews();
-      getManagerReview();
-      getSelfReview();
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
   }
 
   getPeerReviews() {
-    let peers = this.lookupPeers();
+    const peers = this.lookupPeers();
     // ...
   }
 
@@ -1907,7 +1970,7 @@ class PerformanceReview {
   }
 
   getManagerReview() {
-    let manager = this.lookupManager();
+    const manager = this.lookupManager();
   }
 
   lookupMananger() {
@@ -1919,7 +1982,7 @@ class PerformanceReview {
   }
 }
 
-let review = new PerformanceReview(employee);
+const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
@@ -1933,19 +1996,19 @@ Comments are an apology, not a requirement. Good code *mostly* documents itself.
 ```javascript
 function hashIt(data) {
   // The hash
-  var hash = 0;
+  let hash = 0;
 
   // Length of string
-  var length = data.length;
+  const length = data.length;
 
   // Loop through every character in data
-  for (var i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     // Get character code.
-    var char = data.charCodeAt(i);
+    const char = data.charCodeAt(i);
     // Make the hash
     hash = ((hash << 5) - hash) + char;
     // Convert to 32-bit integer
-    hash = hash & hash;
+    hash &= hash;
   }
 }
 ```
@@ -1954,15 +2017,15 @@ function hashIt(data) {
 ```javascript
 
 function hashIt(data) {
-  var hash = 0;
-  var length = data.length;
+  let hash = 0;
+  const length = data.length;
 
-  for (var i = 0; i < length; i++) {
-    var char = data.charCodeAt(i);
+  for (let i = 0; i < length; i++) {
+    const char = data.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
 
     // Convert to 32-bit integer
-    hash = hash & hash;
+    hash &= hash;
   }
 }
 
@@ -2020,7 +2083,7 @@ proper indentation and formatting give the visual structure to your code.
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
 ////////////////////////////////////////////////////////////////////////////////
-let $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
@@ -2028,61 +2091,19 @@ let $scope.model = {
 ////////////////////////////////////////////////////////////////////////////////
 // Action setup
 ////////////////////////////////////////////////////////////////////////////////
-let actions = function() {
+const actions = function() {
   // ...
 }
 ```
 
 **Good**:
 ```javascript
-let $scope.model = {
+$scope.model = {
   menu: 'foo',
   nav: 'bar'
 };
 
-let actions = function() {
-  // ...
-}
-```
-**[⬆ back to top](#table-of-contents)**
-
-### Avoid legal comments in source files
-That's what your `LICENSE` file at the top of your source tree is for.
-
-**Bad:**
-```javascript
-/*
-The MIT License (MIT)
-
-Copyright (c) 2016 Ryan McDermott
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE
-*/
-
-function calculateBill() {
-  // ...
-}
-```
-
-**Good**:
-```javascript
-function calculateBill() {
+const actions = function() {
   // ...
 }
 ```
