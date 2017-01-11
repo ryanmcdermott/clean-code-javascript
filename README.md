@@ -885,13 +885,13 @@ using getters and setters to access data on objects is far better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
 unorganized list of reasons why:
 
-1. When you want to do more beyond getting an object property, you don't have
+* When you want to do more beyond getting an object property, you don't have
 to look up and change every accessor in your codebase.
-2. Makes adding validation simple when doing a `set`.
-3. Encapsulates the internal representation.
-4. Easy to add logging and error handling when getting and setting.
-5. Inheriting this class, you can override default functionality.
-6. You can lazy load your object's properties, let's say getting it from a
+* Makes adding validation simple when doing a `set`.
+* Encapsulates the internal representation.
+* Easy to add logging and error handling when getting and setting.
+* Inheriting this class, you can override default functionality.
+* You can lazy load your object's properties, let's say getting it from a
 server.
 
 
@@ -922,11 +922,11 @@ class BankAccount {
       this._balance = amount;
     }
   }
-  
+
   get balance() {
     return this._balance;
   }
-  
+
   verifyIfAmountCanBeSetted(val) {
     // ...
   }
