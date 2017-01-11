@@ -292,7 +292,7 @@ function addMonthToDate(month, date) {
 }
 
 const date = new Date();
-addMonthToDate(date, 1);
+addMonthToDate(1, date);
 ```
 **[⬆ back to top](#table-of-contents)**
 
