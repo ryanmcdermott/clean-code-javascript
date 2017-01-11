@@ -89,7 +89,7 @@ setTimeout(() => {
 **Good**:
 ```javascript
 // Declare them as capitalized `const` globals.
-const SECONDS_IN_DAY = 86400;
+const SECONDS_IN_A_DAY = 86400;
 
 setTimeout(() => {
   this.blastOff()
