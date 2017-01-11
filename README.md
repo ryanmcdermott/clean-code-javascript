@@ -266,8 +266,7 @@ function emailClients(clients) {
 }
 
 function isClientActive(client) {
-  const clientRecord = database.lookup(client);
-  return clientRecord.isActive();
+  return client.isActive();
 }
 ```
 **[⬆ back to top](#table-of-contents)**
