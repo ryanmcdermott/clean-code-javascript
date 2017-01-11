@@ -102,8 +102,7 @@ setTimeout(() => {
 **Bad:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
-const city
-Regex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+const cityStateRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 saveCityState(address.match(cityStateRegex)[1], address.match(cityStateRegex)[2]);
 ```
 
