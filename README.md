@@ -228,7 +228,7 @@ const menuConfig = {
   body: 'Bar',
   buttonText: 'Baz',
   cancellable: true
-}
+};
 
 function createMenu(config) {
   // ...
@@ -314,7 +314,7 @@ function parseBetterJSAlternative(code) {
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
       // ...
-    })
+    });
   });
 
   const ast = [];
@@ -324,7 +324,7 @@ function parseBetterJSAlternative(code) {
 
   ast.forEach((node) => {
     // parse...
-  })
+  });
 }
 ```
 
@@ -340,7 +340,7 @@ function tokenize(code) {
   REGEXES.forEach((REGEX) => {
     statements.forEach((statement) => {
       tokens.push( /* ... */ );
-    })
+    });
   });
 
   return tokens;
@@ -360,7 +360,7 @@ function parseBetterJSAlternative(code) {
   const ast = lexer(tokens);
   ast.forEach((node) => {
     // parse...
-  })
+  });
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -441,12 +441,12 @@ const menuConfig = {
   body: 'Bar',
   buttonText: null,
   cancellable: true
-}
+};
 
 function createMenu(config) {
-  config.title = config.title || 'Foo'
-  config.body = config.body || 'Bar'
-  config.buttonText = config.buttonText || 'Baz'
+  config.title = config.title || 'Foo';
+  config.body = config.body || 'Bar';
+  config.buttonText = config.buttonText || 'Baz';
   config.cancellable = config.cancellable === undefined ? config.cancellable : true;
 
 }
@@ -461,7 +461,7 @@ const menuConfig = {
   // User did not include 'body' key
   buttonText: 'Send',
   cancellable: true
-}
+};
 
 function createMenu(config) {
   config = Object.assign({
@@ -543,7 +543,7 @@ function splitIntoFirstAndLastName(name) {
   return name.split(' ');
 }
 
-const name = 'Ryan McDermott'
+const name = 'Ryan McDermott';
 const newName = splitIntoFirstAndLastName(name);
 
 console.log(name); // 'Ryan McDermott';
@@ -579,7 +579,7 @@ Array.prototype.diff = function diff(comparisonArray) {
   }
 
   return values;
-}
+};
 ```
 
 **Good:**
@@ -952,11 +952,11 @@ This can be accomplished through closures (for ES5 and below).
 
 const Employee = function(name) {
   this.name = name;
-}
+};
 
 Employee.prototype.getName = function getName() {
   return this.name;
-}
+};
 
 const employee = new Employee('John Doe');
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
@@ -1026,7 +1026,7 @@ class UserAuth {
 class UserSettings {
   constructor(user) {
     this.user = user;
-    this.auth = new UserAuth(user)
+    this.auth = new UserAuth(user);
   }
 
   changeSettings(settings) {
@@ -1145,7 +1145,7 @@ function renderLargeRectangles(rectangles) {
     rectangle.setHeight(5);
     const area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
     rectangle.render(area);
-  })
+  });
 }
 
 const rectangles = [new Rectangle(), new Rectangle(), new Square()];
@@ -1214,7 +1214,7 @@ function renderLargeShapes(shapes) {
 
     const area = shape.getArea();
     shape.render(area);
-  })
+  });
 }
 
 const shapes = [new Rectangle(), new Rectangle(), new Square()];
@@ -1505,7 +1505,7 @@ class Car {
 const car = new Car();
 car.setColor('pink');
 car.setMake('Ford');
-car.setModel('F-150')
+car.setModel('F-150');
 car.save();
 ```
 
@@ -1703,9 +1703,9 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
       } else {
         console.log('File written');
       }
-    })
+    });
   }
-})
+});
 
 ```
 
@@ -1720,7 +1720,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   })
   .catch((err) => {
     console.error(err);
-  })
+  });
 
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1743,7 +1743,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   })
   .catch((err) => {
     console.error(err);
-  })
+  });
 
 ```
 
@@ -1751,7 +1751,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```javascript
 async function getCleanCodeArticle() {
   try {
-    const request = await require('request-promise')
+    const request = await require('request-promise');
     const response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
     const fileHandle = await require('fs-promise');
 
@@ -2075,7 +2075,7 @@ $scope.model = {
 ////////////////////////////////////////////////////////////////////////////////
 const actions = function() {
   // ...
-}
+};
 ```
 
 **Good**:
@@ -2087,6 +2087,6 @@ $scope.model = {
 
 const actions = function() {
   // ...
-}
+};
 ```
 **[⬆ back to top](#table-of-contents)**
