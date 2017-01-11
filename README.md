@@ -79,35 +79,38 @@ can help identify unnamed constants.
 
 **Bad:**
 ```javascript
-// What the heck is 525600 for?
-for (let i = 0; i < 525600; i++) {
-  runCronJob();
-}
+// What the heck is 86400 for?
+setTimeout(() => {
+  this.blastOff()
+}, 86400);
+
 ```
 
 **Good**:
 ```javascript
 // Declare them as capitalized `const` globals.
-const MINUTES_IN_A_YEAR = 525600;
-for (let i = 0; i < MINUTES_IN_A_YEAR; i++) {
-  runCronJob();
-}
+const SECONDS_IN_DAY = 86400;
+
+setTimeout(() => {
+  this.blastOff()
+}, SECONDS_IN_A_DAY);
+
 ```
 **[⬆ back to top](#table-of-contents)**
 
 ### Use explanatory variables
 **Bad:**
 ```javascript
-const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(cityStateRegex)[2]);
+const address = 'One Infinite Loop, Cupertino 95014';
+const cityStateRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+saveCityState(address.match(cityStateRegex)[1], address.match(cityStateRegex)[2]);
 ```
 
 **Good**:
 ```javascript
-const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-const match = cityStateRegex.match(cityStateRegex);
-const city = match[1];
-const state = match[2];
+const address = 'One Infinite Loop, Cupertino 95014';
+const cityStateRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+const [, city, state] = address.match(cityStateRegex);
 saveCityState(city, state);
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -174,25 +177,23 @@ function paintCar(car) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Short-circuiting is cleaner than conditionals
+### Use default arguments instead of short circuiting or conditionals
 
 **Bad:**
 ```javascript
 function createMicrobrewery(name) {
-  let breweryName;
-  if (name) {
-    breweryName = name;
-  } else {
-    breweryName = 'Hipster Brew Co.';
-  }
+  const breweryName = name || 'Hipster Brew Co.';
+  ...
 }
+
 ```
 
 **Good**:
 ```javascript
-function createMicrobrewery(name) {
-  const breweryName = name || 'Hipster Brew Co.';
+function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
+  ...
 }
+
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -247,7 +248,7 @@ this guide other than this, you'll be ahead of many developers.
 **Bad:**
 ```javascript
 function emailClients(clients) {
-  clients.forEach(client => {
+  clients.forEach((client) => {
     const clientRecord = database.lookup(client);
     if (clientRecord.isActive()) {
       email(client);
@@ -275,24 +276,24 @@ function isClientActive(client) {
 
 **Bad:**
 ```javascript
-function dateAdd(date, month) {
+function addToDate(date, month) {
   // ...
 }
 
 const date = new Date();
 
 // It's hard to to tell from the function name what is added
-dateAdd(date, 1);
+addToDate(date, 1);
 ```
 
 **Good**:
 ```javascript
-function dateAddMonth(date, month) {
+function addMonthToDate(month, date) {
   // ...
 }
 
 const date = new Date();
-dateAddMonth(date, 1);
+addMonthToDate(1, date);
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -376,7 +377,7 @@ code eligible for refactoring.
 **Bad:**
 ```javascript
 function showDeveloperList(developers) {
-  developers.forEach(developer => {
+  developers.forEach((developer) => {
     const expectedSalary = developer.calculateExpectedSalary();
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
@@ -391,7 +392,7 @@ function showDeveloperList(developers) {
 }
 
 function showManagerList(managers) {
-  managers.forEach(manager => {
+  managers.forEach((manager) => {
     const expectedSalary = manager.calculateExpectedSalary();
     const experience = manager.getExperience();
     const portfolio = manager.getMBAProjects();
@@ -409,7 +410,7 @@ function showManagerList(managers) {
 **Good**:
 ```javascript
 function showList(employees) {
-  employees.forEach(employee => {
+  employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
 
@@ -428,25 +429,6 @@ function showList(employees) {
     render(data);
   });
 }
-```
-**[⬆ back to top](#table-of-contents)**
-
-### Use default arguments instead of short circuiting
-**Bad:**
-```javascript
-function writeForumComment(subject, body) {
-  subject = subject || 'No Subject';
-  body = body || 'No text';
-}
-
-```
-
-**Good**:
-```javascript
-function writeForumComment(subject = 'No subject', body = 'No text') {
-  // ...
-}
-
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -505,7 +487,7 @@ Flags tell your user that this function does more than one thing. Functions shou
 ```javascript
 function createFile(name, temp) {
   if (temp) {
-    fs.create('./temp/' + name);
+    fs.create(`./temp/${name}`);
   } else {
     fs.create(name);
   }
@@ -519,7 +501,7 @@ function createFile(name) {
 }
 
 function createTempFile(name) {
-  createFile('./temp/' + name);
+  createFile(`./temp/${name}`);
 }
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -582,7 +564,7 @@ would be much better to just use ES2015/ES6 classes and simply extend the `Array
 
 **Bad:**
 ```javascript
-Array.prototype.diff = function(comparisonArray) {
+Array.prototype.diff = function diff(comparisonArray) {
   const values = [];
   const hash = {};
 
@@ -930,22 +912,34 @@ bankAccount.balance -= 100;
 **Good**:
 ```javascript
 class BankAccount {
-  constructor() {
-    this.balance = 1000;
+  constructor(balance = 1000) {
+    this._balance = balance;
   }
 
   // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
-  withdraw(amount) {
-    if (verifyAmountCanBeDeducted(amount)) {
-      this.balance -= amount;
+  set balance(amount) {
+    if (verifyIfAmountCanBeSetted(amount)) {
+      this._balance = amount;
     }
+  }
+  
+  get balance() {
+    return this._balance;
+  }
+  
+  verifyIfAmountCanBeSetted(val) {
+    // ...
   }
 }
 
 const bankAccount = new BankAccount();
 
 // Buy shoes...
-bankAccount.withdraw(100);
+bankAccount.balance -= shoesPrice;
+
+// Get balance
+let balance = bankAccount.balance;
+
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -960,32 +954,28 @@ const Employee = function(name) {
   this.name = name;
 };
 
-Employee.prototype.getName = function() {
+Employee.prototype.getName = function getName() {
   return this.name;
 };
 
 const employee = new Employee('John Doe');
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
-console.log('Employee name: ' + employee.getName()); // Employee name: undefined
+console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
 **Good**:
 ```javascript
-const Employee = (function() {
-  function Employee(name) {
-    this.getName = function() {
-      return name;
-    };
-  }
-
-  return Employee;
-}());
+const Employee = function (name) {
+  this.getName = function getName() {
+    return name;
+  };
+};
 
 const employee = new Employee('John Doe');
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
-console.log('Employee name: ' + employee.getName()); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -1266,7 +1256,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  animationModule: function() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // Most of the time, we won't need to animate when traversing.
   // ...
 });
 
@@ -1300,7 +1290,7 @@ class DOMTraverser {
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
   options: {
-    animationModule: function() {}
+    animationModule() {}
   }
 });
 ```
@@ -1411,17 +1401,17 @@ classes until you find yourself needing larger and more complex objects.
 ```javascript
 const Animal = function(age) {
   if (!(this instanceof Animal)) {
-    throw new Error("Instantiate Animal with `new`");
+    throw new Error('Instantiate Animal with `new`');
   }
 
   this.age = age;
 };
 
-Animal.prototype.move = function() {};
+Animal.prototype.move = function move() {};
 
 const Mammal = function(age, furColor) {
   if (!(this instanceof Mammal)) {
-    throw new Error("Instantiate Mammal with `new`");
+    throw new Error('Instantiate Mammal with `new`');
   }
 
   Animal.call(this, age);
@@ -1430,11 +1420,11 @@ const Mammal = function(age, furColor) {
 
 Mammal.prototype = Object.create(Animal.prototype);
 Mammal.prototype.constructor = Mammal;
-Mammal.prototype.liveBirth = function() {};
+Mammal.prototype.liveBirth = function liveBirth() {};
 
 const Human = function(age, furColor, languageSpoken) {
   if (!(this instanceof Human)) {
-    throw new Error("Instantiate Human with `new`");
+    throw new Error('Instantiate Human with `new`');
   }
 
   Mammal.call(this, age, furColor);
@@ -1443,7 +1433,7 @@ const Human = function(age, furColor, languageSpoken) {
 
 Human.prototype = Object.create(Mammal.prototype);
 Human.prototype.constructor = Human;
-Human.prototype.speak = function() {};
+Human.prototype.speak = function speak() {};
 ```
 
 **Good:**
@@ -1629,7 +1619,7 @@ class Employee {
 **[⬆ back to top](#table-of-contents)**
 
 ## **Testing**
-Testing is more important than shipping. If you have have no tests or an
+Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
 didn't break anything. Deciding on what constitutes an adequate amount is up
 to your team, but having 100% coverage (all statements and branches) is how
@@ -1651,8 +1641,8 @@ or refactoring an existing one.
 ```javascript
 const assert = require('assert');
 
-describe('MakeMomentJSGreatAgain', function() {
-  it('handles date boundaries', function() {
+describe('MakeMomentJSGreatAgain', () => {
+  it('handles date boundaries', () => {
     let date;
 
     date = new MakeMomentJSGreatAgain('1/1/2015');
@@ -1674,20 +1664,20 @@ describe('MakeMomentJSGreatAgain', function() {
 ```javascript
 const assert = require('assert');
 
-describe('MakeMomentJSGreatAgain', function() {
-  it('handles 30-day months', function() {
+describe('MakeMomentJSGreatAgain', () => {
+  it('handles 30-day months', () => {
     const date = new MakeMomentJSGreatAgain('1/1/2015');
     date.addDays(30);
     date.shouldEqual('1/31/2015');
   });
 
-  it('handles leap year', function() {
+  it('handles leap year', () => {
     const date = new MakeMomentJSGreatAgain('2/1/2016');
     date.addDays(28);
     assert.equal('02/29/2016', date);
   });
 
-  it('handles non-leap year', function() {
+  it('handles non-leap year', () => {
     const date = new MakeMomentJSGreatAgain('2/1/2015');
     date.addDays(28);
     assert.equal('03/01/2015', date);
@@ -1706,8 +1696,7 @@ Promises are a built-in global type. Use them!
 require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
   if (requestErr) {
     console.error(requestErr);
-  }
-  else {
+  } else {
     require('fs').writeFile('article.html', response.body, (writeErr) => {
       if (writeErr) {
         console.error(writeErr);
@@ -1723,13 +1712,13 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
 **Good**:
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
-  .then(function(response) {
+  .then((response) => {
     return require('fs-promise').writeFile('article.html', response);
   })
-  .then(function() {
+  .then(() => {
     console.log('File written');
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.error(err);
   });
 
@@ -1746,13 +1735,13 @@ today!
 **Bad:**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
-  .then(function(response) {
+  .then((response) => {
     return require('fs-promise').writeFile('article.html', response);
   })
-  .then(function() {
+  .then(() => {
     console.log('File written');
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.error(err);
   });
 
@@ -1769,7 +1758,7 @@ async function getCleanCodeArticle() {
     await fileHandle.writeFile('article.html', response);
     console.log('File written');
   } catch(err) {
-    console.log(err);
+    console.error(err);
   }
 }
 ```
@@ -1821,10 +1810,10 @@ from `try/catch`.
 **Bad:**
 ```javascript
 getdata()
-.then(data => {
+.then((data) => {
   functionThatMightThrow(data);
 })
-.catch(error => {
+.catch((error) => {
   console.log(error);
 });
 ```
@@ -1832,10 +1821,10 @@ getdata()
 **Good:**
 ```javascript
 getdata()
-.then(data => {
+.then((data) => {
   functionThatMightThrow(data);
 })
-.catch(error => {
+.catch((error) => {
   // One option (more noisy than console.log):
   console.error(error);
   // Another option:
