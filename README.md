@@ -947,6 +947,39 @@ const bankAccount = new BankAccount();
 // Buy shoes...
 bankAccount.withdraw(100);
 ```
+
+**Good**:
+```javascript
+class BankAccount {
+  constructor(balance = 1000) {
+    this._balance = balance;
+  }
+
+  // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
+  set balance(amount) {
+    if (verifyIfAmountCanBeSetted(amount)) {
+      this._balance = amount;
+    }
+  }
+  
+  get balance() {
+    return this._balance;
+  }
+  
+  verifyIfAmountCanBeSetted(val) {
+    // ...
+  }
+}
+
+const bankAccount = new BankAccount();
+
+// Buy shoes...
+bankAccount.balance -= shoesPrice;
+
+// Get balance
+let balance = bankAccount.balance;
+
+```
 **[⬆ back to top](#table-of-contents)**
 
 
