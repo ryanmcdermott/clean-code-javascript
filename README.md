@@ -247,7 +247,7 @@ this guide other than this, you'll be ahead of many developers.
 **Bad:**
 ```javascript
 function emailClients(clients) {
-  clients.forEach(client => {
+  clients.forEach((client) => {
     const clientRecord = database.lookup(client);
     if (clientRecord.isActive()) {
       email(client);
@@ -376,7 +376,7 @@ code eligible for refactoring.
 **Bad:**
 ```javascript
 function showDeveloperList(developers) {
-  developers.forEach(developer => {
+  developers.forEach((developer) => {
     const expectedSalary = developer.calculateExpectedSalary();
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
@@ -391,7 +391,7 @@ function showDeveloperList(developers) {
 }
 
 function showManagerList(managers) {
-  managers.forEach(manager => {
+  managers.forEach((manager) => {
     const expectedSalary = manager.calculateExpectedSalary();
     const experience = manager.getExperience();
     const portfolio = manager.getMBAProjects();
@@ -409,7 +409,7 @@ function showManagerList(managers) {
 **Good**:
 ```javascript
 function showList(employees) {
-  employees.forEach(employee => {
+  employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
 
@@ -1828,10 +1828,10 @@ from `try/catch`.
 **Bad:**
 ```javascript
 getdata()
-.then(data => {
+.then((data) => {
   functionThatMightThrow(data);
 })
-.catch(error => {
+.catch((error) => {
   console.log(error);
 });
 ```
@@ -1839,10 +1839,10 @@ getdata()
 **Good:**
 ```javascript
 getdata()
-.then(data => {
+.then((data) => {
   functionThatMightThrow(data);
 })
-.catch(error => {
+.catch((error) => {
   // One option (more noisy than console.log):
   console.error(error);
   // Another option:
