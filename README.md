@@ -174,25 +174,23 @@ function paintCar(car) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Short-circuiting is cleaner than conditionals
+### Use default arguments instead of short circuiting or conditionals
 
 **Bad:**
 ```javascript
 function createMicrobrewery(name) {
-  let breweryName;
-  if (name) {
-    breweryName = name;
-  } else {
-    breweryName = 'Hipster Brew Co.';
-  }
+  const breweryName = name || 'Hipster Brew Co.';
+  ...
 }
+
 ```
 
 **Good**:
 ```javascript
-function createMicrobrewery(name) {
-  const breweryName = name || 'Hipster Brew Co.'
+function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
+  ...
 }
+
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -428,25 +426,6 @@ function showList(employees) {
     render(data);
   });
 }
-```
-**[⬆ back to top](#table-of-contents)**
-
-### Use default arguments instead of short circuiting
-**Bad:**
-```javascript
-function writeForumComment(subject, body) {
-  subject = subject || 'No Subject';
-  body = body || 'No text';
-}
-
-```
-
-**Good**:
-```javascript
-function writeForumComment(subject = 'No subject', body = 'No text') {
-  // ...
-}
-
 ```
 **[⬆ back to top](#table-of-contents)**
 
