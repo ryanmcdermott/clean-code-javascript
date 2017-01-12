@@ -146,6 +146,50 @@ locations.forEach((location) => {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Avoid Mental Mapping of iterator states
+Nested high-performance loops can get confusing if you use incremental
+letters for iterator variables. Mental mapping overhead can be reduced
+when using the leading prefix letter (`d` for dataset) as the iterator
+and the same name + l (`dl` for dataset) as the length or loop's
+limitation.
+
+**Bad:**
+```javascript
+const dataset = [[{ foo: [1,2,3,4] }], [{ foo: [1,2,3,4] }]];
+
+for (let i = 0, l = dataset.length; i < l; i++) {
+
+	for (let j = 0, m = dataset[i].length; j < m; j++) {
+
+		for (let k in dataset[i][j]) {
+			doStuff(dataset[i][j][k]);
+		}
+
+	}
+
+}
+```
+
+**Good**:
+```javascript
+const dataset = [[{ foo: [1,2,3,4] }], [{ foo: [1,2,3,4] }]];
+
+for (let d = 0, dl = dataset.length; d < dl; d++) {
+
+	let entry = dataset[d];
+	for (let e = 0, el = entry.length; e < el; e++) {
+
+		let object = entry[e];
+		for (let o in object) {
+			doStuff(object[o]);
+		}
+
+	}
+
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
 ### Don't add unneeded context
 If your class/object name tells you something, don't repeat that in your
 variable name.
