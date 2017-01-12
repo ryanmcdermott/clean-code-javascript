@@ -102,8 +102,8 @@ setTimeout(() => {
 **Bad:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
-const cityStateRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
-saveCityState(address.match(cityStateRegex)[1], address.match(cityStateRegex)[2]);
+const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+saveCityZipCode(address.match(cityZipCodeRegex)[1], address.match(cityZipCodeRegex)[2]);
 ```
 
 **Good**:
@@ -111,7 +111,7 @@ saveCityState(address.match(cityStateRegex)[1], address.match(cityStateRegex)[2]
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 const [, city, zipCode] = address.match(cityZipCodeRegex);
-saveCityState(city, zipCode);
+saveCityZipCode(city, zipCode);
 ```
 **[⬆ back to top](#table-of-contents)**
 
