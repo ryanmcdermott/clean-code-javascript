@@ -79,21 +79,21 @@ can help identify unnamed constants.
 
 **Bad:**
 ```javascript
-// What the heck is 86400 for?
+// What the heck is 86400000 for?
 setTimeout(() => {
-  this.blastOff()
-}, 86400);
+  this.blastOff();
+}, 86400000);
 
 ```
 
 **Good**:
 ```javascript
 // Declare them as capitalized `const` globals.
-const SECONDS_IN_A_DAY = 86400;
+const MILLISECONDS_IN_A_DAY = 86400000;
 
 setTimeout(() => {
-  this.blastOff()
-}, SECONDS_IN_A_DAY);
+  this.blastOff();
+}, MILLISECONDS_IN_A_DAY);
 
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -183,7 +183,7 @@ function paintCar(car) {
 ```javascript
 function createMicrobrewery(name) {
   const breweryName = name || 'Hipster Brew Co.';
-  ...
+  // ...
 }
 
 ```
@@ -191,7 +191,7 @@ function createMicrobrewery(name) {
 **Good**:
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
-  ...
+  // ...
 }
 
 ```
@@ -382,9 +382,9 @@ function showDeveloperList(developers) {
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
     const data = {
-      expectedSalary: expectedSalary,
-      experience: experience,
-      githubLink: githubLink
+      expectedSalary,
+      experience,
+      githubLink
     };
 
     render(data);
@@ -397,9 +397,9 @@ function showManagerList(managers) {
     const experience = manager.getExperience();
     const portfolio = manager.getMBAProjects();
     const data = {
-      expectedSalary: expectedSalary,
-      experience: experience,
-      portfolio: portfolio
+      expectedSalary,
+      experience,
+      portfolio
     };
 
     render(data);
@@ -421,9 +421,9 @@ function showList(employees) {
     }
 
     const data = {
-      expectedSalary: expectedSalary,
-      experience: experience,
-      portfolio: portfolio
+      expectedSalary,
+      experience,
+      portfolio
     };
 
     render(data);
@@ -448,7 +448,6 @@ function createMenu(config) {
   config.body = config.body || 'Bar';
   config.buttonText = config.buttonText || 'Baz';
   config.cancellable = config.cancellable === undefined ? config.cancellable : true;
-
 }
 
 createMenu(menuConfig);
@@ -585,25 +584,8 @@ Array.prototype.diff = function diff(comparisonArray) {
 **Good:**
 ```javascript
 class SuperArray extends Array {
-  constructor(...args) {
-    super(...args);
-  }
-
   diff(comparisonArray) {
-    const values = [];
-    const hash = {};
-
-    for (const i of comparisonArray) {
-      hash[i] = true;
-    }
-
-    for (const i of this) {
-      if (!hash[i]) {
-        values.push(i);
-      }
-    }
-
-    return values;
+    return this.filter(elem => !comparisonArray.includes(elem));
   }
 }
 ```
@@ -1153,10 +1135,6 @@ class Rectangle {
 }
 
 class Square extends Rectangle {
-  constructor() {
-    super();
-  }
-
   setWidth(width) {
     this.width = width;
     this.height = width;
@@ -1184,8 +1162,6 @@ renderLargeRectangles(rectangles);
 **Good**:
 ```javascript
 class Shape {
-  constructor() {}
-
   setColor(color) {
     // ...
   }
@@ -1636,7 +1612,6 @@ class Employee {
   constructor(name, email) {
     this.name = name;
     this.email = email;
-
   }
 
   setTaxData(ssn, salary) {
