@@ -550,6 +550,32 @@ console.log(newName); // ['Ryan', 'McDermott'];
 ```
 **[⬆ back to top](#table-of-contents)**
 
+### Avoid Side Effects pt.2
+Side effects could also occur from inside a function. In Javascript, function arguments 
+are always passed by value except when they(functions) are passed reference values such as 
+objects and arrays. In that case, we should be carefull not to change any of these 
+argument's properties. A possible solution would be to always clone the variable,
+edit it and return the clone.
+
+**Bad:**
+```javascript
+function userReducer(state, action) {
+  state.userProfile = action.payload;
+  return state;
+}
+```
+
+**Good:**
+```javascript
+function userReducer(state, action) {
+  var s = Object.assign({}, state);
+  s.userProfile = action.payload;
+  return s;
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Don't write to global functions
 Polluting globals is a bad practice in JavaScript because you could clash with another
 library and the user of your API would be none-the-wiser until they get an
