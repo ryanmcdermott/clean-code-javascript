@@ -79,21 +79,21 @@ can help identify unnamed constants.
 
 **Bad:**
 ```javascript
-// What the heck is 86400 for?
+// What the heck is 86400000 for?
 setTimeout(() => {
   this.blastOff()
-}, 86400);
+}, 86400000);
 
 ```
 
 **Good**:
 ```javascript
 // Declare them as capitalized `const` globals.
-const SECONDS_IN_A_DAY = 86400;
+const MILLISECONDS_IN_A_DAY = 86400000;
 
 setTimeout(() => {
   this.blastOff()
-}, SECONDS_IN_A_DAY);
+}, MILLISECONDS_IN_A_DAY);
 
 ```
 **[⬆ back to top](#table-of-contents)**
