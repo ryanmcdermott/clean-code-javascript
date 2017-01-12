@@ -592,7 +592,7 @@ class SuperArray extends Array {
 **[⬆ back to top](#table-of-contents)**
 
 ### Functions are cleaner than subclasses ###
-Classes are good when you need state. Consider writing a simple function if state is not an issue. Also, when extending an object (like the global Array), you are required to instantiate it using the 'new' keyword. A class will limit the usage of a feature to the subclass only. A better option is to write a stateless function.
+Classes are good when you need state. Consider writing a simple function if state is not an issue. Also, when extending an object (like the global Array), you are required to instantiate it using the 'new' keyword. A class will also limit the usage of a feature to the subclass only. A better option is to write a stateless function.
 
 **Bad:**
 ```javascript
