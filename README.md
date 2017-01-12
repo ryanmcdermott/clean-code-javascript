@@ -591,31 +591,18 @@ class SuperArray extends Array {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Functions are often cleaner than subclasses ###
+### Functions are cleaner than subclasses ###
 Classes are good when you need state. Consider writing simple functions if state is not an issue. A drawback with a class extending the Array global, is that you are required to instantiate it using the 'new' keyword. Normally an array is created with:
 
 ```javascript
-const arr = []; 
+const arr = [];
 ```
 
 A class will limit the usage of the diff feature to the subclass only. A better option is to write a stateless function, that accept two arrays and calculate the difference between them.
 
 ```javascript
 function diff(first, second) {
-    const values = [];
-    const hash = {};
-
-    for (const i of second) {
-      hash[i] = true;
-    }
-
-    for (const i of first) {
-      if (!hash[i]) {
-        values.push(i);
-      }
-    }
-
-    return values;
+  return first.filter(elem => !second.includes(elem));
 }
 ```
 **[⬆ back to top](#table-of-contents)**
