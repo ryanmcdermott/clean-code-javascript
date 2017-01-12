@@ -585,20 +585,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 ```javascript
 class SuperArray extends Array {
   diff(comparisonArray) {
-    const values = [];
-    const hash = {};
-
-    for (const i of comparisonArray) {
-      hash[i] = true;
-    }
-
-    for (const i of this) {
-      if (!hash[i]) {
-        values.push(i);
-      }
-    }
-
-    return values;
+    return this.filter(elem => !comparisonArray.includes(elem));
   }
 }
 ```
