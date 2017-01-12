@@ -564,20 +564,8 @@ would be much better to just use ES2015/ES6 classes and simply extend the `Array
 **Bad:**
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
-  const values = [];
-  const hash = {};
-
-  for (const i of comparisonArray) {
-    hash[i] = true;
-  }
-
-  for (const i of this) {
-    if (!hash[i]) {
-      values.push(i);
-    }
-  }
-
-  return values;
+  const hash = new Set(comparisonArray);
+  return this.filter(elem => !hash.has(elem));
 };
 ```
 
@@ -585,7 +573,8 @@ Array.prototype.diff = function diff(comparisonArray) {
 ```javascript
 class SuperArray extends Array {
   diff(comparisonArray) {
-    return this.filter(elem => !comparisonArray.includes(elem));
+    const hash = new Set(comparisonArray);
+    return this.filter(elem => !hash.has(elem));
   }
 }
 ```
