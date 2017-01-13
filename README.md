@@ -1863,7 +1863,7 @@ class PerformanceReview {
     return db.lookup(this.employee, 'peers');
   }
 
-  lookupMananger() {
+  lookupManager() {
     return db.lookup(this.employee, 'manager');
   }
 
@@ -1917,7 +1917,7 @@ class PerformanceReview {
     const manager = this.lookupManager();
   }
 
-  lookupMananger() {
+  lookupManager() {
     return db.lookup(this.employee, 'manager');
   }
 
