@@ -230,7 +230,7 @@ const menuConfig = {
   cancellable: true
 };
 
-function createMenu(config) {
+function createMenu(menuConfig) {
   // ...
 }
 
