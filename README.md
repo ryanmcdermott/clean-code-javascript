@@ -1581,69 +1581,126 @@ let car = new Car()
 
 ### Prefer composition over inheritance
 As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+you should prefer composition over inheritance where you can.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Important thing is that JavaScript uses prototypal inheritance. It means new objects are instantiated by creating delegation links using OLOO (Objects Linking to Other Objects). Therfore you should be aware that JS does not offer real classes you may now from _Java_, _C#_ or other _object-oriented languages_. You may think: _"Hold on! There are `class` and `extends` keywords so I should be able to use classical inheritance."_. These keywords are _syntactic sugar_ and they are **not** introducing a new object-oriented inheritance model to the language (#[MDN: Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)).
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Animal->Human vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-(Change the caloric expenditure of all animals when they move).
+The composition/inheritance topic is comprehensively covered in following articles:
+- ["Common Misconceptions About Inheritance in JavaScript"](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a)
+- ["3 Different Kinds of Prototypal Inheritance: ES6+ Edition"](https://medium.com/javascript-scene/3-different-kinds-of-prototypal-inheritance-es6-edition-32d777fa16c9)
+- ["What's the Difference Between Class and Prototypal Inheritance?"](https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9)
+- [You Don't Know JS: Simpler design](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md#simpler-design)
+
+After you read mentioned articles you know that JavaScript uses **prototypal inheritance** and you as a developer should favor **composition** over inheritance. You also know that both `class` and `extends` keywords are only syntactic sugar and there is [a better option](https://medium.com/javascript-scene/the-two-pillars-of-javascript-ee6f3281e7f3#d03c) of instantiating new objects. This option is called **factory function** which allows you to **compose** any objects you need into new prototype.
 
 **Bad:**
 ```javascript
-class Employee {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
+class Airplane {
+  constructor(initialState) {
+    const { name } = initialState
+
+    this.name = name
   }
 
-  // ...
+  getName() {
+    return `${this.name}`
+  }
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
-class EmployeeTaxData extends Employee {
-  constructor(ssn, salary) {
-    super();
-    this.ssn = ssn;
-    this.salary = salary;
+const defaultAirbusA380State = {
+  name: 'Airbus A380'
+}
+class AirbusA380 extends Airplane {
+  constructor(initialState) {
+    const state = Object.assign(
+      {},
+      defaultAirbusA380State,
+      initialState
+    )
+    const { airline } = state
+    
+    super(state)
+
+    this.airline = airline
   }
 
-  // ...
+  getName() {
+    return  `${super.getName()} of ${this.airline}`
+  }
 }
+
+const defaultCessnaState = {
+  name: 'Cessna'
+}
+class Cessna extends Airplane {
+  constructor(initialState) {
+    const state = Object.assign(
+      {},
+      defaultCessnaState,
+      initialState
+    )
+    
+    super(state)
+  }
+}
+
+// create instances of airplanes
+const emiratesAirbus = new AirbusA380({
+  airline: 'Emirates'
+})
+
+const privateCessnaJet = new Cessna()
+
+console.log(emiratesAirbus.getName()) // prints "Airbus A380 of Emirates"
+console.log(privateCessnaJet.getName()) // prints "Cessna"
 ```
 
-**Good**:
+**Good:**
 ```javascript
-class Employee {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
-
+// define base objects
+const Airplane = {
+  getName() {
+    return `${this.name}`
   }
-
-  setTaxData(ssn, salary) {
-    this.taxData = new EmployeeTaxData(ssn, salary);
-  }
-  // ...
 }
 
-class EmployeeTaxData {
-  constructor(ssn, salary) {
-    this.ssn = ssn;
-    this.salary = salary;
+const AirbusA380 = { 
+  name: 'Airbus A380',
+  getName() {
+    return  `${Airplane.getName.call(this)} of ${this.airline}`
   }
-
-  // ...
 }
+
+const Cessna = { 
+  name: 'Cessna'
+}
+
+// define factory functions (airbusA380, cessna)
+const airbusA380 = (state) => Object.assign(
+  {},
+  Airplane,
+  AirbusA380,
+  state
+)
+
+const cessna = (state) => Object.assign(
+  {},
+  Airplane,
+  Cessna,
+  state
+)
+
+// create instances of airplanes
+const emiratesAirbus = airbusA380({
+  airline: 'Emirates'
+})
+
+const privateCessnaJet = cessna()
+
+console.log(emiratesAirbus.getName()) // prints "Airbus A380 of Emirates"
+console.log(privateCessnaJet.getName()) // prints "Cessna"
 ```
+
 **[⬆ back to top](#table-of-contents)**
 
 ## **Testing**
