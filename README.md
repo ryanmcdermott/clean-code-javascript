@@ -587,7 +587,8 @@ Classes are good when you need state. Consider writing a simple function if stat
 ```javascript
 class SuperArray extends Array {
   diff(comparisonArray) {
-    return this.filter(elem => !comparisonArray.includes(elem));
+    const hash = new Set(comparisonArray);
+    return this.filter(elem => !hash.has(elem));
   }
 }
 
@@ -597,7 +598,8 @@ const arr = new SuperArray(1, 2, 3);
 **Good:**
 ```javascript
 function diff(first, second) {
-  return first.filter(elem => !second.includes(elem));
+  const hash = new Set(second);
+  return first.filter(elem => !hash.has(elem));
 }
 
 const arr = [1, 2, 3];
