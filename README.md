@@ -102,16 +102,16 @@ setTimeout(() => {
 **Bad:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
-const cityStateRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
-saveCityState(address.match(cityStateRegex)[1], address.match(cityStateRegex)[2]);
+const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+saveCityZipCode(address.match(cityZipCodeRegex)[1], address.match(cityZipCodeRegex)[2]);
 ```
 
 **Good**:
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
-const cityStateRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
-const [, city, state] = address.match(cityStateRegex);
-saveCityState(city, state);
+const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+const [, city, zipCode] = address.match(cityZipCodeRegex);
+saveCityZipCode(city, zipCode);
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -564,20 +564,8 @@ would be much better to just use ES2015/ES6 classes and simply extend the `Array
 **Bad:**
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
-  const values = [];
-  const hash = {};
-
-  for (const i of comparisonArray) {
-    hash[i] = true;
-  }
-
-  for (const i of this) {
-    if (!hash[i]) {
-      values.push(i);
-    }
-  }
-
-  return values;
+  const hash = new Set(comparisonArray);
+  return this.filter(elem => !hash.has(elem));
 };
 ```
 
@@ -585,7 +573,8 @@ Array.prototype.diff = function diff(comparisonArray) {
 ```javascript
 class SuperArray extends Array {
   diff(comparisonArray) {
-    return this.filter(elem => !comparisonArray.includes(elem));
+    const hash = new Set(comparisonArray);
+    return this.filter(elem => !hash.has(elem));
   }
 }
 ```
@@ -1468,13 +1457,11 @@ class Human extends Mammal {
 
 
 ### Use method chaining
-Against the advice of Clean Code, this is one place where we will have to differ.
-It has been argued that method chaining is unclean and violates the [Law of Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter).
-Maybe it's true, but this pattern is very useful in JavaScript and you see it in
-many libraries such as jQuery and Lodash. It allows your code to be expressive,
-and less verbose. For that reason, I say, use method chaining and take a look at
-how clean your code will be. In your class functions, simply return `this` at
-the end of every function, and you can chain further class methods onto it.
+This pattern is very useful in JavaScript and you see it in many libraries such
+as jQuery and Lodash. It allows your code to be expressive, and less verbose.
+For that reason, I say, use method chaining and take a look at how clean your code
+will be. In your class functions, simply return `this` at the end of every function,
+and you can chain further class methods onto it.
 
 **Bad:**
 ```javascript
@@ -1900,7 +1887,7 @@ class PerformanceReview {
     return db.lookup(this.employee, 'peers');
   }
 
-  lookupMananger() {
+  lookupManager() {
     return db.lookup(this.employee, 'manager');
   }
 
@@ -1954,7 +1941,7 @@ class PerformanceReview {
     const manager = this.lookupManager();
   }
 
-  lookupMananger() {
+  lookupManager() {
     return db.lookup(this.employee, 'manager');
   }
 
