@@ -1713,11 +1713,8 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```javascript
 async function getCleanCodeArticle() {
   try {
-    const request = await require('request-promise');
-    const response = await request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
-    const fileHandle = await require('fs-promise');
-
-    await fileHandle.writeFile('article.html', response);
+    const response = await require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
+    await require('fs-promise').writeFile('article.html', response);
     console.log('File written');
   } catch(err) {
     console.error(err);
