@@ -1514,7 +1514,7 @@ const car = new Car()
 As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
 you should prefer composition over inheritance where you can.
 
-Important thing is that JavaScript uses prototypal inheritance. It means new objects are instantiated by creating delegation links using OLOO (Objects Linking to Other Objects). Therfore you should be aware that JS does not offer real classes you may now from _Java_, _C#_ or other _object-oriented languages_. You may think: _"Hold on! There are `class` and `extends` keywords so I should be able to use classical inheritance."_. These keywords are _syntactic sugar_ and they are **not** introducing a new object-oriented inheritance model to the language (#[MDN: Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)).
+Important thing is that JavaScript uses prototypal inheritance. It means new objects are instantiated by creating delegation links using OLOO (Objects Linking to Other Objects). Therefore you should be aware that JS does not offer real classes you may know from _Java_, _C#_ or other _object-oriented languages_. You may think: _"Hold on! There are `class` and `extends` keywords so I should be able to use classical inheritance."_. These keywords are _syntactic sugar_ and they are **not** introducing a new object-oriented inheritance model to the language (#[MDN: Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)).
 
 The composition/inheritance topic is comprehensively covered in following articles:
 - ["Common Misconceptions About Inheritance in JavaScript"](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a)
@@ -1528,62 +1528,62 @@ After you read mentioned articles you know that JavaScript uses **prototypal inh
 ```javascript
 class Airplane {
   constructor(initialState) {
-    const { name } = initialState
+    const { name } = initialState;
 
-    this.name = name
+    this.name = name;
   }
 
   getName() {
-    return `${this.name}`
+    return `${this.name}`;
   }
 }
 
 const defaultAirbusA380State = {
   name: 'Airbus A380'
-}
+};
 class AirbusA380 extends Airplane {
   constructor(initialState) {
     const state = Object.assign(
       {},
       defaultAirbusA380State,
       initialState
-    )
-    const { airline } = state
-    
-    super(state)
+    );
+    const { airline } = state;
 
-    this.airline = airline
+    super(state);
+
+    this.airline = airline;
   }
 
   getName() {
-    return  `${super.getName()} of ${this.airline}`
+    return  `${super.getName()} of ${this.airline}`;
   }
 }
 
 const defaultCessnaState = {
   name: 'Cessna'
-}
+};
 class Cessna extends Airplane {
   constructor(initialState) {
     const state = Object.assign(
       {},
       defaultCessnaState,
       initialState
-    )
-    
-    super(state)
+    );
+
+    super(state);
   }
 }
 
 // create instances of airplanes
 const emiratesAirbus = new AirbusA380({
   airline: 'Emirates'
-})
+});
 
-const privateCessnaJet = new Cessna()
+const privateCessnaJet = new Cessna();
 
-console.log(emiratesAirbus.getName()) // prints "Airbus A380 of Emirates"
-console.log(privateCessnaJet.getName()) // prints "Cessna"
+console.log(emiratesAirbus.getName()); // prints "Airbus A380 of Emirates"
+console.log(privateCessnaJet.getName()); // prints "Cessna"
 ```
 
 **Good:**
@@ -1591,20 +1591,20 @@ console.log(privateCessnaJet.getName()) // prints "Cessna"
 // define base objects
 const Airplane = {
   getName() {
-    return `${this.name}`
+    return `${this.name}`;
   }
-}
+};
 
-const AirbusA380 = { 
+const AirbusA380 = {
   name: 'Airbus A380',
   getName() {
-    return  `${Airplane.getName.call(this)} of ${this.airline}`
+    return  `${Airplane.getName.call(this)} of ${this.airline}`;
   }
-}
+};
 
-const Cessna = { 
+const Cessna = {
   name: 'Cessna'
-}
+};
 
 // define factory functions (airbusA380, cessna)
 const airbusA380 = (state) => Object.assign(
@@ -1612,24 +1612,24 @@ const airbusA380 = (state) => Object.assign(
   Airplane,
   AirbusA380,
   state
-)
+);
 
 const cessna = (state) => Object.assign(
   {},
   Airplane,
   Cessna,
   state
-)
+);
 
 // create instances of airplanes
 const emiratesAirbus = airbusA380({
   airline: 'Emirates'
-})
+});
 
-const privateCessnaJet = cessna()
+const privateCessnaJet = cessna();
 
-console.log(emiratesAirbus.getName()) // prints "Airbus A380 of Emirates"
-console.log(privateCessnaJet.getName()) // prints "Cessna"
+console.log(emiratesAirbus.getName()); // prints "Airbus A380 of Emirates"
+console.log(privateCessnaJet.getName()); // prints "Cessna"
 ```
 
 **[⬆ back to top](#table-of-contents)**
