@@ -1047,11 +1047,11 @@ class HttpRequester {
 
   fetch(url) {
     if (this.adapter.name === 'ajaxAdapter') {
-      return makeAjaxCall(url).then(response => {
+      return makeAjaxCall(url).then((response) => {
         // transform response and return
       });
-    } else if(this.adapter.name === 'httpNodeAdapter') {
-      return makeHttpCall(url).then(response => {
+    } else if (this.adapter.name === 'httpNodeAdapter') {
+      return makeHttpCall(url).then((response) => {
         // transform response and return
       });
     }
@@ -1097,7 +1097,7 @@ class HttpRequester {
   }
 
   fetch(url) {
-    return this.adapter.request(url).then(response => {
+    return this.adapter.request(url).then((response) => {
       // transform response and return
     });
   }
