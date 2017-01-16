@@ -562,18 +562,21 @@ be very expensive in terms of performance.
 
 **Bad:**
 ```javascript
-function (state, action) {
-  state.userProfile = action.payload;
-  return state;
+const addItemToCart = function (cart, item) {
+  cart.push({ item: item, date: Date.now() });
+  
+  return cart;
 }
 ```
 
 **Good:**
 ```javascript
-function userReducer(state, action) {
-  var s = Object.assign({}, state);
-  s.userProfile = action.payload;
-  return s;
+const addItemToCart = function (cart, item) {
+  const c = Object.assign({}, cart);
+  
+  c.push({ item: item, date: Date.now() });
+  
+  return c;
 }
 ```
 
