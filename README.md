@@ -505,7 +505,7 @@ function createTempFile(name) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Side Effects
+### Avoid Side Effects (part 1)
 A function produces a side effect if it does anything other than take a value in
 and return another value or values. A side effect could be writing to a file,
 modifying some global variable, or accidentally wiring all your money to a
@@ -550,12 +550,11 @@ console.log(newName); // ['Ryan', 'McDermott'];
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Side Effects pt.2
-Side effects could also occur from inside a function. In Javascript, function arguments 
-are always passed by value except when they(functions) are passed reference values such as 
-objects and arrays. In that case, we should be carefull not to change any of these 
-argument's properties. A possible solution would be to always clone the variable,
-edit it and return the clone.
+### Avoid Side Effects (part 2)
+Side effects could also occur from inside a function. In JavaScript, primitives are 
+passed by value and objects are passed by reference. In the later case, we should be 
+careful not to change any of these argument's properties. A possible solution would 
+be to always clone the variable, edit it and return the clone.
 
 **Bad:**
 ```javascript
