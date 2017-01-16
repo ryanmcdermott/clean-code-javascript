@@ -553,12 +553,16 @@ console.log(newName); // ['Ryan', 'McDermott'];
 ### Avoid Side Effects (part 2)
 Side effects could also occur from inside a function. In JavaScript, primitives are 
 passed by value and objects are passed by reference. In the later case, we should be 
-careful not to change any of these argument's properties. A possible solution would 
-be to always clone the variable, edit it and return the clone.
+careful not to change any of these argument's properties. 
+
+A possible solution would be to always clone the variable, edit it and return the 
+clone. There would be cases where you actually want to modify the input object
+and this should not be taken as a silver bullet. Furthermore, cloning big objects can 
+be very expensive in terms of performance.
 
 **Bad:**
 ```javascript
-function userReducer(state, action) {
+function (state, action) {
   state.userProfile = action.payload;
   return state;
 }
