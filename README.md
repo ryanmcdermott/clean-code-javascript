@@ -562,22 +562,22 @@ be very expensive in terms of performance.
 
 **Bad:**
 ```javascript
-const addItemToCart = function (cart, item) {
-  cart.push({ item: item, date: Date.now() });
+const addItemToCart = (cart, item) => {
+  cart.push({ item, date: Date.now() });
   
   return cart;
-}
+};
 ```
 
 **Good:**
 ```javascript
-const addItemToCart = function (cart, item) {
+const addItemToCart = (cart, item) => {
   const c = Object.assign({}, cart);
   
-  c.push({ item: item, date: Date.now() });
+  c.push({ item, date: Date.now() });
   
   return c;
-}
+};
 ```
 
 **[⬆ back to top](#table-of-contents)**
