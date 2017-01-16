@@ -3,9 +3,9 @@
 Original: (https://github.com/ryanmcdermott/clean-code-javascript)
 
 ## Índice
-  1. [Introdução](#introdução)
-  2. [Variáveis](#variáveis)
-  3. [Funções](#functions)
+  1. [Introdução](#introdução) ✓
+  2. [Variáveis](#variáveis) ✓
+  3. [Funções](#funções) ✓
   4. [Objetos e Estrutura de Dados](#objects-and-data-structures)
   5. [Classes](#classes)
   6. [Testando](#testing)
