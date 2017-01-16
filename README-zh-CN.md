@@ -7,7 +7,7 @@
   4. [对象和数据结构](#objects-and-data-structures)
   5. [类](#classes)
   6. [测试](#testing)
-  7. [Concurrency](#concurrency)
+  7. [并发](#concurrency)
   8. [错误处理](#error-handling)
   9. [格式化](#formatting)
   10. [评论](#comments)
