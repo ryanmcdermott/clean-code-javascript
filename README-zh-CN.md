@@ -1,18 +1,18 @@
-# clean-code-javascript
+# 代码整洁的 JavaScript
 
-## Table of Contents
-  1. [Introduction](#introduction)
-  2. [Variables](#variables)
-  3. [Functions](#functions)
-  4. [Objects and Data Structures](#objects-and-data-structures)
-  5. [Classes](#classes)
-  6. [Testing](#testing)
+## 目录
+  1. [简介](#简介)
+  2. [变量](#variables)
+  3. [函数](#functions)
+  4. [对象和数据结构](#objects-and-data-structures)
+  5. [类](#classes)
+  6. [测试](#testing)
   7. [Concurrency](#concurrency)
-  8. [Error Handling](#error-handling)
-  9. [Formatting](#formatting)
-  10. [Comments](#comments)
+  8. [错误处理](#error-handling)
+  9. [格式化](#formatting)
+  10. [评论](#comments)
 
-## Introduction
+## 简介
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
 
