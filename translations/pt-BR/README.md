@@ -268,7 +268,7 @@ function isClientActive(client) {
 ```
 **[⬆ voltar para o topo](#índice)**
 
-### Function names should say what they do
+### Nomes de funções devem dizer o que elas fazem
 
 **Ruim:**
 ```javascript
@@ -278,7 +278,7 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to to tell from the function name what is added
+// É difícil dizer pelo nome da função o que é adicionado.
 addToDate(date, 1);
 ```
 
@@ -293,10 +293,10 @@ addMonthToDate(1, date);
 ```
 **[⬆ voltar para o topo](#índice)**
 
-### Functions should only be one level of abstraction
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+### Funções devem possuir apenas um nível de abstração
+Quando você tiver mais de um nível de abstração sua função geralmente
+está fazendo muita coisa. Dividir funções geralmente leva a reutilização
+e testes mais fáceis.
 
 **Ruim:**
 ```javascript
@@ -361,27 +361,27 @@ function parseBetterJSAlternative(code) {
 ```
 **[⬆ voltar para o topo](#índice)**
 
-### Remove duplicate code
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+### Remova código duplicado
+Faça o máximo que puder para evitar código duplicado. Código duplicado é ruim
+porque significa que existe mais de um lugar para alterar alguma coisa se você
+precisar alterar alguma lógica.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Imagine que você administra um restaurante e mantem o controle do seu inventário:
+Todos os seus tomates, cebolas, alhos, temperos, etc. Se você possuir multiplas
+listas para colocar o controle, então terá de atualizar todas elas quando servir
+um prato com tomate. Se você possuir apenas uma lista, só precisa atualizar ela!
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+Muitas vezes você possui código duplicado porque você tem duas ou mais coisas
+diferentes, que compartilham muito em comum, mas suas diferenças forçam você
+a ter duas ou mais funções separadas que fazem muito das mesmas coisas. Remover
+código duplicado significa criar uma abstração que pode manipular este bloco de
+coisas diferentes com apenas uma função/módulo/classe.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the *Classes* section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Fazer direito abstrações direito é crítico, por isso você deveria seguir os
+princípios apresentados na seção de *Classes*. Abstrações ruins podem ser piores
+do que código duplicado, ento seja cuidadoso! Dito isso, se você puder fazer
+uma boa abstração, faça! Não se repita, caso contrário você irá se encontrar
+atualizando multiplos lugares toda hora que quiser mudar uma coisa.
 
 **Ruim:**
 ```javascript
@@ -441,7 +441,7 @@ function showList(employees) {
 ```
 **[⬆ voltar para o topo](#índice)**
 
-### Set default objects with Object.assign
+### Defina objetos padrões com Object.assign
 
 **Ruim:**
 ```javascript
@@ -479,7 +479,7 @@ function createMenu(config) {
     cancellable: true
   }, config);
 
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config agora é: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
@@ -487,9 +487,8 @@ createMenu(menuConfig);
 ```
 **[⬆ voltar para o topo](#índice)**
 
-
-### Don't use flags as function parameters
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+### Não use flags como parametros de funções
+Flags informam o usuário que a função faz mais uma coisa. Funções devem fazer apenas uma coisa. Divida suas funções se elas fazem coisas diferentes baseadas em uma boleana.
 
 **Ruim:**
 ```javascript
