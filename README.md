@@ -219,7 +219,7 @@ function createMenu(title, body, buttonText, cancellable) {
 
 **Good**:
 ```javascript
-const menuConfig = {
+const config = {
   title: 'Foo',
   body: 'Bar',
   buttonText: 'Baz',
