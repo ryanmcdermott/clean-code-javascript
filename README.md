@@ -560,21 +560,41 @@ console.log(newName); // ['Ryan', 'McDermott'];
 **[⬆ back to top](#table-of-contents)**
 
 ### Avoid Side Effects (part 2)
-Side effects could also occur from inside a function. In JavaScript, primitives are 
-passed by value and objects are passed by reference. In the later case, we should be 
-careful not to change any of these argument's properties. 
+In JavaScript, primitives are passed by value and objects/arrays are passed by
+reference. In the case of objects and arrays, if our function makes a change
+in a shopping cart array, for example, by adding an item to purchase,
+then any other function that uses that `cart` array will be affected by this
+addition. That may be great, however it can be bad too. Let's imagine a bad
+situation:
 
-A possible solution would be to always clone the variable, edit it and return the 
-clone. There would be cases where you actually want to modify the input object
-and this should not be taken as a silver bullet. Furthermore, cloning big objects can 
-be very expensive in terms of performance.
+The user clicks the "Purchase", button which calls a `purchase` function that
+spawns a network request and sends the `cart` array to the server. Because
+of a bad network connection, the `purchase` function has to keep retrying the
+request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
+button on an item they don't actually want before the network request begins?
+If that happens and the network request begins, then that purchase function
+will send the accidentally added item because it has a reference to a shopping
+cart array that the `addItemToCart` function modified by adding an unwanted
+item.
+
+A great solution would be for the `addItemToCart` to always clone the `cart`,
+edit it, and return the clone. This ensures that no other functions that are
+holding onto a reference of the shopping cart will be affected by any changes.
+
+Two caveats to mention to this approach:
+1. There might be cases where you actually want to modify the input object,
+but when you adopt this programming practice you will find that those case
+are pretty rare. Most things can be refactored to have no side effects!
+2. Cloning big objects can be very expensive in terms of performance. Luckily,
+this isn't a big issue in practice because there are
+[https://facebook.github.io/immutable-js/](great libraries) that allow
+this kind of programming approach to be fast and not as memory intensive as
+it would be for you to manually clone objects and arrays.
 
 **Bad:**
 ```javascript
 const addItemToCart = (cart, item) => {
   cart.push({ item, date: Date.now() });
-  
-  return cart;
 };
 ```
 
@@ -582,9 +602,9 @@ const addItemToCart = (cart, item) => {
 ```javascript
 const addItemToCart = (cart, item) => {
   const c = Object.assign({}, cart);
-  
+
   c.push({ item, date: Date.now() });
-  
+
   return c;
 };
 ```
