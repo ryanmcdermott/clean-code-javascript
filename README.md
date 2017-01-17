@@ -558,8 +558,13 @@ extend JavaScript's native Array method to have a `diff` method that could
 show the difference between two arrays? You could write your new function
 to the `Array.prototype`, but it could clash with another library that tried
 to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+the difference between the first and last elements of an array?
+
+One option is to use ES2015/ES6 classes. Classes are useful when you need state.
+Consider writing a simple function if state is not an issue. Also, when extending an object,
+features will be limited to instances of that subclass only. Another drawback is
+(especially when extending built in globals like Array) that instances must be
+created using the 'new' keyword. A better option is to write a stateless function.
 
 **Bad:**
 ```javascript
@@ -571,38 +576,10 @@ Array.prototype.diff = function diff(comparisonArray) {
 
 **Good:**
 ```javascript
-class SuperArray extends Array {
-  diff(comparisonArray) {
-    const hash = new Set(comparisonArray);
-    return this.filter(elem => !hash.has(elem));
-  }
-}
-```
-**[⬆ back to top](#table-of-contents)**
-
-### Functions are cleaner than subclasses ###
-Classes are good when you need state. Consider writing a simple function if state is not an issue. Also, when extending an object (like the global Array), you are required to instantiate it using the 'new' keyword. A class will also limit the usage of a feature to the subclass only. A better option is to write a stateless function.
-
-**Bad:**
-```javascript
-class SuperArray extends Array {
-  diff(comparisonArray) {
-    const hash = new Set(comparisonArray);
-    return this.filter(elem => !hash.has(elem));
-  }
-}
-
-const arr = new SuperArray(1, 2, 3);
-```
-
-**Good:**
-```javascript
 function diff(first, second) {
   const hash = new Set(second);
   return first.filter(elem => !hash.has(elem));
 }
-
-const arr = [1, 2, 3];
 ```
 **[⬆ back to top](#table-of-contents)**
 
