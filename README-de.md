@@ -7,7 +7,7 @@
   4. [Objekte und Daten-Strukturen](#objects-and-data-structures)
   5. [Klassen](#classes)
   6. [Testing](#testing)
-  7. [Concurrency](#concurrency)
+  7. [Parallelität](#concurrency)
   8. [Fehlerbehandlung](#error-handling)
   9. [Formatierung](#formatting)
   10. [Kommentare](#comments)
@@ -35,7 +35,7 @@ Eine Sache noch: Diese Regeln zu kennen macht dich nicht unverzüglich zu einem 
 Softwareentwickler. Und mit ihnen für viele Jahre zu arbeiten heißt nicht, dass du keine 
 Fehler machst. Jedes Stück Code startet mit einem ersten Entwurf, wie nasser Ton der in 
 seine finale Form ausgestaltet wird. Wir meißeln endlich die Unvollkommenheiten weg, wenn 
-wir unseren Code mit Kollegen überprüfen. Mach dich wegen ersten Entwürfen, die Verbesserungen 
+wir unseren Code mit Kollegen überprüfen. Mach dich wegen ersten Entwürfen die Verbesserungen 
 benötigen nicht fertig. Verprügel stattdessen den Code!
 
 ## **Variablen**
@@ -69,7 +69,7 @@ getUser();
 
 ### Verwende suchbare Namen
 Wir lesen mehr Code als wir jemals schreiben werden. Es ist daher wichtig, dass 
-der Code den wir schrieben les- und durchsuchbar ist. Wir erschweren den Lesern
+der Code den wir schreiben les- und durchsuchbar ist. Wir erschweren den Lesern
 unseres Codes die Arbeit, wenn wir unsere Variablen *nicht* aussagekräftig benennen
 und somit das Verständnis unseres Programms erschweren.
 Mache deine Namen suchbar. Tools wie [buddy.js](https://github.com/danielstjules/buddy.js) und
@@ -172,7 +172,7 @@ function paintCar(car) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Verwende Standard-Parameter anstatt Short-Circuiting oder Bedingungen
+### Verwende Default-Werte anstatt Short-Circuiting oder Bedingungen
 
 **Schlecht:**
 ```javascript
@@ -232,13 +232,13 @@ function createMenu(config) {
 **[⬆ nach oben](#table-of-contents)**
 
 
-### Funktionen sollte eine Sache erledigen
+### Funktionen sollten eine Sache erledigen
 Dies ist bei weitem die wichtigste Regel in der Softwareentwicklung. Wenn Funktionen
 mehr als eine Sache erledigen sind sie schwerer zu verfassen, zu testen und zu begründen.
 Wenn du eine Funktion abgrenzen kannst nur eine Aktion auszuführen, dann kann diese
 problemlos überarbeitet werden und dein Code liest sich sehr viel einfacher. Wenn du
 aus diesem Leitfaden nichts außer diese Regel ziehen kannst, wirst du vielen Entwicklern
-voraus sein. 
+einen Schritt voraus sein. 
 
 **Schlecht:**
 ```javascript
@@ -360,27 +360,26 @@ function parseBetterJSAlternative(code) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Remove duplicate code
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+### Entferne doppelten Code
+Gebe dein absolut bestes um doppelten Code zu vermeiden. Doppelter Code ist schlecht
+weil es bedeutet, dass es mehr als eine Stelle gibt um etwas anzupassen wenn an dieser
+Logik etwas geändert wird.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Stelle dir vor du betreibst ein Restaurant und willst den Überblick über deinen Vorrat behalten:
+All deine Tomaten, Zwiebeln, Knoblauch, Gewürze, etc. Wenn du deinen Lagerbestand auf mehrerem 
+Listen festhälst, dann musst du all diese Listen aktualisieren wenn du einen Teller – auf dem 
+sich Tomaten befinden – servierst. Wenn du nur eine List hast, dann musst du auch nur diese eine Liste 
+aktualisieren!
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+Häufig hast du doppelten Code weil du zwei oder mehr nur geringfügig unterschiedliche Dinge hast, die
+zwar eine Menge gemeinsam haben aber ihre Unterschiede zwingen dich dazu zwei oder mehr seperate Funktionen 
+– die vieles exakt gleich erledigen - zu haben. Doppelten Code zu entfernen heißt Abstraktionen zu erstellen,
+die diese Reihe von unterschiedlichen Dingen mit nur einer Funktion/Modul/Klasse handhaben können.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the *Classes* section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Diese Abstraktion gut hinzubekommen ist entscheidend und darum solltest du den SOLID-Regeln im *Klassen*-
+Kapitel folgen. Schlechte Abstraktionen können schlimmer als doppelter Code sein, also sei vorsichtig! 
+In diesem Sinne, wenn du eine gute Abstraktion hinbekommst - mach es! Wiederhole dich nicht selbst, ansonsten
+wirst du jedes Mal verschiedene Stellen anpassen müssen wenn du eine Sache ändern möchtest.
 
 **Schlecht:**
 ```javascript
@@ -440,7 +439,7 @@ function showList(employees) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Set default objects with Object.assign
+### Setze Default-Objekte mit Object.assign
 
 **Schlecht:**
 ```javascript
@@ -478,7 +477,7 @@ function createMenu(config) {
     cancellable: true
   }, config);
 
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config entspricht nun: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
@@ -487,8 +486,10 @@ createMenu(menuConfig);
 **[⬆ nach oben](#table-of-contents)**
 
 
-### Don't use flags as function parameters
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+### Verwende keine Flags als Funktionsparameter
+Flags zeigen deinem User dass diese Funktion mehr als eine Sache macht. Funktionen sollten 
+nur eine Sache erledigen. Teile deine Funktionen auf wenn diese auf Basis eines Boolean 
+andere Pfad verwenden.
 
 **Schlecht:**
 ```javascript
@@ -513,26 +514,25 @@ function createTempFile(name) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Avoid Side Effects (part 1)
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+### Vermeide Nebeneffekte (Teil 1)
+Eine Funktion erzeugt einen Nebeneffekt wenn sie mehr macht als einen Wert entgegenzunehmen
+und einen oder mehrere Werte zurück zu geben. Ein Nebeneffekt könnte das Schreiben einer Datei,
+das modifizieren einiger gobaler Variablen oder das versehentliche Übertragen deines ganzen Geldes
+an einen Fremden sein.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+Jetzt, brauchst du bei einer Gelegenheit einen Nebeneffekt. Ähnlich wie im vorangegangen Beispiel möchtest
+du möglicherweise eine Datei schreiben. Fasse dies zusammen um nicht etliche Funktionen und Klassen, die auf
+bestimmte Datei bezogen sind zu haben. Habe eine Service der dies erledigt. Einen und nur einen.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+Der Punkt ist, üblich Tücken wie beispielsweise das Teilen von State zwischen Objekten ohne jegliche
+Struktur mit veränderbaren Datentypen – die überall überschrieben werden können – zu verhindern und die Stellen
+an denen Nebeneffekte auftreten können zusammen zufassen. Wenn du das schaffst, wirst du glücklicher als die
+Mehrheit der anderen Programmierer sein. 
 
 **Schlecht:**
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Globale Variable, die von der nachfolgenden Funktion referenziert wird.
+// Wenn wir eine andere Funktion hätten, die diese Variable verwenden könnte diese nun nicht mehr funktionieren weil diese Variable nun ein Array ist.
 let name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
@@ -558,38 +558,38 @@ console.log(newName); // ['Ryan', 'McDermott'];
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Avoid Side Effects (part 2)
-In JavaScript, primitives are passed by value and objects/arrays are passed by
-reference. In the case of objects and arrays, if our function makes a change
-in a shopping cart array, for example, by adding an item to purchase,
-then any other function that uses that `cart` array will be affected by this
-addition. That may be great, however it can be bad too. Let's imagine a bad
-situation:
+### Vermeide Nebeneffekte (Teil 2)
+In JavaScript werden primitive Datentypen als Werte und Objekte/Arrays als
+Referenzen übergeben. Wenn deine Funktion beispielsweise im Falle von Objekten 
+und Arrays eine Änderung an einem Warenkorb-Array – durch das Hinzufügen eines 
+Items – durchführt. Dann werden alle anderen Funktionen die dieses `cart`-Array
+verwenden von dieser Ergänzung betroffen sein. Das mag in manchen Fällen gewünscht 
+sein. Es kann aber auch schlecht sein. Stellen wir uns folgende Situation vor:
 
-The user clicks the "Purchase", button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because it has a reference to a shopping
-cart array that the `addItemToCart` function modified by adding an unwanted
-item.
+Der User klickt auf den "Kaufen"-Button, der eine `purchase`-Funktion aufruft.
+Diese wiederum erstellt einen Netzwerk-Request und sendet das `cart`-Array zu unserem
+Server. Aufgrund einer schlechten Internetverbindung muss die `purchase`-
+Funktion diesen Request wiederholen. Was passiert nun, wenn der User in der 
+Zwischenzeit versehentlich auf einen „zum Warenkorb hinzufügen“-Button eines
+Produkts klickt, dass er eigentlich gar nicht wollte? Wenn das passiert und der
+Request beginnt, dann wird diese `purchase`-Funktion das versehentlich
+hinzugefügte Produkt senden, weil diese Funktion eine Referenz zu einem 
+Warenkorb-Array hat, dass die `addItemToCart`-Funktion – durch das Hinzufügen eines
+ungewollten Produkts – modifiziert.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`,
-edit it, and return the clone. This ensures that no other functions that are
-holding onto a reference of the shopping cart will be affected by any changes.
+Eine tolle Lösung wäre, für die `addItemToCart`-Funktion jedesmal `cart` zu kopieren,
+zu bearbeiten und die Kopie zurückzugeben. Dies stellt sicher, dass andere Funktionen 
+die eine Referenz zum Warenkorb besitzen, keine Möglichkeit haben Änderungen durchzuführen.
 
-Two caveats to mention to this approach:
-  1. There might be cases where you actually want to modify the input object,
-but when you adopt this programming practice you will find that those case
-are pretty rare. Most things can be refactored to have no side effects!
+Zwei Einsprüche die zu diesem Ansatz erwähnt werden sollten:
+  1. Möglicherweise gibt es Fälle in denen du wirklich das Input-Objekt modifizieren willst.
+Allerdings werden diese Fälle sehr selten sein, wenn du diese Übung übernimmst. Die meistens
+Dinge können so überarbeitet werden, dass keine Nebeneffekte auftreten!
 
-  2. Cloning big objects can be very expensive in terms of performance. Luckily,
-this isn't a big issue in practice because there are
-[https://facebook.github.io/immutable-js/](great libraries) that allow
-this kind of programming approach to be fast and not as memory intensive as
-it would be for you to manually clone objects and arrays.
+  2. Große Objekte zu kopieren kann sich hinsichtlich der Performance sehr negativ auswirken. Glücklicherweise 
+  ist das in der Praxis kein großes Problem. Es gibt [https://facebook.github.io/immutable-js/](tolle Bibliotheken) 
+  die es erlauben diese Art des Programmieransatzes schneller und nicht so speicherintensiv auszuführen 
+  wie es wäre wenn du manuell Objekte und Arrays kopierst.
 
 **Schlecht:**
 ```javascript
@@ -598,7 +598,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**Good:**
+**Gut:**
 ```javascript
 const addItemToCart = (cart, item) => {
   const c = Object.assign({}, cart);
@@ -611,7 +611,7 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ nach oben](#table-of-contents)**
 
-### Don't write to global functions
+### Schreibe keine globalen Funktionen
 Polluting globals is a bad practice in JavaScript because you could clash with another
 library and the user of your API would be none-the-wiser until they get an
 exception in production. Let's think about an example: what if you wanted to
@@ -630,7 +630,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Gut:**
 ```javascript
 class SuperArray extends Array {
   diff(comparisonArray) {
@@ -1508,7 +1508,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Gut:**
 ```javascript
 class Animal {
   constructor(age) {
@@ -1688,23 +1688,23 @@ class Employee {
 **[⬆ nach oben](#table-of-contents)**
 
 ## **Testing**
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](http://gotwarlost.github.io/istanbul/).
+Testing ist wichtiger als das Veröffentlichen. Wenn du keine oder eine unzureichende 
+Anzahl an Tests hast, dann wirst du jedes Mal unsicher sein, ob du nicht irgendetwas
+kaputt gemacht hast. Die Entscheidung welche Anzahl angemessen ist, entscheidet dein
+Team aber eine 100%ige Abdeckung (Alle Anweisungen und Branches) wird dir ein sehr
+hohes Vertrauen und Seelenfrieden geben. Das bedeutet, dass du als Ergänzung zu einem 
+guten Testing-Framework auch ein [gutes Coverage-Tool](http://gotwarlost.github.io/istanbul/) 
+verwenden musst.
 
-There's no excuse to not write tests. There's [plenty of good JS test frameworks]
-(http://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Es gibt keine Ausrede um keine Tests zu schreiben. Es gibt [zahlreiche gute JS-Test-Frameworks]
+(http://jstherightway.org/#testing-tools), also finde eines das dein Team bevorzugt.
+Wenn du eines gefunden hast, dass für dein Team funktioniert, dann ziele darauf ab immer 
+einen Test für jedes neue Feature/Modul zu schreiben. Wenn deine bevorzugte Arbeitsweise die 
+testgetriebene Entwicklung ist, umso besser. Aber die Hauptsache ist, sicher zu stellen, dass 
+du die Abdeckungsziele erreichst bevor ein Feature veröffentlicht oder vorhandener Code 
+überarbeitet wird. 
 
-### Single concept per test
+### Eine Sache pro Test
 
 **Schlecht:**
 ```javascript
@@ -1755,10 +1755,10 @@ describe('MakeMomentJSGreatAgain', () => {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-## **Concurrency**
-### Use Promises, not callbacks
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+## **Parallelität**
+### Verwende Promises, keine Callbacks
+Callbacks sind keine saubere Lösung und sie verursachen eine übermäßige Verschachtelung.
+Mit ES2015/ES6 sind Promises ein integrierter globaler Typ. Verwende sie!
 
 **Schlecht:**
 ```javascript
@@ -1794,12 +1794,12 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Async/Await are even cleaner than Promises
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+### Async/Await sind noch sauberer als Promises
+Promises sind eine sehr saubere Alternative zu Callbacks. ES2017/ES8 allerdings beinhaltet 
+async und await, die eine viel sauberere Lösung bieten. Alles was du benötigst ist eine Funktion,
+der das `async`-Keyword vorangestellt ist. Anschließend kannst du deine Logik imperativ ohne eine
+Kette von `then`-Funktionen schreiben. Verwende dies, wenn du die Vorteile von ES2017/ES8 jetzt 
+schon nutzen kannst!
 
 **Schlecht:**
 ```javascript
@@ -1831,19 +1831,20 @@ async function getCleanCodeArticle() {
 **[⬆ nach oben](#table-of-contents)**
 
 
-## **Error Handling**
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+## **Fehlerbehandlung**
+Ausgegebene Fehler sind eine gute Sache! Das heißt, dass die Laufzeitumgebung
+erfolgreich erkannt hat, dass etwas in deinem Programm schief gegangen ist und lässt
+dich das wissen indem deine Funktion im aktuellen Stack beendet wurde, den Prozess
+zerstört hat (in Node) und dich in der Konsole mit einem Stacktrace benachrichtigt.
 
-### Don't ignore caught errors
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+### Ignoriere abgefangene Fehler nicht
+Mit einem abgefangenem Fehler nichts anzufangen, wird dir niemals die Möglichkeit
+geben auf diesen zu reagieren oder ihn zu fixen. Den Fehler in der Konsole auszugeben 
+(`console.log`) ist nicht viel besser. Er wird oft in den unzähligen Dingen die 
+in der Konsole ausgegeben werden untergehen. Wenn du ein Stückchen Code in einer
+`try/catch`-Anweisung verschachtelst, heißt dass, das du davon ausgehst, dass an 
+dieser Stelle ein Fehler auftreten kann und daher solltest du einen Plan haben oder
+eine Anweisung schreiben, wenn dieser erscheint.
 
 **Schlecht:**
 ```javascript
@@ -1854,24 +1855,24 @@ try {
 }
 ```
 
-**Good:**
+**Gut:**
 ```javascript
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // Eine Option (Erweckt mehr Aufmerksamkeit als console.log):
   console.error(error);
-  // Another option:
+  // Eine andere Möglichkeit:
   notifyUserOfError(error);
-  // Another option:
+  // Eine andere Möglichkeit:
   reportErrorToService(error);
-  // OR do all three!
+  // ODER wende alle drei an!
 }
 ```
 
-### Don't ignore rejected promises
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+### Ignoriere zurückgewiesen Promises nicht
+Aus dem selben Grund, weshalb du keine Fehler von `try/catch`-Anweisungen 
+ignorieren solltest.
 
 **Schlecht:**
 ```javascript
@@ -1884,40 +1885,41 @@ getdata()
 });
 ```
 
-**Good:**
+**Gut:**
 ```javascript
 getdata()
 .then((data) => {
   functionThatMightThrow(data);
 })
 .catch((error) => {
-  // One option (more noisy than console.log):
+  // Eine Option (Erweckt mehr Aufmerksamkeit als console.log):
   console.error(error);
-  // Another option:
+  // Eine andere Möglichkeit:
   notifyUserOfError(error);
-  // Another option:
+  // Eine andere Möglichkeit:
   reportErrorToService(error);
-  // OR do all three!
+  // ODER wende alle drei an!
 });
 ```
 
 **[⬆ nach oben](#table-of-contents)**
 
 
-## **Formatting**
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](http://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+## **Formatierung**
+Formatierungen sind subjektiv. Wie bei vielen anderen Regeln hier gibt es kein
+Richtig oder Falsch dem du folgen musst. Der Punkt ist, STREITE NICHT wegen 
+Formatierungen. Es gibt [unzählige Tools](http://standardjs.com/rules.html) die
+dies automatisieren. Verwende eines! Es ist für Entwickler eine Verschwendung 
+von Zeit und Geld darüber zu streiten.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+Für Dinge die nicht in den Bereich der automatischen Formatierung (Einrückungen, 
+Tabs vs. Leerzeichen, doppelte vs. einfache Anführungszeichen, etc.) fallen schaue 
+hier für ein paar Ratschläge.
 
-### Use consistent capitalization
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+### Verwende eine einheitliche Schreibweise
+JavaScript hat keine Typen. Die Schreibweise deiner Variablen und Funktionen 
+sagt viel über diese aus. Dieses Regeln sind subjektiv, dein Team kann wählen 
+was sie bevorzugen. Die Hauptsache ist, egal was ihr wählt, wendet es konsequent an.
 
 **Schlecht:**
 ```javascript
@@ -1951,10 +1953,12 @@ class Alpaca {}
 **[⬆ nach oben](#table-of-contents)**
 
 
-### Function callers and callees should be close
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+### Funktionsaufrufe sollten nahe an der aufzurufenden Funktion stehen
+Wenn eine Funktion eine andere aufruft, halte diese Funktionen im Quelltext
+vertikal nahe beieinander. Behalte idealerweise die Funktion die von einer anderen
+Funktion aufgerufen wird genau über dieser. Wir neigen dazu Code von oben nach unten 
+wie eine Zeitung zu lesen. Aus diesem Grund sorge dafür, dass dein Code auf diese Weise 
+lesbar ist.
 
 **Schlecht:**
 ```javascript
@@ -2036,9 +2040,10 @@ review.perfReview();
 
 **[⬆ nach oben](#table-of-contents)**
 
-## **Comments**
-### Only comment things that have business logic complexity.
-Comments are an apology, not a requirement. Good code *mostly* documents itself.
+## **Kommentare**
+### Kommentiere nur Dinge, die komplexe Anwendungslogik beinhalten
+Kommentare sind eine Entschuldigung, keine Anforderung. Guter Code dokumentiert
+sich *meistens* selbst.
 
 **Schlecht:**
 ```javascript
@@ -2080,8 +2085,9 @@ function hashIt(data) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Don't leave commented out code in your codebase
-Version control exists for a reason. Leave old code in your history.
+### Lasse keinen auskommentierten Code in deiner Code-Basis
+Versionsverwaltungen existieren aus einem Grund. Lasse alten Code in der
+History deines Repositories.
 
 **Schlecht:**
 ```javascript
@@ -2097,9 +2103,10 @@ doStuff();
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Don't have journal comments
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+### Verzichte auf Journal-Kommentare
+Denke daran, verwende eine Versionsverwaltung! Veralteter Code, auskommentierter
+Code und insbesondere Journal-Kommentare werden nicht benötigt. Verwende `git log`
+um vergangen Änderungen einzusehen.
 
 **Schlecht:**
 ```javascript
@@ -2122,9 +2129,10 @@ function combine(a, b) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Avoid positional markers
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+### Verzichte auf Positionsmarker
+Positionsmarker sorgen meistens für einen gestörten Lesefluss. Lasse Funktionen 
+und Variablen in der korrekten Einrückung und Formatierung stehen. Diese werden 
+deinem Code ausreichend visuelle Struktur geben.
 
 **Schlecht:**
 ```javascript
