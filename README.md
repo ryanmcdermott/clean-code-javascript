@@ -602,11 +602,7 @@ const addItemToCart = (cart, item) => {
 **Good:**
 ```javascript
 const addItemToCart = (cart, item) => {
-  const c = Object.assign({}, cart);
-
-  c.push({ item, date: Date.now() });
-
-  return c;
+  return [...cart, { item, date : Date.now() }];
 };
 ```
 
