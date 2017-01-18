@@ -52,7 +52,7 @@ const currentDate = moment().format('YYYY/MM/DD');
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Verwende den selben Begriff für die selbe Art von Variablen
+### Verwende die selbe Bezeichnung für die selbe Art von Variablen
 
 **Schlecht:**
 ```javascript
@@ -141,7 +141,7 @@ locations.forEach((location) => {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Verzichte auf unnötigen Kontext
+### Verzichte auf überflüssigen Kontext
 Wenn dir deine Klasse/Objekt etwas sagt, wiederhole das nicht in deinem 
 Variablennamen.
 
@@ -292,10 +292,11 @@ addMonthToDate(1, date);
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Functions should only be one level of abstraction
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+### Funktionen sollten nur eine Ebene der Abstraktion sein
+Wenn du mehr als eine Ebene der Abstraktion hast, erledigt deine Funktion 
+möglicherweise zu viel. Funktionen in mehrere verschiedene Funktionen 
+aufzuteilen sorgt für eine bessere Wiederverwendbarkeit und einfacheres 
+Testing.
 
 **Schlecht:**
 ```javascript
@@ -587,9 +588,9 @@ Allerdings werden diese Fälle sehr selten sein, wenn du diese Übung übernimms
 Dinge können so überarbeitet werden, dass keine Nebeneffekte auftreten!
 
   2. Große Objekte zu kopieren kann sich hinsichtlich der Performance sehr negativ auswirken. Glücklicherweise 
-  ist das in der Praxis kein großes Problem. Es gibt [https://facebook.github.io/immutable-js/](tolle Bibliotheken) 
-  die es erlauben diese Art des Programmieransatzes schneller und nicht so speicherintensiv auszuführen 
-  wie es wäre wenn du manuell Objekte und Arrays kopierst.
+ist das in der Praxis kein großes Problem. Es gibt [https://facebook.github.io/immutable-js/](tolle Bibliotheken) 
+die es erlauben diese Art des Programmieransatzes schneller und nicht so speicherintensiv auszuführen 
+wie es wäre wenn du manuell Objekte und Arrays kopierst.
 
 **Schlecht:**
 ```javascript
@@ -601,26 +602,23 @@ const addItemToCart = (cart, item) => {
 **Gut:**
 ```javascript
 const addItemToCart = (cart, item) => {
-  const c = Object.assign({}, cart);
-
-  c.push({ item, date: Date.now() });
-
-  return c;
+  return [...cart, { item, date : Date.now() }];
 };
 ```
 
 **[⬆ nach oben](#table-of-contents)**
 
 ### Schreibe keine globalen Funktionen
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+Den globalen Namespace zu verschmutzen ist eine schlechte Angewohnheit in JavaScript, 
+weil du dadurch mit anderen Bibliotheken aneinandergeraten könntest und der Nutzer deiner 
+Schnittstelle würde nichts davon mitbekommen, bis er einen Fehler bei der Veröffentlichung 
+erhält. Stelle dir folgendes Beispiel vor: Was wenn du JavaScripts ursprüngliche Array-Methoden 
+um eine weitere `diff`-Methode ergänzen möchtest, die dir die Unterschiede zwischen zwei Arrays 
+darstellt? Du könntest deine neue Funktion mit `Array.prototype` schreiben. Allerdings könnte dies 
+mit einer anderen Bibliothek aneinandergeraten, die das selbe versucht hat. Was ist, wenn diese 
+andere Bibliothek `diff` nur verwendet hat um das erste und letzte Element eines Arrays zu finden?
+Das ist der Grund warum es viel besser wäre die Klassen in ES2015/ES6 zu verwenden und einfach die 
+`Array`-Globale zu ergänzen.
 
 **Schlecht:**
 ```javascript
@@ -641,10 +639,10 @@ class SuperArray extends Array {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Favor functional programming over imperative programming
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages are cleaner and easier to test.
-Favor this style of programming when you can.
+### Ziehe funktionale Programmierung imperativer Programmierung vor
+JavaScript ist keine funktionale Sprache wie es beispielsweise Haskell ist.
+JavaScript hat aber eine funktionale Variante. Funktionale Sprachen sind sauberer 
+und einfacher zu testen. Ziehe diesen Stil der Programmierung vor wenn du kannst.
 
 **Schlecht:**
 ```javascript
@@ -695,7 +693,7 @@ const totalOutput = programmerOutput
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Encapsulate conditionals
+### Fasse Bedingungen zusammen
 
 **Schlecht:**
 ```javascript
@@ -716,7 +714,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Avoid negative conditionals
+### Vermeide negative Bedingungen
 
 **Schlecht:**
 ```javascript
@@ -741,15 +739,15 @@ if (isDOMNodePresent(node)) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Avoid conditionals
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+### Vermeide Bedingungen
+Das hört sich nach einer unmöglichen Aufgabe an. Menschen die dies zum ersten 
+Mal hören, fragen sich: „Wie soll ich etwas ohne eine `if`-Anweisung tun?“ Die 
+Antwort ist, dass du Polymorphie verwenden kannst um die selbe Aufgabe in vielen 
+Fällen zu erledigen. Die zweite Frage ist dann meistens: „Gut, das ist toll aber 
+warum sollte ich das wollen?“ Die Antwort ist ein Clean-Code-Konzept das wir bereits 
+gelernt haben: Eine Funktion sollte lediglich eine Aufgabe erledigen. Wenn du Klassen 
+und Funktionen mit `if`-Anweisungen hast, teilst du dem Nutzer deines Codes mit, dass 
+deine Funktion mehr als eine Sache erledigt. Vergiss nicht, mache nur eine Sache.
 
 **Schlecht:**
 ```javascript
@@ -797,11 +795,11 @@ class Cessna extends Airplane {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Avoid type-checking (part 1)
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+### Vermeide es Datentypen zu prüfen (Teil 1)
+JavaScript besitzt keine Datentypen. Das bedeutet, dass deine Funktionen jegliche Datentypen 
+als Argument entgegennehmen. Gelegentlich wirst du dich mit dieser Freiheit unwohl fühlen 
+und es wird dich dazu verleiten in deinen Funktionen Datentypen zu prüfen. Es gibt viele 
+Möglichkeiten, dies zu vermeiden. Die erste Sache ist, auf einheitlich Schnittstellen zu achten.
 
 **Schlecht:**
 ```javascript
@@ -822,16 +820,16 @@ function travelToTexas(vehicle) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Avoid type-checking (part 2)
-If you are working with basic primitive values like strings, integers, and arrays,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+### Vermeide es Datentypen zu prüfen (Teil 2)
+Wenn du mit grundlegenden einfachen Werten wie Strings, Integer und Arrays arbeitest, 
+du Polymorphie nicht anwenden kannst und weiterhin das Bedüfniss verspürst, Datentypen 
+zu prüfen. Dann solltest du dir überlegen TypeScript zu verwenden. TypeScript ist eine 
+ausgezeichnet Alternative zu normalem JavaScript weil es statische Typen auf Grundlage 
+der normalen JavaScript-Syntax anbietet. Das Problem mit dem manuellem Prüfen von Typen 
+in normalem JavaScript ist, dass dieser Mehraufwand um diese "falsche" Typensicherheit 
+zu erreichen die verlorene Lesbarkeit nicht wieder gut macht. Halte dein JavaScript 
+sauber, schreibe gute Tests und habe gute Code-Reviews. Anderenfalls erledige dies mit 
+TypeScript (was, wie ich gesagt habe, eine ausgezeichnete Alternative ist!).
 
 **Schlecht:**
 ```javascript
@@ -853,18 +851,17 @@ function combine(val1, val2) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Don't over-optimize
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+### Überoptimiere nicht
+Moderne Browser optimieren eine Menge während der Laufzeit. Du verschwendest häufig 
+deine Zeit wenn du Dinge optimierst. [Es gibt gute Ressourcen](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) 
+um herauszufinden, wo die Optimierung des Browsers mangelhaft ist. Fokusiere dich 
+derweil auf diese Dinge bis sie behoben sind, wenn sie behoben werden können.
 
 **Schlecht:**
 ```javascript
 
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// In alten Browsern würde jeder Durchlauf mit einem ungespeichertem `list.length` speicherintensiv sein,
+// weil `list.length` jedes Mal neu berechnet wird. In modernen Browsern ist das optimiert.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
@@ -878,10 +875,10 @@ for (let i = 0; i < list.length; i++) {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Remove dead code
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+### Entferne veralteten Code
+Veralteter Code ist genau so schlecht wie doppelter Code. Es gibt keinen Grund diesen 
+in deiner Code-Basis zu lassen. Wenn etwas nicht aufgerufen wird, werde es los! Es 
+wird weiterhin in deiner Versionsverwaltung sein, wenn du es nochmal benötigst.
 
 **Schlecht:**
 ```javascript
