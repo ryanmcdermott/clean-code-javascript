@@ -587,7 +587,7 @@ are pretty rare. Most things can be refactored to have no side effects!
 
   2. Cloning big objects can be very expensive in terms of performance. Luckily,
 this isn't a big issue in practice because there are
-[https://facebook.github.io/immutable-js/](great libraries) that allow
+[great libraries](https://facebook.github.io/immutable-js/) that allow
 this kind of programming approach to be fast and not as memory intensive as
 it would be for you to manually clone objects and arrays.
 
