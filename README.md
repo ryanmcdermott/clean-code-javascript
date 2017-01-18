@@ -11,6 +11,7 @@
   8. [Error Handling](#error-handling)
   9. [Formatting](#formatting)
   10. [Comments](#comments)
+  11. [Translation](#translation)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -2151,4 +2152,13 @@ const actions = function() {
   // ...
 };
 ```
+**[⬆ back to top](#table-of-contents)**
+
+## Translation
+
+This is also available in other languages:
+
+  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**: [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
+  
 **[⬆ back to top](#table-of-contents)**
