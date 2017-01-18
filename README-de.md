@@ -1011,16 +1011,16 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 **[⬆ nach oben](#table-of-contents)**
 
 
-## **Classes**
-### Single Responsibility Principle (SRP)
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify a piece of it,
-it can be difficult to understand how that will affect other dependent modules in
-your codebase.
+## **Klassen**
+### Single-Responsibility-Prinzip (SRP)
+Wie in Clean Code bereits genannt: „Es sollte niemals mehr als einen Grund geben, 
+eine Klasse zu ändern“. Es ist verlockend, eine Klasse bis oben hin mit Funktionalität 
+voll zu stopfen, wie wenn du nur einen Koffer für deinen Flug mitnehmen kannst.
+Das Problem damit ist einfach, dass deine Klasse konzeptionell nicht unabhängig ist 
+und es viele Gründe geben wird, deine Klasse zu ändern. Die Anzahl der Änderungen 
+an einer Klasse zu reduzieren ist wichtig. Es ist wichtig, weil zu viel Funktionalität 
+einer Klasse bedeutet, dass es schwierig ist zu verstehen wie die Änderung andere 
+abhängige Module in deinem Quelltext beeinflusst. 
 
 **Schlecht:**
 ```javascript
@@ -1069,11 +1069,11 @@ class UserSettings {
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Open/Closed Principle (OCP)
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+### Open-Closed-Prinzip (OCP)
+Wie von Bertrand Meyer angegeben: „Software-Einheiten (Klassen, Module, Funktionen, 
+etc.) sollten offen für Erweiterungen aber geschlossen für Modifizierungen sein.“ 
+Was soll das bedeuten? Diese Prinzip bedeutet, dass du es Anwendern ermöglichen 
+sollst neue Funktionalitäten hinzufügen ohne bestehende Code ändern zu müssen.
 
 **Schlecht:**
 ```javascript
@@ -1157,19 +1157,20 @@ class HttpRequester {
 **[⬆ nach oben](#table-of-contents)**
 
 
-### Liskov Substitution Principle (LSP)
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+### Liskovsches Substitutionsprinzip (LSP)
+Das ist ein beängstigender Begriff für ein sehr einfaches Konzept. Es ist 
+formell definiert als: „Wenn S ein Subtyp von T ist, dann können Objekte vom Typ 
+T möglicherweise mit Objekten vom Typ S ersetzt werden. (D.h., Objekte vom Typ 
+S ersetzen möglicherweise Objekte vom Typ T) ohne irgendwelche gewünschten 
+Eigenschaften des Programms (Korrektheit, durchführen der Aufgabe, etc.) zu 
+verändern.“. Das ist eine noch viel erschreckendere Definition.
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Die beste Erklärung für dieses Konzept ist, wenn du eine Eltern- und Kindklasse 
+hast und die Basisklasse abwechselnd mit der Kindklasse verwendet werden kann ohne 
+falsche Ergebnisse zu bekommen. Möglicherweise ist das immer noch verwirrend. Also 
+schauen wir uns das klassische Quadrat-Rechteck-Beispiel an. Mathematisch gesehen 
+ist ein Quadrat ein Rechteck. Wenn du es aber mit einer „ist ein“-Beziehung durch 
+Vererbung darstellen willst, kommst du schnell in Schwierigkeiten.
 
 **Schlecht:**
 ```javascript
@@ -1216,7 +1217,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // SCHLECHT: Es wird 25 für ein Quadrat zurückgeben. Sollte aber 20 sein.
     rectangle.render(area);
   });
 }
@@ -1293,19 +1294,20 @@ renderLargeShapes(shapes);
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Interface Segregation Principle (ISP)
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+### Interface-Segregation-Prinzip (ISP)
+JavaScript besitzt keine Interfaces. Dieses Prinzip ist also nicht so streng 
+anwendbar wie die anderen. Wie auch immer, es ist wichtig und bedeutend trotz 
+JavaScripts fehlendem Typen-System.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+ISP heißt, dass „Anwender nicht dazu gezwungen werden sollten sich auf Interfaces 
+zu stützen die sie nicht verwenden“. Interfaces sind wegen des Duck-Typings indirekte 
+Verträge.
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a "fat interface".
+Gute Beispiele, die dieses Prinzip in JavaScript anschaulich demonstrieren sind Klassen, 
+die umfangreiche Konfigurations-Objekte benötigen. Den Anwender nicht dazu zu zwingen eine 
+unzählige Anzahl an Optionen einzurichten ist vorteilhaft, weil sie in den meisten Fällen 
+nicht alle Konfigurationsmöglichkeiten brauchen. Diese optional anzubieten verhindert 
+„üppige Interfaces“.
 
 **Schlecht:**
 ```javascript
@@ -1327,7 +1329,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // In den meisten Fällen werden wir beim durchqueren nicht animieren müssen.
   // ...
 });
 
@@ -1367,26 +1369,27 @@ const $ = new DOMTraverser({
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Dependency Inversion Principle (DIP)
-This principle states two essential things:
-1. High-level modules should not depend on low-level modules. Both should
-depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-abstractions.
+### Dependency-Inversion-Prinzip (DIP)
+Dieses Prinzip steht für zwei essentielle Dinge:
+1. übergeordnete Module sollten nicht von untergeordneten Modulen abhängig 
+sein. Beide sollten von Abstraktionen abhängig sein.
+2. Abstraktionen sollten nicht von Details abhängig sein. Details sollten 
+von Abstraktionen abhängig sein.
 
-This can be hard to understand at first, but if you've worked with Angular.js,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Das kann im ersten Moment schwer zu verstehen sein. Aber wenn du mit Angular.js 
+gearbeitet hast, hast du eine Implementierung dies Prinzips in der Form der 
+Dependency Injection (DI) bereits kennengelernt. Obwohl diese keine komplett 
+identischen Konzepte sind, sorgt DIP dafür, dass übergeordnete Module nichts von 
+den Details ihrer untergeordneten Module wissen. Das kann durch DI erreicht werden. 
+Ein großer Vorteil davon ist, dass es die Verknüpfungen zwischen Modulen reduziert.
+Verknüpfungen sind ein sehr schlechtes Entwurfsmuster weil dein Code dadurch 
+schwieriger zu überarbeiten ist.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Wie schon davor angemerkt, besitzt JavaScript keine Interfaces. Die Abstraktionen 
+sind also abhängig von indirekten Vereinbarungen. Das betrifft die Methoden und 
+Eigenschaften die ein Objekt/Klasse anderen Objekten/Klassen zur Verfügung stellt. 
+In dem untenstehenden Beispiel ist die indirekte Vereinbarung, dass jedes Request-Modul 
+für einen `InventoryTracker` eine `requestItems`-Methode besitzt.
 
 **Schlecht:**
 ```javascript
@@ -1404,8 +1407,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // SCHLECHT: Wir haben eine Abhänigkeit zu einer spezifischen Request-Implementierung geschaffen.
+    // Wir hätten requestItems von einer Request-Methode: `request` abhängig machen sollen
     this.requester = new InventoryRequester();
   }
 
@@ -1455,18 +1458,18 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Durch das externe Konstruieren und das Injektieren unserer Abhängigkeiten könnten wir unser 
+// Request-Modul einfach durch ein raffiniertes neues – dass WebSockets verwendet – austauschen.
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+### Ziehe ES2015-/ES6-Klassen einfachen ES5-Funktionen vor
+Es ist sehr schwer lesbare Klassen-Vererbungen, Konstruktionen und Methoden-Definitionen mit 
+klassischen ES5-Klassen zu bekommen. Wenn du Vererbungen benötigst (und sein dir bewusst, dass 
+du es möglicherweise doch nicht brauchst), dann bevorzuge Klassen. Verwende schlanke 
+Funktionen bis du dir sicher bist, größere und komplexere Objekte zu benötigen.
 
 **Schlecht:**
 ```javascript
@@ -1538,12 +1541,13 @@ class Human extends Mammal {
 **[⬆ nach oben](#table-of-contents)**
 
 
-### Use method chaining
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+### Verwende die Verkettung von Methoden
+Dieses Entwurfsmuster ist in JavaScript sehr nützlich und du wirst es in vielen 
+Bibliotheken, wie beispielsweise in jQuery und Lodash finden. Es erlaubt deinem 
+Code mehr aussagekräftig und weniger langatmig zu sein. Aus diesem Grund würde 
+ich sagen, verwende die Methoden-Verkettung und schaue dir an wie sauber dein 
+Code sein wird. Gebe in deinen Klassen-Funktionen am Ende jeder Funktion 
+einfach `this` zurück und du wirst weitere Methoden verketten können.
 
 **Schlecht:**
 ```javascript
@@ -1589,25 +1593,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // Anmerkung: Gebe das für die Verkettung zurück
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // Anmerkung: Gebe das für die Verkettung zurück
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // Anmerkung: Gebe das für die Verkettung zurück
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // Anmerkung: Gebe das für die Verkettung zurück
     return this;
   }
 }
@@ -1620,23 +1624,22 @@ const car = new Car()
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-### Prefer composition over inheritance
-As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+### Komposition an Stelle von Vererbung
+Wie bekanntermaßen in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) von der Viererbande (Gang of Four) 
+gesagt wurde, solltest du die Komposition der Vererbung vorziehen wenn du kannst. Es gibt viele gute Gründe die Vererbung zu verwenden 
+und eine Menge guter Gründe warum du die Komposition verwenden sollst. Der Kernpunkt dieses Denkansatzes ist, dass wenn dein Gehirn 
+instinktiv für die Vererbung ist, du versuchen sollst darüber nachzudenken, ob die Komposition dein Problem nicht besser darstellt. 
+In manchen Fällen kann es das. 
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Du fragst dich vielleicht, wann du Vererbungen verwenden sollst? Es ist von deinem 
+vorliegenden Problem anhängig. Hier ist eine Liste mit Gründen die mehr für die Vererbung
+als für die Komposition sprechen:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-(Change the caloric expenditure of all animals when they move).
+1. Deine Vererbung repräsentiert eine „ist-ein“-Beziehung und keine „hat-ein“-Beziehung 
+(Mensch->Tier vs User->UserDetails).
+2. Du kannst Code von der Elternklasse verwenden (Menschen können sich wie alle Tiere bewegen).
+3. Du willst globale Änderungen – durch das Ändern der Elternklasse – auf abgeleitete Klassen übertragen. 
+(Den Kalorienverbrauch aller Tiere ändern wenn sie sich bewegen).
 
 **Schlecht:**
 ```javascript
@@ -1649,7 +1652,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Schlecht, weil Angestellte Steuerdaten "besitzen". EmployeeTaxData ist keine Art eines Angestellten
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
