@@ -217,17 +217,17 @@ function createMenu(title, body, buttonText, cancellable) {
 
 **Gut:**
 ```javascript
-const menuConfig = {
-  title: 'Foo',
-  body: 'Bar',
-  buttonText: 'Baz',
-  cancellable: true
-};
-
 function createMenu(config) {
   // ...
 }
 
+createMenu({
+  title: 'Foo',
+  title: 'Foo',
+  body: 'Bar',
+  buttonText: 'Baz',
+  cancellable: true
+});
 ```
 **[⬆ nach oben](#inhaltsverzeichnis)**
 
