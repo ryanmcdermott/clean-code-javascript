@@ -7,7 +7,7 @@
   4. [Objekte und Datenstrukturen](#objekte-und-datenstrukturen)
   5. [Klassen](#klassen)
   6. [Testing](#testing)
-  7. [Parallelität](#parallelitat)
+  7. [Parallelität](#parallelit#t)
   8. [Fehlerbehandlung](#fehlerbehandlung)
   9. [Formatierung](#formatierung)
   10. [Kommentare](#kommentare)
