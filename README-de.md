@@ -4,7 +4,7 @@
   1. [Einführung](#introduction)
   2. [Variablen](#variables)
   3. [Funktionen](#functions)
-  4. [Objekte und Daten-Strukturen](#objects-and-data-structures)
+  4. [Objekte und Datenstrukturen](#objects-and-data-structures)
   5. [Klassen](#classes)
   6. [Testing](#testing)
   7. [Parallelität](#concurrency)
@@ -906,22 +906,24 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 **[⬆ nach oben](#table-of-contents)**
 
-## **Objects and Data Structures**
-### Use getters and setters
-JavaScript doesn't have interfaces or types so it is very hard to enforce this
-pattern, because we don't have keywords like `public` and `private`. As it is,
-using getters and setters to access data on objects is far better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+## **Objekte und Datenstrukturen**
+### Verwende Getter und Setter
+JavaScript besitzt keine Interfaces oder Typen. Es ist also sehr schwer dieses 
+Entwurfsmuster durchführen weil wir keine Keywords wie `public` und `private` 
+haben. Wie es auch ist, Getter und Setter zu verwenden, um Zugriff auf Daten eines 
+Objekts zu bekommen ist um einiges besser als einfach nach der Eigenschaft eines 
+Objekts zu schauen. Warum?, fragst du dich vielleicht. Nun, hier ist eine ungeordnete 
+Liste mit Gründen:
 
-* When you want to do more beyond getting an object property, you don't have
-to look up and change every accessor in your codebase.
-* Makes adding validation simple when doing a `set`.
-* Encapsulates the internal representation.
-* Easy to add logging and error handling when getting and setting.
-* Inheriting this class, you can override default functionality.
-* You can lazy load your object's properties, let's say getting it from a
-server.
+* Wenn du mehr als nur das Erhalten eines Objekt-Eigenschaft erledigen möchtest, muss du 
+nicht alle Zugrifssmethoden in deinem Code anpassen.
+* Macht es einfach, innerhalb eines `set`-Aufrufs Validierung hinzuzufügen.
+* Verschachtelt die interne Darstellung.
+* Macht es einfach, Logging und Fehlerbehandlung hinzuzufügen wenn Daten gespeichert 
+oder abgerufen werden.
+* Du kannst von dieser Klasse erben und die standardmäßige Funktionalität überschreiben.
+* Du kannst die Eigenschaften eines Objekts mittels lazy-loading laden. Beispielsweise von 
+einem Server.
 
 
 **Schlecht:**
@@ -945,7 +947,7 @@ class BankAccount {
     this._balance = balance;
   }
 
-  // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
+  // `get` oder `set` müssen nicht vorangestellt sein um ein Getter/Setter zu sein
   set balance(amount) {
     if (verifyIfAmountCanBeSetted(amount)) {
       this._balance = amount;
@@ -973,8 +975,8 @@ let balance = bankAccount.balance;
 **[⬆ nach oben](#table-of-contents)**
 
 
-### Make objects have private members
-This can be accomplished through closures (for ES5 and below).
+### Sorge dafür, dass Objekte private Member besitzen
+Dies kann durch Closures erreicht werden (für ES5 und darunter).
 
 **Schlecht:**
 ```javascript
