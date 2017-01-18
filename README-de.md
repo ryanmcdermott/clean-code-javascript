@@ -1,16 +1,16 @@
 # clean-code-javascript
 
 ## Inhaltsverzeichnis
-  1. [Einführung](#introduction)
-  2. [Variablen](#variables)
-  3. [Funktionen](#functions)
-  4. [Objekte und Datenstrukturen](#objects-and-data-structures)
-  5. [Klassen](#classes)
+  1. [Einführung](#einführung)
+  2. [Variablen](#variablen)
+  3. [Funktionen](#funktionen)
+  4. [Objekte und Datenstrukturen](#objekte-und-datenstrukturen)
+  5. [Klassen](#klassen)
   6. [Testing](#testing)
-  7. [Parallelität](#concurrency)
-  8. [Fehlerbehandlung](#error-handling)
-  9. [Formatierung](#formatting)
-  10. [Kommentare](#comments)
+  7. [Parallelität](#parallelitat)
+  8. [Fehlerbehandlung](#fehlerbehandlung)
+  9. [Formatierung](#formatierung)
+  10. [Kommentare](#kommentare)
 
 ## Einführung
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -33,7 +33,7 @@ beurteilen zu können.
 
 Eine Sache noch: Diese Regeln zu kennen macht dich nicht unverzüglich zu einem besseren 
 Softwareentwickler. Und mit ihnen für viele Jahre zu arbeiten heißt nicht, dass du keine 
-Fehler machst. Jedes Stück Code startet mit einem ersten Entwurf, wie nasser Ton der in 
+Fehler machst. Jedes Stück Code startet mit einem ersten Entwurf – wie nasser Ton der in 
 seine finale Form ausgestaltet wird. Wir meißeln endlich die Unvollkommenheiten weg, wenn 
 wir unseren Code mit Kollegen überprüfen. Mach dich wegen ersten Entwürfen die Verbesserungen 
 benötigen nicht fertig. Verprügel stattdessen den Code!
@@ -50,9 +50,9 @@ const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
-### Verwende die selbe Bezeichnung für die selbe Art von Variablen
+### Verwende dieselbe Bezeichnung für die selbe Art von Variablen
 
 **Schlecht:**
 ```javascript
@@ -65,7 +65,7 @@ getCustomerRecord();
 ```javascript
 getUser();
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Verwende suchbare Namen
 Wir lesen mehr Code als wir jemals schreiben werden. Es ist daher wichtig, dass 
@@ -74,7 +74,7 @@ unseres Codes die Arbeit, wenn wir unsere Variablen *nicht* aussagekräftig bene
 und somit das Verständnis unseres Programms erschweren.
 Mache deine Namen suchbar. Tools wie [buddy.js](https://github.com/danielstjules/buddy.js) und
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-können dabei helfen unbenannte Konstanten zu ermitteln.
+können dabei helfen, unbenannte Konstanten zu finden.
 
 **Schlecht:**
 ```javascript
@@ -91,7 +91,7 @@ const MILLISECONDS_IN_A_DAY = 86400000;
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Verwende selbsterklärende Variablen
 **Schlecht:**
@@ -108,7 +108,7 @@ const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Vermeide Mental Mapping
 Explizites ist besser als Im­pli­zites.
@@ -139,7 +139,7 @@ locations.forEach((location) => {
   dispatch(location);
 });
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Verzichte auf überflüssigen Kontext
 Wenn dir deine Klasse/Objekt etwas sagt, wiederhole das nicht in deinem 
@@ -170,7 +170,7 @@ function paintCar(car) {
   car.color = 'Red';
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Verwende Default-Werte anstatt Short-Circuiting oder Bedingungen
 
@@ -190,19 +190,19 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 }
 
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ## **Funktionen**
 ### Funktionsargumente (2 oder idealerweise weniger)
 Die Anzahl der Funktionsargumente zu limitieren ist unglaublich wichtig, weil
-dadurch die Testbarkeit deiner Funktion einfacher wird. Mehr als drei Argumente
+dadurch die Testbarkeit deiner Funktion erleichtert wird. Mehr als drei Argumente
 führen zu einer kombinatorischen Explosion und du musst unzählige verschiedene 
 Fälle mit jedem einzelnen Argument testen.
 
 Keine Argumente ist der ideale Fall. Ein oder zwei Argumente sind okay, drei 
 sollten aber vermieden werden. Alles darüber sollte zusammengefasst werden. Meistens
 erledigt deine Funktion zu viel, wenn du mehr als zwei Argumente benötigst. 
-Falls nicht, reicht häufig ein übergeordnetes Objekt als Argument.
+Falls nicht, reicht es ein übergeordnetes Objekt als Argument zu übergeben.
 
 Weil uns JavaScript erlaubt Objekte on-the-fly und ohne viel Klassen-Boilerplate zu 
 erstellen, kannst du Objekte verwenden wenn du merkst, dass du eine Menge Argumente
@@ -229,7 +229,7 @@ function createMenu(config) {
 }
 
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ### Funktionen sollten eine Sache erledigen
@@ -265,7 +265,7 @@ function isClientActive(client) {
   return clientRecord.isActive();
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Funktionsnamen sollten selbstdokumentierend sein
 
@@ -290,7 +290,7 @@ function addMonthToDate(month, date) {
 const date = new Date();
 addMonthToDate(1, date);
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Funktionen sollten nur eine Ebene der Abstraktion sein
 Wenn du mehr als eine Ebene der Abstraktion hast, erledigt deine Funktion 
@@ -359,28 +359,28 @@ function parseBetterJSAlternative(code) {
   });
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Entferne doppelten Code
 Gebe dein absolut bestes um doppelten Code zu vermeiden. Doppelter Code ist schlecht
-weil es bedeutet, dass es mehr als eine Stelle gibt um etwas anzupassen wenn an dieser
-Logik etwas geändert wird.
+weil es bedeutet, dass es mehr als eine Stelle gibt um etwas anzupassen, wenn an dieser
+Logik etwas geändert werden soll.
 
 Stelle dir vor du betreibst ein Restaurant und willst den Überblick über deinen Vorrat behalten:
-All deine Tomaten, Zwiebeln, Knoblauch, Gewürze, etc. Wenn du deinen Lagerbestand auf mehrerem 
+All deine Tomaten, Zwiebeln, Knoblauch, Gewürze, etc. Wenn du deinen Lagerbestand auf mehreren 
 Listen festhälst, dann musst du all diese Listen aktualisieren wenn du einen Teller – auf dem 
 sich Tomaten befinden – servierst. Wenn du nur eine List hast, dann musst du auch nur diese eine Liste 
 aktualisieren!
 
 Häufig hast du doppelten Code weil du zwei oder mehr nur geringfügig unterschiedliche Dinge hast, die
-zwar eine Menge gemeinsam haben aber ihre Unterschiede zwingen dich dazu zwei oder mehr seperate Funktionen 
-– die vieles exakt gleich erledigen - zu haben. Doppelten Code zu entfernen heißt Abstraktionen zu erstellen,
-die diese Reihe von unterschiedlichen Dingen mit nur einer Funktion/Modul/Klasse handhaben können.
+zwar eine Menge exakt gleich erledigen aber ihre Unterschiede zwingen dich dazu zwei oder mehr seperate Funktionen 
+zu schreiben. Doppelten Code zu entfernen heißt Abstraktionen zu erstellen, die diese Reihe von unterschiedlichen 
+Dingen mit nur einer Funktion/Modul/Klasse handhaben können.
 
-Diese Abstraktion gut hinzubekommen ist entscheidend und darum solltest du den SOLID-Regeln im *Klassen*-
-Kapitel folgen. Schlechte Abstraktionen können schlimmer als doppelter Code sein, also sei vorsichtig! 
+Diese Abstraktion gut hinzubekommen ist entscheidend und darum solltest du den SOLID-Regeln im *Klassen*-Kapitel 
+folgen. Schlechte Abstraktionen können schlimmer als doppelter Code sein, also sei vorsichtig! 
 In diesem Sinne, wenn du eine gute Abstraktion hinbekommst - mach es! Wiederhole dich nicht selbst, ansonsten
-wirst du jedes Mal verschiedene Stellen anpassen müssen wenn du eine Sache ändern möchtest.
+wirst du jedes Mal verschiedene Stellen anpassen müssen, wenn du eine Sache ändern möchtest.
 
 **Schlecht:**
 ```javascript
@@ -438,7 +438,7 @@ function showList(employees) {
   });
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Setze Default-Objekte mit Object.assign
 
@@ -484,12 +484,12 @@ function createMenu(config) {
 
 createMenu(menuConfig);
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ### Verwende keine Flags als Funktionsparameter
-Flags zeigen deinem User dass diese Funktion mehr als eine Sache macht. Funktionen sollten 
-nur eine Sache erledigen. Teile deine Funktionen auf wenn diese auf Basis eines Boolean 
+Flags zeigen dem Anwender dass diese Funktion mehr als eine Sache macht. Funktionen sollten 
+nur eine Sache erledigen. Teile deine Funktionen auf, wenn diese auf Basis eines Boolean 
 andere Pfad verwenden.
 
 **Schlecht:**
@@ -513,27 +513,27 @@ function createTempFile(name) {
   createFile(`./temp/${name}`);
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Vermeide Nebeneffekte (Teil 1)
-Eine Funktion erzeugt einen Nebeneffekt wenn sie mehr macht als einen Wert entgegenzunehmen
-und einen oder mehrere Werte zurück zu geben. Ein Nebeneffekt könnte das Schreiben einer Datei,
-das modifizieren einiger gobaler Variablen oder das versehentliche Übertragen deines ganzen Geldes
+Eine Funktion erzeugt einen Nebeneffekt, wenn sie mehr macht als einen Wert entgegenzunehmen
+und einen oder mehrere Werte zurückzugeben. Ein Nebeneffekt könnte das Schreiben einer Datei,
+das modifizieren einiger globaler Variablen oder das versehentliche Übertragen deines ganzen Geldes
 an einen Fremden sein.
 
-Jetzt, brauchst du bei einer Gelegenheit einen Nebeneffekt. Ähnlich wie im vorangegangen Beispiel möchtest
+Jetzt brauchst du bei einer Gelegenheit einen Nebeneffekt. Ähnlich wie im vorangegangen Beispiel möchtest
 du möglicherweise eine Datei schreiben. Fasse dies zusammen um nicht etliche Funktionen und Klassen, die auf
-bestimmte Datei bezogen sind zu haben. Habe eine Service der dies erledigt. Einen und nur einen.
+bestimmte Datei bezogen sind zu schreiben. Habe einen Service der dies erledigt. Einen und auch nur einen.
 
 Der Punkt ist, üblich Tücken wie beispielsweise das Teilen von State zwischen Objekten ohne jegliche
 Struktur mit veränderbaren Datentypen – die überall überschrieben werden können – zu verhindern und die Stellen
-an denen Nebeneffekte auftreten können zusammen zufassen. Wenn du das schaffst, wirst du glücklicher als die
-Mehrheit der anderen Programmierer sein. 
+an denen Nebeneffekte auftreten können zusammenzufassen. Wenn du das schaffst, wirst du glücklicher als eine 
+Vielzahl der anderen Programmierer sein. 
 
 **Schlecht:**
 ```javascript
-// Globale Variable, die von der nachfolgenden Funktion referenziert wird.
-// Wenn wir eine andere Funktion hätten, die diese Variable verwenden könnte diese nun nicht mehr funktionieren weil diese Variable nun ein Array ist.
+// Globale Variable die von der nachfolgenden Funktion referenziert wird.
+// Wenn wir eine andere Funktion hätten, die diese Variable verwendet, könnte es sein, dass diese nun nicht mehr funktioniert, weil diese Variable nun ein Array ist.
 let name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
@@ -557,7 +557,7 @@ const newName = splitIntoFirstAndLastName(name);
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Vermeide Nebeneffekte (Teil 2)
 In JavaScript werden primitive Datentypen als Werte und Objekte/Arrays als
@@ -571,24 +571,23 @@ Der User klickt auf den "Kaufen"-Button, der eine `purchase`-Funktion aufruft.
 Diese wiederum erstellt einen Netzwerk-Request und sendet das `cart`-Array zu unserem
 Server. Aufgrund einer schlechten Internetverbindung muss die `purchase`-
 Funktion diesen Request wiederholen. Was passiert nun, wenn der User in der 
-Zwischenzeit versehentlich auf einen „zum Warenkorb hinzufügen“-Button eines
-Produkts klickt, dass er eigentlich gar nicht wollte? Wenn das passiert und der
-Request beginnt, dann wird diese `purchase`-Funktion das versehentlich
-hinzugefügte Produkt senden, weil diese Funktion eine Referenz zu einem 
-Warenkorb-Array hat, dass die `addItemToCart`-Funktion – durch das Hinzufügen eines
-ungewollten Produkts – modifiziert.
+Zwischenzeit versehentlich auf den „Kaufen“-Button eines Produkts klickt, dass 
+er eigentlich gar nicht wollte? Wenn das passiert und der Request beginnt, dann 
+wird diese `purchase`-Funktion das versehentlich hinzugefügte Produkt senden, weil 
+diese Funktion eine Referenz zum Warenkorb-Array hat, dass die `addItemToCart`-Funktion 
+– durch das Hinzufügen eines ungewollten Produkts – modifiziert hat.
 
-Eine tolle Lösung wäre, für die `addItemToCart`-Funktion jedesmal `cart` zu kopieren,
+Eine tolle Lösung wäre für die `addItemToCart`-Funktion jedesmal `cart` zu kopieren,
 zu bearbeiten und die Kopie zurückzugeben. Dies stellt sicher, dass andere Funktionen 
 die eine Referenz zum Warenkorb besitzen, keine Möglichkeit haben Änderungen durchzuführen.
 
 Zwei Einsprüche die zu diesem Ansatz erwähnt werden sollten:
   1. Möglicherweise gibt es Fälle in denen du wirklich das Input-Objekt modifizieren willst.
-Allerdings werden diese Fälle sehr selten sein, wenn du diese Übung übernimmst. Die meistens
-Dinge können so überarbeitet werden, dass keine Nebeneffekte auftreten!
+Allerdings werden diese Fälle sehr selten sein. Die meisten Dinge können so überarbeitet werden, 
+dass keine Nebeneffekte auftreten!
 
   2. Große Objekte zu kopieren kann sich hinsichtlich der Performance sehr negativ auswirken. Glücklicherweise 
-ist das in der Praxis kein großes Problem. Es gibt [https://facebook.github.io/immutable-js/](tolle Bibliotheken) 
+ist das in der Praxis kein großes Problem. Es gibt [tolle Bibliotheken](https://facebook.github.io/immutable-js/) 
 die es erlauben diese Art des Programmieransatzes schneller und nicht so speicherintensiv auszuführen 
 wie es wäre wenn du manuell Objekte und Arrays kopierst.
 
@@ -606,17 +605,17 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Schreibe keine globalen Funktionen
-Den globalen Namespace zu verschmutzen ist eine schlechte Angewohnheit in JavaScript, 
+Den globalen Namespace zu verschmutzen ist in JavaScript eine schlechte Angewohnheit, 
 weil du dadurch mit anderen Bibliotheken aneinandergeraten könntest und der Nutzer deiner 
 Schnittstelle würde nichts davon mitbekommen, bis er einen Fehler bei der Veröffentlichung 
 erhält. Stelle dir folgendes Beispiel vor: Was wenn du JavaScripts ursprüngliche Array-Methoden 
-um eine weitere `diff`-Methode ergänzen möchtest, die dir die Unterschiede zwischen zwei Arrays 
-darstellt? Du könntest deine neue Funktion mit `Array.prototype` schreiben. Allerdings könnte dies 
+um eine weitere `diff`-Methode – die dir die Unterschiede zwischen zwei Arrays darstellt – ergänzen 
+möchtest? Du könntest deine neue Funktion mit `Array.prototype` schreiben. Allerdings könnte dies 
 mit einer anderen Bibliothek aneinandergeraten, die das selbe versucht hat. Was ist, wenn diese 
-andere Bibliothek `diff` nur verwendet hat um das erste und letzte Element eines Arrays zu finden?
+andere Bibliothek `diff` nur verwendet um das erste und letzte Element eines Arrays zu finden?
 Das ist der Grund warum es viel besser wäre die Klassen in ES2015/ES6 zu verwenden und einfach die 
 `Array`-Globale zu ergänzen.
 
@@ -637,12 +636,12 @@ class SuperArray extends Array {
   }
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Ziehe funktionale Programmierung imperativer Programmierung vor
 JavaScript ist keine funktionale Sprache wie es beispielsweise Haskell ist.
 JavaScript hat aber eine funktionale Variante. Funktionale Sprachen sind sauberer 
-und einfacher zu testen. Ziehe diesen Stil der Programmierung vor wenn du kannst.
+und einfacher zu testen. Ziehe diesen Stil der Programmierung vor, wenn du kannst.
 
 **Schlecht:**
 ```javascript
@@ -691,7 +690,7 @@ const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Fasse Bedingungen zusammen
 
@@ -712,7 +711,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Vermeide negative Bedingungen
 
@@ -737,16 +736,16 @@ if (isDOMNodePresent(node)) {
   // ...
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Vermeide Bedingungen
-Das hört sich nach einer unmöglichen Aufgabe an. Menschen die dies zum ersten 
+Das hört sich nach einer unmöglichen Aufgabe an. Menschen, die dies zum ersten 
 Mal hören, fragen sich: „Wie soll ich etwas ohne eine `if`-Anweisung tun?“ Die 
-Antwort ist, dass du Polymorphie verwenden kannst um die selbe Aufgabe in vielen 
-Fällen zu erledigen. Die zweite Frage ist dann meistens: „Gut, das ist toll aber 
-warum sollte ich das wollen?“ Die Antwort ist ein Clean-Code-Konzept das wir bereits 
-gelernt haben: Eine Funktion sollte lediglich eine Aufgabe erledigen. Wenn du Klassen 
-und Funktionen mit `if`-Anweisungen hast, teilst du dem Nutzer deines Codes mit, dass 
+Antwort ist, dass du Polymorphie verwenden kannst um in vielen Fällen die selbe 
+Aufgabe zu erledigen. Die zweite Frage ist dann oft: „Gut, das ist toll aber 
+warum sollte ich das wollen?“ Die Antwort ist ein Clean-Code-Konzept, das wir bereits 
+kennengelernt haben: Eine Funktion sollte lediglich eine Aufgabe erledigen. Wenn du Klassen 
+und Funktionen mit `if`-Anweisungen schreibst, teilst du dem Nutzer deines Codes mit, dass 
 deine Funktion mehr als eine Sache erledigt. Vergiss nicht, mache nur eine Sache.
 
 **Schlecht:**
@@ -793,13 +792,13 @@ class Cessna extends Airplane {
   }
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Vermeide es Datentypen zu prüfen (Teil 1)
 JavaScript besitzt keine Datentypen. Das bedeutet, dass deine Funktionen jegliche Datentypen 
 als Argument entgegennehmen. Gelegentlich wirst du dich mit dieser Freiheit unwohl fühlen 
 und es wird dich dazu verleiten in deinen Funktionen Datentypen zu prüfen. Es gibt viele 
-Möglichkeiten, dies zu vermeiden. Die erste Sache ist, auf einheitlich Schnittstellen zu achten.
+Möglichkeiten, dies zu vermeiden. Der erste Schritt ist, auf einheitliche Schnittstellen zu achten.
 
 **Schlecht:**
 ```javascript
@@ -818,18 +817,18 @@ function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location('texas'));
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Vermeide es Datentypen zu prüfen (Teil 2)
 Wenn du mit grundlegenden einfachen Werten wie Strings, Integer und Arrays arbeitest, 
 du Polymorphie nicht anwenden kannst und weiterhin das Bedüfniss verspürst, Datentypen 
 zu prüfen. Dann solltest du dir überlegen TypeScript zu verwenden. TypeScript ist eine 
-ausgezeichnet Alternative zu normalem JavaScript weil es statische Typen auf Grundlage 
-der normalen JavaScript-Syntax anbietet. Das Problem mit dem manuellem Prüfen von Typen 
-in normalem JavaScript ist, dass dieser Mehraufwand um diese "falsche" Typensicherheit 
+ausgezeichnet Alternative zu normalem JavaScript, weil es statische Typen auf Grundlage 
+der normalen JavaScript-Syntax anbietet. Das Problem mit dem manuellen Prüfen von Typen 
+in JavaScript ist, dass dieser Mehraufwand um diese "falsche" Typensicherheit 
 zu erreichen die verlorene Lesbarkeit nicht wieder gut macht. Halte dein JavaScript 
 sauber, schreibe gute Tests und habe gute Code-Reviews. Anderenfalls erledige dies mit 
-TypeScript (was, wie ich gesagt habe, eine ausgezeichnete Alternative ist!).
+TypeScript (was wie gesagt, eine ausgezeichnete Alternative ist!).
 
 **Schlecht:**
 ```javascript
@@ -849,19 +848,19 @@ function combine(val1, val2) {
   return val1 + val2;
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Überoptimiere nicht
 Moderne Browser optimieren eine Menge während der Laufzeit. Du verschwendest häufig 
-deine Zeit wenn du Dinge optimierst. [Es gibt gute Ressourcen](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) 
-um herauszufinden, wo die Optimierung des Browsers mangelhaft ist. Fokusiere dich 
-derweil auf diese Dinge bis sie behoben sind, wenn sie behoben werden können.
+deine Zeit, wenn du Dinge optimierst. [Es gibt gute Ressourcen](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) 
+um herauszufinden, wo die Optimierungen des Browsers mangelhaft sind. Fokusiere dich 
+derweil auf diese Dinge bis sie behoben sind – wenn sie behoben werden können.
 
 **Schlecht:**
 ```javascript
 
-// In alten Browsern würde jeder Durchlauf mit einem ungespeichertem `list.length` speicherintensiv sein,
-// weil `list.length` jedes Mal neu berechnet wird. In modernen Browsern ist das optimiert.
+// In alten Browsern würde jeder Durchlauf mit einem ungespeicherten `list.length` speicherintensiv sein,
+// weil `list.length` in jedem Durchlauf neu berechnet wird. In modernen Browsern ist das optimiert.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
@@ -873,12 +872,12 @@ for (let i = 0; i < list.length; i++) {
   // ...
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Entferne veralteten Code
 Veralteter Code ist genau so schlecht wie doppelter Code. Es gibt keinen Grund diesen 
 in deiner Code-Basis zu lassen. Wenn etwas nicht aufgerufen wird, werde es los! Es 
-wird weiterhin in deiner Versionsverwaltung sein, wenn du es nochmal benötigst.
+wird weiterhin in deiner Versionsverwaltung stehen, falls du es nochmal benötigst.
 
 **Schlecht:**
 ```javascript
@@ -904,22 +903,22 @@ function newRequestModule(url) {
 const req = newRequestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ## **Objekte und Datenstrukturen**
 ### Verwende Getter und Setter
 JavaScript besitzt keine Interfaces oder Typen. Es ist also sehr schwer dieses 
-Entwurfsmuster durchführen weil wir keine Keywords wie `public` und `private` 
-haben. Wie es auch ist, Getter und Setter zu verwenden, um Zugriff auf Daten eines 
-Objekts zu bekommen ist um einiges besser als einfach nach der Eigenschaft eines 
-Objekts zu schauen. Warum?, fragst du dich vielleicht. Nun, hier ist eine ungeordnete 
+Entwurfsmuster durchzuführen, weil wir keine Keywords wie `public` und `private` 
+haben. Wie es auch ist, Getter und Setter zu verwenden – um Zugriff auf Daten eines 
+Objekts zu bekommen – ist um einiges besser als einfach nach der Eigenschaft eines 
+Objekts zu schauen. „Warum?“ fragst du dich vielleicht. Nun, hier ist eine ungeordnete 
 Liste mit Gründen:
 
 * Wenn du mehr als nur das Erhalten eines Objekt-Eigenschaft erledigen möchtest, muss du 
 nicht alle Zugrifssmethoden in deinem Code anpassen.
-* Macht es einfach, innerhalb eines `set`-Aufrufs Validierung hinzuzufügen.
+* Macht es einfach, innerhalb eines `set`-Aufrufs eine Validierung hinzuzufügen.
 * Verschachtelt die interne Darstellung.
-* Macht es einfach, Logging und Fehlerbehandlung hinzuzufügen wenn Daten gespeichert 
+* Macht es einfach, Logging und Fehlerbehandlung hinzuzufügen, wenn Daten gespeichert 
 oder abgerufen werden.
 * Du kannst von dieser Klasse erben und die standardmäßige Funktionalität überschreiben.
 * Du kannst die Eigenschaften eines Objekts mittels lazy-loading laden. Beispielsweise von 
@@ -936,7 +935,7 @@ class BankAccount {
 
 const bankAccount = new BankAccount();
 
-// Buy shoes...
+// Kaufe Schuhe...
 bankAccount.balance -= 100;
 ```
 
@@ -965,14 +964,14 @@ class BankAccount {
 
 const bankAccount = new BankAccount();
 
-// Buy shoes...
+// Kaufe Schuhe...
 bankAccount.balance -= shoesPrice;
 
-// Get balance
+// Lade den Kontostand
 let balance = bankAccount.balance;
 
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ### Sorge dafür, dass Objekte private Member besitzen
@@ -1008,19 +1007,19 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ## **Klassen**
 ### Single-Responsibility-Prinzip (SRP)
 Wie in Clean Code bereits genannt: „Es sollte niemals mehr als einen Grund geben, 
-eine Klasse zu ändern“. Es ist verlockend, eine Klasse bis oben hin mit Funktionalität 
+eine Klasse zu ändern“. Es ist verlockend, eine Klasse bis obenhin mit Funktionalität 
 voll zu stopfen, wie wenn du nur einen Koffer für deinen Flug mitnehmen kannst.
 Das Problem damit ist einfach, dass deine Klasse konzeptionell nicht unabhängig ist 
 und es viele Gründe geben wird, deine Klasse zu ändern. Die Anzahl der Änderungen 
 an einer Klasse zu reduzieren ist wichtig. Es ist wichtig, weil zu viel Funktionalität 
 einer Klasse bedeutet, dass es schwierig ist zu verstehen wie die Änderung andere 
-abhängige Module in deinem Quelltext beeinflusst. 
+abhängige Module in deinem Code beeinflusst. 
 
 **Schlecht:**
 ```javascript
@@ -1067,13 +1066,13 @@ class UserSettings {
   }
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Open-Closed-Prinzip (OCP)
 Wie von Bertrand Meyer angegeben: „Software-Einheiten (Klassen, Module, Funktionen, 
 etc.) sollten offen für Erweiterungen aber geschlossen für Modifizierungen sein.“ 
 Was soll das bedeuten? Diese Prinzip bedeutet, dass du es Anwendern ermöglichen 
-sollst neue Funktionalitäten hinzufügen ohne bestehende Code ändern zu müssen.
+sollst neue Funktionalitäten hinzuzufügen ohne bestehenden Code ändern zu müssen.
 
 **Schlecht:**
 ```javascript
@@ -1099,22 +1098,22 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === 'ajaxAdapter') {
       return makeAjaxCall(url).then((response) => {
-        // transform response and return
+        // transformiere die Response und gebe sie zurück
       });
     } else if (this.adapter.name === 'httpNodeAdapter') {
       return makeHttpCall(url).then((response) => {
-        // transform response and return
+        // transformiere die Response und gebe sie zurück
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // führe den Request aus und gebe eine Promise zurück
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // führe den Request aus und gebe eine Promise zurück
 }
 ```
 
@@ -1127,7 +1126,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // führe den Request aus und gebe eine Promise zurück
   }
 }
 
@@ -1138,7 +1137,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // führe den Request aus und gebe eine Promise zurück
   }
 }
 
@@ -1149,12 +1148,12 @@ class HttpRequester {
 
   fetch(url) {
     return this.adapter.request(url).then((response) => {
-      // transform response and return
+      // transformiere die Response und gebe sie zurück
     });
   }
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ### Liskovsches Substitutionsprinzip (LSP)
@@ -1162,14 +1161,14 @@ Das ist ein beängstigender Begriff für ein sehr einfaches Konzept. Es ist
 formell definiert als: „Wenn S ein Subtyp von T ist, dann können Objekte vom Typ 
 T möglicherweise mit Objekten vom Typ S ersetzt werden. (D.h., Objekte vom Typ 
 S ersetzen möglicherweise Objekte vom Typ T) ohne irgendwelche gewünschten 
-Eigenschaften des Programms (Korrektheit, durchführen der Aufgabe, etc.) zu 
+Eigenschaften des Programms (Korrektheit, Durchführen der Aufgabe, etc.) zu 
 verändern.“. Das ist eine noch viel erschreckendere Definition.
 
 Die beste Erklärung für dieses Konzept ist, wenn du eine Eltern- und Kindklasse 
 hast und die Basisklasse abwechselnd mit der Kindklasse verwendet werden kann ohne 
 falsche Ergebnisse zu bekommen. Möglicherweise ist das immer noch verwirrend. Also 
 schauen wir uns das klassische Quadrat-Rechteck-Beispiel an. Mathematisch gesehen 
-ist ein Quadrat ein Rechteck. Wenn du es aber mit einer „ist ein“-Beziehung durch 
+ist ein Quadrat ein Rechteck. Wenn du es aber mit einer „ist-ein“-Beziehung durch 
 Vererbung darstellen willst, kommst du schnell in Schwierigkeiten.
 
 **Schlecht:**
@@ -1292,22 +1291,21 @@ function renderLargeShapes(shapes) {
 const shapes = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeShapes(shapes);
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Interface-Segregation-Prinzip (ISP)
 JavaScript besitzt keine Interfaces. Dieses Prinzip ist also nicht so streng 
 anwendbar wie die anderen. Wie auch immer, es ist wichtig und bedeutend trotz 
 JavaScripts fehlendem Typen-System.
 
-ISP heißt, dass „Anwender nicht dazu gezwungen werden sollten sich auf Interfaces 
+ISP heißt, dass „Anwender nicht dazu gezwungen werden sollten, sich auf Interfaces 
 zu stützen die sie nicht verwenden“. Interfaces sind wegen des Duck-Typings indirekte 
 Verträge.
 
 Gute Beispiele, die dieses Prinzip in JavaScript anschaulich demonstrieren sind Klassen, 
-die umfangreiche Konfigurations-Objekte benötigen. Den Anwender nicht dazu zu zwingen eine 
-unzählige Anzahl an Optionen einzurichten ist vorteilhaft, weil sie in den meisten Fällen 
-nicht alle Konfigurationsmöglichkeiten brauchen. Diese optional anzubieten verhindert 
-„üppige Interfaces“.
+die umfangreiche Konfigurationsobjekte benötigen. Den Anwender nicht dazu zwingen, unzählige 
+Optionen einzurichten ist vorteilhaft, weil sie in den meisten Fällen nicht alle Konfigurationsmöglichkeiten 
+brauchen. Diese optional anzubieten verhindert „üppige Interfaces“.
 
 **Schlecht:**
 ```javascript
@@ -1329,7 +1327,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  animationModule() {} // In den meisten Fällen werden wir beim durchqueren nicht animieren müssen.
+  animationModule() {} // In den meisten Fällen werden wir nicht animieren müssen.
   // ...
 });
 
@@ -1367,17 +1365,18 @@ const $ = new DOMTraverser({
   }
 });
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Dependency-Inversion-Prinzip (DIP)
 Dieses Prinzip steht für zwei essentielle Dinge:
+
 1. übergeordnete Module sollten nicht von untergeordneten Modulen abhängig 
 sein. Beide sollten von Abstraktionen abhängig sein.
 2. Abstraktionen sollten nicht von Details abhängig sein. Details sollten 
 von Abstraktionen abhängig sein.
 
-Das kann im ersten Moment schwer zu verstehen sein. Aber wenn du mit Angular.js 
-gearbeitet hast, hast du eine Implementierung dies Prinzips in der Form der 
+Das kann im ersten Moment schwer zu verstehen sein. Aber wenn du bereits mit Angular.js 
+gearbeitet hast, hast du eine Implementierung dieses Prinzips in Form der 
 Dependency Injection (DI) bereits kennengelernt. Obwohl diese keine komplett 
 identischen Konzepte sind, sorgt DIP dafür, dass übergeordnete Module nichts von 
 den Details ihrer untergeordneten Module wissen. Das kann durch DI erreicht werden. 
@@ -1459,15 +1458,15 @@ class InventoryRequesterV2 {
 }
 
 // Durch das externe Konstruieren und das Injektieren unserer Abhängigkeiten könnten wir unser 
-// Request-Modul einfach durch ein raffiniertes neues – dass WebSockets verwendet – austauschen.
+// Request-Modul einfach durch ein raffiniertes neues – das WebSockets verwendet – austauschen.
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Ziehe ES2015-/ES6-Klassen einfachen ES5-Funktionen vor
-Es ist sehr schwer lesbare Klassen-Vererbungen, Konstruktionen und Methoden-Definitionen mit 
-klassischen ES5-Klassen zu bekommen. Wenn du Vererbungen benötigst (und sein dir bewusst, dass 
+Es ist sehr schwer, lesbare Klassen-Vererbungen, Konstruktionen und Methoden-Definitionen mit 
+klassischen ES5-Klassen zu schreiben. Wenn du Vererbungen benötigst (und sei dir bewusst, dass 
 du es möglicherweise doch nicht brauchst), dann bevorzuge Klassen. Verwende schlanke 
 Funktionen bis du dir sicher bist, größere und komplexere Objekte zu benötigen.
 
@@ -1538,15 +1537,15 @@ class Human extends Mammal {
   speak() { /* ... */ }
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ### Verwende die Verkettung von Methoden
 Dieses Entwurfsmuster ist in JavaScript sehr nützlich und du wirst es in vielen 
 Bibliotheken, wie beispielsweise in jQuery und Lodash finden. Es erlaubt deinem 
 Code mehr aussagekräftig und weniger langatmig zu sein. Aus diesem Grund würde 
-ich sagen, verwende die Methoden-Verkettung und schaue dir an wie sauber dein 
-Code sein wird. Gebe in deinen Klassen-Funktionen am Ende jeder Funktion 
+ich sagen, verwende die Methoden-Verkettung und schaue dir an, wie sauber dein 
+Code sein wird. Gebe in deinen Klassen-Methoden am Ende jeder Funktion 
 einfach `this` zurück und du wirst weitere Methoden verketten können.
 
 **Schlecht:**
@@ -1593,25 +1592,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // Anmerkung: Gebe das für die Verkettung zurück
+    // Anmerkung: Gebe this für die Verkettung zurück
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // Anmerkung: Gebe das für die Verkettung zurück
+    // Anmerkung: Gebe this für die Verkettung zurück
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // Anmerkung: Gebe das für die Verkettung zurück
+    // Anmerkung: Gebe this für die Verkettung zurück
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // Anmerkung: Gebe das für die Verkettung zurück
+    // Anmerkung: Gebe this für die Verkettung zurück
     return this;
   }
 }
@@ -1622,13 +1621,13 @@ const car = new Car()
   .setModel('F-150')
   .save();
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Komposition an Stelle von Vererbung
 Wie bekanntermaßen in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) von der Viererbande (Gang of Four) 
-gesagt wurde, solltest du die Komposition der Vererbung vorziehen wenn du kannst. Es gibt viele gute Gründe die Vererbung zu verwenden 
+gesagt wurde, sollst du die Komposition der Vererbung vorziehen, wenn du kannst. Es gibt viele gute Gründe die Vererbung zu verwenden 
 und eine Menge guter Gründe warum du die Komposition verwenden sollst. Der Kernpunkt dieses Denkansatzes ist, dass wenn dein Gehirn 
-instinktiv für die Vererbung ist, du versuchen sollst darüber nachzudenken, ob die Komposition dein Problem nicht besser darstellt. 
+instinktiv für die Vererbung ist, du versuchen sollst darüber nachzudenken, ob die Komposition dein Problem nicht besser lösen wird. 
 In manchen Fällen kann es das. 
 
 Du fragst dich vielleicht, wann du Vererbungen verwenden sollst? Es ist von deinem 
@@ -1636,7 +1635,7 @@ vorliegenden Problem anhängig. Hier ist eine Liste mit Gründen die mehr für d
 als für die Komposition sprechen:
 
 1. Deine Vererbung repräsentiert eine „ist-ein“-Beziehung und keine „hat-ein“-Beziehung 
-(Mensch->Tier vs User->UserDetails).
+(Mensch->Tier vs. User->UserDetails).
 2. Du kannst Code von der Elternklasse verwenden (Menschen können sich wie alle Tiere bewegen).
 3. Du willst globale Änderungen – durch das Ändern der Elternklasse – auf abgeleitete Klassen übertragen. 
 (Den Kalorienverbrauch aller Tiere ändern wenn sie sich bewegen).
@@ -1687,20 +1686,20 @@ class Employee {
   // ...
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ## **Testing**
-Testing ist wichtiger als das Veröffentlichen. Wenn du keine oder eine unzureichende 
+Testing ist wichtiger als das Veröffentlichen von Code. Wenn du keine oder eine unzureichende 
 Anzahl an Tests hast, dann wirst du jedes Mal unsicher sein, ob du nicht irgendetwas
 kaputt gemacht hast. Die Entscheidung welche Anzahl angemessen ist, entscheidet dein
-Team aber eine 100%ige Abdeckung (Alle Anweisungen und Branches) wird dir ein sehr
+Team. Aber eine 100%ige Abdeckung (alle Anweisungen und Branches) wird dir ein sehr
 hohes Vertrauen und Seelenfrieden geben. Das bedeutet, dass du als Ergänzung zu einem 
 guten Testing-Framework auch ein [gutes Coverage-Tool](http://gotwarlost.github.io/istanbul/) 
 verwenden musst.
 
 Es gibt keine Ausrede um keine Tests zu schreiben. Es gibt [zahlreiche gute JS-Test-Frameworks]
-(http://jstherightway.org/#testing-tools), also finde eines das dein Team bevorzugt.
-Wenn du eines gefunden hast, dass für dein Team funktioniert, dann ziele darauf ab immer 
+(http://jstherightway.org/#testing-tools). Also finde eines das dein Team bevorzugt.
+Wenn du eines gefunden hast, dass für dein Team funktioniert, dann ziele darauf ab, immer 
 einen Test für jedes neue Feature/Modul zu schreiben. Wenn deine bevorzugte Arbeitsweise die 
 testgetriebene Entwicklung ist, umso besser. Aber die Hauptsache ist, sicher zu stellen, dass 
 du die Abdeckungsziele erreichst bevor ein Feature veröffentlicht oder vorhandener Code 
@@ -1755,7 +1754,7 @@ describe('MakeMomentJSGreatAgain', () => {
   });
 });
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ## **Parallelität**
 ### Verwende Promises, keine Callbacks
@@ -1794,10 +1793,10 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
   });
 
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Async/Await sind noch sauberer als Promises
-Promises sind eine sehr saubere Alternative zu Callbacks. ES2017/ES8 allerdings beinhaltet 
+Promises sind eine sehr saubere Alternative zu Callbacks. ES2017/ES8 beinhaltet allerdings 
 async und await, die eine viel sauberere Lösung bieten. Alles was du benötigst ist eine Funktion,
 der das `async`-Keyword vorangestellt ist. Anschließend kannst du deine Logik imperativ ohne eine
 Kette von `then`-Funktionen schreiben. Verwende dies, wenn du die Vorteile von ES2017/ES8 jetzt 
@@ -1830,23 +1829,23 @@ async function getCleanCodeArticle() {
   }
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ## **Fehlerbehandlung**
 Ausgegebene Fehler sind eine gute Sache! Das heißt, dass die Laufzeitumgebung
-erfolgreich erkannt hat, dass etwas in deinem Programm schief gegangen ist und lässt
+erfolgreich erkannt hat, dass etwas in deinem Programm schiefgegangen ist und lässt
 dich das wissen indem deine Funktion im aktuellen Stack beendet wurde, den Prozess
-zerstört hat (in Node) und dich in der Konsole mit einem Stacktrace benachrichtigt.
+zerstört hat (in Node) und dich in der Konsole mit einem Stacktrace darüber benachrichtigt.
 
 ### Ignoriere abgefangene Fehler nicht
 Mit einem abgefangenem Fehler nichts anzufangen, wird dir niemals die Möglichkeit
-geben auf diesen zu reagieren oder ihn zu fixen. Den Fehler in der Konsole auszugeben 
-(`console.log`) ist nicht viel besser. Er wird oft in den unzähligen Dingen die 
+geben auf diesen zu reagieren oder ihn zu beheben. Den Fehler in der Konsole auszugeben 
+(`console.log`) ist nicht viel besser. Er wird oft in den unzähligen Dingen, die 
 in der Konsole ausgegeben werden untergehen. Wenn du ein Stückchen Code in einer
 `try/catch`-Anweisung verschachtelst, heißt dass, das du davon ausgehst, dass an 
 dieser Stelle ein Fehler auftreten kann und daher solltest du einen Plan haben oder
-eine Anweisung schreiben, wenn dieser erscheint.
+eine Anweisung schreiben, wenn dieser Fehler erscheint.
 
 **Schlecht:**
 ```javascript
@@ -1872,7 +1871,7 @@ try {
 }
 ```
 
-### Ignoriere zurückgewiesen Promises nicht
+### Ignoriere zurückgewiesene Promises nicht
 Aus dem selben Grund, weshalb du keine Fehler von `try/catch`-Anweisungen 
 ignorieren solltest.
 
@@ -1904,7 +1903,7 @@ getdata()
 });
 ```
 
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ## **Formatierung**
@@ -1952,11 +1951,11 @@ function restoreDatabase() {}
 class Animal {}
 class Alpaca {}
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 
 ### Funktionsaufrufe sollten nahe an der aufzurufenden Funktion stehen
-Wenn eine Funktion eine andere aufruft, halte diese Funktionen im Quelltext
+Wenn eine Funktion eine andere aufruft, halte diese Funktionen im Code 
 vertikal nahe beieinander. Behalte idealerweise die Funktion die von einer anderen
 Funktion aufgerufen wird genau über dieser. Wir neigen dazu Code von oben nach unten 
 wie eine Zeitung zu lesen. Aus diesem Grund sorge dafür, dass dein Code auf diese Weise 
@@ -2040,7 +2039,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ## **Kommentare**
 ### Kommentiere nur Dinge, die komplexe Anwendungslogik beinhalten
@@ -2085,7 +2084,7 @@ function hashIt(data) {
 }
 
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Lasse keinen auskommentierten Code in deiner Code-Basis
 Versionsverwaltungen existieren aus einem Grund. Lasse alten Code in der
@@ -2103,7 +2102,7 @@ doStuff();
 ```javascript
 doStuff();
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Verzichte auf Journal-Kommentare
 Denke daran, verwende eine Versionsverwaltung! Veralteter Code, auskommentierter
@@ -2129,7 +2128,7 @@ function combine(a, b) {
   return a + b;
 }
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
 
 ### Verzichte auf Positionsmarker
 Positionsmarker sorgen meistens für einen gestörten Lesefluss. Lasse Funktionen 
@@ -2165,4 +2164,4 @@ const actions = function() {
   // ...
 };
 ```
-**[⬆ nach oben](#table-of-contents)**
+**[⬆ nach oben](#inhaltsverzeichnis)**
