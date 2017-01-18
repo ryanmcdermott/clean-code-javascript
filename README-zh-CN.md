@@ -2,7 +2,7 @@
 
 ## 目录
   1. [简介](#简介)
-  2. [变量](#variables)
+  2. [变量](#变量)
   3. [函数](#functions)
   4. [对象和数据结构](#objects-and-data-structures)
   5. [类](#classes)
@@ -54,36 +54,37 @@ improvement. Beat up the code instead!
 和搭档们一起审查代码时清除那些不完善之处。 不要因为最初需要改善的草稿代码而自责， 而是对那些代
 码下手。
 
-## **Variables**
-### Use meaningful and pronounceable variable names
+## **变量**
+### 使用有意义并且可读的变量名称
 
-**Bad:**
+**不好的：**
 ```javascript
 const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Use the same vocabulary for the same type of variable
+### 为相同类型的变量使用相同的词汇
 
-**Bad:**
+**不好的：**
 ```javascript
 getUserInfo();
 getClientData();
 getCustomerRecord();
 ```
 
-**Good**:
+**好的：**
 ```javascript
 getUser();
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Use searchable names
+### 使用可搜索的名称
+
 We will read more code than we will ever write. It's important that the code we
 do write is readable and searchable. By *not* naming variables that end up
 being meaningful for understanding our program, we hurt our readers.
@@ -92,16 +93,21 @@ Make your names searchable. Tools like
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 can help identify unnamed constants.
 
-**Bad:**
+我们要阅读的代码比要写的代码多得多， 所以我们写出的代码的可读性和可搜索性是很重要的。 使用没有
+意义的变量名将会导致我们的程序难于理解， 将会伤害我们的读者， 所以请使用可搜索的变量名。 类似
+[buddy.js](https://github.com/danielstjules/buddy.js) 和 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
+的工具可以帮助我们找到未命名的常量。
+
+**不好的：**
 ```javascript
-// What the heck is 86400000 for?
+// 艹， 86400000 是什么鬼？
 setTimeout(blastOff, 86400000);
 
 ```
 
-**Good**:
+**好的：**
 ```javascript
-// Declare them as capitalized `const` globals.
+// 将它们声明为全局常量 `const` 。
 const MILLISECONDS_IN_A_DAY = 86400000;
 
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
@@ -109,15 +115,15 @@ setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Use explanatory variables
-**Bad:**
+### 使用解释性的变量
+**不好的：**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 saveCityZipCode(address.match(cityZipCodeRegex)[1], address.match(cityZipCodeRegex)[2]);
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
@@ -126,10 +132,10 @@ saveCityZipCode(city, zipCode);
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Avoid Mental Mapping
-Explicit is better than implicit.
+### 避免心理映射
+显示比隐式更好
 
-**Bad:**
+**不好的：**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
@@ -138,12 +144,12 @@ locations.forEach((l) => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // 等等， `l` 是啥？
   dispatch(l);
 });
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
@@ -157,11 +163,13 @@ locations.forEach((location) => {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Don't add unneeded context
+### 不添加不必要的上下文
 If your class/object name tells you something, don't repeat that in your
 variable name.
 
-**Bad:**
+如果你的类名/对象名有意义， 不要在变量名上再重复。
+
+**不好的：**
 ```javascript
 const Car = {
   carMake: 'Honda',
@@ -174,7 +182,7 @@ function paintCar(car) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const Car = {
   make: 'Honda',
@@ -188,9 +196,9 @@ function paintCar(car) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Use default arguments instead of short circuiting or conditionals
+### 使用默认变量替代短路运算或条件
 
-**Bad:**
+**不好的：**
 ```javascript
 function createMicrobrewery(name) {
   const breweryName = name || 'Hipster Brew Co.';
@@ -199,7 +207,7 @@ function createMicrobrewery(name) {
 
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
   // ...
