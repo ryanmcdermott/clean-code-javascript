@@ -11,6 +11,7 @@
   8. [Error Handling](#error-handling)
   9. [Formatting](#formatting)
   10. [Comments](#comments)
+  11. [Translation](#translation)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -587,7 +588,7 @@ are pretty rare. Most things can be refactored to have no side effects!
 
   2. Cloning big objects can be very expensive in terms of performance. Luckily,
 this isn't a big issue in practice because there are
-[https://facebook.github.io/immutable-js/](great libraries) that allow
+[great libraries](https://facebook.github.io/immutable-js/) that allow
 this kind of programming approach to be fast and not as memory intensive as
 it would be for you to manually clone objects and arrays.
 
@@ -2151,4 +2152,13 @@ const actions = function() {
   // ...
 };
 ```
+**[⬆ back to top](#table-of-contents)**
+
+## Translation
+
+This is also available in other languages:
+
+  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**: [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
+  
 **[⬆ back to top](#table-of-contents)**
