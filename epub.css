@@ -1,0 +1,68 @@
+/* This defines styles and classes used in the book */
+html {
+	font-size: 12px;
+	line-height: 1.3;
+}
+body { 
+	margin: 5%;
+	text-align: justify;
+	font-family: serif;
+}
+code { 
+	font-family: monospace;
+	font-size: 9px;
+}
+pre { 
+	border: 1px solid #ddd;
+	font-size: 9px;
+	line-height: 1;
+	padding: 15px 5px;
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+h1 {
+	display: none; /* there's only the clean-code-javascript H1 so hide it */
+}
+h2 { 
+	font-size: 1.35em;
+	line-height: 1.2;
+	text-align: left;
+	font-family: sans-serif;
+	break-before: always;
+	page-break-before: always;
+}
+h3 { 
+	text-align: left;
+	font-family: sans-serif;
+}
+h4 { 
+	line-height: 1;
+	text-align: left;
+	font-family: sans-serif;
+}
+h5 { 
+	line-height: 1;
+	text-align: left;
+	font-family: sans-serif;
+}
+h6 { 
+	line-height: 1;
+	text-align: left;
+	font-family: sans-serif;
+}
+h1.title { 
+	page-break-before: avoid;
+	break-before: avoid;
+}
+h2.author { }
+h3.date { }
+ol.toc { 
+	padding: 0;
+	margin-left: 1em;
+}
+ol.toc li { 
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}

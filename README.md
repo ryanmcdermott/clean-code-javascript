@@ -1,3 +1,12 @@
+---
+title: Clean Code JavaScript
+subtitle: Robert C. Martin's book Clean Code, adapted for JavaScript
+author: by Ryan McDermott
+publisher:  https://github.com/ryanmcdermott/clean-code-javascript
+rights: © 2017 Ryan McDermott, MIT licensed
+stylesheet: epub.css
+---
+
 # clean-code-javascript
 
 ## Table of Contents
