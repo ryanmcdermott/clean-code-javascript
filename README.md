@@ -1,3 +1,4 @@
+
 # clean-code-javascript
 
 ## Table of Contents
@@ -48,7 +49,7 @@ improvement. Beat up the code instead!
 const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
@@ -63,7 +64,7 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 getUser();
 ```
@@ -85,7 +86,7 @@ setTimeout(blastOff, 86400000);
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 // Declare them as capitalized `const` globals.
 const MILLISECONDS_IN_A_DAY = 86400000;
@@ -103,7 +104,7 @@ const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 saveCityZipCode(address.match(cityZipCodeRegex)[1], address.match(cityZipCodeRegex)[2]);
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
@@ -129,7 +130,7 @@ locations.forEach((l) => {
 });
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
@@ -160,7 +161,7 @@ function paintCar(car) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const Car = {
   make: 'Honda',
@@ -185,7 +186,7 @@ function createMicrobrewery(name) {
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
   // ...
@@ -218,7 +219,7 @@ function createMenu(title, body, buttonText, cancellable) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function createMenu(config) {
   // ...
@@ -253,7 +254,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function emailClients(clients) {
   clients
@@ -282,7 +283,7 @@ const date = new Date();
 addToDate(date, 1);
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function addMonthToDate(month, date) {
   // ...
@@ -324,7 +325,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function tokenize(code) {
   const REGEXES = [
@@ -416,7 +417,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function showList(employees) {
   employees.forEach((employee) => {
@@ -462,7 +463,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const menuConfig = {
   title: 'Order',
@@ -502,7 +503,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function createFile(name) {
   fs.create(name);
@@ -545,7 +546,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function splitIntoFirstAndLastName(name) {
   return name.split(' ');
@@ -668,7 +669,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const programmerOutput = [
   {
@@ -701,7 +702,7 @@ if (fsm.state === 'fetching' && isEmpty(listNode)) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
@@ -726,7 +727,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function isDOMNodePresent(node) {
   // ...
@@ -765,7 +766,7 @@ class Airplane {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class Airplane {
   // ...
@@ -811,7 +812,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location('texas'));
@@ -842,7 +843,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function combine(val1, val2) {
   return val1 + val2;
@@ -867,7 +868,7 @@ for (let i = 0, len = list.length; i < len; i++) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 for (let i = 0; i < list.length; i++) {
   // ...
@@ -895,7 +896,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function newRequestModule(url) {
   // ...
@@ -938,7 +939,7 @@ const bankAccount = new BankAccount();
 bankAccount.balance -= 100;
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class BankAccount {
   constructor(balance = 1000) {
@@ -993,7 +994,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const Employee = function (name) {
   this.getName = function getName() {
@@ -1039,7 +1040,7 @@ class UserSettings {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class UserAuth {
   constructor(user) {
@@ -1116,7 +1117,7 @@ function makeHttpCall(url) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class AjaxAdapter extends Adapter {
   constructor() {
@@ -1223,7 +1224,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class Shape {
   setColor(color) {
@@ -1331,7 +1332,7 @@ const $ = new DOMTraverser({
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class DOMTraverser {
   constructor(settings) {
@@ -1418,7 +1419,7 @@ const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
 inventoryTracker.requestItems();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class InventoryTracker {
   constructor(items, requester) {
@@ -1576,7 +1577,7 @@ car.setModel('F-150');
 car.save();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class Car {
   constructor() {
@@ -1659,7 +1660,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class EmployeeTaxData {
   constructor(ssn, salary) {
@@ -1726,7 +1727,7 @@ describe('MakeMomentJSGreatAgain', () => {
 });
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const assert = require('assert');
 
@@ -1775,7 +1776,7 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
@@ -1813,7 +1814,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 async function getCleanCodeArticle() {
   try {
@@ -1931,7 +1932,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const DAYS_IN_WEEK = 7;
 const DAYS_IN_MONTH = 30;
@@ -1992,7 +1993,7 @@ const review = new PerformanceReview(user);
 review.perfReview();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class PerformanceReview {
   constructor(employee) {
@@ -2058,7 +2059,7 @@ function hashIt(data) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 
 function hashIt(data) {
@@ -2088,7 +2089,7 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 doStuff();
 ```
@@ -2111,7 +2112,7 @@ function combine(a, b) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function combine(a, b) {
   return a + b;
@@ -2141,7 +2142,7 @@ const actions = function() {
 };
 ```
 
-**Good**:
+**Good:**
 ```javascript
 $scope.model = {
   menu: 'foo',
