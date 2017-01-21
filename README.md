@@ -202,26 +202,27 @@ makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
 each separate argument.
 
-Zero arguments is the ideal case. One or two arguments is ok, and three should
-be avoided. Anything more than that should be consolidated. Usually, if you have
+One or two arguments is the ideal case, and three should be avoided if possible.
+Anything more than that should be consolidated. Usually, if you have
 more than two arguments then your function is trying to do too much. In cases
 where it's not, most of the time a higher-level object will suffice as an
 argument.
 
-Since JavaScript allows us to make objects on the fly, without a lot of class
+Since JavaScript allows you to make objects on the fly, without a lot of class
 boilerplate, you can use an object if you are finding yourself needing a
 lot of arguments.
 
-To make it more obvious what properties does the function expect, use the es6 
-destructuring syntax. This has a couple of advantages:
+To make it obvious what properties the function expects, you can use the es6
+destructuring syntax. This has a few advantages:
 
 1. When someone looks at the function signature, it's immediately clear what
-properties are used.
-2. Since the function doesn't have the reference to the actual argument, the
-user of the function can be sure that no other properties are used by anything
-down the call chain.
-3. Linters (like eslint) can warn you about unused properties, while this would
-be impossible without destructuring.
+properties are being used.
+2. Destructuring also clones the specified primitive values of the argument
+object passed into the function. This can help prevent side effects. Note:
+objects and arrays that are destructured from the argument object are NOT
+cloned.
+3. Linters can warn you about unused properties, which would be impossible
+without destructuring.
 
 **Bad:**
 ```javascript
