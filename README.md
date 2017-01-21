@@ -212,6 +212,17 @@ Since JavaScript allows us to make objects on the fly, without a lot of class
 boilerplate, you can use an object if you are finding yourself needing a
 lot of arguments.
 
+To make it more obvious what properties does the function expect, use the es6 
+destructuring syntax. This has a couple of advantages:
+
+1. When someone looks at the function signature, it's immediately clear what
+properties are used.
+2. Since the function doesn't have the reference to the actual argument, the
+user of the function can be sure that no other properties are used by anything
+down the call chain.
+3. Linters (like eslint) can warn you about unused properties, while this would
+be impossible without destructuring.
+
 **Bad:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -221,7 +232,7 @@ function createMenu(title, body, buttonText, cancellable) {
 
 **Good:**
 ```javascript
-function createMenu(config) {
+function createMenu({ title, body, buttonText, cancellable }) {
   // ...
 }
 
