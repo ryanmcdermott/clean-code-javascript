@@ -1699,7 +1699,7 @@ function makeEmployee(name, email) {
         email,
         setTaxData,
         getTaxData
-    }
+    };
 }```
 **[⬆ back to top](#table-of-contents)**
 
