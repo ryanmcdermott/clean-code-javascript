@@ -1011,13 +1011,11 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 **Good:**
 ```javascript
 function makeEmployee(name) {
-    function getName() {
-        return name;
-    }
-
-    return {
-        getName
-    };
+  return {
+    getName() {
+      return name;
+    },
+  };
 }
 
 const employee = makeEmployee('John Doe');
