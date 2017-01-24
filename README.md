@@ -1684,22 +1684,16 @@ function makeTaxData(ssn, salary) {
 }
 
 function makeEmployee(name, email) {
-    let taxData = {};
-
-    function setTaxData(ssn, salary) {
-        taxData = makeTaxData();
-    }
-
-    function getTaxData() {
-        return taxData;
-    }
-
-    return {
-        name,
-        email,
-        setTaxData,
-        getTaxData
+    let obj = {
+      name,
+      email
     };
+
+    obj.setTaxData = function (ssn, salary) {
+        obj.taxData = makeTaxData(ssn, salary);
+    }
+
+    return obj;
 }```
 **[⬆ back to top](#table-of-contents)**
 
