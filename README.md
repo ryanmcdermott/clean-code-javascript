@@ -1676,27 +1676,31 @@ class EmployeeTaxData extends Employee {
 
 **Good:**
 ```javascript
-class EmployeeTaxData {
-  constructor(ssn, salary) {
-    this.ssn = ssn;
-    this.salary = salary;
-  }
-
-  // ...
+function makeTaxData(ssn, salary) {
+    return {
+        ssn,
+        salary
+    };
 }
 
-class Employee {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
-  }
+function makeEmployee(name, email) {
+    let taxData = {};
 
-  setTaxData(ssn, salary) {
-    this.taxData = new EmployeeTaxData(ssn, salary);
-  }
-  // ...
-}
-```
+    function setTaxData(ssn, salary) {
+        taxData = makeTaxData();
+    }
+
+    function getTaxData() {
+        return taxData;
+    }
+
+    return {
+        name,
+        email,
+        setTaxData,
+        getTaxData
+    }
+}```
 **[⬆ back to top](#table-of-contents)**
 
 ## **Testing**
