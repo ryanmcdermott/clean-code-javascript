@@ -731,28 +731,6 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 ### Avoid negative conditionals
 Double negatives are harder to understand than positives. So, when possible, conditionals should be expressed as positives.
 
-**Bad:**
-```javascript
-function isDOMNodeNotPresent(node) {
-  // ...
-}
-
-if (!isDOMNodeNotPresent(node)) {
-  // ...
-}
-```
-
-**Good:**
-```javascript
-function isDOMNodePresent(node) {
-  // ...
-}
-
-if (isDOMNodePresent(node)) {
-  // ...
-}
-```
-
 Sometimes you want to validate some required and _"fail fast"_ throwing some custom exception. In these cases, a negative conditional is preferable.
 
 **Bad:**
@@ -762,14 +740,24 @@ function isDOMNodeNotPresent(node) {
     // ...
   }
 }
+
+// Double negative
+if (!isDOMNodeNotPresent(node)) {
+  // ...
+}
 ```
 
 **Good:**
 ```javascript
 function isDOMNodePresent(node) {
+  // Fail fast
   if (!node) {
     throw new Error('Missing required parameter "node"');
   }
+  // ...
+}
+
+if (isDOMNodePresent(node)) {
   // ...
 }
 ```
