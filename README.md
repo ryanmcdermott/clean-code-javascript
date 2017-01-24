@@ -1677,23 +1677,23 @@ class EmployeeTaxData extends Employee {
 **Good:**
 ```javascript
 function makeTaxData(ssn, salary) {
-    return {
-        ssn,
-        salary
-    };
+  return {
+    ssn,
+    salary
+  };
 }
 
 function makeEmployee(name, email) {
-    const obj = {
-        name,
-        email
-    };
+  const obj = {
+    name,
+    email
+  };
 
-    obj.setTaxData = function (ssn, salary) {
-        obj.taxData = makeTaxData(ssn, salary);
-    };
+  obj.setTaxData = function (ssn, salary) {
+    obj.taxData = makeTaxData(ssn, salary);
+  };
 
-    return obj;
+  return obj;
 }
 ```
 **[⬆ back to top](#table-of-contents)**
