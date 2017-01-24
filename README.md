@@ -1684,7 +1684,7 @@ function makeTaxData(ssn, salary) {
 }
 
 function makeEmployee(name, email) {
-    let obj = {
+    const obj = {
         name,
         email
     };
