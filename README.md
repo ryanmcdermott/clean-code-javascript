@@ -819,7 +819,7 @@ The first thing to consider is consistent APIs.
 ```javascript
 function travelToTexas(vehicle) {
   if (vehicle instanceof Bicycle) {
-    vehicle.peddle(this.currentLocation, new Location('texas'));
+    vehicle.pedal(this.currentLocation, new Location('texas'));
   } else if (vehicle instanceof Car) {
     vehicle.drive(this.currentLocation, new Location('texas'));
   }
