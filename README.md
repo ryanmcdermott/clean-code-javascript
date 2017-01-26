@@ -7,12 +7,13 @@
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [SOLID](#solid)
-  6. [Testing](#testing)
-  7. [Concurrency](#concurrency)
-  8. [Error Handling](#error-handling)
-  9. [Formatting](#formatting)
-  10. [Comments](#comments)
-  11. [Translation](#translation)
+  6. [Classes](#classes)
+  7. [Testing](#testing)
+  8. [Concurrency](#concurrency)
+  9. [Error Handling](#error-handling)
+  10. [Formatting](#formatting)
+  11. [Comments](#comments)
+  12. [Translation](#translation)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -1030,18 +1031,6 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 **[⬆ back to top](#table-of-contents)**
 
 
-### Classes
-Classes are useful when you need state. Consider writing a function if state is not an issue.
-Avoid creating potentially complex hierarchies by extending classes,
-unless you are using a library like React and need a component using state (by extending React.Component).
-Another thing to have in mind is, when extending classes, features will be limited to instances
-of that subclass only. When extending built in globals like Array, instances must be created using
-the 'new' keyword and cannot use shorthand syntax like `const arr = [];`.
-A better option could be to write a stateless function.
-
-**[⬆ back to top](#table-of-contents)**
-
-
 ## **SOLID**
 ### Single Responsibility Principle (SRP)
 It's tempting to jam-pack a class or a module with a lot of functionality, like
@@ -1491,6 +1480,17 @@ const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new Invento
 inventoryTracker.requestItems();
 ```
 **[⬆ back to top](#table-of-contents)**
+
+
+## **Classes**
+Classes are useful when you need state. Consider writing a function if state is not an issue.
+Avoid creating potentially complex hierarchies by extending classes,
+unless you are using a library like React and need a component using state (by extending React.Component).
+Another thing to have in mind is, when extending classes, features will be limited to instances
+of that subclass only. When extending built in globals like Array, instances must be created using
+the 'new' keyword and cannot use shorthand syntax like `const arr = [];`.
+A better option could be to write a stateless function.
+
 
 ### Prefer ES2015/ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
