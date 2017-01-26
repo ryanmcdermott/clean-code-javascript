@@ -1734,7 +1734,7 @@ describe('MakeMomentJSGreatAgain', () => {
 
     date = new MakeMomentJSGreatAgain('1/1/2015');
     date.addDays(30);
-    date.shouldEqual('1/31/2015');
+    assert.equal('1/31/2015', date);
 
     date = new MakeMomentJSGreatAgain('2/1/2016');
     date.addDays(28);
@@ -1755,7 +1755,7 @@ describe('MakeMomentJSGreatAgain', () => {
   it('handles 30-day months', () => {
     const date = new MakeMomentJSGreatAgain('1/1/2015');
     date.addDays(30);
-    date.shouldEqual('1/31/2015');
+    assert.equal('1/31/2015', date);
   });
 
   it('handles leap year', () => {
