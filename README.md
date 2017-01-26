@@ -1484,11 +1484,11 @@ inventoryTracker.requestItems();
 
 ## **Classes**
 Classes are useful when you need state. Consider writing a function if state is not an issue.
-Avoid creating potentially complex hierarchies by extending classes,
-unless you are using a library like React and need a component using state (by extending React.Component).
-Another thing to have in mind is, when extending classes, features will be limited to instances
-of that subclass only. When extending built in globals like Array, instances must be created using
-the 'new' keyword and cannot use shorthand syntax like `const arr = [];`.
+Avoid creating deep hierarchies of classes. If you are using a library like React and
+need components with state, extend by one level only (extend React.Component).
+Another thing to have in mind is when extending classes, features will be limited to instances
+of that subclass only. When extending built in globals like Array, instances must be created
+using the 'new' keyword and cannot use shorthand syntax like `const arr = [];`.
 A better option could be to write a stateless function.
 
 
