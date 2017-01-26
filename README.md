@@ -1062,29 +1062,24 @@ class UserSettings {
 
 **Good:**
 ```javascript
-class UserAuth {
-  constructor(user) {
-    this.user = user;
-  }
-
-  verifyCredentials() {
+// this is the module userAuth.js
+function verifyCredentials(user) {
     // ...
-  }
 }
 
+export default verifyCredentials;
 
-class UserSettings {
-  constructor(user) {
-    this.user = user;
-    this.auth = new UserAuth(user);
-  }
 
-  changeSettings(settings) {
-    if (this.auth.verifyCredentials()) {
-      // ...
+// this is the module userSettings.js
+import verifyCredentials from 'userAuth';
+
+function changeSettings(user, settings) {
+    if (verifyCredentials(user)) {
+        // ...
     }
-  }
 }
+
+export default changeSettings;
 ```
 **[⬆ back to top](#table-of-contents)**
 
