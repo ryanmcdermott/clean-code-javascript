@@ -1062,7 +1062,7 @@ class UserSettings {
 
 **Good:**
 ```javascript
-// this is the module userAuth.js
+// the module userAuth.js
 function verifyCredentials(user) {
     // ...
 }
@@ -1070,8 +1070,8 @@ function verifyCredentials(user) {
 export default verifyCredentials;
 
 
-// this is the module userSettings.js
-import verifyCredentials from 'userAuth';
+// the module userSettings.js
+import verifyCredentials from 'userAuth.js';
 
 function changeSettings(user, settings) {
     if (verifyCredentials(user)) {
