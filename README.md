@@ -435,7 +435,7 @@ function showManagerList(managers) {
 
 **Good:**
 ```javascript
-function showEmployeesList(employees) {
+function showEmployeeList(employees) {
   employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
