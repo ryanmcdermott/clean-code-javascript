@@ -1252,7 +1252,7 @@ class Shape {
   }
 
   render(area) {
-    // ..
+    // ...
   }
 }
 
