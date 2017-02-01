@@ -927,9 +927,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ## **Objects and Data Structures**
 ### Use getters and setters
-JavaScript doesn't have interfaces or types so it is very hard to enforce this
-pattern, because we don't have keywords like `public` and `private`. As it is,
-using getters and setters to access data on objects is far better than simply
+Using getters and setters to access data on objects could be better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
 unorganized list of reasons why:
 
@@ -938,56 +936,51 @@ to look up and change every accessor in your codebase.
 * Makes adding validation simple when doing a `set`.
 * Encapsulates the internal representation.
 * Easy to add logging and error handling when getting and setting.
-* Inheriting this class, you can override default functionality.
 * You can lazy load your object's properties, let's say getting it from a
 server.
 
 
 **Bad:**
 ```javascript
-class BankAccount {
-  constructor() {
-    this.balance = 1000;
-  }
+function makeBankAccount() {
+  // ...
+
+  return {
+    balance: 0,
+    // ...
+  };
 }
 
-const bankAccount = new BankAccount();
-
-// Buy shoes...
-bankAccount.balance -= 100;
+const account = makeBankAccount();
+account.balance = 100;
 ```
 
 **Good:**
 ```javascript
-class BankAccount {
-  constructor(balance = 1000) {
-    this._balance = balance;
+function makeBankAccount() {
+  // this one is private
+  let balance = 0;
+
+  // a "getter", made public via the returned object below
+  function getBalance() {
+    return balance;
   }
 
-  // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
-  set balance(amount) {
-    if (this.verifyIfAmountCanBeSetted(amount)) {
-      this._balance = amount;
-    }
+  // a "setter", made public via the returned object below
+  function setBalance(amount) {
+    // ... validate before updating the balance
+    balance = amount;
   }
 
-  get balance() {
-    return this._balance;
-  }
-
-  verifyIfAmountCanBeSetted(val) {
+  return {
     // ...
-  }
+    getBalance,
+    setBalance,
+  };
 }
 
-const bankAccount = new BankAccount();
-
-// Buy shoes...
-bankAccount.balance -= shoesPrice;
-
-// Get balance
-let balance = bankAccount.balance;
-
+const account = makeBankAccount();
+account.setBalance(100);
 ```
 **[⬆ back to top](#table-of-contents)**
 
