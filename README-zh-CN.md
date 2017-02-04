@@ -4,7 +4,7 @@
   1. [简介](#简介)
   2. [变量](#变量)
   3. [函数](#函数)
-  4. [对象和数据结构](#objects-and-data-structures)
+  4. [对象和数据结构](#对象和数据结构)
   5. [类](#classes)
   6. [测试](#testing)
   7. [并发](#concurrency)
@@ -965,7 +965,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-## **Objects and Data Structures**
+## **对象和数据结构**
 ### Use getters and setters
 JavaScript doesn't have interfaces or types so it is very hard to enforce this
 pattern, because we don't have keywords like `public` and `private`. As it is,
