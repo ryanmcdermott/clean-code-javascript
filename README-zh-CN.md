@@ -838,13 +838,16 @@ class Cessna extends Airplane {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Avoid type-checking (part 1)
+### 避免类型检查 (part 1)
 JavaScript is untyped, which means your functions can take any type of argument.
 Sometimes you are bitten by this freedom and it becomes tempting to do
 type-checking in your functions. There are many ways to avoid having to do this.
 The first thing to consider is consistent APIs.
 
-**Bad:**
+JavaScript 是无类型的， 这意味着你的函数能接受任何类型的参数。 但是有时又会被这种自由咬伤，
+于是又尝试在你的函数中做类型检查。 有很多种方式来避免这个， 第一个要考虑的是一致的 API 。
+
+**不好的：**
 ```javascript
 function travelToTexas(vehicle) {
   if (vehicle instanceof Bicycle) {
@@ -855,7 +858,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location('texas'));
