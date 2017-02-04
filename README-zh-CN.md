@@ -776,7 +776,7 @@ if (isDOMNodePresent(node)) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Avoid conditionals
+### 避免条件
 This seems like an impossible task. Upon first hearing this, most people say,
 "how am I supposed to do anything without an `if` statement?" The answer is that
 you can use polymorphism to achieve the same task in many cases. The second
@@ -786,7 +786,13 @@ one thing. When you have classes and functions that have `if` statements, you
 are telling your user that your function does more than one thing. Remember,
 just do one thing.
 
-**Bad:**
+这看起来似乎是一个不可能的任务。 第一次听到这个时， 多数人会说： “没有 `if` 语句还能期望我干
+啥呢”， 答案是多数情况下你可以使用多态来完成同样的任务。 第二个问题通常是 “好了， 那么做很棒，
+但是我为什么想要那样做呢”， 答案是我们学到的上一条代码整洁之道的理念： 一个函数应当只做一件事情。
+当你有使用 `if` 语句的类/函数是， 你在告诉你的用户你的函数做了不止一件事情。 记住： 只做一件
+事情。
+
+**不好的：**
 ```javascript
 class Airplane {
   // ...
@@ -803,7 +809,7 @@ class Airplane {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 class Airplane {
   // ...
