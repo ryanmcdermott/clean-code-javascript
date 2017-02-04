@@ -1285,8 +1285,8 @@ renderLargeShapes(shapes);
 **[⬆ back to top](#table-of-contents)**
 
 ### Interface Segregation Principle (ISP)
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." In JavaScript, an interface is the contract of an object (i.e. the public properties and methods). In the "Bad" example below, the Feedback subclass inherits everything from the Message class, but only a couple of the features will
+ISP states that "___Clients should not be forced to depend upon interfaces that
+they do not use.___" In JavaScript, an interface is the contract of an object (i.e. the public properties and methods). In the "Bad" example below, the `Feedback` class inherits everything from the `Message` class, but only a couple of the features will
 make sense to the subclass.
 
 **Bad:**
