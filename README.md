@@ -1339,32 +1339,28 @@ function postMessage(message) {
   console.log(message);
 }
 
-class Rating {
-  constructor() {
-    this._rating = 0;
-  }
+function makeRating() {
+  let stars = 0;
 
-  get() {
-    return this._rating;
-  }
+  const get = () => stars;
+  const set = (numberOfStars) => stars = numberOfStars;
 
-  set(stars) {
-    this._rating = stars;
-  }
+  return {
+    get,
+    set
+  };
 }
 
-class Feedback {
-  constructor() {
-    this._feedback = [];
-  }
+function makeFeedback() {
+  const messages = [];
 
-  get() {
-    return this._feedback;
-  }
+  const get = () => messages;
+  const add = (message) => messages.push(message);
 
-  add(message) {
-    this._feedback.push(message);
-  }
+  return {
+    get,
+    add
+  };
 }
 ```
 
@@ -1372,7 +1368,7 @@ class Feedback {
 // different "clients", composed with features that makes sense
 class MessageForFeedback {
   constructor() {
-    this._feedback = new Feedback();
+    this._feedback = makeFeedback();
   }
 
   share(message) {
@@ -1386,7 +1382,7 @@ class MessageForFeedback {
 
 class MessageForRating {
   constructor() {
-    this._ratings = new Rating();
+    this._ratings = makeRating();
   }
 
   rate(stars) {
