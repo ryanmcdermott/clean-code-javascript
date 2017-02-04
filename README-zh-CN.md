@@ -903,24 +903,30 @@ function combine(val1, val2) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Don't over-optimize
+### 不要过度优化
 Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
 times, if you are optimizing then you are just wasting your time. [There are good
 resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
 for seeing where optimization is lacking. Target those in the meantime, until
 they are fixed if they can be.
 
-**Bad:**
+现代化浏览器运行时在幕后做大量的优化， 在大多数的时间， 做优化就是在浪费你的时间。 [这些是好的
+资源](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)， 用来
+查看那些地方需要优化。 为这些而优化， 直到他们被修正。
+
+**不好的：**
 ```javascript
 
 // On old browsers, each iteration with uncached `list.length` would be costly
 // because of `list.length` recomputation. In modern browsers, this is optimized.
+// 在旧的浏览器上， 每次循环 `list.length` 都没有被缓存， 会导致不必要的开销， 因为要重新计
+// 算 `list.length` 。 在现代化浏览器上， 这个已经被优化了。
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 for (let i = 0; i < list.length; i++) {
   // ...
