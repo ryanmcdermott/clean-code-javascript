@@ -751,9 +751,9 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Avoid negative conditionals
+### 避免负面条件
 
-**Bad:**
+**不好的：**
 ```javascript
 function isDOMNodeNotPresent(node) {
   // ...
@@ -764,7 +764,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function isDOMNodePresent(node) {
   // ...
