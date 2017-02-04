@@ -730,16 +730,16 @@ const totalOutput = programmerOutput
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Encapsulate conditionals
+### 封装条件语句
 
-**Bad:**
+**不好的：**
 ```javascript
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
   // ...
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
