@@ -3,7 +3,7 @@
 ## 目录
   1. [简介](#简介)
   2. [变量](#变量)
-  3. [函数](#functions)
+  3. [函数](#函数)
   4. [对象和数据结构](#objects-and-data-structures)
   5. [类](#classes)
   6. [测试](#testing)
@@ -216,12 +216,17 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-## **Functions**
-### Function arguments (2 or fewer ideally)
+## **函数**
+
+### 函数参数 (两个以下最理想)
+
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
 each separate argument.
+
+限制函数参数的个数是非常重要的， 因为这样将使你的函数容易进行测试。 一旦超过三个参数将会导致组
+合爆炸， 因为你不得不编写大量针对单个参数的测试用例。
 
 Zero arguments is the ideal case. One or two arguments is ok, and three should
 be avoided. Anything more than that should be consolidated. Usually, if you have
@@ -229,18 +234,25 @@ more than two arguments then your function is trying to do too much. In cases
 where it's not, most of the time a higher-level object will suffice as an
 argument.
 
+没有参数是最理想的， 一个或者两个参数也是可以的， 三个参数应该避免， 超过三个应该被重构。 通常，
+如果你有一个超过两个函数的参数， 那就意味着你的函数尝试做太多的事情。 如果不是， 多数情况下一个
+更高级对象可能会满足需求。
+
 Since JavaScript allows us to make objects on the fly, without a lot of class
 boilerplate, you can use an object if you are finding yourself needing a
 lot of arguments.
 
-**Bad:**
+由于 JavaScript 允许我们不定义类型/模板就可以创建对象， 当你发现你自己需要大量的参数时， 你
+可以使用一个对象。
+
+**不好的：**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
   // ...
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const menuConfig = {
   title: 'Foo',
@@ -257,14 +269,19 @@ function createMenu(config) {
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 
-### Functions should do one thing
+### 函数应当只做一件事情
+
 This is by far the most important rule in software engineering. When functions
 do more than one thing, they are harder to compose, test, and reason about.
 When you can isolate a function to just one action, they can be refactored
 easily and your code will read much cleaner. If you take nothing else away from
 this guide other than this, you'll be ahead of many developers.
 
-**Bad:**
+这是软件工程中最重要的一条规则， 当函数需要做更多的事情时， 他们将会更难进行编写、 测试和推理。
+当你能将一个函数隔离到只有一个动作， 他们将能够被容易的进行重构并且你的代码将会更容易阅读。 如
+果你严格遵守本指南中的这一条， 你将会领先于许多开发者。
+
+**不好的：**
 ```javascript
 function emailClients(clients) {
   clients.forEach((client) => {
@@ -276,7 +293,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function emailClients(clients) {
   clients
@@ -291,9 +308,9 @@ function isClientActive(client) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Function names should say what they do
+### 函数名称应该说明它要做什么
 
-**Bad:**
+**不好的：**
 ```javascript
 function addToDate(date, month) {
   // ...
@@ -301,11 +318,11 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to to tell from the function name what is added
+// 很难从函数名看出加了什么
 addToDate(date, 1);
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function addMonthToDate(month, date) {
   // ...
@@ -316,12 +333,15 @@ addMonthToDate(1, date);
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Functions should only be one level of abstraction
+### 函数应该只有一个抽象级别
+
 When you have more than one level of abstraction your function is usually
 doing too much. Splitting up functions leads to reusability and easier
 testing.
 
-**Bad:**
+当在你的函数中有多于一个抽象级别时， 你的函数通常做了太多事情。 拆分函数将会提升重用性和测试性。
+
+**不好的：**
 ```javascript
 function parseBetterJSAlternative(code) {
   const REGEXES = [
@@ -347,7 +367,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function tokenize(code) {
   const REGEXES = [
@@ -384,15 +404,23 @@ function parseBetterJSAlternative(code) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Remove duplicate code
+### 移除冗余代码
+
 Do your absolute best to avoid duplicate code. Duplicate code is bad because it
 means that there's more than one place to alter something if you need to change
 some logic.
+
+竭尽你的全力去避免冗余代码。 冗余代码是不好的， 因为它意味着当你需要修改一些逻辑时会有多个地方
+需要修改。
 
 Imagine if you run a restaurant and you keep track of your inventory: all your
 tomatoes, onions, garlic, spices, etc. If you have multiple lists that
 you keep this on, then all have to be updated when you serve a dish with
 tomatoes in them. If you only have one list, there's only one place to update!
+
+想象一下你在经营一家餐馆， 你需要记录所有的库存西红柿， 洋葱， 大蒜， 各种香料等等。 如果你有多
+个记录列表， 当你用西红柿做一道菜时你得更新多个列表。 如果你只有一个列表， 就只有一个地方需要更
+新！
 
 Oftentimes you have duplicate code because you have two or more slightly
 different things, that share a lot in common, but their differences force you
@@ -400,13 +428,21 @@ to have two or more separate functions that do much of the same things. Removing
 duplicate code means creating an abstraction that can handle this set of
 different things with just one function/module/class.
 
+你有冗余代码通常是因为你有两个或多个稍微不同的东西， 它们共享大部分， 但是它们的不同之处迫使你使
+用两个或更多独立的函数来处理大部分相同的东西。 移除冗余代码意味着创建一个可以处理这些不同之处的
+抽象的函数/模块/类。
+
 Getting the abstraction right is critical, that's why you should follow the
 SOLID principles laid out in the *Classes* section. Bad abstractions can be
 worse than duplicate code, so be careful! Having said this, if you can make
 a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
 updating multiple places anytime you want to change one thing.
 
-**Bad:**
+让这个抽象正确是关键的， 这是为什么要你遵循 *Classes* 那一章的 SOLID 的原因。 不好的抽象比冗
+余代码更差， 所以要谨慎行事。 既然已经这么说了， 如果你能够做出一个好的抽象， 才去做。 不要重复
+你自己， 否则你会发现当你要修改一个东西时时刻需要修改多个地方。
+
+**不好的：**
 ```javascript
 function showDeveloperList(developers) {
   developers.forEach((developer) => {
@@ -439,7 +475,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function showList(employees) {
   employees.forEach((employee) => {
@@ -464,9 +500,9 @@ function showList(employees) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Set default objects with Object.assign
+### 使用 Object.assign 设置默认对象
 
-**Bad:**
+**不好的：**
 ```javascript
 const menuConfig = {
   title: null,
@@ -485,7 +521,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const menuConfig = {
   title: 'Order',
@@ -511,10 +547,15 @@ createMenu(menuConfig);
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 
-### Don't use flags as function parameters
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+### 不要使用标记位做为函数参数
+Flags tell your user that this function does more than one thing. Functions
+should do one thing. Split out your functions if they are following different
+code paths based on a boolean.
 
-**Bad:**
+标记位是告诉你的用户这个函数做了不只一件事情。 函数应该只做一件事情。 如果你的函数因为一个布尔值
+出现不同的代码路径， 请拆分它们。
+
+**不好的：**
 ```javascript
 function createFile(name, temp) {
   if (temp) {
@@ -525,7 +566,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function createFile(name) {
   fs.create(name);
@@ -537,26 +578,39 @@ function createTempFile(name) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Avoid Side Effects
+### 避免副作用
 A function produces a side effect if it does anything other than take a value in
 and return another value or values. A side effect could be writing to a file,
 modifying some global variable, or accidentally wiring all your money to a
 stranger.
+
+如果一个函数做了除接受一个值然后返回一个值或多个值之外的任何事情， 它将会产生副作用， 它可能是
+写入一个文件， 修改一个全局变量， 或者意外的把你所有的钱连接到一个陌生人那里。
 
 Now, you do need to have side effects in a program on occasion. Like the previous
 example, you might need to write to a file. What you want to do is to
 centralize where you are doing this. Don't have several functions and classes
 that write to a particular file. Have one service that does it. One and only one.
 
+现在在你的程序中确实偶尔需要副作用， 就像上面的代码， 你也许需要写入到一个文件， 你需要做的是集
+中化你要做的事情， 不要让多个函数或者类写入一个特定的文件， 用一个服务来实现它， 一个并且只有一
+个。
+
 The main point is to avoid common pitfalls like sharing state between objects
 without any structure, using mutable data types that can be written to by anything,
 and not centralizing where your side effects occur. If you can do this, you will
 be happier than the vast majority of other programmers.
 
-**Bad:**
+重点是避免这些常见的易犯的错误， 比如在对象之间共享状态而不使用任何结构， 使用任何地方都可以写入
+的可变的数据类型， 没有集中化导致副作用。 如果你能做到这些， 那么你将会比其它的码农大军更加幸福。
+
+**不好的：**
 ```javascript
 // Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// 全局变量被下面的函数引用
+// If we had another function that used this name, now it'd be an array and it
+// could break it.
+// 如果我们有另一个函数使用这个 name ， 现在它应该是一个数组， 这可能会出现错误。
 let name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
@@ -568,7 +622,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function splitIntoFirstAndLastName(name) {
   return name.split(' ');
@@ -582,7 +636,7 @@ console.log(newName); // ['Ryan', 'McDermott'];
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Don't write to global functions
+### 不要写入全局函数
 Polluting globals is a bad practice in JavaScript because you could clash with another
 library and the user of your API would be none-the-wiser until they get an
 exception in production. Let's think about an example: what if you wanted to
@@ -593,7 +647,14 @@ to do the same thing. What if that other library was just using `diff` to find
 the difference between the first and last elements of an array? This is why it
 would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 
-**Bad:**
+污染全局在 JavaScript 中是一个不好的做法， 因为你可能会和另外一个类库冲突， 你的 API 的用户
+可能不够聪明， 直到他们得到在生产环境得到一个异常。 让我们来考虑这样一个例子： 假设你要扩展
+JavaScript 的 原生 `Array` ， 添加一个可以显示两个数组的不同之处的 `diff` 方法， 你可以在
+`Array.prototype` 中写一个新的方法， 但是它可能会和尝试做相同事情的其它类库发生冲突。 如果有
+另外一个类库仅仅使用 `diff` 方法来查找数组的第一个元素和最后一个元素之间的不同之处呢？ 这就是
+为什么使用 ES2015/ES6 的类是一个更好的做法的原因， 只要简单的扩展全局的 `Array` 即可。
+
+**不好的：**
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
   const hash = new Set(comparisonArray);
@@ -601,7 +662,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**好的：**
 ```javascript
 class SuperArray extends Array {
   diff(comparisonArray) {
@@ -612,12 +673,15 @@ class SuperArray extends Array {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Favor functional programming over imperative programming
+### 函数式编程优于指令式编程
 JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages are cleaner and easier to test.
 Favor this style of programming when you can.
 
-**Bad:**
+JavaScript 不是 Haskell 那种方式的函数式语言， 但是它有它的函数式风格。 函数式语言更加简洁
+并且更容易进行测试， 当你可以使用函数式编程风格时请尽情使用。
+
+**不好的：**
 ```javascript
 const programmerOutput = [
   {
@@ -642,7 +706,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const programmerOutput = [
   {
