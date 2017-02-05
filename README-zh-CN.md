@@ -1899,11 +1899,14 @@ describe('MakeMomentJSGreatAgain', () => {
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 ## **并发**
-### Use Promises, not callbacks
+### 使用 Promises, 不要使用回调
 Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
 
-**Bad:**
+回调不够简洁， 因为他们会产生过多的嵌套。 在 ES2015/ES6 中， Promises 已经是内置的全局类型
+了，使用它们吧！
+
+**不好的：**
 ```javascript
 require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
   if (requestErr) {
@@ -1921,7 +1924,7 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
 
 ```
 
-**Good**:
+**好的：**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
