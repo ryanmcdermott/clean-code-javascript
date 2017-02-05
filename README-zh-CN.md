@@ -934,12 +934,15 @@ for (let i = 0; i < list.length; i++) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Remove dead code
+### 移除僵尸代码
 Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
 in your version history if you still need it.
 
-**Bad:**
+僵死代码和冗余代码同样糟糕。 没有理由在代码库中保存它。 如果它不会被调用， 就删掉它。 当你需要
+它时， 它依然保存在版本历史记录中。
+
+**不好的：**
 ```javascript
 function oldRequestModule(url) {
   // ...
@@ -954,7 +957,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function newRequestModule(url) {
   // ...
