@@ -1654,15 +1654,19 @@ class Human extends Mammal {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-
-### Use method chaining
+### 使用方法链
 This pattern is very useful in JavaScript and you see it in many libraries such
 as jQuery and Lodash. It allows your code to be expressive, and less verbose.
 For that reason, I say, use method chaining and take a look at how clean your code
 will be. In your class functions, simply return `this` at the end of every function,
 and you can chain further class methods onto it.
 
-**Bad:**
+这个模式在 JavaScript 中是非常有用的， 并且你可以在许多类库比如 jQuery 和 Lodash 中见到。
+它允许你的代码变得富有表现力， 并减少啰嗦。 因为这个原因， 我说， 使用方法链然后再看看你的代码
+会变得多么简洁。 在你的类／方法中， 简单的在每个方法的最后返回 `this` ， 然后你就能把这个类的
+其它方法链在一起。
+
+**不好的：**
 ```javascript
 class Car {
   constructor() {
@@ -1695,7 +1699,7 @@ car.setModel('F-150');
 car.save();
 ```
 
-**Good**:
+**好的：**
 ```javascript
 class Car {
   constructor() {
