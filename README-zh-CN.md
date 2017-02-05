@@ -6,7 +6,7 @@
   3. [函数](#函数)
   4. [对象和数据结构](#对象和数据结构)
   5. [类](#类)
-  6. [测试](#testing)
+  6. [测试](#测试)
   7. [并发](#concurrency)
   8. [错误处理](#error-handling)
   9. [格式化](#formatting)
@@ -1772,7 +1772,7 @@ relationship (Human->Animal vs. User->UserDetails).
 2. 你可以重用来自基类的代码（人可以像所有动物一样行动）；
 3. 你想通过基类对子类进行全局的修改（改变所有动物行动时的热量消耗）；
 
-**Bad:**
+**不好的：**
 ```javascript
 class Employee {
   constructor(name, email) {
@@ -1784,6 +1784,7 @@ class Employee {
 }
 
 // Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// 不好是因为雇员“有”税率数据， EmployeeTaxData 不是一个 Employee 类型。
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1795,7 +1796,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 class EmployeeTaxData {
   constructor(ssn, salary) {
@@ -1820,7 +1821,7 @@ class Employee {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-## **Testing**
+## **测试**
 Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
 didn't break anything. Deciding on what constitutes an adequate amount is up
@@ -1829,6 +1830,10 @@ you achieve very high confidence and developer peace of mind. This means that
 in addition to having a great testing framework, you also need to use a
 [good coverage tool](http://gotwarlost.github.io/istanbul/).
 
+测试比发布更加重要。 如果你没有测试或者测试不够充分， 每次发布时你就不能确认没有破坏任何事情。
+测试的量由你的团队决定， 但是拥有 100% 的覆盖率(包括所有的语句和分支)是你为什么能达到高度自信
+和内心的平静。 这意味着需要一个额外的伟大的测试框架， 也需要一个好的[覆盖率工具](http://gotwarlost.github.io/istanbul/)。
+
 There's no excuse to not write tests. There's [plenty of good JS test frameworks]
 (http://jstherightway.org/#testing-tools), so find one that your team prefers.
 When you find one that works for your team, then aim to always write tests
@@ -1836,6 +1841,11 @@ for every new feature/module you introduce. If your preferred method is
 Test Driven Development (TDD), that is great, but the main point is to just
 make sure you are reaching your coverage goals before launching any feature,
 or refactoring an existing one.
+
+没有理由不写测试。 这里有[大量的优秀的 JS 测试框架](http://jstherightway.org/#testing-tools)，
+选一个适合你的团队的即可。 当为团队选择了测试框架之后， 接下来的目标是为生产的每一个新的功能／模
+块编写测试。 如果你倾向于测试驱动开发(TDD)， 那就太棒了， 但是要点是确认你在上线任何功能或者重
+构一个现有功能之前， 达到了需要的目标覆盖率。
 
 ### Single concept per test
 
