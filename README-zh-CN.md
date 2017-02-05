@@ -1847,9 +1847,9 @@ or refactoring an existing one.
 块编写测试。 如果你倾向于测试驱动开发(TDD)， 那就太棒了， 但是要点是确认你在上线任何功能或者重
 构一个现有功能之前， 达到了需要的目标覆盖率。
 
-### Single concept per test
+### 一个测试一个概念
 
-**Bad:**
+**不好的：**
 ```javascript
 const assert = require('assert');
 
@@ -1872,7 +1872,7 @@ describe('MakeMomentJSGreatAgain', () => {
 });
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const assert = require('assert');
 
