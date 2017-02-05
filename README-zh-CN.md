@@ -1940,14 +1940,18 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await 比 Promises 更加简洁
 Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
 which offer an even cleaner solution. All you need is a function that is prefixed
 in an `async` keyword, and then you can write your logic imperatively without
 a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
 today!
 
-**Bad:**
+Promises 是回调的一个非常简洁的替代品， 但是 ES2017/ES8 带来的 async 和 await 提供了一个
+更加简洁的解决方案。 你需要的只是一个前缀为 `async` 关键字的函数， 接下来就可以不需要 `then`
+函数链来编写逻辑了。 如果你能使用 ES2017/ES8 的高级功能的话， 今天就使用它吧！
+
+**不好的：**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
@@ -1962,7 +1966,7 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 
 ```
 
-**Good**:
+**好的：**
 ```javascript
 async function getCleanCodeArticle() {
   try {
