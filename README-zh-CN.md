@@ -1045,10 +1045,10 @@ let balance = bankAccount.balance;
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 
-### Make objects have private members
-This can be accomplished through closures (for ES5 and below).
+### 让对象拥有私有成员
+这个可以通过闭包来实现（针对 ES5 或更低）。
 
-**Bad:**
+**不好的：**
 ```javascript
 
 const Employee = function(name) {
@@ -1065,7 +1065,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const Employee = function (name) {
   this.getName = function getName() {
