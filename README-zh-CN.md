@@ -1082,7 +1082,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 
 ## **类**
-### Single Responsibility Principle (SRP)
+### 单一职责原则 (SRP)
 As stated in Clean Code, "There should never be more than one reason for a class
 to change". It's tempting to jam-pack a class with a lot of functionality, like
 when you can only take one suitcase on your flight. The issue with this is
@@ -1092,7 +1092,12 @@ It's important because if too much functionality is in one class and you modify 
 it can be difficult to understand how that will affect other dependent modules in
 your codebase.
 
-**Bad:**
+正如代码整洁之道所述， “永远不要有超过一个理由来修改一个类”。 给一个类塞满许多功能， 就像你在航
+班上只能带一个行李箱一样， 这样做的问题你的类不会有理想的内聚性， 将会有太多的理由来对它进行修改。
+最小化需要修改一个类的次数时很重要的， 因为如果一个类拥有太多的功能， 一旦你修改它的一小部分，
+将会很难弄清楚会对代码库中的其它模块造成什么影响。
+
+**好的：**
 ```javascript
 class UserSettings {
   constructor(user) {
@@ -1111,7 +1116,7 @@ class UserSettings {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 class UserAuth {
   constructor(user) {
