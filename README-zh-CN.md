@@ -1741,7 +1741,7 @@ const car = new Car()
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Prefer composition over inheritance
+### 组合优先于继承
 As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
 you should prefer composition over inheritance where you can. There are lots of
 good reasons to use inheritance and lots of good reasons to use composition.
@@ -1749,15 +1749,28 @@ The main point for this maxim is that if your mind instinctively goes for
 inheritance, try to think if composition could model your problem better. In some
 cases it can.
 
+正如[*设计模式四人帮*](https://en.wikipedia.org/wiki/Design_Patterns)所述， 如果可能，
+你应该优先使用组合而不是继承。 有许多好的理由去使用继承， 也有许多好的理由去使用组合。这个格言
+的重点是， 如果你本能的观点是继承， 那么请想一下组合能否更好的为你的问题建模。 很多情况下它真的
+可以。
+
 You might be wondering then, "when should I use inheritance?" It
 depends on your problem at hand, but this is a decent list of when inheritance
 makes more sense than composition:
+
+那么你也许会这样想， “我什么时候改使用继承？” 这取决于你手上的问题， 不过这儿有一个像样的列表说
+明什么时候继承比组合更好用：
 
 1. Your inheritance represents an "is-a" relationship and not a "has-a"
 relationship (Human->Animal vs. User->UserDetails).
 2. You can reuse code from the base classes (Humans can move like all animals).
 3. You want to make global changes to derived classes by changing a base class.
 (Change the caloric expenditure of all animals when they move).
+
+
+1. 你的继承表示"是一个"的关系而不是"有一个"的关系（人类->动物 vs 用户->用户详情）；
+2. 你可以重用来自基类的代码（人可以像所有动物一样行动）；
+3. 你想通过基类对子类进行全局的修改（改变所有动物行动时的热量消耗）；
 
 **Bad:**
 ```javascript
