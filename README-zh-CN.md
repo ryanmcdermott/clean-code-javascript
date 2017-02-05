@@ -1235,12 +1235,16 @@ class HttpRequester {
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 
-### Liskov Substitution Principle (LSP)
+### 里氏代换原则 (LSP)
 This is a scary term for a very simple concept. It's formally defined as "If S
 is a subtype of T, then objects of type T may be replaced with objects of type S
 (i.e., objects of type S may substitute objects of type T) without altering any
 of the desirable properties of that program (correctness, task performed,
 etc.)." That's an even scarier definition.
+
+这是针对一个非常简单的里面的一个恐怖意图， 它的正式定义是： “如果 S 是 T 的一个子类型， 那么类
+型为 T 的对象可以被类型为 S 的对象替换（例如， 类型为 S 的对象可作为类型为 T 的替代品）儿不需
+要修改目标程序的期望性质 （正确性、 任务执行性等）。” 这甚至是个恐怖的定义。
 
 The best explanation for this is if you have a parent class and a child class,
 then the base class and child class can be used interchangeably without getting
@@ -1249,7 +1253,11 @@ classic Square-Rectangle example. Mathematically, a square is a rectangle, but
 if you model it using the "is-a" relationship via inheritance, you quickly
 get into trouble.
 
-**Bad:**
+最好的解释是， 如果你又一个基类和一个子类， 那个基类和字类可以互换而不会产生不正确的结果。 这可
+能还有有些疑惑， 让我们来看一下这个经典的正方形与矩形的例子。 从数学上说， 一个正方形是一个矩形，
+但是你用 "is-a" 的关系用继承来实现， 你将很快遇到麻烦。
+
+**不好的：**
 ```javascript
 class Rectangle {
   constructor() {
@@ -1303,7 +1311,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good**:
+**好的：**
 ```javascript
 class Shape {
   setColor(color) {
