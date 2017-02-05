@@ -1144,13 +1144,16 @@ class UserSettings {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Open/Closed Principle (OCP)
+### 开闭原则 (OCP)
 As stated by Bertrand Meyer, "software entities (classes, modules, functions,
 etc.) should be open for extension, but closed for modification." What does that
 mean though? This principle basically states that you should allow users to
 add new functionalities without changing existing code.
 
-**Bad:**
+Bertrand Meyer 说过， “软件实体 (类， 模块， 函数等) 应该为扩展开放， 但是为修改关闭。” 这
+是什么意思呢？ 这个原则基本上说明了你应该允许用户添加功能而不必修改现有的代码。
+
+**不好的：**
 ```javascript
 class AjaxAdapter extends Adapter {
   constructor() {
@@ -1193,7 +1196,7 @@ function makeHttpCall(url) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 class AjaxAdapter extends Adapter {
   constructor() {
