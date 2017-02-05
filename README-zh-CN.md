@@ -7,7 +7,7 @@
   4. [对象和数据结构](#对象和数据结构)
   5. [类](#类)
   6. [测试](#测试)
-  7. [并发](#concurrency)
+  7. [并发](#并发)
   8. [错误处理](#error-handling)
   9. [格式化](#formatting)
   10. [评论](#comments)
@@ -1898,7 +1898,7 @@ describe('MakeMomentJSGreatAgain', () => {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-## **Concurrency**
+## **并发**
 ### Use Promises, not callbacks
 Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
