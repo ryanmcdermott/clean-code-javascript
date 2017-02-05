@@ -6,13 +6,14 @@
   2. [Variables](#variables)
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
-  5. [Classes](#classes)
-  6. [Testing](#testing)
-  7. [Concurrency](#concurrency)
-  8. [Error Handling](#error-handling)
-  9. [Formatting](#formatting)
-  10. [Comments](#comments)
-  11. [Translation](#translation)
+  5. [SOLID](#solid)
+  6. [Classes](#classes)
+  7. [Testing](#testing)
+  8. [Concurrency](#concurrency)
+  9. [Error Handling](#error-handling)
+  10. [Formatting](#formatting)
+  11. [Comments](#comments)
+  12. [Translation](#translation)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -395,7 +396,7 @@ duplicate code means creating an abstraction that can handle this set of
 different things with just one function/module/class.
 
 Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the *Classes* section. Bad abstractions can be
+principles laid out in the *SOLID* section. Bad abstractions can be
 worse than duplicate code, so be careful! Having said this, if you can make
 a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
 updating multiple places anytime you want to change one thing.
@@ -1023,14 +1024,13 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 **[⬆ back to top](#table-of-contents)**
 
 
-## **Classes**
+## **SOLID**
 ### Single Responsibility Principle (SRP)
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
+It's tempting to jam-pack a class or a module with a lot of functionality, like
 when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify a piece of it,
+that your class or module won't be conceptually cohesive and it will give it many reasons
+to change. Minimizing the amount of times you need to change code is important.
+It's important because if too much functionality is in one class or module and you modify a piece of it,
 it can be difficult to understand how that will affect other dependent modules in
 your codebase.
 
@@ -1452,6 +1452,17 @@ const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new Invento
 inventoryTracker.requestItems();
 ```
 **[⬆ back to top](#table-of-contents)**
+
+
+## **Classes**
+Classes are useful when you need state. Consider writing a function if state is not an issue.
+Avoid creating deep hierarchies of classes. If you are using a library like React and
+need components with state, extend by one level only (extend React.Component).
+Another thing to have in mind is when extending classes, features will be limited to instances
+of that subclass only. When extending built in globals like Array, instances must be created
+using the 'new' keyword and cannot use shorthand syntax like `const arr = [];`.
+A better option could be to write a stateless function.
+
 
 ### Prefer ES2015/ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
