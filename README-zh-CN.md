@@ -1575,13 +1575,17 @@ inventoryTracker.requestItems();
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### ES2015/ES6 类优先与 ES5 纯函数
 It's very difficult to get readable class inheritance, construction, and method
 definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer classes. However, prefer small functions over
 classes until you find yourself needing larger and more complex objects.
 
-**Bad:**
+很难为经典的 ES5 类创建可读的的继承、 构造和方法定义。 如果你需要继承（并且感到奇怪为啥你不需
+要）， 则优先用 ES2015/ES6的类。 不过， 短小的函数优先于类， 知道你发现你需要更大并且更复杂的
+对象。
+
+**不好的：**
 ```javascript
 const Animal = function(age) {
   if (!(this instanceof Animal)) {
@@ -1620,7 +1624,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**好的**
 ```javascript
 class Animal {
   constructor(age) {
