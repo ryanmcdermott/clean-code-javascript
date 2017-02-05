@@ -5,7 +5,7 @@
   2. [变量](#变量)
   3. [函数](#函数)
   4. [对象和数据结构](#对象和数据结构)
-  5. [类](#classes)
+  5. [类](#类)
   6. [测试](#testing)
   7. [并发](#concurrency)
   8. [错误处理](#error-handling)
@@ -1081,7 +1081,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 
-## **Classes**
+## **类**
 ### Single Responsibility Principle (SRP)
 As stated in Clean Code, "There should never be more than one reason for a class
 to change". It's tempting to jam-pack a class with a lot of functionality, like
