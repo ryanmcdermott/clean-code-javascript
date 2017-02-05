@@ -966,12 +966,16 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 ## **对象和数据结构**
-### Use getters and setters
+### 使用 getters 和 setters
 JavaScript doesn't have interfaces or types so it is very hard to enforce this
 pattern, because we don't have keywords like `public` and `private`. As it is,
 using getters and setters to access data on objects is far better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
 unorganized list of reasons why:
+
+JavaScript 没有接口或类型， 所以坚持这个模式是非常困难的， 因为我们没有 `public` 和 `private`
+关键字。 正因为如此， 使用 getters 和 setters 来访问对象上的数据比简单的在一个对象上查找属性
+要好得多。 “为什么？” 你可能会问， 好吧， 原因请看下面的列表：
 
 * When you want to do more beyond getting an object property, you don't have
 to look up and change every accessor in your codebase.
@@ -982,8 +986,14 @@ to look up and change every accessor in your codebase.
 * You can lazy load your object's properties, let's say getting it from a
 server.
 
+* 当你想在获取一个对象属性的背后做更多的事情时， 你不需要在代码库中查找和修改每一处访问；
+* 使用 `set` 可以让添加验证变得容易；
+* 封装内部实现；
+* 使用 getting 和 setting 时， 容易添加日志和错误处理；
+* 继承这个类， 你可以重写默认功能；
+* 你可以延迟加载对象的属性， 比如说从服务器获取。
 
-**Bad:**
+**不好的：**
 ```javascript
 class BankAccount {
   constructor() {
@@ -997,7 +1007,7 @@ const bankAccount = new BankAccount();
 bankAccount.balance -= 100;
 ```
 
-**Good**:
+**好的：**
 ```javascript
 class BankAccount {
   constructor(balance = 1000) {
