@@ -1285,76 +1285,123 @@ renderLargeShapes(shapes);
 **[⬆ back to top](#table-of-contents)**
 
 ### Interface Segregation Principle (ISP)
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
-
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
-
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a "fat interface".
+ISP states that "___Clients should not be forced to depend upon interfaces that
+they do not use.___" In JavaScript, an interface is the contract of an object (i.e. the public properties and methods). In the "Bad" example below, the `Feedback` class inherits everything from the `Message` class, but only a couple of the features will
+make sense to the subclass.
 
 **Bad:**
 ```javascript
-class DOMTraverser {
-  constructor(settings) {
-    this.settings = settings;
-    this.setup();
+class Message {
+  constructor() {
+    this._feedback = [];
+    this._rating = 0;
   }
 
-  setup() {
-    this.rootNode = this.settings.rootNode;
-    this.animationModule.setup();
+  addFeedback(message) {
+    this._feedback.push(message);
   }
 
-  traverse() {
-    // ...
+  getFeedback() {
+    return this._feedback;
+  }
+
+  // this method makes no sense to the Feedback subclass
+  getRating() {
+    return this._rating;
+  }
+
+  // this method makes no sense to the Feedback subclass
+  setRating(stars) {
+    this._rating = stars;
+  }
+
+  // this method makes no sense to the Feedback subclass
+  postMessage(message) {
+    console.log(message);
   }
 }
 
-const $ = new DOMTraverser({
-  rootNode: document.getElementsByTagName('body'),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
-  // ...
-});
+class MessageForFeedback extends Message {
+  share(message) {
+    return super.addFeedback(message);
+  }
 
+  get() {
+    return super.getFeedback();
+  }
+}
 ```
 
 **Good:**
 ```javascript
-class DOMTraverser {
-  constructor(settings) {
-    this.settings = settings;
-    this.options = settings.options;
-    this.setup();
+// several "interfaces", separated by feature
+function postMessage(message) {
+  console.log(message);
+}
+
+function makeRating() {
+  let stars = 0;
+
+  const get = () => stars;
+  const set = (numberOfStars) => stars = numberOfStars;
+
+  return {
+    get,
+    set
+  };
+}
+
+function makeFeedback() {
+  const messages = [];
+
+  const get = () => messages;
+  const add = (message) => messages.push(message);
+
+  return {
+    get,
+    add
+  };
+}
+```
+
+```javascript
+// different "clients", composed with features that makes sense
+class MessageForFeedback {
+  constructor() {
+    this._feedback = makeFeedback();
   }
 
-  setup() {
-    this.rootNode = this.settings.rootNode;
-    this.setupOptions();
+  share(message) {
+    return this._feedback.add(message);
   }
 
-  setupOptions() {
-    if (this.options.animationModule) {
-      // ...
-    }
-  }
-
-  traverse() {
-    // ...
+  get() {
+    return this._feedback.get();
   }
 }
 
-const $ = new DOMTraverser({
-  rootNode: document.getElementsByTagName('body'),
-  options: {
-    animationModule() {}
+class MessageForRating {
+  constructor() {
+    this._ratings = makeRating();
   }
-});
+
+  rate(stars) {
+    return this._ratings.set(stars);
+  }
+
+  send() {
+    postMessage(this._ratings.get());
+  }
+}
+
+// example usage
+const feedback = new MessageForFeedback();
+feedback.share('Good job!');
+const result = feedback.get();
+
+const ratings = new MessageForRating();
+ratings.rate(5);
+ratings.send();
 ```
 **[⬆ back to top](#table-of-contents)**
 
