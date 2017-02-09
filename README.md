@@ -1698,7 +1698,7 @@ or refactoring an existing one.
 
 **Bad:**
 ```javascript
-const assert = require('assert');
+import assert from 'assert';
 
 describe('MakeMomentJSGreatAgain', () => {
   it('handles date boundaries', () => {
@@ -1721,7 +1721,7 @@ describe('MakeMomentJSGreatAgain', () => {
 
 **Good:**
 ```javascript
-const assert = require('assert');
+import assert from 'assert';
 
 describe('MakeMomentJSGreatAgain', () => {
   it('handles 30-day months', () => {
@@ -1752,11 +1752,14 @@ Promises are a built-in global type. Use them!
 
 **Bad:**
 ```javascript
-require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
+import { get } from 'request';
+import { writeFile } from 'fs';
+
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
   if (requestErr) {
     console.error(requestErr);
   } else {
-    require('fs').writeFile('article.html', response.body, (writeErr) => {
+    writeFile('article.html', response.body, (writeErr) => {
       if (writeErr) {
         console.error(writeErr);
       } else {
@@ -1770,9 +1773,12 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
 
 **Good:**
 ```javascript
-require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+import { get } from 'request';
+import { writeFile } from 'fs';
+
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
-    return require('fs-promise').writeFile('article.html', response);
+    return writeFile('article.html', response);
   })
   .then(() => {
     console.log('File written');
@@ -1793,9 +1799,12 @@ today!
 
 **Bad:**
 ```javascript
-require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+import { get } from 'request-promise';
+import { writeFile } from 'fs-promise';
+
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
-    return require('fs-promise').writeFile('article.html', response);
+    return writeFile('article.html', response);
   })
   .then(() => {
     console.log('File written');
@@ -1808,10 +1817,13 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 
 **Good:**
 ```javascript
+import { get } from 'request-promise';
+import { writeFile } from 'fs-promise';
+
 async function getCleanCodeArticle() {
   try {
-    const response = await require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
-    await require('fs-promise').writeFile('article.html', response);
+    const response = await get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
+    await writeFile('article.html', response);
     console.log('File written');
   } catch(err) {
     console.error(err);
