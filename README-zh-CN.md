@@ -22,7 +22,7 @@ readable, reusable, and refactorable software in JavaScript.
 
 将源自 Robert C. Martin 的 [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
 的软件工程原则适配到 JavaScript 。 这不是一个代码风格指南， 它是一个用 JavaScript 来生产可
-读的， 可充用的， 以及可重构的软件的指南。
+读的， 可重用的， 以及可重构的软件的指南。
 
 Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
