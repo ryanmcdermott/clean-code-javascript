@@ -1499,10 +1499,10 @@ class Square extends Shape {
 
 function renderLargeShapes(shapes) {
   shapes.forEach((shape) => {
-      const area = shape.getArea();
-      shape.render(area);
-    });
-  }
+    const area = shape.getArea();
+    shape.render(area);
+  });
+}
 
 const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
@@ -1868,29 +1868,29 @@ from `try/catch`.
 **Bad:**
 ```javascript
 getdata()
-.then((data) => {
-  functionThatMightThrow(data);
-})
-.catch((error) => {
-  console.log(error);
-});
+  .then((data) => {
+    functionThatMightThrow(data);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 ```
 
 **Good:**
 ```javascript
 getdata()
-.then((data) => {
-  functionThatMightThrow(data);
-})
-.catch((error) => {
-  // One option (more noisy than console.log):
-  console.error(error);
-  // Another option:
-  notifyUserOfError(error);
-  // Another option:
-  reportErrorToService(error);
-  // OR do all three!
-});
+  .then((data) => {
+    functionThatMightThrow(data);
+  })
+  .catch((error) => {
+    // One option (more noisy than console.log):
+    console.error(error);
+    // Another option:
+    notifyUserOfError(error);
+    // Another option:
+    reportErrorToService(error);
+    // OR do all three!
+  });
 ```
 
 **[⬆ back to top](#table-of-contents)**
