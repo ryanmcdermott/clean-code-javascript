@@ -1773,15 +1773,9 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
 **Good:**
 ```javascript
 require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
-  .then((response) => {
-    return require('fs-promise').writeFile('article.html', response);
-  })
-  .then(() => {
-    console.log('File written');
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+  .then(response => require('fs-promise').writeFile('article.html', response))
+  .then(() => console.log('File written'))
+  .catch(err => console.error(err));
 
 ```
 **[⬆ back to top](#table-of-contents)**
