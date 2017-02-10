@@ -1990,7 +1990,7 @@ process (in Node), and notifying you in the console with a stack trace.
 抛出错误是一件好事情！ 他们意味着当你的程序有错时运行时可以成功确认， 并且通过停止执行当前堆栈
 上的函数来让你知道， 结束当前进程（在 Node 中）， 在控制台中用一个堆栈跟踪提示你。
 
-### Don't ignore caught errors
+### 不要忽略捕捉到的错误
 Doing nothing with a caught error doesn't give you the ability to ever fix
 or react to said error. Logging the error to the console (`console.log`)
 isn't much better as often times it can get lost in a sea of things printed
@@ -1998,7 +1998,11 @@ to the console. If you wrap any bit of code in a `try/catch` it means you
 think an error may occur there and therefore you should have a plan,
 or create a code path, for when it occurs.
 
-**Bad:**
+对捕捉到的错误不做任何处理不能给你修复错误或者响应错误的能力。 向控制台记录错误 (`console.log`)
+也不怎么好， 因为往往会丢失在海量的控制台输出中。 如果你把任意一段代码用 `try/catch` 包装那就
+意味着你想到这里可能会错， 因此你应该有个修复计划， 或者当错误发生时有一个代码路径。
+
+**不好的：**
 ```javascript
 try {
   functionThatMightThrow();
@@ -2007,7 +2011,7 @@ try {
 }
 ```
 
-**Good:**
+**好的：**
 ```javascript
 try {
   functionThatMightThrow();
