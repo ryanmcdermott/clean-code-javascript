@@ -8,7 +8,7 @@
   5. [类](#类)
   6. [测试](#测试)
   7. [并发](#并发)
-  8. [错误处理](#error-handling)
+  8. [错误处理](#错误处理)
   9. [格式化](#formatting)
   10. [评论](#comments)
 
@@ -1981,11 +1981,14 @@ async function getCleanCodeArticle() {
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 
-## **Error Handling**
+## **错误处理**
 Thrown errors are a good thing! They mean the runtime has successfully
 identified when something in your program has gone wrong and it's letting
 you know by stopping function execution on the current stack, killing the
 process (in Node), and notifying you in the console with a stack trace.
+
+抛出错误是一件好事情！ 他们意味着当你的程序有错时运行时可以成功确认， 并且通过停止执行当前堆栈
+上的函数来让你知道， 结束当前进程（在 Node 中）， 在控制台中用一个堆栈跟踪提示你。
 
 ### Don't ignore caught errors
 Doing nothing with a caught error doesn't give you the ability to ever fix
