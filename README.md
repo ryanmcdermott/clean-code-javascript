@@ -1754,11 +1754,14 @@ Promises are a built-in global type. Use them!
 
 **Bad:**
 ```javascript
-require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
+const request = require('request');
+const fs = require('fs');
+
+request.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
   if (requestErr) {
     console.error(requestErr);
   } else {
-    require('fs').writeFile('article.html', response.body, (writeErr) => {
+    fs.writeFile('article.html', response.body, (writeErr) => {
       if (writeErr) {
         console.error(writeErr);
       } else {
@@ -1772,9 +1775,12 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
 
 **Good:**
 ```javascript
-require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+const requestPromise = require('request-promise');
+const fsPromise = require('fs-promise');
+
+requestPromise.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
-    return require('fs-promise').writeFile('article.html', response);
+    return fsPromise.writeFile('article.html', response);
   })
   .then(() => {
     console.log('File written');
@@ -1795,9 +1801,12 @@ today!
 
 **Bad:**
 ```javascript
-require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+const requestPromise = require('request-promise');
+const fsPromise = require('fs-promise');
+
+requestPromise.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
-    return require('fs-promise').writeFile('article.html', response);
+    return fsPromise.writeFile('article.html', response);
   })
   .then(() => {
     console.log('File written');
@@ -1810,10 +1819,13 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 
 **Good:**
 ```javascript
+const requestPromise = require('request-promise');
+const fsPromise = require('fs-promise');
+
 async function getCleanCodeArticle() {
   try {
-    const response = await require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
-    await require('fs-promise').writeFile('article.html', response);
+    const response = await requestPromise.get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
+    await fsPromise.writeFile('article.html', response);
     console.log('File written');
   } catch(err) {
     console.error(err);
