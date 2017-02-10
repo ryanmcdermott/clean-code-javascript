@@ -2026,11 +2026,13 @@ try {
 }
 ```
 
-### Don't ignore rejected promises
+### 不要忽略被拒绝的 promise 
 For the same reason you shouldn't ignore caught errors
 from `try/catch`.
 
-**Bad:**
+与你不应忽略来自 `try/catch` 的错误的原因相同。
+
+**不好的：**
 ```javascript
 getdata()
 .then((data) => {
@@ -2041,7 +2043,7 @@ getdata()
 });
 ```
 
-**Good:**
+**好的：**
 ```javascript
 getdata()
 .then((data) => {
