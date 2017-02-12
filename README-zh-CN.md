@@ -9,7 +9,7 @@
   6. [测试](#测试)
   7. [并发](#并发)
   8. [错误处理](#错误处理)
-  9. [格式化](#formatting)
+  9. [格式化](#格式化)
   10. [评论](#comments)
 
 ## 简介
@@ -2063,15 +2063,21 @@ getdata()
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 
-## **Formatting**
+## **格式化**
 Formatting is subjective. Like many rules herein, there is no hard and fast
 rule that you must follow. The main point is DO NOT ARGUE over formatting.
 There are [tons of tools](http://standardjs.com/rules.html) to automate this.
 Use one! It's a waste of time and money for engineers to argue over formatting.
 
+格式化是主观的。 就像其它规则一样， 没有必须让你遵守的硬性规则。 重点是不要因为格式去争论， 这
+里有[大量的工具](http://standardjs.com/rules.html)来自动格式化， 使用其中的一个即可！ 因
+为做为工程师去争论格式化就是在浪费时间和金钱。
+
 For things that don't fall under the purview of automatic formatting
 (indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
 for some guidance.
+
+针对自动格式化工具不能涵盖的问题（缩进、 制表符还是空格、 双引号还是单引号等）， 这里有一些指南。
 
 ### Use consistent capitalization
 JavaScript is untyped, so capitalization tells you a lot about your variables,
