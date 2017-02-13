@@ -2209,10 +2209,12 @@ review.perfReview();
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 ## **评论**
-### Only comment things that have business logic complexity.
+### 仅仅对包含复杂业务逻辑的东西进行评论
 Comments are an apology, not a requirement. Good code *mostly* documents itself.
 
-**Bad:**
+评论是代码的辩解， 不是要求。 多数情况下， 好的代码就是文档。
+
+**不好的：**
 ```javascript
 function hashIt(data) {
   // The hash
@@ -2233,7 +2235,7 @@ function hashIt(data) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 
 function hashIt(data) {
