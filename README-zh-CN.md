@@ -6,11 +6,13 @@
   3. [函数](#函数)
   4. [对象和数据结构](#对象和数据结构)
   5. [类](#类)
-  6. [测试](#测试)
-  7. [并发](#并发)
-  8. [错误处理](#错误处理)
-  9. [格式化](#格式化)
-  10. [评论](#评论)
+  6. [SOLID](#solid)
+  7. [测试](#测试)
+  8. [并发](#并发)
+  9. [错误处理](#错误处理)
+  10. [格式化](#格式化)
+  11. [评论](#评论)
+  12. [Translation](#translation)
 
 ## 简介
 ![一张用你阅读代码时吐槽的数量来评估软件质量的搞笑图片](http://www.osnews.com/images/comics/wtfm.jpg)
@@ -1082,6 +1084,253 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 
 ## **类**
+### ES2015/ES6 类优先与 ES5 纯函数
+It's very difficult to get readable class inheritance, construction, and method
+definitions for classical ES5 classes. If you need inheritance (and be aware
+that you might not), then prefer classes. However, prefer small functions over
+classes until you find yourself needing larger and more complex objects.
+
+很难为经典的 ES5 类创建可读的的继承、 构造和方法定义。 如果你需要继承（并且感到奇怪为啥你不需
+要）， 则优先用 ES2015/ES6的类。 不过， 短小的函数优先于类， 知道你发现你需要更大并且更复杂的
+对象。
+
+**不好的：**
+```javascript
+const Animal = function(age) {
+  if (!(this instanceof Animal)) {
+    throw new Error('Instantiate Animal with `new`');
+  }
+
+  this.age = age;
+};
+
+Animal.prototype.move = function move() {};
+
+const Mammal = function(age, furColor) {
+  if (!(this instanceof Mammal)) {
+    throw new Error('Instantiate Mammal with `new`');
+  }
+
+  Animal.call(this, age);
+  this.furColor = furColor;
+};
+
+Mammal.prototype = Object.create(Animal.prototype);
+Mammal.prototype.constructor = Mammal;
+Mammal.prototype.liveBirth = function liveBirth() {};
+
+const Human = function(age, furColor, languageSpoken) {
+  if (!(this instanceof Human)) {
+    throw new Error('Instantiate Human with `new`');
+  }
+
+  Mammal.call(this, age, furColor);
+  this.languageSpoken = languageSpoken;
+};
+
+Human.prototype = Object.create(Mammal.prototype);
+Human.prototype.constructor = Human;
+Human.prototype.speak = function speak() {};
+```
+
+**好的**
+```javascript
+class Animal {
+  constructor(age) {
+    this.age = age;
+  }
+
+  move() { /* ... */ }
+}
+
+class Mammal extends Animal {
+  constructor(age, furColor) {
+    super(age);
+    this.furColor = furColor;
+  }
+
+  liveBirth() { /* ... */ }
+}
+
+class Human extends Mammal {
+  constructor(age, furColor, languageSpoken) {
+    super(age, furColor);
+    this.languageSpoken = languageSpoken;
+  }
+
+  speak() { /* ... */ }
+}
+```
+**[⬆ 返回顶部](#代码整洁的-javascript)**
+
+### 使用方法链
+This pattern is very useful in JavaScript and you see it in many libraries such
+as jQuery and Lodash. It allows your code to be expressive, and less verbose.
+For that reason, I say, use method chaining and take a look at how clean your code
+will be. In your class functions, simply return `this` at the end of every function,
+and you can chain further class methods onto it.
+
+这个模式在 JavaScript 中是非常有用的， 并且你可以在许多类库比如 jQuery 和 Lodash 中见到。
+它允许你的代码变得富有表现力， 并减少啰嗦。 因为这个原因， 我说， 使用方法链然后再看看你的代码
+会变得多么简洁。 在你的类／方法中， 简单的在每个方法的最后返回 `this` ， 然后你就能把这个类的
+其它方法链在一起。
+
+**不好的：**
+```javascript
+class Car {
+  constructor() {
+    this.make = 'Honda';
+    this.model = 'Accord';
+    this.color = 'white';
+  }
+
+  setMake(make) {
+    this.make = make;
+  }
+
+  setModel(model) {
+    this.model = model;
+  }
+
+  setColor(color) {
+    this.color = color;
+  }
+
+  save() {
+    console.log(this.make, this.model, this.color);
+  }
+}
+
+const car = new Car();
+car.setColor('pink');
+car.setMake('Ford');
+car.setModel('F-150');
+car.save();
+```
+
+**好的：**
+```javascript
+class Car {
+  constructor() {
+    this.make = 'Honda';
+    this.model = 'Accord';
+    this.color = 'white';
+  }
+
+  setMake(make) {
+    this.make = make;
+    // NOTE: Returning this for chaining
+    return this;
+  }
+
+  setModel(model) {
+    this.model = model;
+    // NOTE: Returning this for chaining
+    return this;
+  }
+
+  setColor(color) {
+    this.color = color;
+    // NOTE: Returning this for chaining
+    return this;
+  }
+
+  save() {
+    console.log(this.make, this.model, this.color);
+    // NOTE: Returning this for chaining
+    return this;
+  }
+}
+
+const car = new Car()
+  .setColor('pink')
+  .setMake('Ford')
+  .setModel('F-150')
+  .save();
+```
+**[⬆ 返回顶部](#代码整洁的-javascript)**
+
+### 组合优先于继承
+As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
+you should prefer composition over inheritance where you can. There are lots of
+good reasons to use inheritance and lots of good reasons to use composition.
+The main point for this maxim is that if your mind instinctively goes for
+inheritance, try to think if composition could model your problem better. In some
+cases it can.
+
+正如[*设计模式四人帮*](https://en.wikipedia.org/wiki/Design_Patterns)所述， 如果可能，
+你应该优先使用组合而不是继承。 有许多好的理由去使用继承， 也有许多好的理由去使用组合。这个格言
+的重点是， 如果你本能的观点是继承， 那么请想一下组合能否更好的为你的问题建模。 很多情况下它真的
+可以。
+
+You might be wondering then, "when should I use inheritance?" It
+depends on your problem at hand, but this is a decent list of when inheritance
+makes more sense than composition:
+
+那么你也许会这样想， “我什么时候改使用继承？” 这取决于你手上的问题， 不过这儿有一个像样的列表说
+明什么时候继承比组合更好用：
+
+1. Your inheritance represents an "is-a" relationship and not a "has-a"
+relationship (Human->Animal vs. User->UserDetails).
+2. You can reuse code from the base classes (Humans can move like all animals).
+3. You want to make global changes to derived classes by changing a base class.
+(Change the caloric expenditure of all animals when they move).
+
+
+1. 你的继承表示"是一个"的关系而不是"有一个"的关系（人类->动物 vs 用户->用户详情）；
+2. 你可以重用来自基类的代码（人可以像所有动物一样行动）；
+3. 你想通过基类对子类进行全局的修改（改变所有动物行动时的热量消耗）；
+
+**不好的：**
+```javascript
+class Employee {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+
+  // ...
+}
+
+// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// 不好是因为雇员“有”税率数据， EmployeeTaxData 不是一个 Employee 类型。
+class EmployeeTaxData extends Employee {
+  constructor(ssn, salary) {
+    super();
+    this.ssn = ssn;
+    this.salary = salary;
+  }
+
+  // ...
+}
+```
+
+**好的：**
+```javascript
+class EmployeeTaxData {
+  constructor(ssn, salary) {
+    this.ssn = ssn;
+    this.salary = salary;
+  }
+
+  // ...
+}
+
+class Employee {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+
+  setTaxData(ssn, salary) {
+    this.taxData = new EmployeeTaxData(ssn, salary);
+  }
+  // ...
+}
+```
+**[⬆ 返回顶部](#代码整洁的-javascript)**
+
+## **SOLID**
 ### 单一职责原则 (SRP)
 As stated in Clean Code, "There should never be more than one reason for a class
 to change". It's tempting to jam-pack a class with a lot of functionality, like
@@ -1233,7 +1482,6 @@ class HttpRequester {
 }
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
-
 
 ### 里氏代换原则 (LSP)
 This is a scary term for a very simple concept. It's formally defined as "If S
@@ -1551,252 +1799,6 @@ class InventoryRequesterV2 {
 // 替换。
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
-```
-**[⬆ 返回顶部](#代码整洁的-javascript)**
-
-### ES2015/ES6 类优先与 ES5 纯函数
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
-
-很难为经典的 ES5 类创建可读的的继承、 构造和方法定义。 如果你需要继承（并且感到奇怪为啥你不需
-要）， 则优先用 ES2015/ES6的类。 不过， 短小的函数优先于类， 知道你发现你需要更大并且更复杂的
-对象。
-
-**不好的：**
-```javascript
-const Animal = function(age) {
-  if (!(this instanceof Animal)) {
-    throw new Error('Instantiate Animal with `new`');
-  }
-
-  this.age = age;
-};
-
-Animal.prototype.move = function move() {};
-
-const Mammal = function(age, furColor) {
-  if (!(this instanceof Mammal)) {
-    throw new Error('Instantiate Mammal with `new`');
-  }
-
-  Animal.call(this, age);
-  this.furColor = furColor;
-};
-
-Mammal.prototype = Object.create(Animal.prototype);
-Mammal.prototype.constructor = Mammal;
-Mammal.prototype.liveBirth = function liveBirth() {};
-
-const Human = function(age, furColor, languageSpoken) {
-  if (!(this instanceof Human)) {
-    throw new Error('Instantiate Human with `new`');
-  }
-
-  Mammal.call(this, age, furColor);
-  this.languageSpoken = languageSpoken;
-};
-
-Human.prototype = Object.create(Mammal.prototype);
-Human.prototype.constructor = Human;
-Human.prototype.speak = function speak() {};
-```
-
-**好的**
-```javascript
-class Animal {
-  constructor(age) {
-    this.age = age;
-  }
-
-  move() { /* ... */ }
-}
-
-class Mammal extends Animal {
-  constructor(age, furColor) {
-    super(age);
-    this.furColor = furColor;
-  }
-
-  liveBirth() { /* ... */ }
-}
-
-class Human extends Mammal {
-  constructor(age, furColor, languageSpoken) {
-    super(age, furColor);
-    this.languageSpoken = languageSpoken;
-  }
-
-  speak() { /* ... */ }
-}
-```
-**[⬆ 返回顶部](#代码整洁的-javascript)**
-
-### 使用方法链
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
-
-这个模式在 JavaScript 中是非常有用的， 并且你可以在许多类库比如 jQuery 和 Lodash 中见到。
-它允许你的代码变得富有表现力， 并减少啰嗦。 因为这个原因， 我说， 使用方法链然后再看看你的代码
-会变得多么简洁。 在你的类／方法中， 简单的在每个方法的最后返回 `this` ， 然后你就能把这个类的
-其它方法链在一起。
-
-**不好的：**
-```javascript
-class Car {
-  constructor() {
-    this.make = 'Honda';
-    this.model = 'Accord';
-    this.color = 'white';
-  }
-
-  setMake(make) {
-    this.make = make;
-  }
-
-  setModel(model) {
-    this.model = model;
-  }
-
-  setColor(color) {
-    this.color = color;
-  }
-
-  save() {
-    console.log(this.make, this.model, this.color);
-  }
-}
-
-const car = new Car();
-car.setColor('pink');
-car.setMake('Ford');
-car.setModel('F-150');
-car.save();
-```
-
-**好的：**
-```javascript
-class Car {
-  constructor() {
-    this.make = 'Honda';
-    this.model = 'Accord';
-    this.color = 'white';
-  }
-
-  setMake(make) {
-    this.make = make;
-    // NOTE: Returning this for chaining
-    return this;
-  }
-
-  setModel(model) {
-    this.model = model;
-    // NOTE: Returning this for chaining
-    return this;
-  }
-
-  setColor(color) {
-    this.color = color;
-    // NOTE: Returning this for chaining
-    return this;
-  }
-
-  save() {
-    console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
-    return this;
-  }
-}
-
-const car = new Car()
-  .setColor('pink')
-  .setMake('Ford')
-  .setModel('F-150')
-  .save();
-```
-**[⬆ 返回顶部](#代码整洁的-javascript)**
-
-### 组合优先于继承
-As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
-
-正如[*设计模式四人帮*](https://en.wikipedia.org/wiki/Design_Patterns)所述， 如果可能，
-你应该优先使用组合而不是继承。 有许多好的理由去使用继承， 也有许多好的理由去使用组合。这个格言
-的重点是， 如果你本能的观点是继承， 那么请想一下组合能否更好的为你的问题建模。 很多情况下它真的
-可以。
-
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
-
-那么你也许会这样想， “我什么时候改使用继承？” 这取决于你手上的问题， 不过这儿有一个像样的列表说
-明什么时候继承比组合更好用：
-
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-(Change the caloric expenditure of all animals when they move).
-
-
-1. 你的继承表示"是一个"的关系而不是"有一个"的关系（人类->动物 vs 用户->用户详情）；
-2. 你可以重用来自基类的代码（人可以像所有动物一样行动）；
-3. 你想通过基类对子类进行全局的修改（改变所有动物行动时的热量消耗）；
-
-**不好的：**
-```javascript
-class Employee {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
-  }
-
-  // ...
-}
-
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
-// 不好是因为雇员“有”税率数据， EmployeeTaxData 不是一个 Employee 类型。
-class EmployeeTaxData extends Employee {
-  constructor(ssn, salary) {
-    super();
-    this.ssn = ssn;
-    this.salary = salary;
-  }
-
-  // ...
-}
-```
-
-**好的：**
-```javascript
-class EmployeeTaxData {
-  constructor(ssn, salary) {
-    this.ssn = ssn;
-    this.salary = salary;
-  }
-
-  // ...
-}
-
-class Employee {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
-  }
-
-  setTaxData(ssn, salary) {
-    this.taxData = new EmployeeTaxData(ssn, salary);
-  }
-  // ...
-}
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
@@ -2315,4 +2317,21 @@ const actions = function() {
   // ...
 };
 ```
+**[⬆ 返回顶部](#代码整洁的-javascript)**
+
+## Translation
+
+This is also available in other languages:
+
+  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**:
+    - [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
+    - [beginor/clean-code-js](https://github.com/beginor/clean-code-javascript/blob/master/README-zh-CN.md)
+  - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
+  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
+  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**:
+    - [BoryaMogila/clean-code-javascript-ru/](https://github.com/BoryaMogila/clean-code-javascript-ru/)
+    - [maksugr/clean-code-javascript](https://github.com/maksugr/clean-code-javascript)
+  - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
+
 **[⬆ 返回顶部](#代码整洁的-javascript)**
