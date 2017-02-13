@@ -1324,17 +1324,9 @@ class Shape {
 }
 
 class Rectangle extends Shape {
-  constructor() {
+  constructor(width, height) {
     super();
-    this.width = 0;
-    this.height = 0;
-  }
-
-  setWidth(width) {
     this.width = width;
-  }
-
-  setHeight(height) {
     this.height = height;
   }
 
@@ -1344,12 +1336,8 @@ class Rectangle extends Shape {
 }
 
 class Square extends Shape {
-  constructor() {
+  constructor(length) {
     super();
-    this.length = 0;
-  }
-
-  setLength(length) {
     this.length = length;
   }
 
@@ -1360,21 +1348,12 @@ class Square extends Shape {
 
 function renderLargeShapes(shapes) {
   shapes.forEach((shape) => {
-    switch (shape.constructor.name) {
-      case 'Square':
-        shape.setLength(5);
-        break;
-      case 'Rectangle':
-        shape.setWidth(4);
-        shape.setHeight(5);
-    }
-
     const area = shape.getArea();
     shape.render(area);
   });
 }
 
-const shapes = [new Rectangle(), new Rectangle(), new Square()];
+const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
