@@ -2273,11 +2273,14 @@ doStuff();
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Don't have journal comments
+### 不要有日志式的评论
 Remember, use version control! There's no need for dead code, commented code,
 and especially journal comments. Use `git log` to get history!
 
-**Bad:**
+记住， 使用版本控制！ 不需要僵尸代码， 注释调的代码， 尤其是日志式的评论。 使用 `git log` 来
+获取历史记录。
+
+**不好的：**
 ```javascript
 /**
  * 2016-12-20: Removed monads, didn't understand them (RM)
@@ -2290,7 +2293,7 @@ function combine(a, b) {
 }
 ```
 
-**Good**:
+**好的：**
 ```javascript
 function combine(a, b) {
   return a + b;
