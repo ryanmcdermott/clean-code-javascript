@@ -10,7 +10,7 @@
   7. [并发](#并发)
   8. [错误处理](#错误处理)
   9. [格式化](#格式化)
-  10. [评论](#comments)
+  10. [评论](#评论)
 
 ## 简介
 ![一张用你阅读代码时吐槽的数量来评估软件质量的搞笑图片](http://www.osnews.com/images/comics/wtfm.jpg)
@@ -2208,7 +2208,7 @@ review.perfReview();
 
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-## **Comments**
+## **评论**
 ### Only comment things that have business logic complexity.
 Comments are an apology, not a requirement. Good code *mostly* documents itself.
 
