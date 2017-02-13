@@ -2119,12 +2119,16 @@ class Alpaca {}
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
 
-### Function callers and callees should be close
+### 函数的调用方与被调用方应该靠近
 If a function calls another, keep those functions vertically close in the source
 file. Ideally, keep the caller right above the callee. We tend to read code from
 top-to-bottom, like a newspaper. Because of this, make your code read that way.
 
-**Bad:**
+如果一个函数调用另一个， 则在代码中这两个函数的竖直位置应该靠近。 理想情况下，保持被调用函数在被
+调用函数的正上方。 我们倾向于从上到下阅读代码， 就像读一章报纸。 由于这个原因， 保持你的代码可
+以按照这种方式阅读。
+
+**不好的：**
 ```javascript
 class PerformanceReview {
   constructor(employee) {
@@ -2163,7 +2167,7 @@ const review = new PerformanceReview(user);
 review.perfReview();
 ```
 
-**Good**:
+**好的：**
 ```javascript
 class PerformanceReview {
   constructor(employee) {
