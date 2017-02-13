@@ -2079,12 +2079,15 @@ for some guidance.
 
 针对自动格式化工具不能涵盖的问题（缩进、 制表符还是空格、 双引号还是单引号等）， 这里有一些指南。
 
-### Use consistent capitalization
+### 使用一致的大小写
 JavaScript is untyped, so capitalization tells you a lot about your variables,
 functions, etc. These rules are subjective, so your team can choose whatever
 they want. The point is, no matter what you all choose, just be consistent.
 
-**Bad:**
+JavaScript 是无类型的， 所以大小写告诉你关于你的变量、 函数等的很多事情。 这些规则是主观的，
+所以你的团队可以选择他们想要的。 重点是， 不管你们选择了什么， 要保持一致。
+
+**不好的：**
 ```javascript
 const DAYS_IN_WEEK = 7;
 const daysInMonth = 30;
@@ -2099,7 +2102,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good**:
+**好的：**
 ```javascript
 const DAYS_IN_WEEK = 7;
 const DAYS_IN_MONTH = 30;
