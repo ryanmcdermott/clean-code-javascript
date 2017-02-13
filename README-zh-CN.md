@@ -2301,11 +2301,13 @@ function combine(a, b) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Avoid positional markers
+### 避免占位符
 They usually just add noise. Let the functions and variable names along with the
 proper indentation and formatting give the visual structure to your code.
 
-**Bad:**
+它们仅仅添加了干扰。 让函数和变量名称与合适的缩进和格式化为你的代码提供视觉结构。
+
+**不好的：**
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
 // Scope Model Instantiation
@@ -2323,7 +2325,7 @@ const actions = function() {
 };
 ```
 
-**Good**:
+**好的：**
 ```javascript
 $scope.model = {
   menu: 'foo',
