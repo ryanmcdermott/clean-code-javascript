@@ -2254,10 +2254,12 @@ function hashIt(data) {
 ```
 **[⬆ 返回顶部](#代码整洁的-javascript)**
 
-### Don't leave commented out code in your codebase
+### 不要在代码库中保存注释掉的代码
 Version control exists for a reason. Leave old code in your history.
 
-**Bad:**
+因为有版本控制， 把旧的代码留在历史记录即可。
+
+**不好的：**
 ```javascript
 doStuff();
 // doOtherStuff();
@@ -2265,7 +2267,7 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good**:
+**好的：**
 ```javascript
 doStuff();
 ```
