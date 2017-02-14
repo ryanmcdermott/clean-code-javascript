@@ -2,8 +2,8 @@
 # clean-code-javascript
 
 ## Table of Contents
-  1. [Introduction](#introduction)
-  2. [Variables](#variables)
+  1. [소개](#소개)
+  2. [변수](#)
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
@@ -15,19 +15,16 @@
   11. [Comments](#comments)
   12. [Translation](#translation)
 
-## Introduction
+## 소개
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-readable, reusable, and refactorable software in JavaScript.
+로버트 C. 마틴의 책 [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) 소프트웨어 공학 이 자바스크립트에 맞춰졌습니다. 이 글은 스타일 지침이 아닙니다. 자바스크립트로 가독성, 재사용, 리팩토링이 가능한 소프트웨어를 만들기 위한 지침입니다.
 
 Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
 ones codified over many years of collective experience by the authors of
-*Clean Code*.
+*Clean Code*.이 글의 모든 이론을 엄격하게 따라야 한다는 것은 아니고, 소수의 내용만이 일반적으로 받아들여질 것입니다.
 
 Our craft of software engineering is just a bit over 50 years old, and we are
 still learning a lot. When software architecture is as old as architecture
