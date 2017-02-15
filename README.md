@@ -1591,7 +1591,7 @@ depend on abstractions.
 2. Abstractions should not depend upon details. Details should depend on
 abstractions.
 
-This can be hard to understand at first, but if you've worked with Angular.js,
+This can be hard to understand at first, but if you've worked with AngularJS,
 you've seen an implementation of this principle in the form of Dependency
 Injection (DI). While they are not identical concepts, DIP keeps high-level
 modules from knowing the details of its low-level modules and setting them up.
