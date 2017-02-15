@@ -1,6 +1,7 @@
 # 代码整洁的 JavaScript
 
 ## 目录
+
   1. [简介](#简介)
   2. [变量](#变量)
   3. [函数](#函数)
@@ -15,48 +16,27 @@
   12. [Translation](#translation)
 
 ## 简介
+
 ![一张用你阅读代码时吐槽的数量来评估软件质量的搞笑图片](http://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-readable, reusable, and refactorable software in JavaScript.
-
 将源自 Robert C. Martin 的 [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
-的软件工程原则适配到 JavaScript 。 这不是一个代码风格指南， 它是一个用 JavaScript 来生产可
-读的， 可重用的， 以及可重构的软件的指南。
-
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-*Clean Code*.
+的软件工程原则适配到 JavaScript 。 这不是一个代码风格指南， 它是一个使用 JavaScript 来生产
+可读的， 可重用的， 以及可重构的软件的指南。
 
 这里的每一项原则都不是必须遵守的， 甚至只有更少的能够被广泛认可。 这些仅仅是指南而已， 但是却是
 *Clean Code* 作者多年经验的结晶。
-
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
 
 我们的软件工程行业只有短短的 50 年， 依然有很多要我们去学习。 当软件架构与建筑架构一样古老时，
 也许我们将会有硬性的规则去遵守。 而现在， 让这些指南做为你和你的团队生产的 JavaScript 代码的
 质量的标准。
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
-
 还有一件事： 知道这些指南并不能马上让你成为一个更加出色的软件开发者， 并且使用它们工作多年也并
-不意味着你不会犯错误。 每一段代码最开始都是草稿， 像湿粘土一样被打造成最终的形态。 最后当我们
+不意味着你不再会犯错误。 每一段代码最开始都是草稿， 像湿粘土一样被打造成最终的形态。 最后当我们
 和搭档们一起审查代码时清除那些不完善之处。 不要因为最初需要改善的草稿代码而自责， 而是对那些代
 码下手。
 
 ## **变量**
+
 ### 使用有意义并且可读的变量名称
 
 **不好的：**
