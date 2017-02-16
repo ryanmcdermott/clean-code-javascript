@@ -1995,7 +1995,7 @@ class PerformanceReview {
   }
 }
 
-const review = new PerformanceReview(user);
+const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
