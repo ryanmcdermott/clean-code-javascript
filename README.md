@@ -1,3 +1,4 @@
+
 # clean-code-javascript
 
 ## Table of Contents
@@ -6,11 +7,13 @@
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
-  6. [Testing](#testing)
-  7. [Concurrency](#concurrency)
-  8. [Error Handling](#error-handling)
-  9. [Formatting](#formatting)
-  10. [Comments](#comments)
+  6. [SOLID](#solid)
+  7. [Testing](#testing)
+  8. [Concurrency](#concurrency)
+  9. [Error Handling](#error-handling)
+  10. [Formatting](#formatting)
+  11. [Comments](#comments)
+  12. [Translation](#translation)
 
 ## Introduction
 ![Humorous image of software quality estimation as a count of how many expletives
@@ -47,7 +50,7 @@ improvement. Beat up the code instead!
 const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
@@ -62,7 +65,7 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 getUser();
 ```
@@ -84,7 +87,7 @@ setTimeout(blastOff, 86400000);
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 // Declare them as capitalized `const` globals.
 const MILLISECONDS_IN_A_DAY = 86400000;
@@ -102,11 +105,11 @@ const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 saveCityZipCode(address.match(cityZipCodeRegex)[1], address.match(cityZipCodeRegex)[2]);
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
-const [, city, zipCode] = address.match(cityZipCodeRegex);
+const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -128,7 +131,7 @@ locations.forEach((l) => {
 });
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
@@ -159,7 +162,7 @@ function paintCar(car) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const Car = {
   make: 'Honda',
@@ -174,6 +177,10 @@ function paintCar(car) {
 **[⬆ back to top](#table-of-contents)**
 
 ### Use default arguments instead of short circuiting or conditionals
+Default arguments are often cleaner than short circuiting. Be aware that if you
+use them, your function will only provide default values for `undefined`
+arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
+`NaN`, will not be replaced by a default value.
 
 **Bad:**
 ```javascript
@@ -184,7 +191,7 @@ function createMicrobrewery(name) {
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
   // ...
@@ -200,15 +207,27 @@ makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
 each separate argument.
 
-Zero arguments is the ideal case. One or two arguments is ok, and three should
-be avoided. Anything more than that should be consolidated. Usually, if you have
+One or two arguments is the ideal case, and three should be avoided if possible.
+Anything more than that should be consolidated. Usually, if you have
 more than two arguments then your function is trying to do too much. In cases
 where it's not, most of the time a higher-level object will suffice as an
 argument.
 
-Since JavaScript allows us to make objects on the fly, without a lot of class
+Since JavaScript allows you to make objects on the fly, without a lot of class
 boilerplate, you can use an object if you are finding yourself needing a
 lot of arguments.
+
+To make it obvious what properties the function expects, you can use the ES2015/ES6
+destructuring syntax. This has a few advantages:
+
+1. When someone looks at the function signature, it's immediately clear what
+properties are being used.
+2. Destructuring also clones the specified primitive values of the argument
+object passed into the function. This can help prevent side effects. Note:
+objects and arrays that are destructured from the argument object are NOT
+cloned.
+3. Linters can warn you about unused properties, which would be impossible
+without destructuring.
 
 **Bad:**
 ```javascript
@@ -217,19 +236,18 @@ function createMenu(title, body, buttonText, cancellable) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
-const menuConfig = {
+function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+
+createMenu({
   title: 'Foo',
   body: 'Bar',
   buttonText: 'Baz',
   cancellable: true
-};
-
-function createMenu(config) {
-  // ...
-}
-
+});
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -253,7 +271,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function emailClients(clients) {
   clients
@@ -282,7 +300,7 @@ const date = new Date();
 addToDate(date, 1);
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function addMonthToDate(month, date) {
   // ...
@@ -324,7 +342,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function tokenize(code) {
   const REGEXES = [
@@ -416,9 +434,9 @@ function showManagerList(managers) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
-function showList(employees) {
+function showEmployeeList(employees) {
   employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
@@ -462,7 +480,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const menuConfig = {
   title: 'Order',
@@ -502,7 +520,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function createFile(name) {
   fs.create(name);
@@ -514,7 +532,7 @@ function createTempFile(name) {
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Side Effects
+### Avoid Side Effects (part 1)
 A function produces a side effect if it does anything other than take a value in
 and return another value or values. A side effect could be writing to a file,
 modifying some global variable, or accidentally wiring all your money to a
@@ -545,7 +563,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function splitIntoFirstAndLastName(name) {
   return name.split(' ');
@@ -557,6 +575,55 @@ const newName = splitIntoFirstAndLastName(name);
 console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
+**[⬆ back to top](#table-of-contents)**
+
+### Avoid Side Effects (part 2)
+In JavaScript, primitives are passed by value and objects/arrays are passed by
+reference. In the case of objects and arrays, if your function makes a change
+in a shopping cart array, for example, by adding an item to purchase,
+then any other function that uses that `cart` array will be affected by this
+addition. That may be great, however it can be bad too. Let's imagine a bad
+situation:
+
+The user clicks the "Purchase", button which calls a `purchase` function that
+spawns a network request and sends the `cart` array to the server. Because
+of a bad network connection, the `purchase` function has to keep retrying the
+request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
+button on an item they don't actually want before the network request begins?
+If that happens and the network request begins, then that purchase function
+will send the accidentally added item because it has a reference to a shopping
+cart array that the `addItemToCart` function modified by adding an unwanted
+item.
+
+A great solution would be for the `addItemToCart` to always clone the `cart`,
+edit it, and return the clone. This ensures that no other functions that are
+holding onto a reference of the shopping cart will be affected by any changes.
+
+Two caveats to mention to this approach:
+  1. There might be cases where you actually want to modify the input object,
+but when you adopt this programming practice you will find that those case
+are pretty rare. Most things can be refactored to have no side effects!
+
+  2. Cloning big objects can be very expensive in terms of performance. Luckily,
+this isn't a big issue in practice because there are
+[great libraries](https://facebook.github.io/immutable-js/) that allow
+this kind of programming approach to be fast and not as memory intensive as
+it would be for you to manually clone objects and arrays.
+
+**Bad:**
+```javascript
+const addItemToCart = (cart, item) => {
+  cart.push({ item, date: Date.now() });
+};
+```
+
+**Good:**
+```javascript
+const addItemToCart = (cart, item) => {
+  return [...cart, { item, date : Date.now() }];
+};
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 ### Don't write to global functions
@@ -619,7 +686,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const programmerOutput = [
   {
@@ -637,9 +704,11 @@ const programmerOutput = [
   }
 ];
 
+const INITIAL_VALUE = 0;
+
 const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
-  .reduce((acc, linesOfCode) => acc + linesOfCode, 0);
+  .reduce((acc, linesOfCode) => acc + linesOfCode, INITIAL_VALUE);
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -652,7 +721,7 @@ if (fsm.state === 'fetching' && isEmpty(listNode)) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
@@ -677,7 +746,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function isDOMNodePresent(node) {
   // ...
@@ -716,7 +785,7 @@ class Airplane {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class Airplane {
   // ...
@@ -755,14 +824,14 @@ The first thing to consider is consistent APIs.
 ```javascript
 function travelToTexas(vehicle) {
   if (vehicle instanceof Bicycle) {
-    vehicle.peddle(this.currentLocation, new Location('texas'));
+    vehicle.pedal(this.currentLocation, new Location('texas'));
   } else if (vehicle instanceof Car) {
     vehicle.drive(this.currentLocation, new Location('texas'));
   }
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function travelToTexas(vehicle) {
   vehicle.move(this.currentLocation, new Location('texas'));
@@ -793,7 +862,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function combine(val1, val2) {
   return val1 + val2;
@@ -818,7 +887,7 @@ for (let i = 0, len = list.length; i < len; i++) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 for (let i = 0; i < list.length; i++) {
   // ...
@@ -846,7 +915,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function newRequestModule(url) {
   // ...
@@ -859,9 +928,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ## **Objects and Data Structures**
 ### Use getters and setters
-JavaScript doesn't have interfaces or types so it is very hard to enforce this
-pattern, because we don't have keywords like `public` and `private`. As it is,
-using getters and setters to access data on objects is far better than simply
+Using getters and setters to access data on objects could be better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
 unorganized list of reasons why:
 
@@ -870,56 +937,51 @@ to look up and change every accessor in your codebase.
 * Makes adding validation simple when doing a `set`.
 * Encapsulates the internal representation.
 * Easy to add logging and error handling when getting and setting.
-* Inheriting this class, you can override default functionality.
 * You can lazy load your object's properties, let's say getting it from a
 server.
 
 
 **Bad:**
 ```javascript
-class BankAccount {
-  constructor() {
-    this.balance = 1000;
-  }
+function makeBankAccount() {
+  // ...
+
+  return {
+    balance: 0,
+    // ...
+  };
 }
 
-const bankAccount = new BankAccount();
-
-// Buy shoes...
-bankAccount.balance -= 100;
+const account = makeBankAccount();
+account.balance = 100;
 ```
 
-**Good**:
+**Good:**
 ```javascript
-class BankAccount {
-  constructor(balance = 1000) {
-    this._balance = balance;
+function makeBankAccount() {
+  // this one is private
+  let balance = 0;
+
+  // a "getter", made public via the returned object below
+  function getBalance() {
+    return balance;
   }
 
-  // It doesn't have to be prefixed with `get` or `set` to be a getter/setter
-  set balance(amount) {
-    if (verifyIfAmountCanBeSetted(amount)) {
-      this._balance = amount;
-    }
+  // a "setter", made public via the returned object below
+  function setBalance(amount) {
+    // ... validate before updating the balance
+    balance = amount;
   }
 
-  get balance() {
-    return this._balance;
-  }
-
-  verifyIfAmountCanBeSetted(val) {
+  return {
     // ...
-  }
+    getBalance,
+    setBalance,
+  };
 }
 
-const bankAccount = new BankAccount();
-
-// Buy shoes...
-bankAccount.balance -= shoesPrice;
-
-// Get balance
-let balance = bankAccount.balance;
-
+const account = makeBankAccount();
+account.setBalance(100);
 ```
 **[⬆ back to top](#table-of-contents)**
 
@@ -944,15 +1006,17 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good**:
+**Good:**
 ```javascript
-const Employee = function (name) {
-  this.getName = function getName() {
-    return name;
+function makeEmployee(name) {
+  return {
+    getName() {
+      return name;
+    },
   };
-};
+}
 
-const employee = new Employee('John Doe');
+const employee = makeEmployee('John Doe');
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
@@ -961,460 +1025,10 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 
 ## **Classes**
-### Single Responsibility Principle (SRP)
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify a piece of it,
-it can be difficult to understand how that will affect other dependent modules in
-your codebase.
-
-**Bad:**
-```javascript
-class UserSettings {
-  constructor(user) {
-    this.user = user;
-  }
-
-  changeSettings(settings) {
-    if (this.verifyCredentials()) {
-      // ...
-    }
-  }
-
-  verifyCredentials() {
-    // ...
-  }
-}
-```
-
-**Good**:
-```javascript
-class UserAuth {
-  constructor(user) {
-    this.user = user;
-  }
-
-  verifyCredentials() {
-    // ...
-  }
-}
-
-
-class UserSettings {
-  constructor(user) {
-    this.user = user;
-    this.auth = new UserAuth(user);
-  }
-
-  changeSettings(settings) {
-    if (this.auth.verifyCredentials()) {
-      // ...
-    }
-  }
-}
-```
-**[⬆ back to top](#table-of-contents)**
-
-### Open/Closed Principle (OCP)
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
-
-**Bad:**
-```javascript
-class AjaxAdapter extends Adapter {
-  constructor() {
-    super();
-    this.name = 'ajaxAdapter';
-  }
-}
-
-class NodeAdapter extends Adapter {
-  constructor() {
-    super();
-    this.name = 'nodeAdapter';
-  }
-}
-
-class HttpRequester {
-  constructor(adapter) {
-    this.adapter = adapter;
-  }
-
-  fetch(url) {
-    if (this.adapter.name === 'ajaxAdapter') {
-      return makeAjaxCall(url).then((response) => {
-        // transform response and return
-      });
-    } else if (this.adapter.name === 'httpNodeAdapter') {
-      return makeHttpCall(url).then((response) => {
-        // transform response and return
-      });
-    }
-  }
-}
-
-function makeAjaxCall(url) {
-  // request and return promise
-}
-
-function makeHttpCall(url) {
-  // request and return promise
-}
-```
-
-**Good**:
-```javascript
-class AjaxAdapter extends Adapter {
-  constructor() {
-    super();
-    this.name = 'ajaxAdapter';
-  }
-
-  request(url) {
-    // request and return promise
-  }
-}
-
-class NodeAdapter extends Adapter {
-  constructor() {
-    super();
-    this.name = 'nodeAdapter';
-  }
-
-  request(url) {
-    // request and return promise
-  }
-}
-
-class HttpRequester {
-  constructor(adapter) {
-    this.adapter = adapter;
-  }
-
-  fetch(url) {
-    return this.adapter.request(url).then((response) => {
-      // transform response and return
-    });
-  }
-}
-```
-**[⬆ back to top](#table-of-contents)**
-
-
-### Liskov Substitution Principle (LSP)
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
-
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
-
-**Bad:**
-```javascript
-class Rectangle {
-  constructor() {
-    this.width = 0;
-    this.height = 0;
-  }
-
-  setColor(color) {
-    // ...
-  }
-
-  render(area) {
-    // ...
-  }
-
-  setWidth(width) {
-    this.width = width;
-  }
-
-  setHeight(height) {
-    this.height = height;
-  }
-
-  getArea() {
-    return this.width * this.height;
-  }
-}
-
-class Square extends Rectangle {
-  setWidth(width) {
-    this.width = width;
-    this.height = width;
-  }
-
-  setHeight(height) {
-    this.width = height;
-    this.height = height;
-  }
-}
-
-function renderLargeRectangles(rectangles) {
-  rectangles.forEach((rectangle) => {
-    rectangle.setWidth(4);
-    rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
-    rectangle.render(area);
-  });
-}
-
-const rectangles = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeRectangles(rectangles);
-```
-
-**Good**:
-```javascript
-class Shape {
-  setColor(color) {
-    // ...
-  }
-
-  render(area) {
-    // ...
-  }
-}
-
-class Rectangle extends Shape {
-  constructor() {
-    super();
-    this.width = 0;
-    this.height = 0;
-  }
-
-  setWidth(width) {
-    this.width = width;
-  }
-
-  setHeight(height) {
-    this.height = height;
-  }
-
-  getArea() {
-    return this.width * this.height;
-  }
-}
-
-class Square extends Shape {
-  constructor() {
-    super();
-    this.length = 0;
-  }
-
-  setLength(length) {
-    this.length = length;
-  }
-
-  getArea() {
-    return this.length * this.length;
-  }
-}
-
-function renderLargeShapes(shapes) {
-  shapes.forEach((shape) => {
-    switch (shape.constructor.name) {
-      case 'Square':
-        shape.setLength(5);
-        break;
-      case 'Rectangle':
-        shape.setWidth(4);
-        shape.setHeight(5);
-    }
-
-    const area = shape.getArea();
-    shape.render(area);
-  });
-}
-
-const shapes = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeShapes(shapes);
-```
-**[⬆ back to top](#table-of-contents)**
-
-### Interface Segregation Principle (ISP)
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
-
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
-
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a "fat interface".
-
-**Bad:**
-```javascript
-class DOMTraverser {
-  constructor(settings) {
-    this.settings = settings;
-    this.setup();
-  }
-
-  setup() {
-    this.rootNode = this.settings.rootNode;
-    this.animationModule.setup();
-  }
-
-  traverse() {
-    // ...
-  }
-}
-
-const $ = new DOMTraverser({
-  rootNode: document.getElementsByTagName('body'),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
-  // ...
-});
-
-```
-
-**Good**:
-```javascript
-class DOMTraverser {
-  constructor(settings) {
-    this.settings = settings;
-    this.options = settings.options;
-    this.setup();
-  }
-
-  setup() {
-    this.rootNode = this.settings.rootNode;
-    this.setupOptions();
-  }
-
-  setupOptions() {
-    if (this.options.animationModule) {
-      // ...
-    }
-  }
-
-  traverse() {
-    // ...
-  }
-}
-
-const $ = new DOMTraverser({
-  rootNode: document.getElementsByTagName('body'),
-  options: {
-    animationModule() {}
-  }
-});
-```
-**[⬆ back to top](#table-of-contents)**
-
-### Dependency Inversion Principle (DIP)
-This principle states two essential things:
-1. High-level modules should not depend on low-level modules. Both should
-depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-abstractions.
-
-This can be hard to understand at first, but if you've worked with Angular.js,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
-
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
-
-**Bad:**
-```javascript
-class InventoryRequester {
-  constructor() {
-    this.REQ_METHODS = ['HTTP'];
-  }
-
-  requestItem(item) {
-    // ...
-  }
-}
-
-class InventoryTracker {
-  constructor(items) {
-    this.items = items;
-
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
-    this.requester = new InventoryRequester();
-  }
-
-  requestItems() {
-    this.items.forEach((item) => {
-      this.requester.requestItem(item);
-    });
-  }
-}
-
-const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
-inventoryTracker.requestItems();
-```
-
-**Good**:
-```javascript
-class InventoryTracker {
-  constructor(items, requester) {
-    this.items = items;
-    this.requester = requester;
-  }
-
-  requestItems() {
-    this.items.forEach((item) => {
-      this.requester.requestItem(item);
-    });
-  }
-}
-
-class InventoryRequesterV1 {
-  constructor() {
-    this.REQ_METHODS = ['HTTP'];
-  }
-
-  requestItem(item) {
-    // ...
-  }
-}
-
-class InventoryRequesterV2 {
-  constructor() {
-    this.REQ_METHODS = ['WS'];
-  }
-
-  requestItem(item) {
-    // ...
-  }
-}
-
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
-const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
-inventoryTracker.requestItems();
-```
-**[⬆ back to top](#table-of-contents)**
-
 ### Prefer ES2015/ES6 classes over ES5 plain functions
 It's very difficult to get readable class inheritance, construction, and method
 definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer classes. However, prefer small functions over
+that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
 classes until you find yourself needing larger and more complex objects.
 
 **Bad:**
@@ -1527,7 +1141,7 @@ car.setModel('F-150');
 car.save();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class Car {
   constructor() {
@@ -1582,7 +1196,7 @@ depends on your problem at hand, but this is a decent list of when inheritance
 makes more sense than composition:
 
 1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Animal->Human vs. User->UserDetails).
+relationship (Human->Animal vs. User->UserDetails).
 2. You can reuse code from the base classes (Humans can move like all animals).
 3. You want to make global changes to derived classes by changing a base class.
 (Change the caloric expenditure of all animals when they move).
@@ -1610,7 +1224,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class EmployeeTaxData {
   constructor(ssn, salary) {
@@ -1635,6 +1249,436 @@ class Employee {
 ```
 **[⬆ back to top](#table-of-contents)**
 
+## **SOLID**
+### Single Responsibility Principle (SRP)
+As stated in Clean Code, "There should never be more than one reason for a class
+to change". It's tempting to jam-pack a class with a lot of functionality, like
+when you can only take one suitcase on your flight. The issue with this is
+that your class won't be conceptually cohesive and it will give it many reasons
+to change. Minimizing the amount of times you need to change a class is important.
+It's important because if too much functionality is in one class and you modify
+a piece of it, it can be difficult to understand how that will affect other
+dependent modules in your codebase.
+
+**Bad:**
+```javascript
+class UserSettings {
+  constructor(user) {
+    this.user = user;
+  }
+
+  changeSettings(settings) {
+    if (this.verifyCredentials()) {
+      // ...
+    }
+  }
+
+  verifyCredentials() {
+    // ...
+  }
+}
+```
+
+**Good:**
+```javascript
+class UserAuth {
+  constructor(user) {
+    this.user = user;
+  }
+
+  verifyCredentials() {
+    // ...
+  }
+}
+
+
+class UserSettings {
+  constructor(user) {
+    this.user = user;
+    this.auth = new UserAuth(user);
+  }
+
+  changeSettings(settings) {
+    if (this.auth.verifyCredentials()) {
+      // ...
+    }
+  }
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
+### Open/Closed Principle (OCP)
+As stated by Bertrand Meyer, "software entities (classes, modules, functions,
+etc.) should be open for extension, but closed for modification." What does that
+mean though? This principle basically states that you should allow users to
+add new functionalities without changing existing code.
+
+**Bad:**
+```javascript
+class AjaxAdapter extends Adapter {
+  constructor() {
+    super();
+    this.name = 'ajaxAdapter';
+  }
+}
+
+class NodeAdapter extends Adapter {
+  constructor() {
+    super();
+    this.name = 'nodeAdapter';
+  }
+}
+
+class HttpRequester {
+  constructor(adapter) {
+    this.adapter = adapter;
+  }
+
+  fetch(url) {
+    if (this.adapter.name === 'ajaxAdapter') {
+      return makeAjaxCall(url).then((response) => {
+        // transform response and return
+      });
+    } else if (this.adapter.name === 'httpNodeAdapter') {
+      return makeHttpCall(url).then((response) => {
+        // transform response and return
+      });
+    }
+  }
+}
+
+function makeAjaxCall(url) {
+  // request and return promise
+}
+
+function makeHttpCall(url) {
+  // request and return promise
+}
+```
+
+**Good:**
+```javascript
+class AjaxAdapter extends Adapter {
+  constructor() {
+    super();
+    this.name = 'ajaxAdapter';
+  }
+
+  request(url) {
+    // request and return promise
+  }
+}
+
+class NodeAdapter extends Adapter {
+  constructor() {
+    super();
+    this.name = 'nodeAdapter';
+  }
+
+  request(url) {
+    // request and return promise
+  }
+}
+
+class HttpRequester {
+  constructor(adapter) {
+    this.adapter = adapter;
+  }
+
+  fetch(url) {
+    return this.adapter.request(url).then((response) => {
+      // transform response and return
+    });
+  }
+}
+```
+**[⬆ back to top](#table-of-contents)**
+
+### Liskov Substitution Principle (LSP)
+This is a scary term for a very simple concept. It's formally defined as "If S
+is a subtype of T, then objects of type T may be replaced with objects of type S
+(i.e., objects of type S may substitute objects of type T) without altering any
+of the desirable properties of that program (correctness, task performed,
+etc.)." That's an even scarier definition.
+
+The best explanation for this is if you have a parent class and a child class,
+then the base class and child class can be used interchangeably without getting
+incorrect results. This might still be confusing, so let's take a look at the
+classic Square-Rectangle example. Mathematically, a square is a rectangle, but
+if you model it using the "is-a" relationship via inheritance, you quickly
+get into trouble.
+
+**Bad:**
+```javascript
+class Rectangle {
+  constructor() {
+    this.width = 0;
+    this.height = 0;
+  }
+
+  setColor(color) {
+    // ...
+  }
+
+  render(area) {
+    // ...
+  }
+
+  setWidth(width) {
+    this.width = width;
+  }
+
+  setHeight(height) {
+    this.height = height;
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  setWidth(width) {
+    this.width = width;
+    this.height = width;
+  }
+
+  setHeight(height) {
+    this.width = height;
+    this.height = height;
+  }
+}
+
+function renderLargeRectangles(rectangles) {
+  rectangles.forEach((rectangle) => {
+    rectangle.setWidth(4);
+    rectangle.setHeight(5);
+    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    rectangle.render(area);
+  });
+}
+
+const rectangles = [new Rectangle(), new Rectangle(), new Square()];
+renderLargeRectangles(rectangles);
+```
+
+**Good:**
+```javascript
+class Shape {
+  setColor(color) {
+    // ...
+  }
+
+  render(area) {
+    // ...
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(width, height) {
+    super();
+    this.width = width;
+    this.height = height;
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Shape {
+  constructor(length) {
+    super();
+    this.length = length;
+  }
+
+  getArea() {
+    return this.length * this.length;
+  }
+}
+
+function renderLargeShapes(shapes) {
+  shapes.forEach((shape) => {
+    const area = shape.getArea();
+    shape.render(area);
+  });
+}
+
+const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
+renderLargeShapes(shapes);
+```
+**[⬆ back to top](#table-of-contents)**
+
+### Interface Segregation Principle (ISP)
+JavaScript doesn't have interfaces so this principle doesn't apply as strictly
+as others. However, it's important and relevant even with JavaScript's lack of
+type system.
+
+ISP states that "Clients should not be forced to depend upon interfaces that
+they do not use." Interfaces are implicit contracts in JavaScript because of
+duck typing.
+
+A good example to look at that demonstrates this principle in JavaScript is for
+classes that require large settings objects. Not requiring clients to setup
+huge amounts of options is beneficial, because most of the time they won't need
+all of the settings. Making them optional helps prevent having a
+"fat interface".
+
+**Bad:**
+```javascript
+class DOMTraverser {
+  constructor(settings) {
+    this.settings = settings;
+    this.setup();
+  }
+
+  setup() {
+    this.rootNode = this.settings.rootNode;
+    this.animationModule.setup();
+  }
+
+  traverse() {
+    // ...
+  }
+}
+
+const $ = new DOMTraverser({
+  rootNode: document.getElementsByTagName('body'),
+  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  // ...
+});
+
+```
+
+**Good:**
+```javascript
+class DOMTraverser {
+  constructor(settings) {
+    this.settings = settings;
+    this.options = settings.options;
+    this.setup();
+  }
+
+  setup() {
+    this.rootNode = this.settings.rootNode;
+    this.setupOptions();
+  }
+
+  setupOptions() {
+    if (this.options.animationModule) {
+      // ...
+    }
+  }
+
+  traverse() {
+    // ...
+  }
+}
+
+const $ = new DOMTraverser({
+  rootNode: document.getElementsByTagName('body'),
+  options: {
+    animationModule() {}
+  }
+});
+```
+**[⬆ back to top](#table-of-contents)**
+
+### Dependency Inversion Principle (DIP)
+This principle states two essential things:
+1. High-level modules should not depend on low-level modules. Both should
+depend on abstractions.
+2. Abstractions should not depend upon details. Details should depend on
+abstractions.
+
+This can be hard to understand at first, but if you've worked with AngularJS,
+you've seen an implementation of this principle in the form of Dependency
+Injection (DI). While they are not identical concepts, DIP keeps high-level
+modules from knowing the details of its low-level modules and setting them up.
+It can accomplish this through DI. A huge benefit of this is that it reduces
+the coupling between modules. Coupling is a very bad development pattern because
+it makes your code hard to refactor.
+
+As stated previously, JavaScript doesn't have interfaces so the abstractions
+that are depended upon are implicit contracts. That is to say, the methods
+and properties that an object/class exposes to another object/class. In the
+example below, the implicit contract is that any Request module for an
+`InventoryTracker` will have a `requestItems` method.
+
+**Bad:**
+```javascript
+class InventoryRequester {
+  constructor() {
+    this.REQ_METHODS = ['HTTP'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
+class InventoryTracker {
+  constructor(items) {
+    this.items = items;
+
+    // BAD: We have created a dependency on a specific request implementation.
+    // We should just have requestItems depend on a request method: `request`
+    this.requester = new InventoryRequester();
+  }
+
+  requestItems() {
+    this.items.forEach((item) => {
+      this.requester.requestItem(item);
+    });
+  }
+}
+
+const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
+inventoryTracker.requestItems();
+```
+
+**Good:**
+```javascript
+class InventoryTracker {
+  constructor(items, requester) {
+    this.items = items;
+    this.requester = requester;
+  }
+
+  requestItems() {
+    this.items.forEach((item) => {
+      this.requester.requestItem(item);
+    });
+  }
+}
+
+class InventoryRequesterV1 {
+  constructor() {
+    this.REQ_METHODS = ['HTTP'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
+class InventoryRequesterV2 {
+  constructor() {
+    this.REQ_METHODS = ['WS'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
+// By constructing our dependencies externally and injecting them, we can easily
+// substitute our request module for a fancy new one that uses WebSockets.
+const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
+inventoryTracker.requestItems();
+```
+**[⬆ back to top](#table-of-contents)**
+
 ## **Testing**
 Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
@@ -1656,7 +1700,7 @@ or refactoring an existing one.
 
 **Bad:**
 ```javascript
-const assert = require('assert');
+import assert from 'assert';
 
 describe('MakeMomentJSGreatAgain', () => {
   it('handles date boundaries', () => {
@@ -1664,7 +1708,7 @@ describe('MakeMomentJSGreatAgain', () => {
 
     date = new MakeMomentJSGreatAgain('1/1/2015');
     date.addDays(30);
-    date.shouldEqual('1/31/2015');
+    assert.equal('1/31/2015', date);
 
     date = new MakeMomentJSGreatAgain('2/1/2016');
     date.addDays(28);
@@ -1677,15 +1721,15 @@ describe('MakeMomentJSGreatAgain', () => {
 });
 ```
 
-**Good**:
+**Good:**
 ```javascript
-const assert = require('assert');
+import assert from 'assert';
 
 describe('MakeMomentJSGreatAgain', () => {
   it('handles 30-day months', () => {
     const date = new MakeMomentJSGreatAgain('1/1/2015');
     date.addDays(30);
-    date.shouldEqual('1/31/2015');
+    assert.equal('1/31/2015', date);
   });
 
   it('handles leap year', () => {
@@ -1710,11 +1754,14 @@ Promises are a built-in global type. Use them!
 
 **Bad:**
 ```javascript
-require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
+import { get } from 'request';
+import { writeFile } from 'fs';
+
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) => {
   if (requestErr) {
     console.error(requestErr);
   } else {
-    require('fs').writeFile('article.html', response.body, (writeErr) => {
+    writeFile('article.html', response.body, (writeErr) => {
       if (writeErr) {
         console.error(writeErr);
       } else {
@@ -1726,11 +1773,14 @@ require('request').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (req
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
-require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+import { get } from 'request';
+import { writeFile } from 'fs';
+
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
-    return require('fs-promise').writeFile('article.html', response);
+    return writeFile('article.html', response);
   })
   .then(() => {
     console.log('File written');
@@ -1751,9 +1801,12 @@ today!
 
 **Bad:**
 ```javascript
-require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
+import { get } from 'request-promise';
+import { writeFile } from 'fs-promise';
+
+get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
-    return require('fs-promise').writeFile('article.html', response);
+    return writeFile('article.html', response);
   })
   .then(() => {
     console.log('File written');
@@ -1764,12 +1817,15 @@ require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Marti
 
 ```
 
-**Good**:
+**Good:**
 ```javascript
+import { get } from 'request-promise';
+import { writeFile } from 'fs-promise';
+
 async function getCleanCodeArticle() {
   try {
-    const response = await require('request-promise').get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
-    await require('fs-promise').writeFile('article.html', response);
+    const response = await get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin');
+    await writeFile('article.html', response);
     console.log('File written');
   } catch(err) {
     console.error(err);
@@ -1824,29 +1880,29 @@ from `try/catch`.
 **Bad:**
 ```javascript
 getdata()
-.then((data) => {
-  functionThatMightThrow(data);
-})
-.catch((error) => {
-  console.log(error);
-});
+  .then((data) => {
+    functionThatMightThrow(data);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 ```
 
 **Good:**
 ```javascript
 getdata()
-.then((data) => {
-  functionThatMightThrow(data);
-})
-.catch((error) => {
-  // One option (more noisy than console.log):
-  console.error(error);
-  // Another option:
-  notifyUserOfError(error);
-  // Another option:
-  reportErrorToService(error);
-  // OR do all three!
-});
+  .then((data) => {
+    functionThatMightThrow(data);
+  })
+  .catch((error) => {
+    // One option (more noisy than console.log):
+    console.error(error);
+    // Another option:
+    notifyUserOfError(error);
+    // Another option:
+    reportErrorToService(error);
+    // OR do all three!
+  });
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -1882,7 +1938,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good**:
+**Good:**
 ```javascript
 const DAYS_IN_WEEK = 7;
 const DAYS_IN_MONTH = 30;
@@ -1939,11 +1995,11 @@ class PerformanceReview {
   }
 }
 
-const review = new PerformanceReview(user);
+const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 class PerformanceReview {
   constructor(employee) {
@@ -2009,7 +2065,7 @@ function hashIt(data) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 
 function hashIt(data) {
@@ -2039,7 +2095,7 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good**:
+**Good:**
 ```javascript
 doStuff();
 ```
@@ -2062,7 +2118,7 @@ function combine(a, b) {
 }
 ```
 
-**Good**:
+**Good:**
 ```javascript
 function combine(a, b) {
   return a + b;
@@ -2092,7 +2148,7 @@ const actions = function() {
 };
 ```
 
-**Good**:
+**Good:**
 ```javascript
 $scope.model = {
   menu: 'foo',
@@ -2103,4 +2159,22 @@ const actions = function() {
   // ...
 };
 ```
+**[⬆ back to top](#table-of-contents)**
+
+## Translation
+
+This is also available in other languages:
+
+  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
+  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **Spanish**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**:
+    - [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
+    - [beginor/clean-code-javascript](https://github.com/beginor/clean-code-javascript)
+  - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
+  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
+  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**:
+    - [BoryaMogila/clean-code-javascript-ru/](https://github.com/BoryaMogila/clean-code-javascript-ru/)
+    - [maksugr/clean-code-javascript](https://github.com/maksugr/clean-code-javascript)
+  - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
+
 **[⬆ back to top](#table-of-contents)**
