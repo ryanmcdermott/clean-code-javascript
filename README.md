@@ -1688,8 +1688,7 @@ you achieve very high confidence and developer peace of mind. This means that
 in addition to having a great testing framework, you also need to use a
 [good coverage tool](http://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There's [plenty of good JS test frameworks]
-(http://jstherightway.org/#testing-tools), so find one that your team prefers.
+There's no excuse to not write tests. There's [plenty of good JS test frameworks](http://jstherightway.org/#testing-tools), so find one that your team prefers.
 When you find one that works for your team, then aim to always write tests
 for every new feature/module you introduce. If your preferred method is
 Test Driven Development (TDD), that is great, but the main point is to just
