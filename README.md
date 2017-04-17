@@ -22,7 +22,7 @@ you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
 Software engineering principles, from Robert C. Martin's book
 [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
 adapted for JavaScript. This is not a style guide. It's a guide to producing
-readable, reusable, and refactorable software in JavaScript.
+[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
 
 Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
