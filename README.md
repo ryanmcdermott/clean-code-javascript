@@ -273,13 +273,13 @@ function emailClients(clients) {
 
 **Good:**
 ```javascript
-function emailClients(clients) {
+function emailActiveClients(clients) {
   clients
-    .filter(isClientActive)
+    .filter(isActive)
     .forEach(email);
 }
 
-function isClientActive(client) {
+function isActive(client) {
   const clientRecord = database.lookup(client);
   return clientRecord.isActive();
 }
