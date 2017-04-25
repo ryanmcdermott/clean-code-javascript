@@ -995,7 +995,7 @@ const Employee = function(name) {
   this.name = name;
 };
 
-Employee.prototype.getName = function getName() {
+Employee.prototype.getName = function () {
   return this.name;
 };
 
