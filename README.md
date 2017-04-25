@@ -1,4 +1,3 @@
-
 # clean-code-javascript
 
 ## Table of Contents
@@ -474,7 +473,7 @@ function createMenu(config) {
   config.title = config.title || 'Foo';
   config.body = config.body || 'Bar';
   config.buttonText = config.buttonText || 'Baz';
-  config.cancellable = config.cancellable === undefined ? config.cancellable : true;
+  config.cancellable = config.cancellable !== undefined ? config.cancellable : true;
 }
 
 createMenu(menuConfig);
