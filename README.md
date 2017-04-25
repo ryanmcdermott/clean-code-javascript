@@ -279,7 +279,7 @@ function emailActiveClients(clients) {
     .forEach(email);
 }
 
-function isActive(client) {
+function isActiveClient(client) {
   const clientRecord = database.lookup(client);
   return clientRecord.isActive();
 }
