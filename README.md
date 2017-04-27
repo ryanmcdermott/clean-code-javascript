@@ -156,7 +156,7 @@ const Car = {
   carColor: 'Blue'
 };
 
-function paintCar(car) {
+function paintCarRed(car) {
   car.carColor = 'Red';
 }
 ```
@@ -169,7 +169,7 @@ const Car = {
   color: 'Blue'
 };
 
-function paintCar(car) {
+function paintCarRed(car) {
   car.color = 'Red';
 }
 ```
