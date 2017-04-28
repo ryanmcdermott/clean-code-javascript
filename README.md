@@ -275,7 +275,7 @@ function emailClients(clients) {
 ```javascript
 function emailActiveClients(clients) {
   clients
-    .filter(isActive)
+    .filter(isActiveClient)
     .forEach(email);
 }
 
