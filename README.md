@@ -1773,8 +1773,8 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', (requestErr, response) 
 
 **Good:**
 ```javascript
-import { get } from 'request';
-import { writeFile } from 'fs';
+import { get } from 'request-promise';
+import { writeFile } from 'fs-promise';
 
 get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
   .then((response) => {
