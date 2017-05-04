@@ -600,7 +600,7 @@ holding onto a reference of the shopping cart will be affected by any changes.
 
 Two caveats to mention to this approach:
   1. There might be cases where you actually want to modify the input object,
-but when you adopt this programming practice you will find that those case
+but when you adopt this programming practice you will find that those cases
 are pretty rare. Most things can be refactored to have no side effects!
 
   2. Cloning big objects can be very expensive in terms of performance. Luckily,
