@@ -439,12 +439,9 @@ function showEmployeeList(employees) {
   employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
-
-    let portfolio = employee.getGithubLink();
-
-    if (employee.type === 'manager') {
-      portfolio = employee.getMBAProjects();
-    }
+    const portfolio = (employee.type === 'manager')
+      ? employee.getMBAProjects()
+      : employee.getGithubLink();
 
     const data = {
       expectedSalary,
