@@ -119,7 +119,7 @@ Explicit is better than implicit.
 **Bad:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
-locations.forEach((l) => {
+locations.forEach(l => {
   doStuff();
   doSomeOtherStuff();
   // ...
@@ -133,7 +133,7 @@ locations.forEach((l) => {
 **Good:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
-locations.forEach((location) => {
+locations.forEach(location => {
   doStuff();
   doSomeOtherStuff();
   // ...
