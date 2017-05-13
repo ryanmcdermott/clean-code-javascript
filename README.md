@@ -193,6 +193,7 @@ function createMicrobrewery(name) {
 **Good:**
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
+  // Be aware that `null` and `false` aren't catched by default parameters.
   // ...
 }
 
