@@ -1,7 +1,7 @@
 # clean-code-javascript (Bahasa Indonesia)
 
 ## Daftar Isi
-  1. [Kata Pengantar](#Kata Pengantar)
+  1. [Kata Pengantar](#Kata-Pengantar)
   2. [Variabel](#variabel)
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
@@ -45,81 +45,82 @@ dengan teman dalam tim kita. Apabila draft pertamamu butuh perbaikan, jangan
 pukul dirimu sendiri. Pukul Kodenya !
 
 ## **Variabel**
-### Use meaningful and pronounceable variable names
+### Gunakan nama-nama variabel yg bermakna dan mudah diucapkan
 
-**Bad:**
+**Buruk:**
 ```javascript
 const yyyymmdstr = moment().format('YYYY/MM/DD');
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 const currentDate = moment().format('YYYY/MM/DD');
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Use the same vocabulary for the same type of variable
+### Gunakan kosakata yang sama untuk jenis variabel yang sama
 
-**Bad:**
+**Buruk:**
 ```javascript
 getUserInfo();
 getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 getUser();
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Use searchable names
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By *not* naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
+### Gunakan nama yg mudah dicari kembali
+Kita akan lebih banyak membaca kode daripada menulisnya. Maka penting hukumnya
+utuk kode yang kita tulis untuk mudah dibaca dan mudah dicari. Dengan *tidak*
+memberi nama variabel yang bermakna untuk memahami program kita, kita menyakiti
+pembaca kode kita. Buat nama variabel lebih mudah dicari. Alat seperti
+
+[buddy.js](https://github.com/danielstjules/buddy.js) dan
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+dapat membantu mengidentifikasi konstanta yg tidak diberi nama.
 
-**Bad:**
+**Buruk:**
 ```javascript
-// What the heck is 86400000 for?
+// Nah kan, 86400000 itu untuk apa?
 setTimeout(blastOff, 86400000);
 
 ```
 
-**Good:**
+**Baik:**
 ```javascript
-// Declare them as capitalized `const` globals.
+// tulis `const` dalam huruf kapital dan secara global
 const MILLISECONDS_IN_A_DAY = 86400000;
 
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Use explanatory variables
-**Bad:**
+### Gunakan variabel penjelas
+**Buruk:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 saveCityZipCode(address.match(cityZipCodeRegex)[1], address.match(cityZipCodeRegex)[2]);
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 const address = 'One Infinite Loop, Cupertino 95014';
 const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Avoid Mental Mapping
-Explicit is better than implicit.
+### Hindari Mental Mapping
+Explisit lebih baik daripada implisit.
 
-**Bad:**
+**Buruk:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
@@ -128,12 +129,12 @@ locations.forEach((l) => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Sebentar, `l` itu untuk apa lagi?
   dispatch(l);
 });
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
@@ -145,13 +146,13 @@ locations.forEach((location) => {
   dispatch(location);
 });
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Don't add unneeded context
-If your class/object name tells you something, don't repeat that in your
-variable name.
+### Jangan menambahkan konteks yang tidak dibutuhkan
+Jika nama class/object kamu memiliki arti tertentu, jangan mengulanginya di dalam
+nama variabel.
 
-**Bad:**
+**Buruk:**
 ```javascript
 const Car = {
   carMake: 'Honda',
@@ -164,7 +165,7 @@ function paintCar(car) {
 }
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 const Car = {
   make: 'Honda',
@@ -176,15 +177,20 @@ function paintCar(car) {
   car.color = 'Red';
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Gunakan argumen default daripada `short circuiting` dan `kondisional`
 Default arguments are often cleaner than short circuiting. Be aware that if you
 use them, your function will only provide default values for `undefined`
 arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
 `NaN`, will not be replaced by a default value.
 
-**Bad:**
+Argumen default lebih bersih daripada `shoor circuiting`. Sadarilah jika kamu
+menggunakannya, fungsimu hanya akan memberikan nilai default untuk argumen `undefined`.
+Selain nilai "falsy" seperti `''`, `""`, `false`, `null`, `0`, dan `NaN`, tidak
+digantikan oleh nilai default.
+
+**Buruk:**
 ```javascript
 function createMicrobrewery(name) {
   const breweryName = name || 'Hipster Brew Co.';
@@ -193,14 +199,14 @@ function createMicrobrewery(name) {
 
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
   // ...
 }
 
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
 ## **Functions**
 ### Function arguments (2 or fewer ideally)
