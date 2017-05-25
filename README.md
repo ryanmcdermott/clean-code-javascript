@@ -1,8 +1,8 @@
-# clean-code-javascript
+# clean-code-javascript (Bahasa Indonesia)
 
-## Table of Contents
-  1. [Introduction](#introduction)
-  2. [Variables](#variables)
+## Daftar Isi
+  1. [Kata Pengantar](#Kata Pengantar)
+  2. [Variabel](#variabel)
   3. [Functions](#functions)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
@@ -14,34 +14,37 @@
   11. [Comments](#comments)
   12. [Translation](#translation)
 
-## Introduction
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
+## Kata Pengantar
+![Gambar lucu dari estimasi kualitas perangkat lunak sebagai hitungan berapa
+banyak umpatan yang keluar saat membaca kode](http://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+Prinsip Rekayasa Perangkat Lunak, oleh Robert C. Buku
+[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) oleh Martin,
+diadaptasi untuk JavaScript. Perlu diingat bahwa panduan ini bukan tentang gaya
+penulisan kode. Panduan ini lebih tentang membuat perangkat lunak yg [mudah dibaca,
+dapat digunakan kembali, dan mudah direfaktor kembali](https://github.com/ryanmcdermott/3rs-of-software-architecture)
+dalam bahasa Javascript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-*Clean Code*.
+Tidak semua prinsip disini harus diikuti secara ketat, dan bahkan lebih sedikit
+akan lebih mudah disepakati bersama. Ini hanyalah panduan-panduan saja dan tidak
+lebih, tetapi panduan-panduan ini dikodifikiasi selama bertahun-tahun dari
+pengalaman kolektif penulis buku *Clean Code*.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+Rekayasa-rekayasa perangkat lunak kita baru berumur 50 tahun lebih sedikit. dan
+kita masih belajar banyak. Ketika arsitektur perangkat lunak setua arsitektur itu
+sendiri, mungkin kita memiliki aturan yang lebih ketat untuk diikuti. Untuk saat
+ini, biarkan panduan ini berfungsi sebagai batu ujian (touchstone) untuk mengukur
+kualitas kode JavaScript yang kamu dan tim kamu buat.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Satu hal lagi: mengetahui hal ini bukan berarti membuat kamu menjadi seorang
+pengembang software (developer) yg baik secara tiba-tiba, dan bekerja dengannya
+bukan berarti kamu tidak akan membuat kesalahan-kesalahan. Setiap potongan kode
+dimulai sebagai draft pertama, seperti tanah liat basah yg terus dibentuk menjadi
+bentuk terakhirnya. Akhirnya, kita memahat ketidaksempurnaan ketika kita mereview
+dengan teman dalam tim kita. Apabila draft pertamamu butuh perbaikan, jangan
+pukul dirimu sendiri. Pukul Kodenya !
 
-## **Variables**
+## **Variabel**
 ### Use meaningful and pronounceable variable names
 
 **Bad:**
