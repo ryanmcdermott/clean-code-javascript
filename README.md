@@ -1,9 +1,9 @@
 # clean-code-javascript (Bahasa Indonesia)
 
 ## Daftar Isi
-  1. [Kata Pengantar](#Kata-Pengantar)
+  1. [Kata Pengantar](#kata-pengantar)
   2. [Variabel](#variabel)
-  3. [Functions](#functions)
+  3. [Fungsi](#fungsi)
   4. [Objects and Data Structures](#objects-and-data-structures)
   5. [Classes](#classes)
   6. [SOLID](#solid)
@@ -75,9 +75,9 @@ getUser();
 
 ### Gunakan nama yg mudah dicari kembali
 Kita akan lebih banyak membaca kode daripada menulisnya. Maka penting hukumnya
-utuk kode yang kita tulis untuk mudah dibaca dan mudah dicari. Dengan *tidak*
-memberi nama variabel yang bermakna untuk memahami program kita, kita menyakiti
-pembaca kode kita. Buat nama variabel lebih mudah dicari. Alat seperti
+menulis kode untuk mudah dibaca dan mudah dicari. Dengan *tidak* memberi nama
+variabel yang bermakna untuk memahami program kita, kita menyakiti pembaca kode
+kita. Buat nama variabel lebih mudah dicari. Alat seperti
 
 [buddy.js](https://github.com/danielstjules/buddy.js) dan
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
@@ -208,8 +208,8 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-## **Functions**
-### Function arguments (2 or fewer ideally)
+## **Fungsi**
+### Argumen Fungsi (idealnya 2 atau kurang)
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
