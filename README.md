@@ -1748,12 +1748,21 @@ you achieve very high confidence and developer peace of mind. This means that
 in addition to having a great testing framework, you also need to use a
 [good coverage tool](http://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There's [plenty of good JS test frameworks](http://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Pengujian itu lebih penting daripada shipping. Jika kamu tidak punya pengujian
+atau tidak mencukupunya, maka setiap kali kamu ship kodemu kamu tidak akan
+yakin kalau kamu tidak merusak segalanya. Memutuskan berapa jumlah yang cukup
+tergantung pada tim-mu, tapi memiliki 100% cakupan (semua statemen dan cabang)
+adalah bagaimana kamu meraih percaya diri yg snagat tinggi dan kedamaian
+pikiran pengembang. Hal ini berarti selain memiliki kerangka pengujian yg
+bagus, kamu juga perlu menggunakan sebuah [alat cakupan yang bagus](http://gotwarlost.github.io/istanbul/).
+
+Tidak ada alasan untuk tidak menulis pengujuan. Terdapat [banyak framework pengujian yg bagus di Javascript](http://jstherightway.org/#testing-tools),
+jadi pilih satu yang tim-mu lebih suka. Ketika kamu menemukan satu yang dapat
+bekerja dengan tim-mu, lalu arahkan untuk selalu menulis test untuk setiap
+fitur/modul baru yang kamu perkenalkan. Jika kamu lebih suka metode TDD (Test
+Driven Development), itu hal yang bagus, tapi poin utamanya adalah untuk
+selalu memastikan kamu meraih cakupan tujuan-tujuan sebelum meluncurkan
+fitur apapun, atau merefaktor satu yg telah ada.
 
 ### Satu konsep tiap pengujian
 
@@ -1808,8 +1817,8 @@ describe('MakeMomentJSGreatAgain', () => {
 
 ## **Concurrency**
 ### Gunakan Promises, jangan callbacks
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+Callback itu tidak clean, dan mereka memngakibatkan nesting dengan jumlah yang
+berlebihan. Dengan ES2015/ES6, promise sudah built-in. Jadi gunakanlah!
 
 **Buruk:**
 ```javascript
@@ -1852,11 +1861,11 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Async/Await lebih sederhana daripada Promises
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Promise adalah alternatif dari callback yang sangat bersih, namun ES2017/ES8 membawa
+async dan await yang mana menawarkan solusi yang lebih bersih lagi. Yang kamu perlukan
+adalah fungsi yang memiliki prefix sebuah kata kuncu `async`, lalu kamu dapat
+menulis logika secara imperatif tanpa rantai sebuah `then` dari fungsi. Gunakan
+ini jika kamu dapat mengambil manfaat dari fitur ES2017/ES8 hari ini!
 
 **Buruk:**
 ```javascript
@@ -1895,10 +1904,11 @@ async function getCleanCodeArticle() {
 
 
 ## **Penanganan Kesalahan**
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Dilempari error adalah sebuah hal yang baik! Hal itu berarti di runtime telah
+sukses mengidentifikasi ketika sesuatu di programmu ada kesalahan dan hal itu
+memberi kesempatan kepadamu untuk menghentikan eksekusi fungsi dari stack yang
+sekarang, menghentikan process (di Node) dan memberitahumu di konsol dengan
+tumpukan jejak.
 
 ### Jangan abaikan kesalahan yg tertangkap
 Doing nothing with a caught error doesn't give you the ability to ever fix
@@ -1907,6 +1917,15 @@ isn't much better as often times it can get lost in a sea of things printed
 to the console. If you wrap any bit of code in a `try/catch` it means you
 think an error may occur there and therefore you should have a plan,
 or create a code path, for when it occurs.
+
+Tidak melakukan apapun dengan error yg tertangkan tidak akan memberikanmu
+kemampuan untuk membetulkan atau bereaksi pada error yang telah dikatakan.
+Mencatat error untuk konsol (`console.log`) tidak jauh lebih baik seperti
+sering kali bisa tersesat di lautan benda-benda yang dicetak ke konsol.
+Jika kamu menyelimuti kodemu sedikit-sedikit di sebuah `try/catch` hal itu
+berarti kamu memikirkan sebuah error yang mungkin saja muncul disana dan
+oleh karena itu kamu harus memiliki sebuah rencana, atau membuat sebuah
+jalur kode, untuk kapan hal itu akan muncul.
 
 **Buruk:**
 ```javascript
@@ -1922,19 +1941,19 @@ try {
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // Satu opsi (lebih berisik daripada console.log):
   console.error(error);
-  // Another option:
+  // opsi lainnya:
   notifyUserOfError(error);
-  // Another option:
+  // opsi lainnya:
   reportErrorToService(error);
-  // OR do all three!
+  // atau lakukan ketiganya!
 }
 ```
 
 ### Jangan abaikan promise yg ditolak
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+Untuk alasan yang sama seperti kamu tidak boleh mengabaikan error yang tertangkap
+dari `try/catch`.
 
 **Buruk:**
 ```javascript
@@ -1954,13 +1973,13 @@ getdata()
     functionThatMightThrow(data);
   })
   .catch((error) => {
-    // One option (more noisy than console.log):
+    // Satu opsi (lebih berisik daripada console.log):
     console.error(error);
-    // Another option:
+    // Opsi lain:
     notifyUserOfError(error);
-    // Another option:
+    // Opsi lain:
     reportErrorToService(error);
-    // OR do all three!
+    // Atau lakukan ketiganya!
   });
 ```
 
