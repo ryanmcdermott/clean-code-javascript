@@ -413,12 +413,6 @@ memaksamu untuk memisahkan dua atau lebih fungsi yg berbeda namun kebanyakan
 melakukan hal yg sama. Membuang kode yg duplikat berarti membuat sebuah
 abstraksi yg dapat menangani hal yg berbeda dengan satu fungsi/modul/class.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the *Classes* section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
-
 Mendapatkan abstraksi yg benar sangat penting, itulah kenapa kamu harus mengikuti
 prinsip SOLID yg ada setelah bagian *Class*. Abstraksi yg bruk dapat lebih buruk
 daripada kode yg duplikat, jadi berhati-hatilah! Setelah diberitahu hal ini, kamu
@@ -564,25 +558,27 @@ function createTempFile(name) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hindari Efek Samping (bagian 1)
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+Sebuah fungsi memproduksi efek samping ketika dia melakukan apapun selain memasukkan
+nilai dan mengembalikan nilai. Sebuah efek samping bisa berupa menulis ke sebuah
+file, memodifikasi sebuah variabel grobal, atau secara tidak sengaja mentransfer
+semua uangmu ke orang yg tidak kamu kenal sebelumnya.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+Sekarang, kamu memang perlu memiliki efek samping dalam sebuah program pada
+suatu kesempatan. Seperti pada contoh sebelumnya, kamu bisa jadi perlu untuk
+menulis sebuah file. Apa yg akan kamu lakukan adalah memusatkan dimana kamu
+melakukan ini. Tidak memiliki beberapa fungsi dan class yang menulis ke
+file tertentu. Miliki satu service yg melakukan hal itu. Satu dan satu-satunya.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+Poin utama untuk menghindari jebakan yg umum seperti berbagi state antara objek
+tanpa struktur apapun, menggunakan tipe data yg mutable yg dapat ditulis ke
+apapun, dan tidak memusatkan dimana efek samping tersebut muncul. Jika kamu dapat
+melakukan hal ini, kamu akan lebih bahagia daripada programmer-programmer.
+kebanyakan.
 
 **Buruk:**
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Variabel global direferensi oleh beberapa fungsi
+// Jika kita mempunyai fungsi lain yg menggunakan nama variabel ini, sekarang akan menjadi array dan dapat merusak ini semua.
 let name = 'Ryan McDermott';
 
 function splitIntoFirstAndLastName() {
@@ -609,37 +605,40 @@ console.log(newName); // ['Ryan', 'McDermott'];
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hindari Efek Samping (bagian 2)
-In JavaScript, primitives are passed by value and objects/arrays are passed by
-reference. In the case of objects and arrays, if your function makes a change
-in a shopping cart array, for example, by adding an item to purchase,
-then any other function that uses that `cart` array will be affected by this
-addition. That may be great, however it can be bad too. Let's imagine a bad
-situation:
+Dalam JavaScript, primitif dilewatkan oleh nilai dan objek / array dilewatkan
+melalui referensi. Dalam kasus dimana objek dan array, jika fungsimu membuat
+perubahan di array keranjang belanja, sebagai contoh, dengan menambahkan
+sebuah barang untuk pembelian, maka fungsi lain yg menggunakan array `keranjang`
+akan terpengaruh dengan penambahan ini. Hal itu mungkin bagus, namun bisa
+jadi hal yg buruk jg. Mari kita mengimajinasikan situasi berikut:
 
-The user clicks the "Purchase", button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because it has a reference to a shopping
-cart array that the `addItemToCart` function modified by adding an unwanted
-item.
+Pengguna menekan "Beli", tombol yg memanggil fungsi `beli` yg memunculkan
+permintaan jaringan dan mengirim array `keranjang` ke server. Karena
+koneksi jaringan yg buruk, fungsi `beli` harus terus mencoba request kembali.
+Sekarang, bagaimana jika di waktu yg sama si pengguna secara tidak sengaja
+menekan tombol "Tambahkan ke Keranjang" pada barang yg sedang tidak mereka
+inginkan sebelum request jaringan dimulai? Jika hal itu terjadi dan request
+jaringan dimulai, maka fungsi beli tersebut akan mengirimkan tambahan barang
+secara tidak sengaja karena hal itu mereferensi ke array keranjang belanja
+yg mana fungsi `addItemToCart` dimodifikasi dengan menambahkan barang yg
+tidak diinginkan.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`,
-edit it, and return the clone. This ensures that no other functions that are
-holding onto a reference of the shopping cart will be affected by any changes.
+Solusi yg bagus bisa jadi `addItemToCart` harus selalu mengkloning `cart`,
+mengeditnya, dan mengembalikan klonnya. Ini memastikan bahwa tidak ada fungsi
+lain yang memegang referensi keranjang belanja akan terpengaruh oleh perubahan
+apapun.
 
-Two caveats to mention to this approach:
-  1. There might be cases where you actually want to modify the input object,
-but when you adopt this programming practice you will find that those cases
-are pretty rare. Most things can be refactored to have no side effects!
-
-  2. Cloning big objects can be very expensive in terms of performance. Luckily,
-this isn't a big issue in practice because there are
-[great libraries](https://facebook.github.io/immutable-js/) that allow
-this kind of programming approach to be fast and not as memory intensive as
-it would be for you to manually clone objects and arrays.
+Dua keberatan yg disebutkan pada pendekatan ini:
+  1. Terdapat beberapa kasus dimana kamu benar-benar ingin memodifikasi objek
+   masukan, namun ketika kamu menggunakan praktek pemrograman ini kamu akan
+   menemukan bahwa kasus tersebut sangatlah langka. Kebanyakan apapun yg
+   refaktorkan tidak memiliki efek samping.
+  2. Kloning objek-objek yg besar dapat sangat mahal dalam hal performa.
+  Beruntungnya, hal ini bukan isu yg besar dalam prakteknya karena terdapat
+  library seperti [great libraries](https://facebook.github.io/immutable-js/)
+  yg memperbolehkan pendekatan pemrograman seperti ini lebih cepat dan
+  tidak terlalu banyak memakan memory seperti mengkloning objek-objek dan
+  array-array secara manual.
 
 **Buruk:**
 ```javascript
@@ -668,6 +667,18 @@ to do the same thing. What if that other library was just using `diff` to find
 the difference between the first and last elements of an array? This is why it
 would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 
+Mencemari hal yg bersifat global adalah praktek yg buruk di JavaScript karena
+kamu dapat berbenturan dengan library yg lain dan pengguna dari API-mu tidak
+akan menjadi yg bijak sampai mereka mendapatkan exception di production.
+Mari berpikir tentang sebuah contoh: Bagaimana jika kamu ingin memperpanjang
+metode Array asli JavaScript untuk memiliki metode `diff` yang dapat menunjukkan
+perbedaan antara dua array? Kamu dapat menulis fungsi barumu ke `Array.prototype`,
+tapi hal tersebut dapat berbenturan dengan library lain yang mencoba melakukan
+hal yang sama. Bagaimana jika libraru lainnya sudah menggunakan `diff` untuk
+mencari perbedaan antara elemen pertama dan terakhir dalam sebuah array? Inilah
+kenapa lebih baiknya menggunakan class ES2015/ES6 dan secara sederhana
+memperpanjang global `Array`.
+
 **Buruk:**
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -688,9 +699,9 @@ class SuperArray extends Array {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Gunakan functional programming daripada imperative programming
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages are cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript bukanlah sebuah bahasa fungsional seperti Haskell, namun dia memiliki
+aroma fungsional juga. Bahasa yg fungsional lebih sederhana dan lebih mudah
+diuji. Gunakan gaya pemrograman seperti ini sebisa mungkin.
 
 **Buruk:**
 ```javascript
@@ -790,14 +801,15 @@ if (isDOMNodePresent(node)) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hindari Kondisional
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+Ini terlihat seperti pekerjaan yg tidak mungkin. Sejak pertama kali mendengar
+hal ini, kebanyakan orang berkata "Bagaimana saya bisa bekerja tanpa sebuah
+statemen `if` ?" Jawabannya aalah kamu bisa menggunakan polimorfisme untuk
+mengerjakan hal-hal di berbagai kasus. Pertanyaan kedua biasanya, "Oke itu bagus
+tapi kenapa aku harus melakukannya?" Jawabannya adalah kode yg bersih seperti
+apa yg sudah kita pelajari sebelumnya: sebuah fungsi harus melakukan satu hal
+saja. Ketika kamu memiliki class dan fungsi yang memiliki statemen `if`, kamu
+memberitahu user bahwa fungsimu melakukan hal yg lebih dari satu. Ingat, hanya
+lakukan satu hal saja.
 
 **Buruk:**
 ```javascript
@@ -846,10 +858,11 @@ class Cessna extends Airplane {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hindari type-checking (bagian 1)
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript tidak memiliki tipe data, yang mana fungsimu dapat mengambil tipe
+data apapun dari sebuah argumen. Terkadang kamu tergigit karena kebebasan ini
+dan menjadi tergoda untuk melakukan type-checking pada fungsimu. Terdapat
+banyak jalan untuk terhindar dari hal ini. Hal pertama yg harus disadari adalah
+memiliki API yg konsisten.
 
 **Buruk:**
 ```javascript
@@ -871,15 +884,16 @@ function travelToTexas(vehicle) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hindari type-checking (bagian 2)
-If you are working with basic primitive values like strings, integers, and arrays,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Jika kamu bekerja dengan nilai primitif sederhana seperti string, integer dan
+array, dan kamu tidak bisa menggunakan polimorfisme tapi kamu tetap merasa
+perlu untuk melakukan type-check, kamu harus mempertimbangkan untuk menggunakan
+TypeScript. Itu merupakan alternatif yg sangat baik untuk JavaScript biasa, yg
+mana menyediakanmu static typing diatas standar sintaks JavaScript. Masalah
+dengan type-checking secara manual di Javascript adalah hal itu memerlukan
+banyak kata tambahan palsu yang merusak readibilitas. Pastikan JavaScript-mu
+bersih, tulis pengujian yang baik, dan memiliki kode review yang bagus.
+Jika tidak, lakukan semuanya dengan TypeScript (yang mana, seperti apa yang
+aku katakan, itu adalah sebuah alternatif yang sangat bagus)
 
 **Buruk:**
 ```javascript
@@ -908,11 +922,17 @@ resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
 for seeing where optimization is lacking. Target those in the meantime, until
 they are fixed if they can be.
 
+Browser-browser yang modern melakukan banyak optimisasi dibalik layar di runtime.
+Seringkali, kamu mengoptimasi dan kamu hanya menghabiskan waktumu. [Terdapat
+Sumber yg bagus](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+untuk dilihat dimana optimasi itu kurang. Targetkan mereka sementara,
+sampai mereka diperbaiki jika mereka bisa melakukannya.
+
 **Buruk:**
 ```javascript
 
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// Di Browser lama, setiap iterasi dengan `list.length` yg uncached akan sangat costly
+// karena `list.length` menghitung ulang. Di browser yang modern, ini sudah teroptimasi
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
@@ -930,6 +950,10 @@ for (let i = 0; i < list.length; i++) {
 Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
 in your version history if you still need it.
+
+Kode yg mati akan seburuk kode yang duplikat. Tidak ada alasan untuk menyimpannya
+dalam basis kode-mu. Jika tidak dipanggil, maka buang saja! Itu akan tetap amazon
+di "version history" jika kamu membutuhkannya lagi.
 
 **Buruk:**
 ```javascript
