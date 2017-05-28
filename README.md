@@ -1987,19 +1987,21 @@ getdata()
 
 
 ## **Menyusun Format**
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](http://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+Menyusun format adalah subjektif. Seperti aturan disini, tidak ada aturan keras
+yang harus kamu ikuti. Poin utamanya adalah JANGAN BERDEBAT atas format. Ada
+[banyak sekali alat](http://standardjs.com/rules.html) untuk mengotomasi hal ini.
+Gunakan salah satu! Hal ini adalah pemborosan waktu dan uang engineers untuk
+berdebat soal format.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+Untuk hal-hal yang tidak termasuk dalam hal format otomatis (indentasi,
+tabulasi vs. spasi, ganda vs tanda petik tunggal, dll) lihatlah kesini
+untuk beberapa bimbingan.
 
 ### Gunakan Kapitalisasi yg konsisten
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+JavaScript tidak memiliki penggolongan, jadi kapitalisasi memberitahumu banyak
+tentang variabel, fungsi, dll. Aturan ini adalah subjektif, jadi tim-mu dapat
+memilih apapun yang mereka inginkan. Poinnya adalah, tidak masalah apa yang
+kalian semua pilih, cukup tetaplah konsisten.
 
 **Buruk:**
 ```javascript
@@ -2034,9 +2036,10 @@ class Alpaca {}
 
 
 ### Fungsi yg memanggil dan yang dipanggil seharusnya berdekatan
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Jika sebuah fungsi memanggil yang lainnya, jagalah fungsi tersebut secara vertikal
+berdekatan dengan sumber. Secara ideal, jaga yang memanggil tepat dibawah yang
+dipanggil. Kita cenderung membaca kode dari atas-ke-bawah, seperti koran. Karenanya,
+buat kodemu terbaca seperti itu.
 
 **Buruk:**
 ```javascript
@@ -2120,24 +2123,25 @@ review.perfReview();
 
 ## **Komentar**
 ### Komentar hanya untuk hal-hal yang memiliki kompleksitas logika.
-Comments are an apology, not a requirement. Good code *mostly* documents itself.
+Komentar adalah sebuah permintaan maaf, bukan sebuah syarat. Kode yang baik
+*kebanyakan* bisa mendokumentasikan dirinya sendiri.
 
 **Buruk:**
 ```javascript
 function hashIt(data) {
-  // The hash
+  // ini hash
   let hash = 0;
 
-  // Length of string
+  // panjang dari sebuah string
   const length = data.length;
 
-  // Loop through every character in data
+  // Loop setiap karakter dalam sebuah data
   for (let i = 0; i < length; i++) {
-    // Get character code.
+    // mendapatkan karakter di kode
     const char = data.charCodeAt(i);
-    // Make the hash
+    // Membuah hash
     hash = ((hash << 5) - hash) + char;
-    // Convert to 32-bit integer
+    // mengonversi ke 32-bit integer
     hash &= hash;
   }
 }
@@ -2154,7 +2158,7 @@ function hashIt(data) {
     const char = data.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
 
-    // Convert to 32-bit integer
+    // Mengonversi ke 32-bit integer
     hash &= hash;
   }
 }
@@ -2163,7 +2167,7 @@ function hashIt(data) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Jangan meninggalkan kode yang dikomentari dalam basis kode anda
-Version control exists for a reason. Leave old code in your history.
+`Version control` ada karena sebuah alasan. Tinggalkan kode lamamu di riwayat.
 
 **Buruk:**
 ```javascript
@@ -2180,8 +2184,9 @@ doStuff();
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Jangan ada komentar tentang jurnal
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Ingat, gunakan version control! Tidak perlu kode mati, kode yang dikomentari,
+dan khususnya komentar tentang jurnal. Gunakan `git log` untuk mendapatkan
+riwayat!
 
 **Buruk:**
 ```javascript
@@ -2205,8 +2210,9 @@ function combine(a, b) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hindari komentar marker
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+Mereka biasanya hanya menambahkan kebisingan. Biarkan nama fungsi dan variabel
+bersama dengan indentasi yang layak dan susunan format memberikan struktur visual
+ke kode-mu.
 
 **Buruk:**
 ```javascript
