@@ -37,12 +37,12 @@ ini, biarkan panduan ini berfungsi sebagai batu ujian (touchstone) untuk menguku
 kualitas kode JavaScript yang kamu dan tim kamu buat.
 
 Satu hal lagi: mengetahui hal ini bukan berarti membuat kamu menjadi seorang
-pengembang software (developer) yg baik secara tiba-tiba, dan bekerja dengannya
+pengembang perangkat lunak (*developer*) yg baik secara tiba-tiba, dan bekerja dengannya
 bukan berarti kamu tidak akan membuat kesalahan-kesalahan. Setiap potongan kode
 dimulai sebagai draft pertama, seperti tanah liat basah yg terus dibentuk menjadi
-bentuk terakhirnya. Akhirnya, kita memahat ketidaksempurnaan ketika kita mereview
-dengan teman dalam tim kita. Apabila draft pertamamu butuh perbaikan, jangan
-pukul dirimu sendiri. Pukul Kodenya !
+bentuk terakhirnya. Akhirnya, kita memahat ketidaksempurnaan ketika kita
+me-*-nya kembali dengan teman dalam tim kita. Apabila draft pertamamu butuh
+perbaikan, jangan pukul dirimu sendiri. Pukul Kodenya !
 
 ## **Variabel**
 ### Gunakan nama-nama variabel yg bermakna dan mudah diucapkan
@@ -149,7 +149,7 @@ locations.forEach((location) => {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Jangan menambahkan konteks yang tidak dibutuhkan
-Jika nama class/object kamu memiliki arti tertentu, jangan mengulanginya di dalam
+Jika nama class/objek kamu memiliki arti tertentu, jangan mengulanginya di dalam
 nama variabel.
 
 **Buruk:**
@@ -180,15 +180,10 @@ function paintCar(car) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Gunakan argumen default daripada `short circuiting` dan `kondisional`
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
-
-Argumen default lebih bersih daripada `shoor circuiting`. Sadarilah jika kamu
-menggunakannya, fungsimu hanya akan memberikan nilai default untuk argumen `undefined`.
+Argumen *default* lebih bersih daripada `shoot circuiting`. Sadarilah jika kamu
+menggunakannya, fungsimu hanya akan memberikan nilai *default* untuk argumen `undefined`.
 Selain nilai "falsy" seperti `''`, `""`, `false`, `null`, `0`, dan `NaN`, tidak
-digantikan oleh nilai default.
+digantikan oleh nilai *default*.
 
 **Buruk:**
 ```javascript
@@ -213,20 +208,17 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 Membatasi jumlah parameter dari fungsi sangatlah penting karena membuat pengujian
 fungsi menjadi lebih mudah. Memiliki lebih dari 3 parameter dapat mengakibatkan
 ledakan kombinasional dimana kamu harus menguji banyak sekali kasus-kasus yg
-berbeda di tiap-tiap argumen yg terpisah.
+berbeda di tiap-tiap argumen secara terpisah.
 
 Satu atau dua argumen adalah kasus yg ideal, jika tiga maka sebaiknya dihindari.
 Apapun lebih dari itu harus dikonsolidasikan. Biasanya, jika kamu memiliki lebih
 dari dua argumen maka fungsimu melakukan hal yg terlalu banyak. Di beberapa kasus
-dimana hal itu tidak terjadi, seringkali higher-level object akan cukup menjadi
-sebuah argumen.
+dimana hal itu tidak terjadi, seringkali objek tingkat-tinggi sudah cukup untuk
+dijadikan sebuah argumen.
 
-JavaScript memperbolehkanmu untuk membuat object secara langsung, tanpa membuat
-banyak class terlebih dahulu. kamu dapat menggunakan sebuah objek jika kamu
-mendapatibahwa kamu memerlukan banyak argumen.
-
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+JavaScript memperbolehkanmu untuk membuat objek secara langsung, tanpa membuat
+banyak *class* terlebih dahulu. kamu dapat menggunakan sebuah objek jika kamu
+mendapati bahwa kamu memerlukan banyak argumen.
 
 Lebih jelasnya, kamu dapat menggunakan destructuring syntax pada ES2015/ES6. Hal
 tersebut memiliki beberapa kelebihan:
@@ -235,7 +227,7 @@ tersebut memiliki beberapa kelebihan:
 properti-properti apa saja yg digunakan.
 2. Merestrukturisasi juga mengkloning nilai primitif yang ditentukan dari objek
 argumen yang dilewatkan ke fungsi. Hal ini dapat membantu mencegah efek samping.
-Sebagai Catatan: objek dan array yg telah didestrukturisasi dari argumen objek
+Sebagai Catatan: objek dan *array* yg telah didestrukturisasi dari argumen objek
 tidak di kloning.
 3. Linters dapat memberi peringatan kepadamu tentang properti yg tidak digunakan,
 yg mana akan lebih tidak mungkin tanpa merestrukturisasi.
@@ -264,17 +256,11 @@ createMenu({
 
 
 ### Fungsi harus melakukan satu hal saja
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, they can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
-
 Ini adalah aturan terpenting dalam rekayasa perangkat lunak. Ketika fungsi melakukan
 lebih dari satu hal, mereka sulit untuk dibuat, diuji dan dipikirkan. Ketika kamu
-dapat mengisolasi sebuah fungsi untuk melakukan satu action saja, mereka dapat
+dapat mengisolasi sebuah fungsi untuk melakukan satu *action* saja, mereka dapat
 difaktorkan secara mudah dan kodemu akan jauh lebih bersih. Jika kamu tidak mengambil
-apapun dari panduan ini selain hal ini, maka anda akan ada di depan banyak pengembang.
+apapun dari panduan ini selain hal ini, maka kamu akan ada di depan banyak pengembang.
 
 **Buruk:**
 ```javascript
@@ -398,13 +384,13 @@ function parseBetterJSAlternative(code) {
 
 ### Hapus kode yg duplikat
 Lakukan yg terbaik untuk menghindari kode yg duplikat. Kode yg duplikat itu Buruk
-karena berarti terdapat lebih dari satu tempat untuk mengubah sesuatu jika kamu
-perlu mengubah beberapa logic.
+karena berarti terdapat lebih dari satu tempat untuk diubah jika kamu perlu
+mengubah beberapa logic.
 
-Bayangkan jika amu memiliki sebuah restoran dan kamu harus terus melacak inventarismu:
-tomat, bawang, cabe, dan lain-lain. Jika kamu memiliki beberapa daftar yg kamu
-simpan, maka kamu harus mengubah itu semua jika kamu menyajikan hidangan yg ada
-tomatnya. Jika kamu hanya memiliki satu daftar saja, maka kamu hanya perlu mengubah
+Bayangkan jika kamu memiliki sebuah restoran dan kamu harus terus melacak inventarismu:
+tomat, bawang, cabe, dan lain-lain. Nah, Jika kamu memiliki beberapa daftar yg kamu
+simpan, maka kamu harus mengubah itu semua ketika kamu menyajikan hidangan yg ada
+tomatnya. Jika kamu hanya memiliki satu daftar saja, maka kamu hanya perlu mengubahnya
 di satu tempat saja.
 
 Seringkali kamu memiliki kode yg duplikat karena kamu memiliki dua atau lebih
@@ -414,7 +400,7 @@ melakukan hal yg sama. Membuang kode yg duplikat berarti membuat sebuah
 abstraksi yg dapat menangani hal yg berbeda dengan satu fungsi/modul/class.
 
 Mendapatkan abstraksi yg benar sangat penting, itulah kenapa kamu harus mengikuti
-prinsip SOLID yg ada setelah bagian *Class*. Abstraksi yg bruk dapat lebih buruk
+prinsip SOLID yg ada setelah bagian *Class*. Abstraksi yg buruk dapat lebih buruk
 daripada kode yg duplikat, jadi berhati-hatilah! Setelah diberitahu hal ini, kamu
 dapat membuat abstraksi yg baik, lakukan! Jangan membuat dirimu mengulang (DRY),
 Jika tidak, kamu akan mendapati dirimu memperbarui hal dibeberapa tempat setiap
@@ -531,7 +517,7 @@ createMenu(menuConfig);
 
 
 ### Jangan gunakan flag sebagai parameter fungsi
-Flag memberitau penggunamu bahwa fungsi ini melakukan lebih dari satu hal. Fungsi seharusnya melakukan satu hal. Pisahkan fungsimu jika mereka
+Flag memberitahu penggunamu bahwa fungsi ini melakukan lebih dari satu hal. Fungsi seharusnya melakukan satu hal. Pisahkan fungsimu jika mereka
 mengikuti jalur kode yg berbeda berdasarkan boolean.
 
 **Buruk:**
@@ -560,19 +546,19 @@ function createTempFile(name) {
 ### Hindari Efek Samping (bagian 1)
 Sebuah fungsi memproduksi efek samping ketika dia melakukan apapun selain memasukkan
 nilai dan mengembalikan nilai. Sebuah efek samping bisa berupa menulis ke sebuah
-file, memodifikasi sebuah variabel grobal, atau secara tidak sengaja mentransfer
-semua uangmu ke orang yg tidak kamu kenal sebelumnya.
+*file*, memodifikasi sebuah variabel global, atau secara tidak sengaja mentransfer
+semua uangmu ke orang yg tidak kamu kenal.
 
 Sekarang, kamu memang perlu memiliki efek samping dalam sebuah program pada
 suatu kesempatan. Seperti pada contoh sebelumnya, kamu bisa jadi perlu untuk
-menulis sebuah file. Apa yg akan kamu lakukan adalah memusatkan dimana kamu
-melakukan ini. Tidak memiliki beberapa fungsi dan class yang menulis ke
-file tertentu. Miliki satu service yg melakukan hal itu. Satu dan satu-satunya.
+menulis sebuah *file*. Apa yg akan kamu lakukan adalah memusatkan dimana kamu
+melakukan ini. Tidak memiliki beberapa fungsi dan *class* yang menulis ke
+*file* tertentu. Miliki satu *service* yg melakukan hal itu. Satu dan satu-satunya.
 
-Poin utama untuk menghindari jebakan yg umum seperti berbagi state antara objek
-tanpa struktur apapun, menggunakan tipe data yg mutable yg dapat ditulis ke
+Poin utama untuk menghindari jebakan yg umum seperti berbagi *state* antara objek
+tanpa struktur apapun, menggunakan tipe data yg *mutable* yg dapat ditulis ke
 apapun, dan tidak memusatkan dimana efek samping tersebut muncul. Jika kamu dapat
-melakukan hal ini, kamu akan lebih bahagia daripada programmer-programmer.
+melakukan hal ini, kamu akan lebih bahagia daripada programmer-programmer
 kebanyakan.
 
 **Buruk:**
@@ -605,21 +591,21 @@ console.log(newName); // ['Ryan', 'McDermott'];
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hindari Efek Samping (bagian 2)
-Dalam JavaScript, primitif dilewatkan oleh nilai dan objek / array dilewatkan
-melalui referensi. Dalam kasus dimana objek dan array, jika fungsimu membuat
-perubahan di array keranjang belanja, sebagai contoh, dengan menambahkan
-sebuah barang untuk pembelian, maka fungsi lain yg menggunakan array `keranjang`
+Dalam JavaScript, primitif dilewatkan oleh nilai dan objek / *array* dilewatkan
+melalui referensi. Dalam kasus dimana objek dan *array*, jika fungsimu membuat
+perubahan di *array* keranjang belanja, sebagai contoh, dengan menambahkan
+sebuah barang untuk pembelian, maka fungsi lain yg menggunakan *array* `keranjang`
 akan terpengaruh dengan penambahan ini. Hal itu mungkin bagus, namun bisa
 jadi hal yg buruk jg. Mari kita mengimajinasikan situasi berikut:
 
 Pengguna menekan "Beli", tombol yg memanggil fungsi `beli` yg memunculkan
-permintaan jaringan dan mengirim array `keranjang` ke server. Karena
+permintaan jaringan dan mengirim *array* `keranjang` ke server. Karena
 koneksi jaringan yg buruk, fungsi `beli` harus terus mencoba request kembali.
 Sekarang, bagaimana jika di waktu yg sama si pengguna secara tidak sengaja
 menekan tombol "Tambahkan ke Keranjang" pada barang yg sedang tidak mereka
-inginkan sebelum request jaringan dimulai? Jika hal itu terjadi dan request
+inginkan sebelum *request* jaringan dimulai? Jika hal itu terjadi dan *request*
 jaringan dimulai, maka fungsi beli tersebut akan mengirimkan tambahan barang
-secara tidak sengaja karena hal itu mereferensi ke array keranjang belanja
+secara tidak sengaja karena hal itu mereferensi ke *array* keranjang belanja
 yg mana fungsi `addItemToCart` dimodifikasi dengan menambahkan barang yg
 tidak diinginkan.
 
@@ -635,10 +621,10 @@ Dua keberatan yg disebutkan pada pendekatan ini:
    refaktorkan tidak memiliki efek samping.
   2. Kloning objek-objek yg besar dapat sangat mahal dalam hal performa.
   Beruntungnya, hal ini bukan isu yg besar dalam prakteknya karena terdapat
-  library seperti [great libraries](https://facebook.github.io/immutable-js/)
+  *library* seperti [great libraries](https://facebook.github.io/immutable-js/)
   yg memperbolehkan pendekatan pemrograman seperti ini lebih cepat dan
-  tidak terlalu banyak memakan memory seperti mengkloning objek-objek dan
-  array-array secara manual.
+  tidak terlalu banyak memakan *memory* seperti mengkloning objek-objek dan
+  *array* secara manual.
 
 **Buruk:**
 ```javascript
@@ -657,26 +643,16 @@ const addItemToCart = (cart, item) => {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Jangan menulis fungsi global
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
-
 Mencemari hal yg bersifat global adalah praktek yg buruk di JavaScript karena
-kamu dapat berbenturan dengan library yg lain dan pengguna dari API-mu tidak
-akan menjadi yg bijak sampai mereka mendapatkan exception di production.
+kamu dapat berbenturan dengan *library* yg lain dan pengguna dari API-mu tidak
+akan menjadi yg bijak sampai mereka mendapatkan *exception* di *production*.
 Mari berpikir tentang sebuah contoh: Bagaimana jika kamu ingin memperpanjang
-metode Array asli JavaScript untuk memiliki metode `diff` yang dapat menunjukkan
-perbedaan antara dua array? Kamu dapat menulis fungsi barumu ke `Array.prototype`,
-tapi hal tersebut dapat berbenturan dengan library lain yang mencoba melakukan
-hal yang sama. Bagaimana jika libraru lainnya sudah menggunakan `diff` untuk
-mencari perbedaan antara elemen pertama dan terakhir dalam sebuah array? Inilah
-kenapa lebih baiknya menggunakan class ES2015/ES6 dan secara sederhana
+metode *Array* asli JavaScript untuk memiliki metode `diff` yang dapat menunjukkan
+perbedaan antara dua *array*? Kamu dapat menulis fungsi barumu ke `Array.prototype`,
+tapi hal tersebut dapat berbenturan dengan *library* lain yang mencoba melakukan
+hal yang sama. Bagaimana jika *library* lainnya sudah menggunakan `diff` untuk
+mencari perbedaan antara elemen pertama dan terakhir dalam sebuah *array*? Inilah
+kenapa lebih baiknya menggunakan *class* ES2015/ES6 dan secara sederhana
 memperpanjang global `Array`.
 
 **Buruk:**
@@ -807,8 +783,8 @@ statemen `if` ?" Jawabannya aalah kamu bisa menggunakan polimorfisme untuk
 mengerjakan hal-hal di berbagai kasus. Pertanyaan kedua biasanya, "Oke itu bagus
 tapi kenapa aku harus melakukannya?" Jawabannya adalah kode yg bersih seperti
 apa yg sudah kita pelajari sebelumnya: sebuah fungsi harus melakukan satu hal
-saja. Ketika kamu memiliki class dan fungsi yang memiliki statemen `if`, kamu
-memberitahu user bahwa fungsimu melakukan hal yg lebih dari satu. Ingat, hanya
+saja. Ketika kamu memiliki *class* dan fungsi yang memiliki statemen `if`, kamu
+memberitahu pengguna bahwa fungsimu melakukan hal yg lebih dari satu. Ingat, hanya
 lakukan satu hal saja.
 
 **Buruk:**
@@ -860,9 +836,9 @@ class Cessna extends Airplane {
 ### Hindari type-checking (bagian 1)
 JavaScript tidak memiliki tipe data, yang mana fungsimu dapat mengambil tipe
 data apapun dari sebuah argumen. Terkadang kamu tergigit karena kebebasan ini
-dan menjadi tergoda untuk melakukan type-checking pada fungsimu. Terdapat
-banyak jalan untuk terhindar dari hal ini. Hal pertama yg harus disadari adalah
-memiliki API yg konsisten.
+dan menjadi tergoda untuk melakukan *type-checking* pada fungsimu. Terdapat
+banyak jalan untuk terhindar dari hal ini. Hal pertama yg harus dipertimbangkan
+adalah memiliki API yg konsisten.
 
 **Buruk:**
 ```javascript
@@ -884,12 +860,12 @@ function travelToTexas(vehicle) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hindari type-checking (bagian 2)
-Jika kamu bekerja dengan nilai primitif sederhana seperti string, integer dan
-array, dan kamu tidak bisa menggunakan polimorfisme tapi kamu tetap merasa
-perlu untuk melakukan type-check, kamu harus mempertimbangkan untuk menggunakan
+Jika kamu bekerja dengan nilai primitif sederhana seperti *string*, *integer* dan
+*array*, dan kamu tidak bisa menggunakan polimorfisme tapi kamu tetap merasa
+perlu untuk melakukan *type-check*, kamu harus mempertimbangkan untuk menggunakan
 TypeScript. Itu merupakan alternatif yg sangat baik untuk JavaScript biasa, yg
-mana menyediakanmu static typing diatas standar sintaks JavaScript. Masalah
-dengan type-checking secara manual di Javascript adalah hal itu memerlukan
+mana menyediakanmu *static typing* diatas standar sintaks JavaScript. Masalah
+dengan *type-checking* secara manual di Javascript adalah hal itu memerlukan
 banyak kata tambahan palsu yang merusak readibilitas. Pastikan JavaScript-mu
 bersih, tulis pengujian yang baik, dan memiliki kode review yang bagus.
 Jika tidak, lakukan semuanya dengan TypeScript (yang mana, seperti apa yang
@@ -916,13 +892,7 @@ function combine(val1, val2) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Jangan Optimasi Berlebihan
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
-
-Browser-browser yang modern melakukan banyak optimisasi dibalik layar di runtime.
+Browser-browser yang modern melakukan banyak optimisasi dibalik layar di *runtime*.
 Seringkali, kamu mengoptimasi dan kamu hanya menghabiskan waktumu. [Terdapat
 Sumber yg bagus](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
 untuk dilihat dimana optimasi itu kurang. Targetkan mereka sementara,
@@ -980,7 +950,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ## **Objek dan Struktur Data**
 ### Gunakan getters dan setters
 Menggunakan getters dan setter untuk mengakses data di objek akan lebih baik
-daripada sekedar mencari sebuah property dari objek, "Kenapa?" kamu mungkin
+daripada sekedar mencari sebuah properti dari objek, "Kenapa?" kamu mungkin
 bertanya. Baik, terdapat daftar yg tidak teratur sebagai alasan:
 
 * Ketika kamu ingin melakukan hal lebih dari sekedar mendapatkan properti objek,
@@ -1038,7 +1008,7 @@ account.setBalance(100);
 
 
 ### Buat objek memiliki private member
-Hal ini dapat diselesaikan lewat closures (untuk ES5 serta diatasnya)
+Hal ini dapat diselesaikan lewat *closures* (untuk ES5 serta diatasnya)
 
 **Buruk:**
 ```javascript
@@ -1077,10 +1047,10 @@ console.log(`Employee name: ${employee.getName()}`); // Nama employee: John Doe
 
 ## **Class**
 ### Gunakan class ES2015/ES6 daripada fungsi ES5
-Sangat susah untuk mendapatkan class inheritance, construction, dan definisi
-method yg mudah dibaca untuk class ES5 yg terdahulu. Jika kamu memerlukan
-inheritance (dan waspadai jika kamu tidak), maka pilihlah class ES2015/ES6.
-Akan tetapi, gunakan fungsi yg kecil daripada class sampai kamu mendapati
+Sangat susah untuk mendapatkan *class inheritance*, *construction*, dan definisi
+method yg mudah dibaca untuk *class* ES5 yg terdahulu. Jika kamu memerlukan
+*inheritance* (dan waspadai jika kamu tidak), maka pilihlah class ES2015/ES6.
+Akan tetapi, gunakan fungsi yg kecil daripada *class* sampai kamu mendapati
 dirimu memerlukan objek yang lebih besar dan kompleks.
 
 **Buruk:**
@@ -1154,10 +1124,10 @@ class Human extends Mammal {
 
 
 ### Gunakan metode chaining
-Pola ini sangat berguna di JavaScript dan kamu akan melihatnya di banyak library
+Pola ini sangat berguna di JavaScript dan kamu akan melihatnya di banyak *library*
 seperti jQuery dan Lodash. Hal ini memperbolehkan kode-mu jadi lebih ekspresif,
 dan lebih sedikit bertele-tele. Untuk alasan tersebut, aku katakan, gunakan
-metode chainging dan lihatlah betapa bersih kodemu nanti. Di fungsi class,
+metode *chaining* dan lihatlah betapa bersih kodemu nanti. Di fungsi *class*,
 sederhanaya kembalikan `this` pada akhir setiap fungsi, dan kamu akan merantai
 metode class setelahnya.
 
@@ -1238,23 +1208,23 @@ const car = new Car()
 
 ### Gunakan composition daripada inheritance
 Sebagaimana terkenal dinyatakan di [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns)
-oleh Gang of Four, kamu sebaiknya memilih composition daripada inheritance
-dimanapun kamu bisa. Terdapat banyak alasan baik untuk menggunakan inheritance
-dan banyak alasan baik pula untuk menggunakan composition. Poin utamanya untuk
-pepatah ini adalah jika pikiranmu secara insting lebih memilih inheritance,
-coba untuk memikir jika composition dapat memodelkan problemmu lebih baik. di
+oleh *Gang of Four*, kamu sebaiknya memilih *composition* daripada *inheritance*
+dimanapun kamu bisa. Terdapat banyak alasan baik untuk menggunakan *inheritance*
+dan banyak alasan baik pula untuk menggunakan *composition*. Poin utamanya untuk
+pepatah ini adalah jika pikiranmu secara insting lebih memilih *inheritance*,
+coba untuk memikir jika *composition* dapat memodelkan problemmu lebih baik. di
 beberapa kasus hal tersebut bisa.
 
-Kamu mungkin saja bertanya-tanya, "Kapan aku seharusnya menggunakan inheritance?"
+Kamu mungkin saja bertanya-tanya, "Kapan aku seharusnya menggunakan *inheritance*?"
 hal itu tergantung pada problemnya, tapi ini adalah alasan yg lumayan dari
-kapan inheritence membuat hal lebih daripada composition:
+kapan *inheritance* membuat hal lebih daripada composition:
 
 1. Inheritance-mu merepresentasikan sebuah hubungan "adalah-sebuah" dan bukan
 hubungan "memiliki-sebuah" (Manusia->Hewan vs. Pengguna->DetailPengguna).
 2. Kamu dapat menggunakan kembali kode dari basis class (Manusa dapat bergerak
 seperti semua hewan-hewan).
 3. Kamu ingin membuat perubahan yg global untuk menurunkan class dengan
-mengubah sebuah basis class. (Mengubah pengeluaran kalori dari semua hewan-hewan
+mengubah sebuah basis *class*. (Mengubah pengeluaran kalori dari semua hewan-hewan
 ketika ia bergerak)
 
 **Buruk:**
@@ -1307,13 +1277,13 @@ class Employee {
 
 ## **SOLID**
 ### Single Responsibility Principle (SRP) / Prinsip Tanggung Jawab Tunggal
-Seperti dinyatakan di Clean Code, "Semestinya tidak akan lebih dari satu alasan
-sebuah class untuk berubah". Hal itu sangat menggoda untuk memadati class dengan
+Seperti dinyatakan di *Clean Code*, "Semestinya tidak akan lebih dari satu alasan
+sebuah *class* untuk berubah". Hal itu sangat menggoda untuk memadati *class* dengan
 fungsionalitas yang banyak, seperti ketika kamu hanya dapat mengambil satu koper
-dalam penerbanganmu. Masalahnya dengan ini adalah classmu tidak akan secara
+dalam penerbanganmu. Masalahnya dengan ini adalah *class*-mu tidak akan secara
 konseptual kohesif dan hal hal itu akan memberikan alasan untuk berubah.
-Meminimalisir jumlah waktu yang kamu gunakan untuk mengubah class sangat penting.
-Hal itu penting karena jika terlalu banyak fungsionalitas dalam sebuah class dan
+Meminimalisir jumlah waktu yang kamu gunakan untuk mengubah *class* sangat penting.
+Hal itu penting karena jika terlalu banyak fungsionalitas dalam sebuah *class* dan
 kamu memodifikasi sebagian saja, hal itu akan sulit untuk dimengerti Bagaimana
 itu akan mempengaruhi modul lain yg terhubung dalam basis kode-mu.
 
@@ -1365,7 +1335,7 @@ class UserSettings {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Open/Closed Principle (OCP) / Prinsip Terbuka/Tertutup
-Seperti yang dinyatakan Bertrand Meyer, "entitas perangkat lunak (class, modul,
+Seperti yang dinyatakan Bertrand Meyer, "entitas perangkat lunak (*class*, modul,
 fungsi, dsb) harus terbuka untuk ekstensi, namun tertutup untuk modifikasi." Apa
 maksudnya? Prinsip ini dasarnya menyatakan bahwa kamu harus tetap memperbolehkan
 pengguna untuk menambahkan fungsionalitas baru tanpa mengubah kode yg sudah ada.
@@ -1459,12 +1429,12 @@ pengganti objek dari tipe T) tanpa mengubah tiap properti dari program
 (kebenaran, tugas yg dilakukan, dsb)." Hal itu lebih mengerikan daripada
 definisinya
 
-Penjelasan terbaik dari hal ini adalah jika kamu memiliki parent class dan
-sebuah child class, maka basis class dan child class dapa digunakan secara
+Penjelasan terbaik dari hal ini adalah jika kamu memiliki *parent class* dan
+sebuah *child class*, maka basis *class* dan *child class* dapat digunakan secara
 bergantian tanpa mendapatkan hasil yg salah. Hal ini mungkin membingungkan,
 jadi mari kita lihat pada contoh Kotak-Segi Empat klasik. Secara matematis,
 sebuah kotak adalah Segi Empat, namun jika kamu memodelkannya menggunakan
-hubungan "adalah-sebuah" via inheritance, maka kamu secara cepat ada
+hubungan "adalah-sebuah" via *inheritance*, maka kamu secara cepat ada
 dalam masalah
 
 **Buruk:**
@@ -1569,19 +1539,19 @@ renderLargeShapes(shapes);
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Interface Segregation Principle (ISP) / Prinsip segregasi antarmuka
-JavaScript tidak memiliki interface jadi prinsip ini tidak digunakan secara
+JavaScript tidak memiliki *interface* jadi prinsip ini tidak digunakan secara
 ketat seperti yang lainnya. Akan tetapi, hal ini penting dan relevan walaupun
 JavaScript tidak memiliki sistem penggolongan (type).
 
 ISP dinyatakan seperti "Klien harus dipaksa untuk bergantung pada interface
 yg mereka tidak gunakan." Interface adalah kontrak implisit di JavaScript
-karena duck typing.
+karena *duck typing*.
 
 Sebuah contoh yang baik untuk dilihat adalah demonstrasi prinsip ini di JavaScript
-adalah untuk class yang membutuhkan object pengaturan yang besar. Tidak membutuhkan
+adalah untuk *class* yang membutuhkan objek pengaturan yang besar. Tidak membutuhkan
 Klien untuk mengatur banyak opsi adalah keuntungan, karena sebagian besar waktu
 mereka tidak memerlukan sebua setting. Membuat mereka opsional mencegah
-mendapati sebuah "fat interface"
+mendapati sebuah *"fat interface"*
 
 **Buruk:**
 ```javascript
@@ -1652,7 +1622,7 @@ pada abstraksi.
 
 Hal ini dapat menjadi susah untuk dimengerti saat pertama kali, namun jika
 kamu telah bekerja menggunakan AngularJS, kamu telah melihat dari implementasi
-dari prinsip ini dalam bentuk Dependency Injection (DI). Ketika mereka bukan
+dari prinsip ini dalam bentuk *Dependency Injection* (DI). Ketika mereka bukan
 konsep yang identik, DIP menjaga modul tingkat-tinggi dari mengetahui detail
 dari modul tingkat-rendah-nya dan mengatur mereka. Hal ini dapat diselesaikan
 melalui DI. Keuntungan terbesar dari hal ini adalah mengurangi kopel antar
@@ -1740,14 +1710,6 @@ inventoryTracker.requestItems();
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ## **Pengujian**
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](http://gotwarlost.github.io/istanbul/).
-
 Pengujian itu lebih penting daripada shipping. Jika kamu tidak punya pengujian
 atau tidak mencukupunya, maka setiap kali kamu ship kodemu kamu tidak akan
 yakin kalau kamu tidak merusak segalanya. Memutuskan berapa jumlah yang cukup
@@ -1759,8 +1721,8 @@ bagus, kamu juga perlu menggunakan sebuah [alat cakupan yang bagus](http://gotwa
 Tidak ada alasan untuk tidak menulis pengujuan. Terdapat [banyak framework pengujian yg bagus di Javascript](http://jstherightway.org/#testing-tools),
 jadi pilih satu yang tim-mu lebih suka. Ketika kamu menemukan satu yang dapat
 bekerja dengan tim-mu, lalu arahkan untuk selalu menulis test untuk setiap
-fitur/modul baru yang kamu perkenalkan. Jika kamu lebih suka metode TDD (Test
-Driven Development), itu hal yang bagus, tapi poin utamanya adalah untuk
+fitur/modul baru yang kamu perkenalkan. Jika kamu lebih suka metode TDD *(Test
+Driven Development)*, itu hal yang bagus, tapi poin utamanya adalah untuk
 selalu memastikan kamu meraih cakupan tujuan-tujuan sebelum meluncurkan
 fitur apapun, atau merefaktor satu yg telah ada.
 
@@ -1817,8 +1779,8 @@ describe('MakeMomentJSGreatAgain', () => {
 
 ## **Concurrency**
 ### Gunakan Promises, jangan callbacks
-Callback itu tidak clean, dan mereka memngakibatkan nesting dengan jumlah yang
-berlebihan. Dengan ES2015/ES6, promise sudah built-in. Jadi gunakanlah!
+*Callback* itu tidak clean, dan mereka memngakibatkan nesting dengan jumlah yang
+berlebihan. Dengan ES2015/ES6, *promise* sudah *built-in*. Jadi gunakanlah!
 
 **Buruk:**
 ```javascript
@@ -1861,9 +1823,9 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Async/Await lebih sederhana daripada Promises
-Promise adalah alternatif dari callback yang sangat bersih, namun ES2017/ES8 membawa
-async dan await yang mana menawarkan solusi yang lebih bersih lagi. Yang kamu perlukan
-adalah fungsi yang memiliki prefix sebuah kata kuncu `async`, lalu kamu dapat
+*Promise* adalah alternatif dari *callback* yang sangat bersih, namun ES2017/ES8 membawa
+*async* dan *await* yang mana menawarkan solusi yang lebih bersih lagi. Yang kamu perlukan
+adalah fungsi yang memiliki prefiks sebuah kata kunci `async`, lalu kamu dapat
 menulis logika secara imperatif tanpa rantai sebuah `then` dari fungsi. Gunakan
 ini jika kamu dapat mengambil manfaat dari fitur ES2017/ES8 hari ini!
 
@@ -1911,13 +1873,6 @@ sekarang, menghentikan process (di Node) dan memberitahumu di konsol dengan
 tumpukan jejak.
 
 ### Jangan abaikan kesalahan yg tertangkap
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
-
 Tidak melakukan apapun dengan error yg tertangkan tidak akan memberikanmu
 kemampuan untuk membetulkan atau bereaksi pada error yang telah dikatakan.
 Mencatat error untuk konsol (`console.log`) tidak jauh lebih baik seperti
@@ -1990,7 +1945,7 @@ getdata()
 Menyusun format adalah subjektif. Seperti aturan disini, tidak ada aturan keras
 yang harus kamu ikuti. Poin utamanya adalah JANGAN BERDEBAT atas format. Ada
 [banyak sekali alat](http://standardjs.com/rules.html) untuk mengotomasi hal ini.
-Gunakan salah satu! Hal ini adalah pemborosan waktu dan uang engineers untuk
+Gunakan salah satu! Hal ini adalah pemborosan waktu dan uang para *engineer* untuk
 berdebat soal format.
 
 Untuk hal-hal yang tidak termasuk dalam hal format otomatis (indentasi,
@@ -2184,7 +2139,7 @@ doStuff();
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Jangan ada komentar tentang jurnal
-Ingat, gunakan version control! Tidak perlu kode mati, kode yang dikomentari,
+Ingat, gunakan *version control!* Tidak perlu kode mati, kode yang dikomentari,
 dan khususnya komentar tentang jurnal. Gunakan `git log` untuk mendapatkan
 riwayat!
 
