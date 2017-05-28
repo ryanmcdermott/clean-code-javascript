@@ -12,7 +12,7 @@
   9. [Penanganan Kesalahan](#penanganan-kesalahan)
   10. [Menyusun Format](#menyusun-format)
   11. [Komentar](#komentar)
-  12. [Translation](#translation)
+  12. [Alih Bahasa](#alih-bahasa)
 
 ## Kata Pengantar
 ![Gambar lucu dari estimasi kualitas perangkat lunak sebagai hitungan berapa
@@ -947,10 +947,6 @@ for (let i = 0; i < list.length; i++) {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Hapus kode mati
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
-
 Kode yg mati akan seburuk kode yang duplikat. Tidak ada alasan untuk menyimpannya
 dalam basis kode-mu. Jika tidak dipanggil, maka buang saja! Itu akan tetap amazon
 di "version history" jika kamu membutuhkannya lagi.
@@ -983,18 +979,18 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ## **Objek dan Struktur Data**
 ### Gunakan getters dan setters
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+Menggunakan getters dan setter untuk mengakses data di objek akan lebih baik
+daripada sekedar mencari sebuah property dari objek, "Kenapa?" kamu mungkin
+bertanya. Baik, terdapat daftar yg tidak teratur sebagai alasan:
 
-* When you want to do more beyond getting an object property, you don't have
-to look up and change every accessor in your codebase.
-* Makes adding validation simple when doing a `set`.
-* Encapsulates the internal representation.
-* Easy to add logging and error handling when getting and setting.
-* You can lazy load your object's properties, let's say getting it from a
+* Ketika kamu ingin melakukan hal lebih dari sekedar mendapatkan properti objek,
+kamu tidak harus mencari dan mengubah setiap aksesor di basis kode-mu.
+* Buat menambahkan validasi sederhana ketika melakukan sebuah `set`.
+* Enkapsulasi representasi internal.
+* Memudahkan untuk tambah catatan dan penanggulangan kesalahan ketika getting
+dan setting.
+* Kamu bisa lazy load properti-properti dari objek, seperti mendapatkannya dari
 server.
-
 
 **Buruk:**
 ```javascript
@@ -1014,17 +1010,17 @@ account.balance = 100;
 **Baik:**
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // yg satu ini privat
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // sebuah "getter", dibuat publik via objek yg dikembalikan di bawah ini
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // sebuah "setter", dibuat publik via objek yg dikembalikan di bawah ini
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... validasi sebelum memperbarui balance
     balance = amount;
   }
 
@@ -1042,7 +1038,7 @@ account.setBalance(100);
 
 
 ### Buat objek memiliki private member
-This can be accomplished through closures (for ES5 and below).
+Hal ini dapat diselesaikan lewat closures (untuk ES5 serta diatasnya)
 
 **Buruk:**
 ```javascript
@@ -1056,9 +1052,9 @@ Employee.prototype.getName = function getName() {
 };
 
 const employee = new Employee('John Doe');
-console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Nama employee: John Doe
 delete employee.name;
-console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
+console.log(`Employee name: ${employee.getName()}`); // Nama employee: undefined
 ```
 
 **Baik:**
@@ -1072,19 +1068,20 @@ function makeEmployee(name) {
 }
 
 const employee = makeEmployee('John Doe');
-console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Nama employee: John Doe
 delete employee.name;
-console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
+console.log(`Employee name: ${employee.getName()}`); // Nama employee: John Doe
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 
 ## **Class**
 ### Gunakan class ES2015/ES6 daripada fungsi ES5
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+Sangat susah untuk mendapatkan class inheritance, construction, dan definisi
+method yg mudah dibaca untuk class ES5 yg terdahulu. Jika kamu memerlukan
+inheritance (dan waspadai jika kamu tidak), maka pilihlah class ES2015/ES6.
+Akan tetapi, gunakan fungsi yg kecil daripada class sampai kamu mendapati
+dirimu memerlukan objek yang lebih besar dan kompleks.
 
 **Buruk:**
 ```javascript
@@ -1157,11 +1154,12 @@ class Human extends Mammal {
 
 
 ### Gunakan metode chaining
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+Pola ini sangat berguna di JavaScript dan kamu akan melihatnya di banyak library
+seperti jQuery dan Lodash. Hal ini memperbolehkan kode-mu jadi lebih ekspresif,
+dan lebih sedikit bertele-tele. Untuk alasan tersebut, aku katakan, gunakan
+metode chainging dan lihatlah betapa bersih kodemu nanti. Di fungsi class,
+sederhanaya kembalikan `this` pada akhir setiap fungsi, dan kamu akan merantai
+metode class setelahnya.
 
 **Buruk:**
 ```javascript
@@ -1207,25 +1205,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // CATATAN: Mengembalikan this untuk chaining
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // CATATAN: Mengembalikan this untuk chaining
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // CATATAN: Mengembalikan this untuk chaining
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // CATATAN: Mengembalikan this untuk chaining
     return this;
   }
 }
@@ -1239,22 +1237,25 @@ const car = new Car()
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Gunakan composition daripada inheritance
-As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+Sebagaimana terkenal dinyatakan di [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns)
+oleh Gang of Four, kamu sebaiknya memilih composition daripada inheritance
+dimanapun kamu bisa. Terdapat banyak alasan baik untuk menggunakan inheritance
+dan banyak alasan baik pula untuk menggunakan composition. Poin utamanya untuk
+pepatah ini adalah jika pikiranmu secara insting lebih memilih inheritance,
+coba untuk memikir jika composition dapat memodelkan problemmu lebih baik. di
+beberapa kasus hal tersebut bisa.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Kamu mungkin saja bertanya-tanya, "Kapan aku seharusnya menggunakan inheritance?"
+hal itu tergantung pada problemnya, tapi ini adalah alasan yg lumayan dari
+kapan inheritence membuat hal lebih daripada composition:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-(Change the caloric expenditure of all animals when they move).
+1. Inheritance-mu merepresentasikan sebuah hubungan "adalah-sebuah" dan bukan
+hubungan "memiliki-sebuah" (Manusia->Hewan vs. Pengguna->DetailPengguna).
+2. Kamu dapat menggunakan kembali kode dari basis class (Manusa dapat bergerak
+seperti semua hewan-hewan).
+3. Kamu ingin membuat perubahan yg global untuk menurunkan class dengan
+mengubah sebuah basis class. (Mengubah pengeluaran kalori dari semua hewan-hewan
+ketika ia bergerak)
 
 **Buruk:**
 ```javascript
@@ -1267,7 +1268,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Buruk karena Employee "memiliki" data pajak. EmployeeTaxData bukan sebuah tipe dari Employee
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1306,14 +1307,15 @@ class Employee {
 
 ## **SOLID**
 ### Single Responsibility Principle (SRP) / Prinsip Tanggung Jawab Tunggal
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+Seperti dinyatakan di Clean Code, "Semestinya tidak akan lebih dari satu alasan
+sebuah class untuk berubah". Hal itu sangat menggoda untuk memadati class dengan
+fungsionalitas yang banyak, seperti ketika kamu hanya dapat mengambil satu koper
+dalam penerbanganmu. Masalahnya dengan ini adalah classmu tidak akan secara
+konseptual kohesif dan hal hal itu akan memberikan alasan untuk berubah.
+Meminimalisir jumlah waktu yang kamu gunakan untuk mengubah class sangat penting.
+Hal itu penting karena jika terlalu banyak fungsionalitas dalam sebuah class dan
+kamu memodifikasi sebagian saja, hal itu akan sulit untuk dimengerti Bagaimana
+itu akan mempengaruhi modul lain yg terhubung dalam basis kode-mu.
 
 **Buruk:**
 ```javascript
@@ -1363,10 +1365,10 @@ class UserSettings {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Open/Closed Principle (OCP) / Prinsip Terbuka/Tertutup
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+Seperti yang dinyatakan Bertrand Meyer, "entitas perangkat lunak (class, modul,
+fungsi, dsb) harus terbuka untuk ekstensi, namun tertutup untuk modifikasi." Apa
+maksudnya? Prinsip ini dasarnya menyatakan bahwa kamu harus tetap memperbolehkan
+pengguna untuk menambahkan fungsionalitas baru tanpa mengubah kode yg sudah ada.
 
 **Buruk:**
 ```javascript
@@ -1392,22 +1394,22 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === 'ajaxAdapter') {
       return makeAjaxCall(url).then((response) => {
-        // transform response and return
+        // mengubah respon dan mengembalikan
       });
     } else if (this.adapter.name === 'httpNodeAdapter') {
       return makeHttpCall(url).then((response) => {
-        // transform response and return
+        // mengubah respon dan mengembalikan
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // request dan mengembalikan promise
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // request dan mengembalikan promise
 }
 ```
 
@@ -1420,7 +1422,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // request dan mengembalikan promise
   }
 }
 
@@ -1431,7 +1433,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // request dan mengembalikan promise
   }
 }
 
@@ -1442,7 +1444,7 @@ class HttpRequester {
 
   fetch(url) {
     return this.adapter.request(url).then((response) => {
-      // transform response and return
+      // request dan mengembalikan promise
     });
   }
 }
@@ -1450,18 +1452,20 @@ class HttpRequester {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Liskov Substitution Principle (LSP) / Prinsip Subtitusi Liskov
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+Ini merupakan istilah mengerikan untuk sebuah konsep sederhana. Hal ini secara
+formal didefinisikan sebagai "jika S adalah sub-tipe dari T, maka objek dari
+tipe T mungkin terganti oleh objek tipe S (contohnya, objek tipe S mungkin
+pengganti objek dari tipe T) tanpa mengubah tiap properti dari program
+(kebenaran, tugas yg dilakukan, dsb)." Hal itu lebih mengerikan daripada
+definisinya
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Penjelasan terbaik dari hal ini adalah jika kamu memiliki parent class dan
+sebuah child class, maka basis class dan child class dapa digunakan secara
+bergantian tanpa mendapatkan hasil yg salah. Hal ini mungkin membingungkan,
+jadi mari kita lihat pada contoh Kotak-Segi Empat klasik. Secara matematis,
+sebuah kotak adalah Segi Empat, namun jika kamu memodelkannya menggunakan
+hubungan "adalah-sebuah" via inheritance, maka kamu secara cepat ada
+dalam masalah
 
 **Buruk:**
 ```javascript
@@ -1508,7 +1512,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // Buruk: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // Buruk: Mengembalikan 25 untuk kotak. Harusnya 20.
     rectangle.render(area);
   });
 }
@@ -1734,7 +1738,7 @@ inventoryTracker.requestItems();
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-## **Testing**
+## **Pengujian**
 Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
 didn't break anything. Deciding on what constitutes an adequate amount is up
@@ -2215,22 +2219,22 @@ const actions = function() {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-## Translation
+## Alih Bahasa
 
-This is also available in other languages:
+Panduan ini juga tersedia di berbagai bahasa:
 
-  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
-  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **Spanish**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
-  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**:
+  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Bahasa Brazil Portugis**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
+  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **Bahasa Spanyol**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Bahasa Mandarin**:
     - [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
     - [beginor/clean-code-javascript](https://github.com/beginor/clean-code-javascript)
-  - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
-  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
-  - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [greg-dev/clean-code-javascript-pl](https://github.com/greg-dev/clean-code-javascript-pl)
-  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**:
+  - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **Bahasa Jerman**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
+  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Bahasa Korea**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
+  - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Bahasa Polandia**: [greg-dev/clean-code-javascript-pl](https://github.com/greg-dev/clean-code-javascript-pl)
+  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Bahasa Rusia**:
     - [BoryaMogila/clean-code-javascript-ru/](https://github.com/BoryaMogila/clean-code-javascript-ru/)
     - [maksugr/clean-code-javascript](https://github.com/maksugr/clean-code-javascript)
-  - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
-  - ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
+  - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Bahasa Vietnam**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
+  - ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Bahasa Jepang**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
 
 **[⬆ Kembali ke atas](#daftar-isi)**
