@@ -1569,19 +1569,19 @@ renderLargeShapes(shapes);
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Interface Segregation Principle (ISP) / Prinsip segregasi antarmuka
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+JavaScript tidak memiliki interface jadi prinsip ini tidak digunakan secara
+ketat seperti yang lainnya. Akan tetapi, hal ini penting dan relevan walaupun
+JavaScript tidak memiliki sistem penggolongan (type).
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+ISP dinyatakan seperti "Klien harus dipaksa untuk bergantung pada interface
+yg mereka tidak gunakan." Interface adalah kontrak implisit di JavaScript
+karena duck typing.
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Sebuah contoh yang baik untuk dilihat adalah demonstrasi prinsip ini di JavaScript
+adalah untuk class yang membutuhkan object pengaturan yang besar. Tidak membutuhkan
+Klien untuk mengatur banyak opsi adalah keuntungan, karena sebagian besar waktu
+mereka tidak memerlukan sebua setting. Membuat mereka opsional mencegah
+mendapati sebuah "fat interface"
 
 **Buruk:**
 ```javascript
@@ -1603,7 +1603,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // Sebagian besar waktu, kita tidak membutuhkan animasi sewaktu tranversing.
   // ...
 });
 
@@ -1644,25 +1644,26 @@ const $ = new DOMTraverser({
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ### Dependency Inversion Principle (DIP)
-This principle states two essential things:
-1. High-level modules should not depend on low-level modules. Both should
-depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-abstractions.
+Prinsip ini menyatakan dua hal esensial:
+1. Modul Tingkat-Tinggi seharusnya tidak tergantung pada modul tingkat-rendah.
+Keduanya harus bergantung pada abstraksi.
+2. Abstraksi seharusnya tidak bergantung pada detail. Detail harus bergantung
+pada abstraksi.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Hal ini dapat menjadi susah untuk dimengerti saat pertama kali, namun jika
+kamu telah bekerja menggunakan AngularJS, kamu telah melihat dari implementasi
+dari prinsip ini dalam bentuk Dependency Injection (DI). Ketika mereka bukan
+konsep yang identik, DIP menjaga modul tingkat-tinggi dari mengetahui detail
+dari modul tingkat-rendah-nya dan mengatur mereka. Hal ini dapat diselesaikan
+melalui DI. Keuntungan terbesar dari hal ini adalah mengurangi kopel antar
+modul. Kopel sangat buruk untuk pola pengembangan karena hal itu membuat
+kodemu susah untuk direfaktor.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Seperti dinyatakan sebelumnya, JavaScript tidak memiliki Interface jadi
+abstraksi yang tergantung adalah kontrak implisit. Hal itu dapat dikatakan,
+metode dan properti yang sebuah objek/class buka pada objek/class lain. Di
+contoh dibawah ini, kontrak implisit adalah Request modul apapun untuk
+sebuah `InventoryTracker` akan memiliki sebuah metode `requestItems`.
 
 **Buruk:**
 ```javascript
@@ -1680,8 +1681,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // Buruk: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // Buruk: Kita telah menciptakan ketergantungan pada penerapan request tertentu.
+    // Kita harus memiliki sebuah requestItems yg bergantung pada metode request: `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1731,8 +1732,8 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Dengan membangun ketergantungan kita secara eksternal dan menyuntikkannya, kita dapat dengan mudah
+// mengganti modul request kita untuk satu hal baru yang menggunakan WebSockets.
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
