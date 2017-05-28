@@ -1,3 +1,5 @@
+Repositori original : [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
+
 # clean-code-javascript (Bahasa Indonesia)
 
 ## Daftar Isi
@@ -385,7 +387,7 @@ function parseBetterJSAlternative(code) {
 ### Hapus kode yg duplikat
 Lakukan yg terbaik untuk menghindari kode yg duplikat. Kode yg duplikat itu Buruk
 karena berarti terdapat lebih dari satu tempat untuk diubah jika kamu perlu
-mengubah beberapa logic.
+mengubah beberapa *logic*.
 
 Bayangkan jika kamu memiliki sebuah restoran dan kamu harus terus melacak inventarismu:
 tomat, bawang, cabe, dan lain-lain. Nah, Jika kamu memiliki beberapa daftar yg kamu
