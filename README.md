@@ -4,8 +4,8 @@
   1. [Kata Pengantar](#kata-pengantar)
   2. [Variabel](#variabel)
   3. [Fungsi](#fungsi)
-  4. [Objects and Data Structures](#objects-and-data-structures)
-  5. [Classes](#classes)
+  4. [Objek dan Struktur Data](#objek-dan-struktur-data)
+  5. [Class](#class)
   6. [SOLID](#solid)
   7. [Testing](#testing)
   8. [Concurrency](#concurrency)
@@ -209,42 +209,45 @@ function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ## **Fungsi**
-### Argumen Fungsi (idealnya 2 atau kurang)
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
+### Argumen Fungsi (idealnya hanya 2 atau kurang)
+Membatasi jumlah parameter dari fungsi sangatlah penting karena membuat pengujian
+fungsi menjadi lebih mudah. Memiliki lebih dari 3 parameter dapat mengakibatkan
+ledakan kombinasional dimana kamu harus menguji banyak sekali kasus-kasus yg
+berbeda di tiap-tiap argumen yg terpisah.
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
+Satu atau dua argumen adalah kasus yg ideal, jika tiga maka sebaiknya dihindari.
+Apapun lebih dari itu harus dikonsolidasikan. Biasanya, jika kamu memiliki lebih
+dari dua argumen maka fungsimu melakukan hal yg terlalu banyak. Di beberapa kasus
+dimana hal itu tidak terjadi, seringkali higher-level object akan cukup menjadi
+sebuah argumen.
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+JavaScript memperbolehkanmu untuk membuat object secara langsung, tanpa membuat
+banyak class terlebih dahulu. kamu dapat menggunakan sebuah objek jika kamu
+mendapatibahwa kamu memerlukan banyak argumen.
 
 To make it obvious what properties the function expects, you can use the ES2015/ES6
 destructuring syntax. This has a few advantages:
 
-1. When someone looks at the function signature, it's immediately clear what
-properties are being used.
-2. Destructuring also clones the specified primitive values of the argument
-object passed into the function. This can help prevent side effects. Note:
-objects and arrays that are destructured from the argument object are NOT
-cloned.
-3. Linters can warn you about unused properties, which would be impossible
-without destructuring.
+Lebih jelasnya, kamu dapat menggunakan destructuring syntax pada ES2015/ES6. Hal
+tersebut memiliki beberapa kelebihan:
 
-**Bad:**
+1. Ketika seseorang melihat fungsi, fungsi tersebut secara langsung menjelaskan
+properti-properti apa saja yg digunakan.
+2. Merestrukturisasi juga mengkloning nilai primitif yang ditentukan dari objek
+argumen yang dilewatkan ke fungsi. Hal ini dapat membantu mencegah efek samping.
+Sebagai Catatan: objek dan array yg telah didestrukturisasi dari argumen objek
+tidak di kloning.
+3. Linters dapat memberi peringatan kepadamu tentang properti yg tidak digunakan,
+yg mana akan lebih tidak mungkin tanpa merestrukturisasi.
+
+**Buruk:**
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
   // ...
 }
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
   // ...
@@ -260,14 +263,20 @@ createMenu({
 **[⬆ back to top](#table-of-contents)**
 
 
-### Functions should do one thing
+### Fungsi harus melakukan satu hal saja
 This is by far the most important rule in software engineering. When functions
 do more than one thing, they are harder to compose, test, and reason about.
 When you can isolate a function to just one action, they can be refactored
 easily and your code will read much cleaner. If you take nothing else away from
 this guide other than this, you'll be ahead of many developers.
 
-**Bad:**
+Ini adalah aturan terpenting dalam rekayasa perangkat lunak. Ketika fungsi melakukan
+lebih dari satu hal, mereka sulit untuk dibuat, diuji dan dipikirkan. Ketika kamu
+dapat mengisolasi sebuah fungsi untuk melakukan satu action saja, mereka dapat
+difaktorkan secara mudah dan kodemu akan jauh lebih bersih. Jika kamu tidak mengambil
+apapun dari panduan ini selain hal ini, maka anda akan ada di depan banyak pengembang.
+
+**Buruk:**
 ```javascript
 function emailClients(clients) {
   clients.forEach((client) => {
@@ -279,7 +288,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 function emailActiveClients(clients) {
   clients
@@ -292,11 +301,11 @@ function isActiveClient(client) {
   return clientRecord.isActive();
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Function names should say what they do
+### Nama dari fungsi harus mewakili apa yg dia lakukan
 
-**Bad:**
+**Buruk:**
 ```javascript
 function addToDate(date, month) {
   // ...
@@ -304,11 +313,11 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to to tell from the function name what is added
+// sulit untuk mengatakan dari nama fungsi yg ditambahkan
 addToDate(date, 1);
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 function addMonthToDate(month, date) {
   // ...
@@ -317,14 +326,14 @@ function addMonthToDate(month, date) {
 const date = new Date();
 addMonthToDate(1, date);
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Functions should only be one level of abstraction
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+### Fungsi-fungsi seharusnya satu tingkat abstraksi
+Ketika kamu memiliki lebih dari satu tingkat abstraksi, fungsimu biasanya melakukan
+hal yg terlalu banyak. Memisah-misah fungsi dapat meningkatkan reusabilitas dan
+memudahkan pengujian.
 
-**Bad:**
+**Buruk:**
 ```javascript
 function parseBetterJSAlternative(code) {
   const REGEXES = [
@@ -350,7 +359,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**Baik:**
 ```javascript
 function tokenize(code) {
   const REGEXES = [
@@ -385,9 +394,9 @@ function parseBetterJSAlternative(code) {
   });
 }
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Kembali ke atas](#daftar-isi)**
 
-### Remove duplicate code
+### Hapus kode yg duplikat
 Do your absolute best to avoid duplicate code. Duplicate code is bad because it
 means that there's more than one place to alter something if you need to change
 some logic.
