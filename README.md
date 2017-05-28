@@ -10,7 +10,7 @@
   7. [Pengujian](#pengujian)
   8. [Concurrency](#concurrency)
   9. [Penanganan Kesalahan](#penanganan-kesalahan)
-  10. [Format](#format)
+  10. [Menyusun Format](#menyusun-format)
   11. [Komentar](#komentar)
   12. [Translation](#translation)
 
@@ -563,7 +563,7 @@ function createTempFile(name) {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Avoid Side Effects (part 1)
+### Hindari Efek Samping (bagian 1)
 A function produces a side effect if it does anything other than take a value in
 and return another value or values. A side effect could be writing to a file,
 modifying some global variable, or accidentally wiring all your money to a
@@ -608,7 +608,7 @@ console.log(newName); // ['Ryan', 'McDermott'];
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Avoid Side Effects (part 2)
+### Hindari Efek Samping (bagian 2)
 In JavaScript, primitives are passed by value and objects/arrays are passed by
 reference. In the case of objects and arrays, if your function makes a change
 in a shopping cart array, for example, by adding an item to purchase,
@@ -657,7 +657,7 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Don't write to global functions
+### Jangan menulis fungsi global
 Polluting globals is a bad practice in JavaScript because you could clash with another
 library and the user of your API would be none-the-wiser until they get an
 exception in production. Let's think about an example: what if you wanted to
@@ -687,7 +687,7 @@ class SuperArray extends Array {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Favor functional programming over imperative programming
+### Gunakan functional programming daripada imperative programming
 JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages are cleaner and easier to test.
 Favor this style of programming when you can.
@@ -743,7 +743,7 @@ const totalOutput = programmerOutput
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Encapsulate conditionals
+### Enkapsulasi Kondisional
 
 **Buruk:**
 ```javascript
@@ -764,7 +764,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Avoid negative conditionals
+### Hindari Kondisional Negatif
 
 **Buruk:**
 ```javascript
@@ -789,7 +789,7 @@ if (isDOMNodePresent(node)) {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Avoid conditionals
+### Hindari Kondisional
 This seems like an impossible task. Upon first hearing this, most people say,
 "how am I supposed to do anything without an `if` statement?" The answer is that
 you can use polymorphism to achieve the same task in many cases. The second
@@ -845,7 +845,7 @@ class Cessna extends Airplane {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Avoid type-checking (part 1)
+### Hindari type-checking (bagian 1)
 JavaScript is untyped, which means your functions can take any type of argument.
 Sometimes you are bitten by this freedom and it becomes tempting to do
 type-checking in your functions. There are many ways to avoid having to do this.
@@ -870,7 +870,7 @@ function travelToTexas(vehicle) {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Avoid type-checking (part 2)
+### Hindari type-checking (bagian 2)
 If you are working with basic primitive values like strings, integers, and arrays,
 and you can't use polymorphism but you still feel the need to type-check,
 you should consider using TypeScript. It is an excellent alternative to normal
@@ -901,7 +901,7 @@ function combine(val1, val2) {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Don't over-optimize
+### Jangan Optimasi Berlebihan
 Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
 times, if you are optimizing then you are just wasting your time. [There are good
 resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
@@ -926,7 +926,7 @@ for (let i = 0; i < list.length; i++) {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Remove dead code
+### Hapus kode mati
 Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
 in your version history if you still need it.
@@ -957,8 +957,8 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-## **Objects and Data Structures**
-### Use getters and setters
+## **Objek dan Struktur Data**
+### Gunakan getters dan setters
 Using getters and setters to access data on objects could be better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
 unorganized list of reasons why:
@@ -1017,7 +1017,7 @@ account.setBalance(100);
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 
-### Make objects have private members
+### Buat objek memiliki private member
 This can be accomplished through closures (for ES5 and below).
 
 **Buruk:**
@@ -1055,8 +1055,8 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 
-## **Classes**
-### Prefer ES2015/ES6 classes over ES5 plain functions
+## **Class**
+### Gunakan class ES2015/ES6 daripada fungsi ES5
 It's very difficult to get readable class inheritance, construction, and method
 definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
@@ -1132,7 +1132,7 @@ class Human extends Mammal {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 
-### Use method chaining
+### Gunakan metode chaining
 This pattern is very useful in JavaScript and you see it in many libraries such
 as jQuery and Lodash. It allows your code to be expressive, and less verbose.
 For that reason, I say, use method chaining and take a look at how clean your code
@@ -1214,7 +1214,7 @@ const car = new Car()
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Prefer composition over inheritance
+### Gunakan composition daripada inheritance
 As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
 you should prefer composition over inheritance where you can. There are lots of
 good reasons to use inheritance and lots of good reasons to use composition.
@@ -1281,7 +1281,7 @@ class Employee {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ## **SOLID**
-### Single Responsibility Principle (SRP)
+### Single Responsibility Principle (SRP) / Prinsip Tanggung Jawab Tunggal
 As stated in Clean Code, "There should never be more than one reason for a class
 to change". It's tempting to jam-pack a class with a lot of functionality, like
 when you can only take one suitcase on your flight. The issue with this is
@@ -1338,7 +1338,7 @@ class UserSettings {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Open/Closed Principle (OCP)
+### Open/Closed Principle (OCP) / Prinsip Terbuka/Tertutup
 As stated by Bertrand Meyer, "software entities (classes, modules, functions,
 etc.) should be open for extension, but closed for modification." What does that
 mean though? This principle basically states that you should allow users to
@@ -1425,7 +1425,7 @@ class HttpRequester {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Liskov Substitution Principle (LSP)
+### Liskov Substitution Principle (LSP) / Prinsip Subtitusi Liskov
 This is a scary term for a very simple concept. It's formally defined as "If S
 is a subtype of T, then objects of type T may be replaced with objects of type S
 (i.e., objects of type S may substitute objects of type T) without altering any
@@ -1540,7 +1540,7 @@ renderLargeShapes(shapes);
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Interface Segregation Principle (ISP)
+### Interface Segregation Principle (ISP) / Prinsip segregasi antarmuka
 JavaScript doesn't have interfaces so this principle doesn't apply as strictly
 as others. However, it's important and relevant even with JavaScript's lack of
 type system.
@@ -1726,7 +1726,7 @@ Test Driven Development (TDD), that is great, but the main point is to just
 make sure you are reaching your coverage goals before launching any feature,
 or refactoring an existing one.
 
-### Single concept per test
+### Satu konsep tiap pengujian
 
 **Buruk:**
 ```javascript
@@ -1778,7 +1778,7 @@ describe('MakeMomentJSGreatAgain', () => {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 ## **Concurrency**
-### Use Promises, not callbacks
+### Gunakan Promises, jangan callbacks
 Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
 
@@ -1822,7 +1822,7 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await lebih sederhana daripada Promises
 Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
 which offer an even cleaner solution. All you need is a function that is prefixed
 in an `async` keyword, and then you can write your logic imperatively without
@@ -1865,13 +1865,13 @@ async function getCleanCodeArticle() {
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 
-## **Error Handling**
+## **Penanganan Kesalahan**
 Thrown errors are a good thing! They mean the runtime has successfully
 identified when something in your program has gone wrong and it's letting
 you know by stopping function execution on the current stack, killing the
 process (in Node), and notifying you in the console with a stack trace.
 
-### Don't ignore caught errors
+### Jangan abaikan kesalahan yg tertangkap
 Doing nothing with a caught error doesn't give you the ability to ever fix
 or react to said error. Logging the error to the console (`console.log`)
 isn't much better as often times it can get lost in a sea of things printed
@@ -1903,7 +1903,7 @@ try {
 }
 ```
 
-### Don't ignore rejected promises
+### Jangan abaikan promise yg ditolak
 For the same reason you shouldn't ignore caught errors
 from `try/catch`.
 
@@ -1938,7 +1938,7 @@ getdata()
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 
-## **Formatting**
+## **Menyusun Format**
 Formatting is subjective. Like many rules herein, there is no hard and fast
 rule that you must follow. The main point is DO NOT ARGUE over formatting.
 There are [tons of tools](http://standardjs.com/rules.html) to automate this.
@@ -1948,7 +1948,7 @@ For things that don't fall under the purview of automatic formatting
 (indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
 for some guidance.
 
-### Use consistent capitalization
+### Gunakan Kapitalisasi yg konsisten
 JavaScript is untyped, so capitalization tells you a lot about your variables,
 functions, etc. These rules are subjective, so your team can choose whatever
 they want. The point is, no matter what you all choose, just be consistent.
@@ -1985,7 +1985,7 @@ class Alpaca {}
 **[⬆ Kembali ke atas](#daftar-isi)**
 
 
-### Function callers and callees should be close
+### Fungsi yg memanggil dan yang dipanggil seharusnya berdekatan
 If a function calls another, keep those functions vertically close in the source
 file. Ideally, keep the caller right above the callee. We tend to read code from
 top-to-bottom, like a newspaper. Because of this, make your code read that way.
@@ -2070,8 +2070,8 @@ review.perfReview();
 
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-## **Comments**
-### Only comment things that have business logic complexity.
+## **Komentar**
+### Komentar hanya untuk hal-hal yang memiliki kompleksitas logika.
 Comments are an apology, not a requirement. Good code *mostly* documents itself.
 
 **Buruk:**
@@ -2114,7 +2114,7 @@ function hashIt(data) {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Don't leave commented out code in your codebase
+### Jangan meninggalkan kode yang dikomentari dalam basis kode anda
 Version control exists for a reason. Leave old code in your history.
 
 **Buruk:**
@@ -2131,7 +2131,7 @@ doStuff();
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Don't have journal comments
+### Jangan ada komentar tentang jurnal
 Remember, use version control! There's no need for dead code, commented code,
 and especially journal comments. Use `git log` to get history!
 
@@ -2156,7 +2156,7 @@ function combine(a, b) {
 ```
 **[⬆ Kembali ke atas](#daftar-isi)**
 
-### Avoid positional markers
+### Hindari komentar marker
 They usually just add noise. Let the functions and variable names along with the
 proper indentation and formatting give the visual structure to your code.
 
