@@ -1643,9 +1643,9 @@ inventoryTracker.requestItems();
 **Good:**
 ```javascript
 class InventoryTracker {
-  constructor(items, requester) {
+  constructor(items, Requester) {
     this.items = items;
-    this.requester = requester;
+    this.requester = new Requester();
   }
 
   requestItems() {
@@ -1677,7 +1677,7 @@ class InventoryRequesterV2 {
 
 // By constructing our dependencies externally and injecting them, we can easily
 // substitute our request module for a fancy new one that uses WebSockets.
-const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
+const inventoryTracker = new InventoryTracker(['apples', 'bananas'], InventoryRequesterV2);
 inventoryTracker.requestItems();
 ```
 **[⬆ back to top](#table-of-contents)**
