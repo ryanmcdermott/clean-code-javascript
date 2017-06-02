@@ -2180,5 +2180,7 @@ This is also available in other languages:
     - [maksugr/clean-code-javascript](https://github.com/maksugr/clean-code-javascript)
   - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
   - ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
+  - ![id](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Indonesia.png) **Indonesia**:
+  [andirkh/clean-code-javascript/](https://github.com/andirkh/clean-code-javascript/)
 
 **[⬆ back to top](#table-of-contents)**
