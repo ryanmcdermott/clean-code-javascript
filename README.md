@@ -1114,10 +1114,10 @@ and you can chain further class methods onto it.
 **Bad:**
 ```javascript
 class Car {
-  constructor() {
-    this.make = 'Honda';
-    this.model = 'Accord';
-    this.color = 'white';
+  constructor(make, model, color) {
+    this.make = make;
+    this.model = model;
+    this.color = color;
   }
 
   setMake(make) {
@@ -1137,20 +1137,18 @@ class Car {
   }
 }
 
-const car = new Car();
+const car = new Car('Ford','F-150','red');
 car.setColor('pink');
-car.setMake('Ford');
-car.setModel('F-150');
 car.save();
 ```
 
 **Good:**
 ```javascript
 class Car {
-  constructor() {
-    this.make = 'Honda';
-    this.model = 'Accord';
-    this.color = 'white';
+  constructor(make, model, color) {
+    this.make = make;
+    this.model = model;
+    this.color = color;
   }
 
   setMake(make) {
@@ -1178,10 +1176,8 @@ class Car {
   }
 }
 
-const car = new Car()
+const car = new Car('Ford','F-150','red')
   .setColor('pink')
-  .setMake('Ford')
-  .setModel('F-150')
   .save();
 ```
 **[⬆ back to top](#table-of-contents)**
@@ -1945,8 +1941,8 @@ class Alpaca {}
 const DAYS_IN_WEEK = 7;
 const DAYS_IN_MONTH = 30;
 
-const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
-const artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+const SONGS = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+const ARTISTS = ['ACDC', 'Led Zeppelin', 'The Beatles'];
 
 function eraseDatabase() {}
 function restoreDatabase() {}
