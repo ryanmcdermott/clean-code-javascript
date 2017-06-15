@@ -867,6 +867,13 @@ function combine(val1, val2) {
 
 **Good:**
 ```javascript
+function combine(val1, val2) {
+  return val1 + val2;
+}
+```
+
+**Good (TypeScript):**
+```typescript
 function combine(val1: number, val2: number): number {
   return val1 + val2;
 }
