@@ -439,22 +439,20 @@ function showEmployeeList(employees) {
   employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
+    
+    let data = {
+      expectedSalary,
+      experience
+    };
 
-    let portfolio;
     switch (employee.type) {
       case 'manager':
-        portfolio = employee.getMBAProjects();
+        data.portfolio = employee.getMBAProjects();
         break;
       case 'developer':
-        portfolio = employee.getGithubLink();
+        data.githubLink = employee.getGithubLink();
         break;
     }
-
-    const data = {
-      expectedSalary,
-      experience,
-      portfolio
-    };
 
     render(data);
   });
