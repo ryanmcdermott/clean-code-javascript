@@ -621,7 +621,7 @@ const addItemToCart = (cart, item) => {
 **Good:**
 ```javascript
 const addItemToCart = (cart, item) => {
-  return [...cart, { item, date : Date.now() }];
+  return [...cart, { item, date: Date.now() }];
 };
 ```
 
