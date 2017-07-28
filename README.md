@@ -439,8 +439,8 @@ function showEmployeeList(employees) {
   employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
-    
-    let data = {
+
+    const data = {
       expectedSalary,
       experience
     };
