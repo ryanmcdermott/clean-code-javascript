@@ -841,7 +841,7 @@ function travelToTexas(vehicle) {
 **[⬆ back to top](#table-of-contents)**
 
 ### Avoid type-checking (part 2)
-If you are working with basic primitive values like strings, integers, and arrays,
+If you are working with basic primitive values like strings and integers,
 and you can't use polymorphism but you still feel the need to type-check,
 you should consider using TypeScript. It is an excellent alternative to normal
 JavaScript, as it provides you with static typing on top of standard JavaScript
