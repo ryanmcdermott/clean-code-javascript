@@ -708,8 +708,7 @@ const programmerOutput = [
 const INITIAL_VALUE = 0;
 
 const totalOutput = programmerOutput
-  .map((programmer) => programmer.linesOfCode)
-  .reduce((acc, linesOfCode) => acc + linesOfCode, INITIAL_VALUE);
+  .reduce((acc, { linesOfCode }) => acc + linesOfCode, INITIAL_VALUE);
 ```
 **[⬆ back to top](#table-of-contents)**
 
