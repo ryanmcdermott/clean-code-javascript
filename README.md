@@ -88,7 +88,7 @@ setTimeout(blastOff, 86400000);
 
 **Good:**
 ```javascript
-// Declare them as capitalized `const` globals.
+// Declare them as capitalized named constants.
 const MILLISECONDS_IN_A_DAY = 86400000;
 
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
