@@ -705,8 +705,6 @@ const programmerOutput = [
   }
 ];
 
-const INITIAL_VALUE = 0;
-
 const totalOutput = programmerOutput
   .map(output => output.linesOfCode)
   .reduce((totalLines, lines) => totalLines + lines);
