@@ -659,7 +659,7 @@ class SuperArray extends Array {
 
 ### Favor functional programming over imperative programming
 JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages are cleaner and easier to test.
+a functional flavor to it. Functional languages can be cleaner and easier to test.
 Favor this style of programming when you can.
 
 **Bad:**
@@ -708,7 +708,8 @@ const programmerOutput = [
 const INITIAL_VALUE = 0;
 
 const totalOutput = programmerOutput
-  .reduce((acc, { linesOfCode }) => acc + linesOfCode, INITIAL_VALUE);
+  .map(output => output.linesOfCode)
+  .reduce((totalLines, lines) => totalLines + lines);
 ```
 **[⬆ back to top](#table-of-contents)**
 
