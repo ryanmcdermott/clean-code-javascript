@@ -192,7 +192,7 @@ function createMicrobrewery(name) {
 
 **Good:**
 ```javascript
-function createMicrobrewery(breweryName = 'Hipster Brew Co.') {
+function createMicrobrewery(name = 'Hipster Brew Co.') {
   // ...
 }
 
