@@ -113,7 +113,7 @@ saveCityZipCode(city, zipCode);
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Mental Mappingf
+### Avoid Mental Mapping
 Explicit is better than implicit.
 
 **Bad:**
