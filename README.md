@@ -113,7 +113,7 @@ saveCityZipCode(city, zipCode);
 ```
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Mental Mapping
+### Avoid Mental Mappingf
 Explicit is better than implicit.
 
 **Bad:**
@@ -343,6 +343,14 @@ function parseBetterJSAlternative(code) {
 
 **Good:**
 ```javascript
+function parseBetterJSAlternative(code) {
+  const tokens = tokenize(code);
+  const ast = lexer(tokens);
+  ast.forEach((node) => {
+    // parse...
+  });
+}
+
 function tokenize(code) {
   const REGEXES = [
     // ...
@@ -366,14 +374,6 @@ function lexer(tokens) {
   });
 
   return ast;
-}
-
-function parseBetterJSAlternative(code) {
-  const tokens = tokenize(code);
-  const ast = lexer(tokens);
-  ast.forEach((node) => {
-    // parse...
-  });
 }
 ```
 **[⬆ back to top](#table-of-contents)**
