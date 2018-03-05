@@ -985,7 +985,7 @@ account.setBalance(100);
 **[⬆ back to top](#table-of-contents)**
 
 
-### Make objects have private members
+### Make objects to have private members
 This can be accomplished through closures (for ES5 and below).
 
 **Bad:**
