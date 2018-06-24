@@ -1334,7 +1334,7 @@ class HttpRequester {
       return makeAjaxCall(url).then((response) => {
         // transform response and return
       });
-    } else if (this.adapter.name === 'httpNodeAdapter') {
+    } else if (this.adapter.name === 'nodeAdapter') {
       return makeHttpCall(url).then((response) => {
         // transform response and return
       });
