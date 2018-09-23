@@ -169,7 +169,7 @@ const Car = {
   color: 'Blue'
 };
 
-function paintCar(car) {
+function paint(car) {
   car.color = 'Red';
 }
 ```
