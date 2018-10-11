@@ -755,11 +755,12 @@ class Cessna extends Airplane {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Evita di verificare i tipi (parte 1)
-JavaScript is untyped, which means your funzioni can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your funzioni. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+### Evita la validazione dei tipi (parte 1)
+
+JavaScript è un linguaggio non tipizzato, il che significa che le tue funzioni possono accettare qualunque tipo di argomento.
+Qualche volta potresti essere tentato da tutta questa libertà e potresti essere altrettanto tentato di veririfcare il tipo di dato ricevuto nella tua funzione.
+Ci sono molti modi per evitare di dover fare questo tipo di controllo.
+Come prima cosa cerca scrivere API consistenti.
 
 **Da evitare**
 ```javascript
@@ -780,7 +781,12 @@ function travelToTexas(vehicle) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Avoid type-checking (part 2)
+### Evita la validazione dei tipi (part 2)
+
+Se stai lavorando con tipi di dati primitivi come stringhe o interi e non puoi utilizzare il paradigma del polimorfismo, ma senti ancora l'esigenza di validare il tipo di dato considera l'utilizzo di TypeScript.
+È una vlidissima alternativa al normale JavaScript che fornicsce una validazione di tipi statica utilizzando la sintassi JavaScript.
+
+
 If you are working with basic primitive values like strings and integers,
 and you can't use polymorphism but you still feel the need to type-check,
 you should consider using TypeScript. It is an excellent alternative to normal
