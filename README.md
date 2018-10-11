@@ -571,15 +571,11 @@ const addItemToCart = (cart, item) => {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ### Don't write to global funzioni
-Polluting globals is a Male practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 Classi and simply extend the `Array` global.
+### Non aggiungere funzioni globali
+
+Contaminare delle variabili globali è una pratica sconsigliata, in quanto potresti entrare in conflitto con altre librerie e l'utilizzatore delle tue API potrebbe non accorgersene fintanto che non si trova in produzione, generando un'eccezione.
+Facciamo un esempio pratico: supponiamo che tu voglia estendere il costruttore Array nativo di JavaScript aggiungendo il metodo `diff` che mostra le differenze tra due array. Come puoi fare?
+Potresti scrivere il metodo utilizzando `Array.prototype`, che però potrebbe entrare in conflitto con con un'altra libreria che fa la stessa cosa. Cosa succederebbe se anche l'altra libreria utilizzasse `diff` per trovare le differenze tra due array? Ecco perchè è molto meglio utilizzare le classi ES2015/ES6 e semplicemente estendere `Array`.
 
 **Da evitare**
 ```javascript
@@ -600,10 +596,15 @@ class SuperArray extends Array {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Favor functional programming over imperative programming
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+### Preferisci la programmazione funzionale a quella imperativa
+
+[Programmazione funzionale](https://it.wikipedia.org/wiki/Programmazione_funzionale)
+
+[Programmazione imperativa](https://it.wikipedia.org/wiki/Programmazione_imperativa)
+
+Javascript non è un linguaggio funzionale alla stregua di Haskell, ma entrambi hanno qualcosa che li accomuna.
+I linguaggi funzionali generalmente sono più puliti e facili da testare.
+Preferisci questo stile se possibile.
 
 **Da evitare**
 ```javascript
@@ -654,7 +655,7 @@ const totalOutput = programmerOutput
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Encapsulate conditionals
+### Incapsula i condizionali
 
 **Da evitare**
 ```javascript
@@ -675,7 +676,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Avoid negative conditionals
+### Evita di verificare condizioni in negativo
 
 **Da evitare**
 ```javascript
@@ -700,15 +701,13 @@ if (isDOMNodePresent(node)) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Avoid conditionals
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have Classi and funzioni that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+### Evita i condizionali
+Sembrerebbe un task impossibile. Ad un rapido sguardo molti sviluppatori potrebbero pensare "come posso pensare di far funzionare qualcosa senza utilizzare un `if`?"
+La risposta è che puoi utilizzare il polimorfismo per ottenere lo stesso risultato in molti casi.
+La seconda domanda generalmente è "Ottimo! Ma perchè dovrei farlo?".
+La risposta è data in uno dei concetti precedentemente descritti: una funzione dovrebbe eseguire una sola operazione.
+Quando hai una Classe con delle funzioni che utilizzano lo stato `if` stai dicendo all'utente che la tua funzione può fare più di una operazione. 
+
 
 **Da evitare**
 ```javascript
@@ -756,7 +755,7 @@ class Cessna extends Airplane {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Avoid type-checking (part 1)
+### Evita di verificare i tipi (parte 1)
 JavaScript is untyped, which means your funzioni can take any type of argument.
 Sometimes you are bitten by this freedom and it becomes tempting to do
 type-checking in your funzioni. There are many ways to avoid having to do this.
