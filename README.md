@@ -598,9 +598,8 @@ class SuperArray extends Array {
 
 ### Preferisci la programmazione funzionale a quella imperativa
 
-[Programmazione funzionale](https://it.wikipedia.org/wiki/Programmazione_funzionale)
-
-[Programmazione imperativa](https://it.wikipedia.org/wiki/Programmazione_imperativa)
+*[Programmazione funzionale](https://it.wikipedia.org/wiki/Programmazione_funzionale)* - 
+*[Programmazione imperativa](https://it.wikipedia.org/wiki/Programmazione_imperativa)*
 
 Javascript non è un linguaggio funzionale alla stregua di Haskell, ma entrambi hanno qualcosa che li accomuna.
 I linguaggi funzionali generalmente sono più puliti e facili da testare.
