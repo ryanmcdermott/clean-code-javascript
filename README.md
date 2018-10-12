@@ -165,7 +165,7 @@ function paintCar(car) {
 
 ### Utilizza i valori di default (predefiniti), anzichè usare condizioni o cortocircuiti
 
-nonI valori di default, generalmente sono più chiari dei cortocircuiti. Tieni presente che se non utilizzerai questo approccio, la tua funzione restituirà solo `undefined` come valore di default.
+I valori di default, generalmente sono più chiari dei cortocircuiti. Tieni presente che se non utilizzerai questo approccio, la tua funzione restituirà solo `undefined` come valore di default.
 Tutti gli altri valori "falsi" come `''`, `""`, `false`, `null`, `0`, e
 `NaN`, non saranno sostituiti da un valore predefinito.
 
