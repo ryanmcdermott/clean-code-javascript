@@ -192,20 +192,17 @@ function createMicrobrewery(name = 'Hipster Brew Co.') {
 
 Limitare il numero di argomenti di una funzione è incredibilmente importante perchè ti permette di testarla più facilmente. Avere più di 3 argomenti può portare ad un'esplosione di combinazioni da testare, che produrranno una lunga serie di casi da verificare.
 
-1 o 2 argomenti sono l'ideale e dovremmo evitarne un terzo se possibile. Generalmente se la tua funzione ha più di 2 argomenti, forse, sta facendo troppe operazioni. In alcuni casi, in cui questo non sia del tutto vero, un oggetto può aiutare ad ovviare a questo problema.
+1 o 2 argomenti sono l'ideale e dovremmo evitarne un terzo se possibile. Generalmente se la tua funzione ha più di 2 argomenti, forse, sta facendo troppe operazioni. In alcuni casi, in cui questo non è del tutto vero, un oggetto può aiutare ad ovviare a questo problema.
 
 Dal momento in cui JavaScript permette la creazione di oggetti al volo, senza dover passare attraverso classi specifiche, puoi usare un oggetto se pensi che il tuo metodo richieda molti argomenti.
 
-Per rendere evidente cosa la funzione si aspetta di ricevere, puoi utilizzare la sintassi destrutturata (destructuring syntax) di ES2015/ES6 che ha diversi vantaggi
-
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-. This has a few advantages:
+Per rendere evidente cosa la funzione si aspetta di ricevere, puoi utilizzare la sintassi destrutturata (destructuring syntax) di ES2015/ES6 che ha diversi vantaggi:
 
 1. Quando qualcuno osserva la firma della tua funzione, è immediatamente chiaro che proprietà sono state utilizzate
 
-2. Destrutturare, oltretutto, clona i valori primitivi passati alla funzione. Questo può prevenire effetti indesiderati. Nota: oggetti ed array destrutturati nell'oggetto usato come argomento NON saranno clonati.
+2. Destrutturare, oltretutto, clona i valori primitivi passati alla funzione. Questo può prevenire effetti collaterali. Nota: oggetti ed array destrutturati nell'oggetto usato come argomento NON saranno clonati.
 
-3. Un Linter può avvertirti che non stai utilizzando alcune delle proprietà del tuo oggetto, non utilizzando la sintassi destrutturata non sarebbe possibile
+3. Un Linter può avvisarti che non stai utilizzando alcune delle proprietà del tuo oggetto, non utilizzando la sintassi destrutturata non sarebbe possibile
 
 **Da evitare**
 ```javascript
@@ -286,9 +283,9 @@ addMonthToDate(1, date);
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### I mteodi dovrebbero avere un solo livello di astrazione
+### Le funzioni dovrebbero avere un solo livello di astrazione
 
-Quando hai più di un livello di astrazione, la tua funzione generalmente sta facendo troppe cose. Dividere in più funzioni aiuta a riutilizzarla ed a testarla più facilmente. 
+Quando hai più di un livello di astrazione, la tua funzione generalmente sta facendo troppe cose. Dividere in più funzioni aiuta a riutilizzarla e testarla più facilmente. 
 
 **Da evitare**
 ```javascript
