@@ -1770,20 +1770,15 @@ getdata()
 **[⬆ torna su](#lista-dei-contenuti)**
 
 
-## **Formatting**
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](http://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+## **Formattazione**
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+La formattazione è soggettiva. Come molte delle sopracitate, non esiste una regola rigida e veloce che devi seguire. Il punto principale è NON DISCUTERE sulla formattazione.
+Ci sono un [sacco di strumenti](http://standardjs.com/rules.html) che automatizzano questo processo. Usane uno. È uno spreco di tempo e denaro per gli sviluppatori discutere sulla formattazione.
 
-### Use consistent capitalization
-JavaScript is untyped, so capitalization tells you a lot about your Variabili,
-funzioni, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+### Utilizza le maiuscole in modo consistente
+
+JavaScript non è tipizzato, per questo l'uso delle maiuscole può darti indicazioni sulle tue variabili, funzioni, etc. Queste regole sono soggettive, per questo tu ed il tuo team potrete scegliere quella che vorrete. Il punto è: non importa quale regola sceglierete, l'importante è essere consistenti.
+
 
 **Da evitare**
 ```javascript
@@ -1818,9 +1813,8 @@ class Alpaca {}
 
 
 ### Function callers and callees should be close
-If a function calls another, keep those funzioni vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Se una funzione ne richiama un'altra, mantieni queste funzioni verticalmente vicine nel sorgente. Idealmente, mantieni il chiamante subito sopra il chiamato.
+Generalmente tendiamo a leggere il codice dall'alto verso il basso, come un giornale. Proprio per questo manteniamolo leggibile seguendo questa modalità.
 
 **Da evitare**
 ```javascript
@@ -1902,10 +1896,9 @@ review.perfReview();
 
 **[⬆ torna su](#lista-dei-contenuti)**
 
-## **Comments**
-### Only comment things that have business logic complexity.
-Comments are an apology, not a requirement. Good code *mostly* documents itself.
-
+## **Commento**
+### Commenta solo il codice che ha un alto livello di complessità
+Commentare è una scusa, non un requisito. Un buon codice *spesso* si spiega da solo.
 **Da evitare**
 ```javascript
 function hashIt(data) {
@@ -1946,8 +1939,8 @@ function hashIt(data) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Don't leave commented out code in your codebase
-Version control exists for a reason. Leave old code in your history.
+### Non lasciare parti del tuo codice commentate all'interno dei sorgenti
+I sistemi di versioning esistono per un motivo. Lascia il tuo codice vecchio alla storia.
 
 **Da evitare**
 ```javascript
@@ -1963,9 +1956,9 @@ doStuff();
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Don't have journal comments
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+### non utilizzare commenti giornalieri
+Ricordati di usare sistemi di version control. Non c'è motivo per cui codice non utilizzato, codice commentato e specialmente commenti con riferimenti a date esistano nel tuo file.
+Usa `git log` per avere lo storico!
 
 **Da evitare**
 ```javascript
@@ -1988,9 +1981,8 @@ function combine(a, b) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Avoid positional markers
-They usually just add noise. Let the funzioni and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+### Evita di specificare di cosa si tratta
+Generalmente è solo fastidioso. Lascia che le tue funzioni e le tue variabili, insieme ad una corretta indentazioni ti diano una struttura visiva del tuo codice.
 
 **Da evitare**
 ```javascript
@@ -2023,9 +2015,9 @@ const actions = function() {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-## Translation
+## Traduzioni
 
-This is also available in other languages:
+Questa guida è disponibile in altre lingue:
 
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
   - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **Spanish**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
@@ -2042,5 +2034,7 @@ This is also available in other languages:
   - ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
   - ![id](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Indonesia.png) **Indonesia**:
   [andirkh/clean-code-javascript/](https://github.com/andirkh/clean-code-javascript/)
+   - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Indonesia.png) **Italiano**:
+  [frappacchio/clean-code-javascript/](https://github.com/frappacchio/clean-code-javascript/)
 
 **[⬆ torna su](#lista-dei-contenuti)**
