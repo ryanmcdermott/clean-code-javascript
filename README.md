@@ -912,8 +912,8 @@ account.setBalance(100);
 **[⬆ torna su](#lista-dei-contenuti)**
 
 
-### Make objects have private members
-This can be accomplished through closures (for ES5 and below).
+### Imposta proprietà private in un oggetto
+Può essere fatto attraverso le *closure* (per ES5 e versioni precedenti).
 
 **Da evitare**
 ```javascript
@@ -951,11 +951,8 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 
 ## **Classi**
-### Prefer ES2015/ES6 Classi over ES5 plain funzioni
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 Classi. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 Classi. However, prefer small funzioni over
-Classi until you find yourself needing larger and more complex objects.
+### Utilizza le classi ES2015/ES6 piuttosto che le funzioni di ES5
+È molto difficile ottenere leggibilità per ereditarietà, costrutti e metodi in definizioni di oggetti in ES5. Se hai bisogno di ereditarietà (e bada bene, non è detto che tu ne abbia bisogno), utilizza il costrutto Class di ES2015/ES6. Altrimenti utilizza piccole funzioni fintanto che non avrai bisogno di gestire oggetti più complessi.
 
 **Da evitare**
 ```javascript
@@ -1027,12 +1024,10 @@ class Human extends Mammal {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 
-### Use method chaining
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class funzioni, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+### Concatena i metodi
+Questo pattern è molto utilizzato in JavaScript e puoi trovarne applicazione in molte liberie come jQuery e Loadash. Permette al tuo codice di essere maggiormente espressivo e meno verboso.
+Proprio per questo motivo, insisto, utilizza la concatenazione dei metodi e guarda come può essere più pulito il tuo codice. Nei metodi della tua classe, semplicemente restituisci il riferimento `this` alla fine di ogni metodo, in modo da poter concatenare altri metodi.
+
 
 **Da evitare**
 ```javascript
@@ -1076,25 +1071,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // NOTA: restituisci this per poter concatenare altri metodi.
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // NOTA: restituisci this per poter concatenare altri metodi.
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // NOTA: restituisci this per poter concatenare altri metodi.
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // NOTA: restituisci this per poter concatenare altri metodi.
     return this;
   }
 }
@@ -1105,23 +1100,14 @@ const car = new Car('Ford','F-150','red')
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Prefer composition over inheritance
-As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+### Preferisci la composizione all'ereditarietà
+Come dichiarato dalla Gang of four in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) dovresti preferire la composizione all'ereditarietà quando puoi. Ci sono validi motivi per utilizzare l'ereditarietà e altrettanto validi motivi per utilizzare la composizione.
+Il punto principale di questo assunto è che mentalmente sei portato a preferire l'ereditarietà; prova a pensare alla composizione per risolvere il tuo problema, tante volte è davvero la soluzione migliore.
+Ti potresti chiedere: "Quando dovrei utilizzare l'ereditarietà?". Dipende dal problema che devi affrontare, ma c'è una discreta lista di suggerimenti che ti potrebbero aiutare a capire quando l'ereditarietà è meglio della composizione:
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
-
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base Classi (Humans can move like all animals).
-3. You want to make global changes to derived Classi by changing a base class.
-(Change the caloric expenditure of all animals when they move).
+1. L'estensione che stai mettendo in atto rappresenta una relazione di tipo "è di questo tipo" e non "ha questa proprietà" (Umano->Animale vs. Utente->DettagliUtente).
+2. Puoi riutilizzare il codice dalla classe padre (Umano)
+3. Vuoi fare cambiamenti globali a tutte le classi estese tramite la classe di partenza.
 
 **Da evitare**
 ```javascript
@@ -1172,15 +1158,11 @@ class Employee {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ## **SOLID**
-### Single Responsibility Principle (SRP)
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+### Single Responsibility Principle (SRP) (Principio della singola responsabilità)
+Come indicato in *Clean code*, "Non dovrebbe mai esserci più di un solo motivo per modificare una classe". La tentazione è sempre quella di fare un'unica classe con molte funzionalità, come quando vuoi portarti un unico bagaglio sul volo.
+Il problema con questo approccio è che le tue classi non saranno concettualmente coese e ti potrebbero dare più di una ragione per modificarle in seguito.
+Minimizzare il numero di volte in cui modificare una classe è importante.
+È importante perchè quando ci sono troppe funzionalità in una classe è difficile capire che effetto avrà sulle classe che la estendono, nel caso in cui farai un cambiamento.
 
 **Da evitare**
 ```javascript
@@ -1229,11 +1211,9 @@ class UserSettings {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Open/Closed Principle (OCP)
-As stated by Bertrand Meyer, "software entities (Classi, modules, funzioni,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+### Open/Closed Principle (OCP) (Principio di apertura/chiusura)
+Come dichiarato da Bertrand Meyer, "Le entità di un software (Classi, moduli, funzioni, etc.) dovrebbero essere aperte all'estensione, ma chiuse alla modifica. Cosa significa esattamente?
+Quello che intende è che dovresti dare ai tuoi utilizzatori la possibilità di aggiungere nuove funzionalità, non modificando quelle esistenti.
 
 **Da evitare**
 ```javascript
@@ -1316,19 +1296,11 @@ class HttpRequester {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Liskov Substitution Principle (LSP)
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
-
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+### Liskov Substitution Principle (LSP) (Principio dell'intercambiabilità di Liskov)
+Questo nome sembra molto più spaventoso di quello che in realtà significa.
+Formalmente la sua defnizione è "Se S è un sottotipo di T, allora gli oggetti di tipo T possono essere sostituiti con oggetti di tipo S () senza modificare alcuna della proprietà del software (correttezza, compito da svolgere, etc.)". Questa definizione suona ovviamente come più complessa.
+Forse una spiegazione più esaustiva potrebbe essere: "Se hai una classe *figlio* che estende una classe *genitore* allora le due classi possono essere intercambiate all'interno del codice senza generare errori o risultati inattesi".
+Potrebbe esssere ancora poco chiaro, ma vediamo con un esempio (Quadrato/Rettangolo): matematicamente il Quadrato è un Rettangolo, ma se il tuo modello usa una relazione di tipo "è-un" per eredità, potresti avere presto qualche problema.
 
 **Da evitare**
 ```javascript
@@ -1431,14 +1403,13 @@ renderLargeShapes(shapes);
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Interface Segregation Principle (ISP)
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+### Interface Segregation Principle (ISP) (Principio della segregazione delle interfacce)
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+JavaScript non utilizza Interfacce, quindi non è possibile applicare questo principio alla lettera. Tuttavia è importante anche per via della sua mancanza di tipizzazione.
+
+ISP indica che "Gli utenti non dovrebbero mai esssere forzati a dipendere da interfacce che non utilizza.". Le interfacce sono contratti impliciti in JavaScript per via del [duck-typing](https://it.wikipedia.org/wiki/Duck_typing) 
+
+
 
 A good example to look at that demonstrates this principle in JavaScript is for
 Classi that require large settings objects. Not requiring clients to setup
