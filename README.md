@@ -1407,15 +1407,11 @@ renderLargeShapes(shapes);
 
 JavaScript non utilizza Interfacce, quindi non è possibile applicare questo principio alla lettera. Tuttavia è importante anche per via della sua mancanza di tipizzazione.
 
-ISP indica che "Gli utenti non dovrebbero mai esssere forzati a dipendere da interfacce che non utilizza.". Le interfacce sono contratti impliciti in JavaScript per via del [duck-typing](https://it.wikipedia.org/wiki/Duck_typing) 
+ISP indica che "Gli utenti non dovrebbero mai esssere forzati a dipendere da interfacce che non utilizza.". Le interfacce sono contratti impliciti in JavaScript per via del [*duck-typing*](https://it.wikipedia.org/wiki/Duck_typing) 
+Un buon esempio in JavaScript potrebbe essere fatto per le classi che richiedono la deinizione di un set di proprietà molto grande.
+Non utilizzare classi che richiedono la definizione di molte proprietà per essere istanziate è sicuramente un beneficio perchè spesso non tutte queste proprietà richiedono di essere impostate per utilizzare la classe.
+Rendere questi parametri opzionali evita di avere un'interfaccia pesante.
 
-
-
-A good example to look at that demonstrates this principle in JavaScript is for
-Classi that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
 
 **Da evitare**
 ```javascript
@@ -1437,7 +1433,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName('body'),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} //Il più delle volte potremmo non dover animare questo oggetto
   // ...
 });
 
@@ -1477,26 +1473,16 @@ const $ = new DOMTraverser({
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Dependency Inversion Principle (DIP)
-This principle states two essential things:
-1. High-level modules should not depend on low-level modules. Both should
-depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-abstractions.
+### Dependency Inversion Principle (DIP) (Principio di inversione delle dipendenze)
+Questo principio sostanzialmente indica due cose:
+1. Moduli ad alto livello non dovrebbero necessariamente dipendere da moduli di basso livello
+2. L'astrazione non dovrebbe dipendere dai dettagli. I dettagli non dovrebbero dipendere dall'astrazione.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very Male development pattern because
-it makes your code hard to refactor.
-
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+A primo impatto questo concetto potrebbe essere difficile da capire, ma nel caso in cui tu abbia lavorato con AngularJS avrai sicuramente visto l'applicazione di questo principio nel concetto di *Dependency injection (DI)*. Nonostante non sia esattamente identico come concetto, DIP evita che i moduli di alto livello conoscano i dettagli dei moduli di basso livello pur utilizzandoli.
+Uno dei benefici di questo utilizzo è che riduce la dipendenza tra due moduli.
+La dipendenza tra due moduli è un concetto negativo, perchè ne rende difficile il refactor.
+Come detto in precedenza, non essendoci il concetto di interfaccia in JavaScript, tutte le dipendenze sono contratte implicitamente.
+Nell'esempio successivo, la dipendenza implicita è che tutte le istanze di `InventoryTracker` avranno un metodo `requestItems`.
 
 **Da evitare**
 ```javascript
@@ -1514,8 +1500,9 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // Male: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    //Da evitare: abbiamo creato una dipendenza specifica per ogni istanza.
+    //Dovremmo fare in modo che requestItems dipenda dal metodo `request`
+
     this.requester = new InventoryRequester();
   }
 
@@ -1565,8 +1552,9 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+//Avendo dichiarato la nostra dipendenza esternamente ed aggiunta dall'esterno, la possiamo
+//sostituire facilemente con un'altra che utilizza WebSockets
+
 const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
 inventoryTracker.requestItems();
 ```
