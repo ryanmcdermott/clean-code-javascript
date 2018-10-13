@@ -781,17 +781,8 @@ function travelToTexas(vehicle) {
 
 Se stai lavorando con tipi di dati primitivi come stringhe o interi e non puoi utilizzare il paradigma del polimorfismo, ma senti ancora l'esigenza di validare il tipo di dato considera l'utilizzo di TypeScript.
 È una vlidissima alternativa al normale JavaScript che fornicsce una validazione di tipi statica utilizzando la sintassi JavaScript.
-
-
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Il problema con la validazione manuale dei tipi utilizzando JavaScript standard è che richiede tanto codice extra che non compensa la scarsa leggibilità del codice ottenuto.
+Mantieni pulito il tuo codice, scrivi dei test validi e cerca di fare delle buone revisioni del coidice. Altrimenti utilizza TypeScript (che come detto in precedenza è una validissima alternativa!)
 
 **Da evitare**
 ```javascript
@@ -813,18 +804,15 @@ function combine(val1, val2) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Don't over-optimize
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+### Non ottimizzare eccessivamente
+I browser moderni eseguono un sacco di ottimizzazione "sottobanco". Molte volte, quando cerchi di ottimizzare il tuo codice, stai perdendo tempo prezioso. [Ci sono tante guide](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) che aiutano a capire quali tipi di ottimizzazione sono superflui e quali no. Utilizza queste guide nel frattempo, fintanto che queste mancanze non verranno colmate.
 
 **Da evitare**
 ```javascript
 
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// Nei vecchi browser ogni volta che in un ciclo verifichi `list.length` potrebbe
+// essere dispendioso per via del ricalcolo della lunghezza. Nei browser moderni
+// questa operazione è stata ottimizzata
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
@@ -838,10 +826,9 @@ for (let i = 0; i < list.length; i++) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Remove dead code
-Dead code is just as Male as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+### Rimuovi il codice inutilizzato
+Il codice inutilizzato è dannoso quanto il codice duplicato. Non c'è motivo per cui tenerlo nella tua codebase. Se realmente non viene utilizzato rimuovilo!
+Sarà comunque presente nella storia del tuo file se utilizzi un sistema di versioning nel caso in cui dovesse servirti.
 
 **Da evitare**
 ```javascript
@@ -870,18 +857,14 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ## **Ogetti e strutture dati**
-### Use getters and setters
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
-
-* When you want to do more beyond getting an object property, you don't have
-to look up and change every accessor in your codebase.
-* Makes adding validation simple when doing a `set`.
-* Encapsulates the internal representation.
-* Easy to add logging and error handling when getting and setting.
-* You can lazy load your object's properties, let's say getting it from a
-server.
+### Utilizza getter e setter
+Utilizzare getter e setter per acceedere ai dati di un oggetto può essere meglio che accedere direttamente alle sue proprietà. Ti starai chiedendo il motivo.
+Eccoti qualche motivo per cui utilizzare getter e setter:
+* Quando hai bisogno di eseguire un'operazione col dato recuperato, non devi andare a modificarlo ogni volta che accedi al dato nel tuo codice.
+* Valida il dato nel momento in cui lo setti con `set`
+* Incapsula la rappresentazione interna
+* È più facile loggare e gestire gli errori quando imposti o recuperi un dato
+* Puoi caricare i dati del tuo oggetto in modalità *lazy*, per esempio caricandoli dal server.
 
 
 **Da evitare**
@@ -902,17 +885,17 @@ account.balance = 100;
 **Bene:**
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // questa proprietà è privata
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // un "getter", la rende pubblica restituendola in questo modo
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // un "setter", la rende pubblica in questo modo
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... e la valida prima di impostarla
     balance = amount;
   }
 
