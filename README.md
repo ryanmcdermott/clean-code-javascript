@@ -1561,22 +1561,15 @@ inventoryTracker.requestItems();
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ## **Test**
-Test is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great Test framework, you also need to use a
-[good coverage tool](http://gotwarlost.github.io/istanbul/).
+Testare è più importante che rilasciare. Se non hai test o non ne hai un numero adeguato, non saprai se ad ogni rilascio puoi rompere qualcosa.
+Decidere quanti siano il numero sufficiente di test dipende dal tuo team, ma cercare di coprire il 100% dei casi (per tutti gli stati ed i branch) vuol dire avere massima tranquillità durante i rilasci.
+Questo significa che oltre ad utilizzare una suite di test valida, dovresti utilizzare anche un [buon strumento di copertura](http://gotwarlost.github.io/istanbul/). 
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](http://jstherightway.org/#Test-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Non ci sono scuse per non scrivere test. C'è un'abbondanza di ottimi [framewerk per i test in JavaScript](http://jstherightway.org/#Test-tools) quindi cerca quello più adatto alle tue esigenze.
+Quando tu ed il tuo team avrete individuato quello più giusto per voi, dovrete iniziare sempre a scrivere i test per ogni modulo/feature che introdurrete nel vostro software.
+Se il vostro approccio preferito è quello del TestDrivenDevelopment (TDD) è ottimo, ma assicurati di individuare i tuoi obiettivi prima di rilasciare ogni singola feature o eseguire il refactor di una esistente.
 
-### Single concept per test
+### Un singolo comportamento per test
 
 **Da evitare**
 ```javascript
@@ -1627,10 +1620,9 @@ describe('MakeMomentJSGreatAgain', () => {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-## **Concurrency**
-### Use Promises, not callbacks
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+## **Consequenzialità**
+### utilizza le Promise, non i callback
+Le funzioni di callback non sono sempre chiare e possono generare un eccessivo numero di nidificazioni. Con ES2015/ES6 sono nativamente e globalmente accessibili. Utilizzale!
 
 **Da evitare**
 ```javascript
@@ -1672,12 +1664,10 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Async/Await are even cleaner than Promises
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of funzioni. Use this if you can take advantage of ES2017/ES8 features
-today!
+### Async/Await sono anche più chiari delle Promise
+Le Promise sono una valida e chiara alternativa alle funzioni di callback, ma ES2017/ES8 offre anche async and await che possono essere addirittura una soluzione più chiara.
+Tutto quello che devi fare non è niente altro che scrivere una funzione che abbia prefisso `async` e puoi scrivere la tua logica senza dover concatenare con la kyword `then`.
+Utilizza questo approccio se hai la possibilità di utilizzare le feature ES2017/ES8! 
 
 **Da evitare**
 ```javascript
@@ -1715,19 +1705,12 @@ async function getCleanCodeArticle() {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 
-## **Error Handling**
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+## **Gestione degli errori**
+Generare errori è una buona cosa. Vuol dire che l'esecuzione del tuo codice ha identificato precisamente quando nel tuo software qualcosa è andato storto e ti permette di interromperne l'esecuzione nello stack corrente terminando il processo (in Node), e notificandolo attraverso la console.
 
-### Don't ignore caught errors
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+### Non ingnorare gli errori intercettati
+Non fare niente con gli errori intercettati non ti da l'abilità di fixare o reagire a questi errori. Loggare gli errori nella console (`console.log`) non ti assicura di non perderti nel mare di log stampati in console.
+Se invece inserisci il tuo codice all'interno del costrutto `try/catch` vuol dire che pensi che il tuo codice possa generare errori prima ancora di avere una soluzione.
 
 **Da evitare**
 ```javascript
@@ -1743,19 +1726,18 @@ try {
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // Un'ozione (più visibile del console.log):
   console.error(error);
-  // Another option:
+  // Un'altra opzione:
   notifyUserOfError(error);
-  // Another option:
+  // Un'altra opzione:
   reportErrorToService(error);
-  // OR do all three!
+  // Oppure usale tutte e tre!
 }
 ```
 
-### Don't ignore rejected promises
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+### Non ignorare le Promise quando vengono rigettate 
+Per la stessa ragione per cui non dovresti ignorare gli errori con `try/catch`.
 
 **Da evitare**
 ```javascript
@@ -1775,13 +1757,13 @@ getdata()
     functionThatMightThrow(data);
   })
   .catch((error) => {
-    // One option (more noisy than console.log):
+    // Un'ozione (più visibile del console.log):
     console.error(error);
-    // Another option:
+    // Un'altra opzione:
     notifyUserOfError(error);
-    // Another option:
+    // Un'altra opzione:
     reportErrorToService(error);
-    // OR do all three!
+    // Oppure usale tutte e tre!
   });
 ```
 
