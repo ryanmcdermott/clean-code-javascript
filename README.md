@@ -26,11 +26,11 @@ Non si tratta di una guida stilistica, bensì una guida per cercare di produrre 
 
 Non tutti i principi di questa guida devono essere seguiti alla lettera, e solo alcuni sono universalmente condivisi. Sono linee guida e niente più, ma sono state tutte apprese in anni di esperienza collettiva dall'autore di *Clean code*.
 
-Il nostro lavoro come ingegneri del software ha solo 50 anni e stiamo ancora cercando di apprendere molto. Quando l'architettura del software sarà antica come l'architettura in sè, probabilmente avremo regole più rigide da seguire. Per ora facciamo si che queste linee guida servano come termine di paragone per valutare la qualità del software che tu ed il tuo team producete.
+Il nostro lavoro come software engeneer esiste da soli 50 anni e stiamo ancora cercando di apprendere molto. Quando l'architettura del software godrà della stessa anzianità dell'architettura in sè, probabilmente avremo regole più rigide da seguire. Per ora facciamo si che queste linee guida servano come termine di paragone per valutare la qualità del software che tu ed il tuo team producete.
 
-Un ultima cosa: conoscere queste regole non farà di te immediatamente uno sviluppatore di software migliore, e lavorare per tanti anni come tale non ti eviterà di commettere errori.
-Ogni singola parte di codice parte come bozza, prima, per per poi prendere forma come una scultura di argilla.
-Solo alla fine perfezioneremo il nostro software, quando revisioneremo il codice con i nostri colleghi. Ma non ti abbattre alla prima revisione che richiederà miglioramenti: *Beat up the code instead!*
+Un ultima cosa: conoscere queste regole non farà di te immediatamente un developer migliore, e lavorare per tanti anni come tale non ti eviterà di commettere errori.
+Ogni singola parte di codice parte come bozza, inizialmente, per per poi prendere forma esattamente come una scultura di argilla.
+Solo alla fine perfezioneremo il nostro software, quando revisioneremo il codice con i nostri colleghi. Ma non abbatterti tu la prima volta che il tuo codice sarà revisionato e richiederà miglioramenti: *Abbatti il codice!*
 
 ## **Variabili**
 ### Utilizza nomi di variabili comprensibili e pronunciabili
@@ -46,7 +46,7 @@ const currentDate = moment().format('YYYY/MM/DD');
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Usa lo stesso lessico per lo stesso tipo di variabili
+### Usa la stessa semantica per lo stesso tipo di variabili
 
 **Da evitare**
 ```javascript
@@ -61,11 +61,11 @@ getUser();
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Utilizza nomi ricercabili
-Leggeremo molto più codice di quanto non ne scriveremo mai. È importante che il codice che noi scriviamo sia leggibile e ricercabile. Nominando variabili che non assumono uno specifico contesto all'interno del nostro software, irritiamo il lettore.
+### Utilizza nomi che possano essere cercati
+Leggiamo molto più codice di quanto non ne scriveremo mai. È importante che il codice che noi scriviamo sia leggibile e ricercabile. Nominando variabili che non assumono uno specifico contesto all'interno del nostro software, possiamo irritare chi lo legge.
 Fai in modo che i nomi delle tue variabili siano ricercabili.
 Strumenti come [buddy.js](https://github.com/danielstjules/buddy.js) e
-[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md) possono aiutarti ad identificare costanti non rinominate.
+[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md) possono aiutarti ad identificare, per esempio, costanti non rinominate.
 
 **Da evitare**
 ```javascript
@@ -77,9 +77,9 @@ setTimeout(blastOff, 86400000);
 **Bene:**
 ```javascript
 // Dichiarala come costante in maiuscolo.
-const MILLISECONDS_IN_A_DAY = 86400000;
+const MILLISECONDI_IN_UN_GIORNO = 86400000;
 
-setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
+setTimeout(blastOff, MILLISECONDI_IN_UN_GIORNO);
 
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
@@ -163,10 +163,10 @@ function paintCar(car) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Utilizza i valori di default (predefiniti), anzichè usare condizioni o cortocircuiti
+### Utilizza i valori di default (predefiniti), anzichè usare condizioni o valutazioni minime
 
-I valori di default, generalmente sono più chiari dei cortocircuiti. Tieni presente che se non utilizzerai questo approccio, la tua funzione restituirà solo `undefined` come valore di default.
-Tutti gli altri valori "falsi" come `''`, `""`, `false`, `null`, `0`, e
+I valori di default, generalmente sono più chiari dei [valutazioni minime](https://it.wikipedia.org/wiki/Valutazione_a_corto_circuito). Tieni presente che se non utilizzerai questo approccio, la tua funzione restituirà solo `undefined` come valore di default.
+Tutti gli altri valori "falsy" come `''`, `""`, `false`, `null`, `0`, e
 `NaN`, non saranno sostituiti da un valore predefinito.
 
 **Da evitare**
@@ -192,17 +192,17 @@ function createMicrobrewery(name = 'Hipster Brew Co.') {
 
 Limitare il numero di argomenti di una funzione è incredibilmente importante perchè ti permette di testarla più facilmente. Avere più di 3 argomenti può portare ad un'esplosione di combinazioni da testare, che produrranno una lunga serie di casi da verificare.
 
-1 o 2 argomenti sono l'ideale e dovremmo evitarne un terzo se possibile. Generalmente se la tua funzione ha più di 2 argomenti, forse, sta facendo troppe operazioni. In alcuni casi, in cui questo non è del tutto vero, un oggetto può aiutare ad ovviare a questo problema.
+1 o 2 argomenti sono l'ideale e dovremmo evitarne un terzo se possibile. Generalmente se la tua funzione ha più di 2 argomenti, forse, sta facendo troppe operazioni. Nei casi in cui questo non sia del tutto vero, un oggetto può aiutare ad ovviare a questo problema.
 
-Dal momento in cui JavaScript permette la creazione di oggetti al volo, senza dover passare attraverso classi specifiche, puoi usare un oggetto se pensi che il tuo metodo richieda molti argomenti.
+Dal momento in cui JavaScript permette la creazione di oggetti al volo puoi usare un oggetto, se pensi che il tuo metodo richieda molti argomenti.
 
 Per rendere evidente cosa la funzione si aspetta di ricevere, puoi utilizzare la sintassi destrutturata (destructuring syntax) di ES2015/ES6 che ha diversi vantaggi:
 
-1. Quando qualcuno osserva la firma della tua funzione, è immediatamente chiaro che proprietà sono state utilizzate
+1. Quando qualcuno osserva la firma della tua funzione, è immediatamente chiaro che proprietà saranno utilizzate
 
-2. Destrutturare, oltretutto, clona i valori primitivi passati alla funzione. Questo può prevenire effetti collaterali. Nota: oggetti ed array destrutturati nell'oggetto usato come argomento NON saranno clonati.
+2. Destrutturare, oltretutto, clona i valori primitivi passati alla funzione. Questo può prevenire effetti inattesi. **Nota**: oggetti ed array destrutturati nell'oggetto usato come argomento NON saranno clonati.
 
-3. Un Linter può avvisarti che non stai utilizzando alcune delle proprietà del tuo oggetto, non utilizzando la sintassi destrutturata non sarebbe possibile
+3. Un Linter può avvisarti che non stai utilizzando alcune delle proprietà del tuo oggetto, diversamente non sarebbe possibile.
 
 **Da evitare**
 ```javascript
@@ -229,7 +229,7 @@ createMenu({
 
 ### Un metodo dovrebbe fare una sola cosa
 Questa è di sicuro la regola più importante nell'ingegneria del software. Quando un metodo si occupa di più di un solo aspetto sarà più difficile da testare, comporre e ragioraci sopra.
-Se è possibile far eseguire al metodo una sola azione sarà più facile da rifattorizzare e la leggibilità del tuo codice sarà maggiore e più chiara. Anche se non dovesse rimanerti in mente altro di questa guida, sarai comunque più avanti di molti sviluppatori.
+Se è possibile far eseguire al metodo una sola azione sarà più facile il suo refactor e la leggibilità del tuo codice sarà maggiore e più chiara. Anche se non dovesse rimanerti in mente altro di questa guida, sarai comunque più avanti di molti sviluppatori.
 
 **Da evitare**
 ```javascript
@@ -285,7 +285,7 @@ addMonthToDate(1, date);
 
 ### Le funzioni dovrebbero avere un solo livello di astrazione
 
-Quando hai più di un livello di astrazione, la tua funzione generalmente sta facendo troppe cose. Dividere in più funzioni aiuta a riutilizzarla e testarla più facilmente. 
+Quando hai più di un livello di astrazione, la tua funzione generalmente sta facendo troppe cose. Dividere in più funzioni aiuta a riutilizzarle e testare più facilmente. 
 
 **Da evitare**
 ```javascript
@@ -353,7 +353,7 @@ function lexer(tokens) {
 ### Rimuovi il codice duplicato
 Fai del tuo meglio per evitare codice duplicato. Duplicare il codice è un male, perchè vuol dire che c'è più di un punto da modificare nel caso in cui dovessi cambiare alcune logiche.
 
-Immagina di avere un ristorante e di dover tener traccia del tuo magazzino: la riserva di pomodori, cipolle, aglio, spezie, etc. Se hai più di una lista in cui tieni traccia di queste quantità dovrai aggiornarle tutte, ogni volta che servirai un piatto con dei pomodori. Al contrario, se dovessi avere una sola lista, avrai un solo posto un cui dovrai tenere traccia delle modifiche sulle quantità in magazzino.
+Immagina di avere un ristorante e di dover tener traccia del tuo magazzino: la riserva di pomodori, cipolle, aglio, spezie, etc. Se hai più di una lista in cui tieni traccia di queste quantità dovrai aggiornarle tutte ogni volta che servirai, per esempio, un piatto con dei pomodori. Al contrario, se dovessi avere una sola lista, avrai un solo posto un cui dovrai tenere traccia delle modifiche sulle quantità in magazzino.
 
 Generalmente si duplica il codice perchè ci sono due o tre piccole differenze tra una parte e l'altra del software. Questo permette di condividere le parti comuni del codice, ma allo stesso tempo avrai dei duplicati di parti che fanno la stessa cosa.
 Rimuovere questi duplicati, significa creare un'astrazione che permette di gestire queste differenze attraverso un unico metodo/modulo/classe.
@@ -459,7 +459,7 @@ function createMenu(config) {
     cancellable: true
   }, config);
 
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config adesso sarà: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
@@ -495,11 +495,11 @@ function createTempFile(name) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Evitare effetti collaterali (parte 1)
+### Evitare effetti inattesi (parte 1)
 
 Una funzione può generare un effetto collaterale se fa altro oltre a ricevere un valore e restituirne uno o più. L'effetto collaterale potrebbe essere scrivere su un file, modificare una variabile globale o accidentalmente girare tutti i tuoi soldi ad uno sconosciuto.
 
-Probabilmente e occasionalmente avrai bisogno di generare un effetto collaterale: come nell'esempio precedente magari proprio scrivere su un file.
+Probabilmente, e occasionalmente, avrai bisogno di generare un effetto collaterale: come nell'esempio precedente magari proprio scrivere su un file.
 Quello che dovrai fare è centralizzare il punto in cui lo fai. Non avere più funzioni e classi che fanno la stessa cosa, ma averne un servizio ed uno soltanto che se ne occupa.
 
 La questione più importante è evitare le insidie che stanno dietro ad errate manipolazioni di oggetti senza alcuna struttura, utilizzando strutture che possono essere modificate da qualunque parte.
@@ -536,18 +536,18 @@ console.log(newName); // ['Ryan', 'McDermott'];
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Evitare effetti collaterali (parte 2)
-In Javascript i valori primitivi sono passati come valori, mentre oggetti ed array vengon passati come riferimento. In caso di oggetti ed array, se la tua funzione modifica l'array contenente un carrello della spesa, per esempio aggiungendo o rimuovendo un oggetto da acquistare, tutte le altre funzioni che utilizzano l'array `carrello` saranno condizionati da questa modifica. Queso potrebbe essere un bene ed un male allo stesso tempo. Immaginiamo una situazione in cui questo è un male:
+### Evitare effetti inattesi (parte 2)
+In Javascript i valori primitivi sono passati come valori, mentre oggetti ed array vengono passati come reference. Nel caso di oggetti ed array, se la tua funzione modifica l'array contenente un carrello della spesa, per esempio, aggiungendo o rimuovendo un oggetto da acquistare, tutte le altre funzioni che utilizzeranno l'array `carrello` saranno condizionati da questa modifica. Questo potrebbe essere un bene ed un male allo stesso tempo. Immaginiamo una situazione in cui questo è un male:
 
 l'utente clicca sul tasto "Acquista", che richiamerà una funzione `acquista` che effettua una richiesta ed invia l'array `carrello` al server. Per via di una pessima connessione, il metodo `acquista` riproverà ad effettuare la richiesta al server. Cosa succede se nello stesso momento accidentalmemte l'utente clicca su "Aggiungi al carrello" su di un oggetto che non ha intenzione di acquistare prima che venga eseguita nuovamente la funzione?
 Verrà inviata la richiesta con il nuovo oggetto accidentalmente aggiunto al carrello utilizzando la funzione `aggiungiOggettoAlCarrello`.
 
 Un'ottima soluzione è quella di di clonare sempre l'array `carrello`, modificarlo e restituire il clone.
-Questi ci assicurerà che che nessun'altra funzione che gestisce il carrello subirà cambiamenti non voluti.
+Questo ci assicurerà che che nessun'altra funzione che gestisce il carrello subirà cambiamenti non voluti.
 
 Due precisazioni vanno fatte su questo approccio:
 
-1. Potrebbe essere che tu voglia realmente modificare l'oggetto in input, ma vedrai che utilizzando questo approccio ti accorgerai che le questi casi sono veramente rari. La maggior parte delle volte dovrai utilizzare questo approccio per non generare effetti collaterali
+1. Potrebbe essere che tu voglia realmente modificare l'oggetto in input, ma vedrai che utilizzando questo approccio ti accorgerai che questi casi sono veramente rari. La maggior parte delle volte dovrai utilizzare questo approccio per non generare effetti inattesi
 
 2. Clonare oggetti molto grandi potrebbe essere davvero dispendioso in termini di risorse. Fortunatamente questo non è un problema perchè esistono [ottime librerie](https://facebook.github.io/immutable-js/) che permettono di utilizzare questo approccio senza dispendio di memoria e più velocemente rispetto al dovelo fare manualmente.
 
@@ -567,11 +567,9 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Don't write to global funzioni
 ### Non aggiungere funzioni globali
-
-Contaminare delle variabili globali è una pratica sconsigliata, in quanto potresti entrare in conflitto con altre librerie e l'utilizzatore delle tue API potrebbe non accorgersene fintanto che non si trova in produzione, generando un'eccezione.
-Facciamo un esempio pratico: supponiamo che tu voglia estendere il costruttore Array nativo di JavaScript aggiungendo il metodo `diff` che mostra le differenze tra due array. Come puoi fare?
+Contaminare o aggiungere delle variabili globali è una pratica sconsigliata, in quanto potresti entrare in conflitto con altre librerie e chi utiliza le tue API potrebbe non accorgersene fintanto che non si trova in produzione, generando un'eccezione.
+Facciamo un esempio pratico: supponiamo che tu voglia estendere il costrutto Array nativo di JavaScript aggiungendo il metodo `diff` che mostra le differenze tra due array. Come puoi fare?
 Potresti scrivere il metodo utilizzando `Array.prototype`, che però potrebbe entrare in conflitto con con un'altra libreria che fa la stessa cosa. Cosa succederebbe se anche l'altra libreria utilizzasse `diff` per trovare le differenze tra due array? Ecco perchè è molto meglio utilizzare le classi ES2015/ES6 e semplicemente estendere `Array`.
 
 **Da evitare**
@@ -598,7 +596,7 @@ class SuperArray extends Array {
 *[Programmazione funzionale](https://it.wikipedia.org/wiki/Programmazione_funzionale)* - 
 *[Programmazione imperativa](https://it.wikipedia.org/wiki/Programmazione_imperativa)*
 
-Javascript non è un linguaggio funzionale alla stregua di Haskell, ma entrambi hanno qualcosa che li accomuna.
+Javascript non è un linguaggio funzionale alla stregua di [Haskell](https://www.haskell.org/), ma entrambi hanno qualcosa che li accomuna.
 I linguaggi funzionali generalmente sono più puliti e facili da testare.
 Preferisci questo stile se possibile.
 
@@ -651,7 +649,7 @@ const totalOutput = programmerOutput
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Incapsula i condizionali
+### Incapsula le condizioni
 
 **Da evitare**
 ```javascript
@@ -697,7 +695,7 @@ if (isDOMNodePresent(node)) {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Evita i condizionali
+### Evita le condizioni
 Sembrerebbe un task impossibile. Ad un rapido sguardo molti sviluppatori potrebbero pensare "come posso pensare di far funzionare qualcosa senza utilizzare un `if`?"
 La risposta è che puoi utilizzare il polimorfismo per ottenere lo stesso risultato in molti casi.
 La seconda domanda generalmente è "Ottimo! Ma perchè dovrei farlo?".
@@ -752,7 +750,6 @@ class Cessna extends Airplane {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ### Evita la validazione dei tipi (parte 1)
-
 JavaScript è un linguaggio non tipizzato, il che significa che le tue funzioni possono accettare qualunque tipo di argomento.
 Qualche volta potresti essere tentato da tutta questa libertà e potresti essere altrettanto tentato di veririfcare il tipo di dato ricevuto nella tua funzione.
 Ci sono molti modi per evitare di dover fare questo tipo di controllo.
@@ -778,10 +775,9 @@ function travelToTexas(vehicle) {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ### Evita la validazione dei tipi (part 2)
-
-Se stai lavorando con tipi di dati primitivi come stringhe o interi e non puoi utilizzare il paradigma del polimorfismo, ma senti ancora l'esigenza di validare il tipo di dato considera l'utilizzo di TypeScript.
+Se stai lavorando con tipi di dati primitivi come stringhe o interi e non puoi utilizzare il paradigma del polimorfismo, ma senti ancora l'esigenza di validare il tipo di dato considera l'utilizzo di [TypeScript](https://www.typescriptlang.org/).
 È una vlidissima alternativa al normale JavaScript che fornicsce una validazione di tipi statica utilizzando la sintassi JavaScript.
-Il problema con la validazione manuale dei tipi utilizzando JavaScript standard è che richiede tanto codice extra che non compensa la scarsa leggibilità del codice ottenuto.
+Il problema con la validazione manuale dei tipi utilizzando lo standard JavaScript è che richiede tanto codice extra che non compensa la scarsa leggibilità del codice ottenuto.
 Mantieni pulito il tuo codice, scrivi dei test validi e cerca di fare delle buone revisioni del coidice. Altrimenti utilizza TypeScript (che come detto in precedenza è una validissima alternativa!)
 
 **Da evitare**
@@ -805,13 +801,13 @@ function combine(val1, val2) {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ### Non ottimizzare eccessivamente
-I browser moderni eseguono un sacco di ottimizzazione "sottobanco". Molte volte, quando cerchi di ottimizzare il tuo codice, stai perdendo tempo prezioso. [Ci sono tante guide](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) che aiutano a capire quali tipi di ottimizzazione sono superflui e quali no. Utilizza queste guide nel frattempo, fintanto che queste mancanze non verranno colmate.
+I browser moderni eseguono un sacco di ottimizzazione "sottobanco". Molte volte, quando cerchi di ottimizzare il tuo codice, stai perdendo tempo prezioso. [Ci sono tante guide](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) che aiutano a capire quali tipi di ottimizzazione sono superflui e quali no. Utilizza queste guide nel frattempo, fintanto che queste lacune non verranno colmate.
 
 **Da evitare**
 ```javascript
 
 // Nei vecchi browser ogni volta che in un ciclo verifichi `list.length` potrebbe
-// essere dispendioso per via del ricalcolo della lunghezza. Nei browser moderni
+// essere dispendioso per via del suo ricalcolo. Nei browser moderni
 // questa operazione è stata ottimizzata
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
@@ -827,7 +823,7 @@ for (let i = 0; i < list.length; i++) {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ### Rimuovi il codice inutilizzato
-Il codice inutilizzato è dannoso quanto il codice duplicato. Non c'è motivo per cui tenerlo nella tua codebase. Se realmente non viene utilizzato rimuovilo!
+Il codice inutilizzato è dannoso quanto il codice duplicato. Non c'è motivo per cui tenerlo nel tuo codebase. Se realmente non viene utilizzato rimuovilo!
 Sarà comunque presente nella storia del tuo file se utilizzi un sistema di versioning nel caso in cui dovesse servirti.
 
 **Da evitare**
@@ -858,9 +854,9 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 ## **Ogetti e strutture dati**
 ### Utilizza getter e setter
-Utilizzare getter e setter per acceedere ai dati di un oggetto può essere meglio che accedere direttamente alle sue proprietà. Ti starai chiedendo il motivo.
+Utilizzare getter e setter per acceedere ai dati di un oggetto può essere meglio che accedere direttamente alle sue proprietà. Ti starai sicuramente chiedendo il motivo.
 Eccoti qualche motivo per cui utilizzare getter e setter:
-* Quando hai bisogno di eseguire un'operazione col dato recuperato, non devi andare a modificarlo ogni volta che accedi al dato nel tuo codice.
+* Quando hai bisogno di eseguire un'operazione sul dato recuperato, non devi andare a modificarlo ogni volta che accedi al dato nel tuo codice.
 * Valida il dato nel momento in cui lo setti con `set`
 * Incapsula la rappresentazione interna
 * È più facile loggare e gestire gli errori quando imposti o recuperi un dato
@@ -952,7 +948,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 ## **Classi**
 ### Utilizza le classi ES2015/ES6 piuttosto che le funzioni di ES5
-È molto difficile ottenere leggibilità per ereditarietà, costrutti e metodi in definizioni di oggetti in ES5. Se hai bisogno di ereditarietà (e bada bene, non è detto che tu ne abbia bisogno), utilizza il costrutto Class di ES2015/ES6. Altrimenti utilizza piccole funzioni fintanto che non avrai bisogno di gestire oggetti più complessi.
+È molto difficile ottenere leggibilità sull'ereditarietà, costrutti e metodi in definizioni di oggetti in ES5. Se hai bisogno di ereditarietà (e bada bene, non è detto che tu ne abbia bisogno), utilizza il costrutto Class di ES2015/ES6. Altrimenti utilizza piccole funzioni fintanto che non avrai bisogno di gestire oggetti più complessi.
 
 **Da evitare**
 ```javascript
@@ -1025,7 +1021,7 @@ class Human extends Mammal {
 
 
 ### Concatena i metodi
-Questo pattern è molto utilizzato in JavaScript e puoi trovarne applicazione in molte liberie come jQuery e Loadash. Permette al tuo codice di essere maggiormente espressivo e meno verboso.
+Questo pattern è molto utilizzato in JavaScript e puoi trovarne applicazione in molte liberie come [jQuery](https://jquery.com/) e [Lodash](https://lodash.com/). Permette al tuo codice di essere maggiormente espressivo e meno verboso.
 Proprio per questo motivo, insisto, utilizza la concatenazione dei metodi e guarda come può essere più pulito il tuo codice. Nei metodi della tua classe, semplicemente restituisci il riferimento `this` alla fine di ogni metodo, in modo da poter concatenare altri metodi.
 
 
@@ -1100,13 +1096,13 @@ const car = new Car('Ford','F-150','red')
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Preferisci la composizione all'ereditarietà
-Come dichiarato dalla Gang of four in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) dovresti preferire la composizione all'ereditarietà quando puoi. Ci sono validi motivi per utilizzare l'ereditarietà e altrettanto validi motivi per utilizzare la composizione.
-Il punto principale di questo assunto è che mentalmente sei portato a preferire l'ereditarietà; prova a pensare alla composizione per risolvere il tuo problema, tante volte è davvero la soluzione migliore.
-Ti potresti chiedere: "Quando dovrei utilizzare l'ereditarietà?". Dipende dal problema che devi affrontare, ma c'è una discreta lista di suggerimenti che ti potrebbero aiutare a capire quando l'ereditarietà è meglio della composizione:
+### Preferisci una struttura compositiva all'ereditarietà
+Come dichiarato dalla Gang of four in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) dovresti preferire la strutturazione all'ereditarietà quando puoi. Ci sono validi motivi per utilizzare l'ereditarietà e altrettanto validi motivi per utilizzare la strutturazione.
+Il punto principale di questo assunto è che mentalmente sei portato a preferire l'ereditarietà. Prova a pensare alla strutturazione per risolvere il tuo problema: tante volte è davvero la soluzione migliore.
+Ti potresti chiedere: "Quando dovrei utilizzare l'ereditarietà?". Dipende dal problema che devi affrontare, ma c'è una discreta lista di suggerimenti che ti potrebbero aiutare a capire quando l'ereditarietà è meglio della strutturazione:
 
-1. L'estensione che stai mettendo in atto rappresenta una relazione di tipo "è di questo tipo" e non "ha questa proprietà" (Umano->Animale vs. Utente->DettagliUtente).
-2. Puoi riutilizzare il codice dalla classe padre (Umano)
+1. L'estensione che stai mettendo in atto rappresenta una relazione di tipo "è-un" e non "ha-un" (Umano->Animale vs. Utente->DettagliUtente).
+2. Puoi riutilizzare il codice dalla classe padre
 3. Vuoi fare cambiamenti globali a tutte le classi estese tramite la classe di partenza.
 
 **Da evitare**
@@ -1158,8 +1154,8 @@ class Employee {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ## **SOLID**
-### Single Responsibility Principle (SRP) (Principio della singola responsabilità)
-Come indicato in *Clean code*, "Non dovrebbe mai esserci più di un solo motivo per modificare una classe". La tentazione è sempre quella di fare un'unica classe con molte funzionalità, come quando vuoi portarti un unico bagaglio sul volo.
+### Single Responsibility Principle (SRP) (Principio di singola responsabilità)
+Come indicato in *Clean code*, "Non dovrebbe mai esserci più di un solo motivo per modificare una classe". La tentazione è sempre quella di fare un'unica classe con molte funzionalità, come quando vuoi portarti un unico bagaglio a bordo.
 Il problema con questo approccio è che le tue classi non saranno concettualmente coese e ti potrebbero dare più di una ragione per modificarle in seguito.
 Minimizzare il numero di volte in cui modificare una classe è importante.
 È importante perchè quando ci sono troppe funzionalità in una classe è difficile capire che effetto avrà sulle classe che la estendono, nel caso in cui farai un cambiamento.
@@ -1211,7 +1207,7 @@ class UserSettings {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Open/Closed Principle (OCP) (Principio di apertura/chiusura)
+### Open/Closed Principle (OCP) (Principio aperto/chiuso)
 Come dichiarato da Bertrand Meyer, "Le entità di un software (Classi, moduli, funzioni, etc.) dovrebbero essere aperte all'estensione, ma chiuse alla modifica. Cosa significa esattamente?
 Quello che intende è che dovresti dare ai tuoi utilizzatori la possibilità di aggiungere nuove funzionalità, non modificando quelle esistenti.
 
@@ -1296,11 +1292,12 @@ class HttpRequester {
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Liskov Substitution Principle (LSP) (Principio dell'intercambiabilità di Liskov)
+### Liskov Substitution Principle (LSP) (Principio di sostituzione di Liskov)
 Questo nome sembra molto più spaventoso di quello che in realtà significa.
-Formalmente la sua defnizione è "Se S è un sottotipo di T, allora gli oggetti di tipo T possono essere sostituiti con oggetti di tipo S () senza modificare alcuna della proprietà del software (correttezza, compito da svolgere, etc.)". Questa definizione suona ovviamente come più complessa.
+Formalmente la sua defnizione è "Se S è un sottotipo di T, allora gli oggetti di tipo T possono essere sostituiti con oggetti di tipo S (per esempio un oggetto di tipo S può sostituire un oggetto di tipo T) senza modificare alcuna della proprietà del software (correttezza, compito da svolgere, etc.)". Questa definizione suona comunque complessa.
+
 Forse una spiegazione più esaustiva potrebbe essere: "Se hai una classe *figlio* che estende una classe *genitore* allora le due classi possono essere intercambiate all'interno del codice senza generare errori o risultati inattesi".
-Potrebbe esssere ancora poco chiaro, ma vediamo con un esempio (Quadrato/Rettangolo): matematicamente il Quadrato è un Rettangolo, ma se il tuo modello usa una relazione di tipo "è-un" per eredità, potresti avere presto qualche problema.
+Potrebbe esssere ancora poco chiaro, ma vediamo con un esempio (Quadrato/Rettangolo): matematicamente il Quadrato è un Rettangolo, ma se il tuo modello eredita una relazione di tipo "è-un", potresti avere presto qualche problema.
 
 **Da evitare**
 ```javascript
@@ -1347,7 +1344,8 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // Male: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // Sbagliato: Restituisce 25 anche 
+                                      // per il quadrato. Dovrebbe essere 20.
     rectangle.render(area);
   });
 }
@@ -1403,9 +1401,9 @@ renderLargeShapes(shapes);
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Interface Segregation Principle (ISP) (Principio della segregazione delle interfacce)
+### Interface Segregation Principle (ISP) (Principio di segregazione delle interfacce)
 
-JavaScript non utilizza Interfacce, quindi non è possibile applicare questo principio alla lettera. Tuttavia è importante anche per via della sua mancanza di tipizzazione.
+JavaScript non utilizza Interfacce, quindi non è possibile applicare questo principio alla lettera. Tuttavia è importante nonostante la sua mancanza di tipizzazione.
 
 ISP indica che "Gli utenti non dovrebbero mai esssere forzati a dipendere da interfacce che non utilizza.". Le interfacce sono contratti impliciti in JavaScript per via del [*duck-typing*](https://it.wikipedia.org/wiki/Duck_typing) 
 Un buon esempio in JavaScript potrebbe essere fatto per le classi che richiedono la deinizione di un set di proprietà molto grande.
@@ -1475,8 +1473,8 @@ const $ = new DOMTraverser({
 
 ### Dependency Inversion Principle (DIP) (Principio di inversione delle dipendenze)
 Questo principio sostanzialmente indica due cose:
-1. Moduli ad alto livello non dovrebbero necessariamente dipendere da moduli di basso livello
-2. L'astrazione non dovrebbe dipendere dai dettagli. I dettagli non dovrebbero dipendere dall'astrazione.
+1. Moduli ad alto livello non dovrebbero dipendere da molidi a basso livello. Entrambi dovrebbero dipendere da moduli astratti.
+2. L'astrazione non dovrebbe dipendere da classi concrete. Le classi concrete dovrebbero dipendere da astrazioni.
 
 A primo impatto questo concetto potrebbe essere difficile da capire, ma nel caso in cui tu abbia lavorato con AngularJS avrai sicuramente visto l'applicazione di questo principio nel concetto di *Dependency injection (DI)*. Nonostante non sia esattamente identico come concetto, DIP evita che i moduli di alto livello conoscano i dettagli dei moduli di basso livello pur utilizzandoli.
 Uno dei benefici di questo utilizzo è che riduce la dipendenza tra due moduli.
@@ -1562,12 +1560,12 @@ inventoryTracker.requestItems();
 
 ## **Test**
 Testare è più importante che rilasciare. Se non hai test o non ne hai un numero adeguato, non saprai se ad ogni rilascio puoi rompere qualcosa.
-Decidere quanti siano il numero sufficiente di test dipende dal tuo team, ma cercare di coprire il 100% dei casi (per tutti gli stati ed i branch) vuol dire avere massima tranquillità durante i rilasci.
+Decidere quale sia il numero sufficiente di test dipende dal tuo team, ma cercare di coprire il 100% dei casi (per tutti gli stati ed i branch) vuol dire avere massima tranquillità durante i rilasci.
 Questo significa che oltre ad utilizzare una suite di test valida, dovresti utilizzare anche un [buon strumento di copertura](http://gotwarlost.github.io/istanbul/). 
 
 Non ci sono scuse per non scrivere test. C'è un'abbondanza di ottimi [framewerk per i test in JavaScript](http://jstherightway.org/#Test-tools) quindi cerca quello più adatto alle tue esigenze.
 Quando tu ed il tuo team avrete individuato quello più giusto per voi, dovrete iniziare sempre a scrivere i test per ogni modulo/feature che introdurrete nel vostro software.
-Se il vostro approccio preferito è quello del TestDrivenDevelopment (TDD) è ottimo, ma assicurati di individuare i tuoi obiettivi prima di rilasciare ogni singola feature o eseguire il refactor di una esistente.
+Se il vostro approccio preferito è quello del TestDrivenDevelopment (TDD) ottimo, ma assicurati di individuare i tuoi obiettivi prima di rilasciare ogni singola feature o eseguire il refactor di una esistente.
 
 ### Un singolo comportamento per test
 
@@ -1621,7 +1619,7 @@ describe('MakeMomentJSGreatAgain', () => {
 **[⬆ torna su](#lista-dei-contenuti)**
 
 ## **Consequenzialità**
-### utilizza le Promise, non i callback
+### utilizza le Promise, non funzioni di callback
 Le funzioni di callback non sono sempre chiare e possono generare un eccessivo numero di nidificazioni. Con ES2015/ES6 sono nativamente e globalmente accessibili. Utilizzale!
 
 **Da evitare**
@@ -1664,8 +1662,8 @@ get('https://en.wikipedia.org/wiki/Robert_Cecil_Martin')
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### Async/Await sono anche più chiari delle Promise
-Le Promise sono una valida e chiara alternativa alle funzioni di callback, ma ES2017/ES8 offre anche async and await che possono essere addirittura una soluzione più chiara.
+### Async/Await sono addirittura più chiari delle Promise
+Le Promise sono una valida e chiara alternativa alle funzioni di callback, ma ES2017/ES8 offrono anche async and await che possono essere addirittura una soluzione più migliore.
 Tutto quello che devi fare non è niente altro che scrivere una funzione che abbia prefisso `async` e puoi scrivere la tua logica senza dover concatenare con la kyword `then`.
 Utilizza questo approccio se hai la possibilità di utilizzare le feature ES2017/ES8! 
 
@@ -1709,8 +1707,8 @@ async function getCleanCodeArticle() {
 Generare errori è una buona cosa. Vuol dire che l'esecuzione del tuo codice ha identificato precisamente quando nel tuo software qualcosa è andato storto e ti permette di interromperne l'esecuzione nello stack corrente terminando il processo (in Node), e notificandolo attraverso la console.
 
 ### Non ingnorare gli errori intercettati
-Non fare niente con gli errori intercettati non ti da l'abilità di fixare o reagire a questi errori. Loggare gli errori nella console (`console.log`) non ti assicura di non perderti nel mare di log stampati in console.
-Se invece inserisci il tuo codice all'interno del costrutto `try/catch` vuol dire che pensi che il tuo codice possa generare errori prima ancora di avere una soluzione.
+Non fare niente con gli errori intercettati non rende possibile correggerli o reagire all'errore. Loggare gli errori nella console (`console.log`) non ti assicura di non perderti nel mare di log stampati in console.
+Se invece inserisci il tuo codice all'interno del costrutto `try/catch` vuol dire riconoscere la possibilità che esista un errore nel caso mettere in piedi un modo per gestirlo.
 
 **Da evitare**
 ```javascript
@@ -1772,12 +1770,12 @@ getdata()
 
 ## **Formattazione**
 
-La formattazione è soggettiva. Come molte delle sopracitate, non esiste una regola rigida e veloce che devi seguire. Il punto principale è NON DISCUTERE sulla formattazione.
-Ci sono un [sacco di strumenti](http://standardjs.com/rules.html) che automatizzano questo processo. Usane uno. È uno spreco di tempo e denaro per gli sviluppatori discutere sulla formattazione.
+La formattazione è soggettiva. Come molte di quelle sopracitate, non esiste una regola assoluta e veloce che devi seguire. Il punto principale, però, è NON DISCUTERE della formattazione.
+Ci sono un [sacco di strumenti](http://standardjs.com/rules.html) che automatizzano questo processo. Usane uno. È uno spreco di tempo e denaro per gli sviluppatori discutere della formattazione.
 
 ### Utilizza le maiuscole in modo consistente
 
-JavaScript non è tipizzato, per questo l'uso delle maiuscole può darti indicazioni sulle tue variabili, funzioni, etc. Queste regole sono soggettive, per questo tu ed il tuo team potrete scegliere quella che vorrete. Il punto è: non importa quale regola sceglierete, l'importante è essere consistenti.
+JavaScript non è tipizzato, per questo l'uso delle maiuscole può darti indicazioni sulle tue variabili, funzioni, etc. Queste regole sono soggettive, per questo tu ed il tuo team potrete scegliere quella che volete. Il punto è: non importa quale regola sceglierete, l'importante è essere consistenti.
 
 
 **Da evitare**
@@ -1812,8 +1810,8 @@ class Alpaca {}
 **[⬆ torna su](#lista-dei-contenuti)**
 
 
-### Function callers and callees should be close
-Se una funzione ne richiama un'altra, mantieni queste funzioni verticalmente vicine nel sorgente. Idealmente, mantieni il chiamante subito sopra il chiamato.
+### Richiami e dichiarazioni di funzioni dovrebbero essere vicini
+Se una funzione ne richiama un'altra, mantieni queste funzioni verticalmente vicine nel sorgente. Idealmente, mantieni il richiamo subito sopra la dichiarazione.
 Generalmente tendiamo a leggere il codice dall'alto verso il basso, come un giornale. Proprio per questo manteniamolo leggibile seguendo questa modalità.
 
 **Da evitare**
@@ -1956,7 +1954,7 @@ doStuff();
 ```
 **[⬆ torna su](#lista-dei-contenuti)**
 
-### non utilizzare commenti giornalieri
+### Non utilizzare i commenti come un diario
 Ricordati di usare sistemi di version control. Non c'è motivo per cui codice non utilizzato, codice commentato e specialmente commenti con riferimenti a date esistano nel tuo file.
 Usa `git log` per avere lo storico!
 
