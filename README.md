@@ -1397,11 +1397,11 @@ of the desirable properties of that program (correctness, task performed,
 etc.)." That's an even scarier definition.
 
 The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+then an instance of the parent class can be replaced by an instance of the child
+class without getting incorrect results. This might still be confusing, so let's
+take a look at the classic Square-Rectangle example. Mathematically, a square is a
+rectangle, but if you model it using the "is-a" relationship via inheritance, you
+quickly get into trouble.
 
 **Bad:**
 ```javascript
@@ -1461,7 +1461,11 @@ renderLargeRectangles(rectangles);
 ```javascript
 class Shape {
   setColor(color) {
-    // ...
+    this.color = color;
+  }
+
+  getColor() {
+    return this.color;
   }
 
   render(area) {
@@ -1501,6 +1505,34 @@ function renderLargeShapes(shapes) {
 
 const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
+```
+
+Note that the above class structure also allows you to use a `Rectangle` any
+time you would use a `Shape` without changing the application's behavior. In
+other words, the following two code blocks are interchangeable:
+
+```javascript
+const shape = new Shape();
+shape.setColor("blue");
+const shapeColor = shape.getColor(); // => 'blue'
+```
+
+```javascript
+const shape = new Rectangle(5, 4);
+shape.setColor("blue");
+const shapeColor = shape.getColor(); // => 'blue'
+```
+
+The reverse is *not* true, however:
+
+```javascript
+const shape = new Rectangle(5, 4);
+const shapeArea = shape.getArea(); // => 20
+```
+
+```javascript
+const shape = new Shape();
+const shapeArea = shape.getArea(); // => 'Uncaught TypeError: shape.getArea is not a function' :(
 ```
 **[⬆ back to top](#table-of-contents)**
 
