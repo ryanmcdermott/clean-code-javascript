@@ -1245,30 +1245,29 @@ class Empleado {
 **[⬆ Volver arriba](#table-of-contents)**
 
 ## **SOLID**
-### Single Responsibility Principle (SRP)
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+### Principio de Responsabilidad Única (SRP)
+Como se cita en *Código Limpio*, "No debería haber nunca más de un motivo para
+que una clase cambie". Es muy tentador acribillar a una clase con un montón de funcionalidad.
+El problema que tiene esto, es que tu clase no tendrá cohesión y tendrá bastantes
+motivos por lo que cambiar. Es por eso que es importante reducir el número de veces que tendrás
+que modificar una clase. Y Lo es, porque en caso de que tengamos una clase que haga
+más de una cosa y modifiquemos una de ellas, no sabemos que efectos colaterales puede tener
+esta acción en las demás.
 
 **Mal:**
 ```javascript
-class UserSettings {
-  constructor(user) {
-    this.user = user;
+class OpcionesUsuario {
+  constructor(usuario) {
+    this.usuario = usuario;
   }
 
-  changeSettings(settings) {
-    if (this.verifyCredentials()) {
+  changeSettings(opciones) {
+    if (this.verificarCredenciales()) {
       // ...
     }
   }
 
-  verifyCredentials() {
+  verificarCredenciales() {
     // ...
   }
 }
@@ -1276,25 +1275,25 @@ class UserSettings {
 
 **Bien:**
 ```javascript
-class UserAuth {
-  constructor(user) {
-    this.user = user;
+class AutenticationUsuario {
+  constructor(usuario) {
+    this.usuario = usuario;
   }
 
-  verifyCredentials() {
+  verificarCredenciales() {
     // ...
   }
 }
 
 
 class UserSettings {
-  constructor(user) {
-    this.user = user;
-    this.auth = new UserAuth(user);
+  constructor(usuario) {
+    this.usuario = usuario;
+    this.autenticacion = new AutenticationUsuario(usuario);
   }
 
   changeSettings(settings) {
-    if (this.auth.verifyCredentials()) {
+    if (this.autenticacion.verificarCredenciales()) {
       // ...
     }
   }
