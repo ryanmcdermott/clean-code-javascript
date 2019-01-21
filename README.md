@@ -195,7 +195,7 @@ function crearMicroCerveceria(nombre = 'Hipster Brew Co.') {
 ## **Funciones**
 ### Argumentos de función (idealmente 2 o menos)
 
-Limitar la cantidad de parámetros de una función es increíblemente importante porqué
+Limitar la cantidad de parámetros de una función es increíblemente importante porque
 hace que *las pruebas* de su función sea más fácil. Tener más de tres lleva a una
 locura combinatoria donde tienes que probar toneladas de casos diferentes con
 cada argumento por separado.
@@ -215,7 +215,7 @@ de desctructuración que nos ofrece ES2015/ES6. Éstas tienen algunas ventajdas:
 1. Cuando alguien mira la firma de la función, sabe inmediatamente que propiedades están siendo usadas
 2. La desetructuración también clona los valores primitivos especificados del objeto
 argumento pasado a la función. Esto puede servir de ayuda para prevenir efectos adversos.
-Nora: Los objetos y los arreglos/*arrays* que son desetructurados del objeto parámetro NO son clonados.
+Nora: Los objetos y los arrays/*arrays* que son desetructurados del objeto parámetro NO son clonados.
 3. Las herramientas lintera o *linterns* pueden avisarte de que propiedades del objeto parámetro no
 están en uso, cosa que es imposile sin desestructuración
 
@@ -379,7 +379,7 @@ cebollas, ajos, especies, etc... Si tuvieras más de una lista que tuvieras que 
 vez que sirves un tomate o usas una especie, sería más fácil de cometer errores. Si solo tienes una,
 la posibilidad de cometer una error se reduce a ésta!
 
-A menudo tienes código duplicado porqué tienes dos o más cosas ligeramente diferentes, que
+A menudo tienes código duplicado porque tienes dos o más cosas ligeramente diferentes, que
 tienen mucho en común, pero sus diferencias te obligan tener funciones. Borrar la duplicidad de
 código significa crear una abstracción que puede manejar este conjunto de cosas diferentes
 con una sola función / módulo / clase.
@@ -388,7 +388,7 @@ con una sola función / módulo / clase.
 Hacer que la abstracción sea correcta es fundamental. Es por eso que debes seguir los
 Principios SOLID establecidos en la sección *Clases*. Las malas abstracciones pueden ser
 peores que el código duplicado. ¡Así que ten cuidado! Dicho esto, si se puede hacer
-una buena abstracción, ¡Házlo! Evita repetirte porqué de lo contrario, como hemos comentado
+una buena abstracción, ¡Házlo! Evita repetirte porque de lo contrario, como hemos comentado
 anteriormente, te verás editando en más de un lugar para modificar un comportamiento
 
 
@@ -527,253 +527,256 @@ function crearFicheroTemporal(nombre) {
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-// @todo
-### Avoid Side Effects (part 1)
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+### Evita los efectos secundarios (parte 1)
+Una función produce un efecto secundario   si hace otra cosa que recibir un parámetro 
+de entrada y retornar otro valor o valores. Un efecto adverso puede ser
+escribir un fichero, modificar una variable global o accidentalmente
+enviar todo tu dinero a un desconocido.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+Ahora bien, a veces necesitamos efectos adversos en nuestros programas. Como
+en el ejemplo anterior, quizás necesitas escribir en un fichero. Entonces, lo que
+queremos hacer es centralizar donde hacer esto. No queremos que esta lógica 
+tengamos que escribirla en cada una de las funciones o clases que van a utilizarla.
+Para eso, la encapsularemos en un servicio que haga eso. Solo eso.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+
+El objetivo principal es evitar errores comunes como compartir el estado entre objetos
+sin ninguna estructura, usando tipos de datos mutables que pueden ser escritos por cualquier cosa,
+y no centralizar donde se producen sus efectos secundarios. Si puedes hacer esto, serás
+más feliz que la gran mayoría de otros programadores.
 
 **Mal:**
 ```javascript
-// Global variable referenced by following function.
+// Variable Global referenciada por la siguiente función
+// Si tuvieramos otra función que usara ese nombre, podría ser un array y lo estaríamos rompiendo
 // If we had another function that used this name, now it'd be an array and it could break it.
-let name = 'Ryan McDermott';
+let nombre = 'Ryan McDermott';
 
-function splitIntoFirstAndLastName() {
-  name = name.split(' ');
+function separarEnNombreYApellido) {
+  nombre = nombre.split(' ');
 }
 
-splitIntoFirstAndLastName();
+separarEnNombreYApellido();
 
-console.log(name); // ['Ryan', 'McDermott'];
+console.log(nombre); // ['Ryan', 'McDermott'];
 ```
 
 **Bien:**
 ```javascript
-function splitIntoFirstAndLastName(name) {
-  return name.split(' ');
+function separarEnNombreYApellido) {
+  return nombre.split(' ');
 }
 
-const name = 'Ryan McDermott';
-const newName = splitIntoFirstAndLastName(name);
+const nombre = 'Ryan McDermott';
+const nuevoNombre = separarEnNombreYApellidoe);
 
-console.log(name); // 'Ryan McDermott';
-console.log(newName); // ['Ryan', 'McDermott'];
+console.log(nombre); // 'Ryan McDermott';
+console.log(nuevoNombre); // ['Ryan', 'McDermott'];
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Avoid Side Effects (part 2)
-In JavaScript, primitives are passed by value and objects/arrays are passed by
-reference. In the case of objects and arrays, if your function makes a change
-in a shopping cart array, for example, by adding an item to purchase,
-then any other function that uses that `cart` array will be affected by this
-addition. That may be great, however it can be bad too. Let's imagine a bad
-situation:
+### Evita los efectos secundarios (parte 2)
+En JavaScript, los primitivos se pasan por valor y los objetos / arrays se pasan por
+referencia. En el caso de objetos y arrays, si su función hace un cambio
+en una matriz de carro de la compra, por ejemplo, agregando un artículo para comprar,
+entonces cualquier otra función que use ese array `carrito` se verá afectada por esta
+modificación. Eso puede ser genial, sin embargo, también puede ser malo. Imaginemos una
+mala situación:
 
-The user clicks the "Purchase", button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because it has a reference to a shopping
-cart array that the `addItemToCart` function modified by adding an unwanted
-item.
+El usuario hace clic en el botón "Comprar", que llama a una función de "compra" que
+genera una petición de red y envía el array `carrito` al servidor. Porque
+de una mala conexión de red, la función `comprar` tiene que seguir reintentando
+solicitud. Ahora, ¿qué pasa si mientras tanto el usuario hace clic accidentalmente en 
+el botón *"Agregar al carrito"* en un elemento que realmente no quiere antes de
+que comience la solicitud de red? Si eso sucede y la solicitud de red comienza,
+entonces esa función de compra enviará el artículo agregado accidentalmente porque
+tiene una referencia a una compra matriz del carro que la función `añadirObjetoAlCarrito`
+modificó agregando un elemento que no deseado.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`,
-edit it, and return the clone. This ensures that no other functions that are
-holding onto a reference of the shopping cart will be affected by any changes.
+Una buena solución para `añadirObjetoAlCarrito` podría ser clonar el `carrito`, editarlo,
+y retornar la copia. Esto nos asegura que ninguna otra función tiene referencia al
+objeto con los campos modificados. Así pues, ninguna otra función se verá afectada
+por nuestros cambios.
 
-Two caveats to mention to this approach:
-  1. There might be cases where you actually want to modify the input object,
-but when you adopt this programming practice you will find that those cases
-are pretty rare. Most things can be refactored to have no side effects!
+Dos advertencias que mencionar para este enfoque:
+   1. Puede haber casos en los que realmente desee modificar el objeto de entrada,
+pero cuando adopte esta práctica de programación encontrará que esos casos
+son bastante raros ¡La mayoría de las cosas se pueden refaccionar para que no tengan efectos secundarios!
 
-  2. Cloning big objects can be very expensive in terms of performance. Luckily,
-this isn't a big issue in practice because there are
-[great libraries](https://facebook.github.io/immutable-js/) that allow
-this kind of programming approach to be fast and not as memory intensive as
-it would be for you to manually clone objects and arrays.
+   2. Clonar objetos grandes puede ser muy costosa en términos de rendimiento. Por suerte,
+esto no es un gran problema en la práctica porque hay [buenas bibliotecas] (https://facebook.github.io/immutable-js/)
+que permiten este tipo de enfoque de programación. Es rápido y no requiere tanta memoria como
+te costaría a ti clonar manualmente los arrays y los objetos.
 
 **Mal:**
 ```javascript
-const addItemToCart = (cart, item) => {
-  cart.push({ item, date: Date.now() });
+const añadirObjetoAlCarrito = (carrito, objeto) => {
+  carrito.push({ objeto, fecha: Date.now() });
 };
 ```
 
 **Bien:**
 ```javascript
-const addItemToCart = (cart, item) => {
-  return [...cart, { item, date: Date.now() }];
+const añadirObjetoAlCarrito = (carrito, objeto) => {
+  return [...carrito, { objeto, fecha: Date.now() }];
 };
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Don't write to global functions
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+### No escribas en variables globales
+
+La contaminación global es una mala práctica en JavaScript porque podría chocar con otra
+librería y el usuario de tu API no serían conscientes de ello hasta que tuviese un error
+en producción. Pensemos en un ejemplo: que pasaría si quisieras extender los arreglos de Javascript
+para tener un método `diff` que pudiera enseñar la diferencia entre dos arrays?
+Podrías escribir tu nueva función en el `Array.prototype`, pero podría chocar con otra librería que intentó
+hacer lo mismo. ¿Qué pasa si esa otra librería estaba usando `diff` para encontrar
+la diferencia entre los elementos primero y último de una matriz? Tendríamos problemas... Por eso,
+sería mucho mejor usar las clases ES2015 / ES6 y simplemente extender el `Array` global.
 
 **Mal:**
 ```javascript
-Array.prototype.diff = function diff(comparisonArray) {
-  const hash = new Set(comparisonArray);
-  return this.filter(elem => !hash.has(elem));
+Array.prototype.diff = function diff(matrizDeComparación) {
+  const hash = new Set(matrizDeComparación);
+  return this.filter(elemento => !hash.has(elemento));
 };
 ```
 
 **Bien:**
 ```javascript
 class SuperArray extends Array {
-  diff(comparisonArray) {
-    const hash = new Set(comparisonArray);
-    return this.filter(elem => !hash.has(elem));
+  diff(matrizDeComparación) {
+    const hash = new Set(matrizDeComparación);
+    return this.filter(elemento => !hash.has(elemento));
   }
 }
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Favor functional programming over imperative programming
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+### Preferir la programación funcional en vez de la programación imperativa
+Javascript no es un lenguage funcional en tal medida como lo es Haskell,
+pero tiene ascpectos que lo favorece. Los lenguages funcionales pueden ser más
+fáciles y limpios de probar/*testear*. Favorece este estilo de programación cuando puedas.
 
 **Mal:**
 ```javascript
-const programmerOutput = [
+const datosSalidaProgramadores = [
   {
-    name: 'Uncle Bobby',
-    linesOfCode: 500
+    nombre: 'Uncle Bobby',
+    liniasDeCodigo: 500
   }, {
-    name: 'Suzie Q',
-    linesOfCode: 1500
+    nombre: 'Suzie Q',
+    liniasDeCodigo: 1500
   }, {
-    name: 'Jimmy Gosling',
-    linesOfCode: 150
+    nombre: 'Jimmy Gosling',
+    liniasDeCodigo: 150
   }, {
-    name: 'Gracie Hopper',
-    linesOfCode: 1000
+    nombre: 'Gracie Hopper',
+    liniasDeCodigo: 1000
   }
 ];
 
-let totalOutput = 0;
+let salidaFinal = 0;
 
-for (let i = 0; i < programmerOutput.length; i++) {
-  totalOutput += programmerOutput[i].linesOfCode;
+for (let i = 0; i < datosSalidaProgramadores.length; i++) {
+  salidaFinal += datosSalidaProgramadores[i].liniasDeCodigo;
 }
 ```
 
 **Bien:**
 ```javascript
-const programmerOutput = [
+const datosSalidaProgramadores = [
   {
-    name: 'Uncle Bobby',
-    linesOfCode: 500
+    nombre: 'Uncle Bobby',
+    liniasDeCodigo: 500
   }, {
-    name: 'Suzie Q',
-    linesOfCode: 1500
+    nombre: 'Suzie Q',
+    liniasDeCodigo: 1500
   }, {
-    name: 'Jimmy Gosling',
-    linesOfCode: 150
+    nombre: 'Jimmy Gosling',
+    liniasDeCodigo: 150
   }, {
-    name: 'Gracie Hopper',
-    linesOfCode: 1000
+    nombre: 'Gracie Hopper',
+    liniasDeCodigo: 1000
   }
 ];
 
-const totalOutput = programmerOutput
-  .map(output => output.linesOfCode)
-  .reduce((totalLines, lines) => totalLines + lines);
+const salidaFinal = datosSalidaProgramadores
+  .map(salida => salida.linesOfCode)
+  .reduce((totalLinias, linias) => totalLinias + linias);
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Encapsulate conditionals
+### Encapsula los condicionales
 
 **Mal:**
 ```javascript
-if (fsm.state === 'fetching' && isEmpty(listNode)) {
+if (fsm.state === 'cogiendoDatos' && estaVacio(listaNodos)) {
   // ...
 }
 ```
 
 **Bien:**
 ```javascript
-function shouldShowSpinner(fsm, listNode) {
-  return fsm.state === 'fetching' && isEmpty(listNode);
+function deberiaMostrarSpinner(fsm, listaNodos) {
+  return fsm.state === 'cogiendoDatos' && estaVacio(listaNodos);
 }
 
-if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
+if (deberiaMostrarSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Avoid negative conditionals
+### Evita condicionales negativos
 
 **Mal:**
 ```javascript
-function isDOMNodeNotPresent(node) {
+function noEstaElNodoDelDOMPresente(node) {
   // ...
 }
 
-if (!isDOMNodeNotPresent(node)) {
+if (!noEstaElNodoDelDOMPresente(node)) {
   // ...
 }
 ```
 
 **Bien:**
 ```javascript
-function isDOMNodePresent(node) {
+function estaElNodoDelDOMPresente(node) {
   // ...
 }
 
-if (isDOMNodePresent(node)) {
+if (estaElNodoDelDOMPresente(node)) {
   // ...
 }
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Avoid conditionals
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+### Evita condicionales
+
+Esto parece una tarea imposible. Al escuchar esto por primera vez, la mayoría de la gente
+dice *"¿como voy a ser capaz de hacer cosas sin un `if`"?* La respuesta a eso, es que 
+deberías usar polimorfismo para conserguir lo mismo en la gran mayoría de los casos. La segunda
+pregunta que normalmente la gente hace es, *¿Bueno está bien pero para que voy a querer hacerlo?* 
+La respuesta es uno de los conceptos previos que hemos visto de *Código limpio*: Una 
+función debería hacer únicamente una cosa. Cuando tienes una función o clase que poseen un
+`if`, le estás diciendo al usuario que tu función está haciendo más de una cosa.
+Recuerda, tan sólo una cosa.
 
 **Mal:**
 ```javascript
-class Airplane {
+class Avion {
   // ...
   getCruisingAltitude() {
-    switch (this.type) {
+    switch (this.tipo) {
       case '777':
-        return this.getMaxAltitude() - this.getPassengerCount();
+        return this.cogerAlturaMaxima() - this.conseguirNumeroPasajeros();
       case 'Air Force One':
-        return this.getMaxAltitude();
+        return this.cogerAlturaMaxima();
       case 'Cessna':
-        return this.getMaxAltitude() - this.getFuelExpenditure();
+        return this.cogerAlturaMaxima() - this.getFuelExpenditure();
     }
   }
 }
@@ -781,163 +784,163 @@ class Airplane {
 
 **Bien:**
 ```javascript
-class Airplane {
+class Avion {
   // ...
 }
 
-class Boeing777 extends Airplane {
+class Boeing777 extends Avion {
   // ...
   getCruisingAltitude() {
-    return this.getMaxAltitude() - this.getPassengerCount();
+    return this.cogerAlturaMaxima() - this.conseguirNumeroPasajeros();
   }
 }
 
-class AirForceOne extends Airplane {
+class AirForceOne extends Avion {
   // ...
   getCruisingAltitude() {
-    return this.getMaxAltitude();
+    return this.cogerAlturaMaxima();
   }
 }
 
-class Cessna extends Airplane {
+class Cessna extends Avion {
   // ...
   getCruisingAltitude() {
-    return this.getMaxAltitude() - this.getFuelExpenditure();
+    return this.cogerAlturaMaxima() - this.getFuelExpenditure();
   }
 }
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Avoid type-checking (part 1)
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+### Evita control de tipos (parte 1)
+Javascript es un lenguaje no tipado, eso significa que las funciones pueden recibir
+cualquier tipo como argumento. A veces, nos aprovechamos de eso... y es por eso, que
+se vuelve muy tentador el controlar los tipos de los argumentos de la función.
+Hay algunas soluciones para evitar esto. La primera, son APIs consistentes.
+Por API se entiende de que manera nos comunicamos con ese módulo/función.
 
 **Mal:**
 ```javascript
-function travelToTexas(vehicle) {
-  if (vehicle instanceof Bicycle) {
-    vehicle.pedal(this.currentLocation, new Location('texas'));
-  } else if (vehicle instanceof Car) {
-    vehicle.drive(this.currentLocation, new Location('texas'));
+function viajarATexas(vehiculo) {
+  if (vehiculo instanceof Bicicleta) {
+    vehiculo.pedalear(this.ubicacionActual, new Localizacion('texas'));
+  } else if (vehiculo instanceof Car) {
+    vehiculo.conducir(this.ubicacionActual, new Localizacion('texas'));
   }
 }
 ```
 
 **Bien:**
 ```javascript
-function travelToTexas(vehicle) {
-  vehicle.move(this.currentLocation, new Location('texas'));
+function viajarATexas(vehiculo) {
+  vehiculo.mover(this.ubicacionActual, new Localizacion('texas'));
 }
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Avoid type-checking (part 2)
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+### Evita control de tipos (parte 2)
+Si estas trabajando con los tipos primitivos como son las `cadenas` o `enteros`,
+y no puedes usar polimorfismo pero aún ves la necesidad del control de tipos,
+deberías considerar `Typescript`. Es una excelente alternativa al `Javascript`
+convencional la que nos aporta control de tipos de manera estática entre otras muchas cosas.
+El problems de controlar manualmente el tipado en `Javascript` es que para hacerlo
+bien, necesitamos añadir mucho código a bajo nivel que afecta a la legibilidad del código.
+Mantén tu código `Javascvript` limpio, escribe pruebas/*tests* y ten buenas revisiones de código.
+Si no, haz todo esto con la herramienta `Typescript` que como ya hemos dicho, es una
+muy buena alternativa.
 
 **Mal:**
 ```javascript
-function combine(val1, val2) {
-  if (typeof val1 === 'number' && typeof val2 === 'number' ||
-      typeof val1 === 'string' && typeof val2 === 'string') {
-    return val1 + val2;
+function combina(valor1, valor2) {
+  if (typeof valor1 === 'number' && typeof valor2 === 'number' ||
+      typeof valor1 === 'string' && typeof valor2 === 'string') {
+    return valor1 + valor2;
   }
 
-  throw new Error('Must be of type String or Number');
+  throw new Error('Debería ser una cadena o número');
 }
 ```
 
 **Bien:**
 ```javascript
-function combine(val1, val2) {
-  return val1 + val2;
+function combina(valor1, valor2) {
+  return valor1 + valor2;
 }
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Don't over-optimize
+### No ultra optimizes
+Los navegadores modernos hacen mucha optimizacón por debajo en tiempo de ejecución.
+Muchas veces, si estás tratando de optimizar tu código... estás perdiendo el tiempo.
 Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+times, if you are optimizing then you are just wasting your time. [Esta es una buena documentación](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+para ver donde falta optimización. Pon el foco en éstas hasta que estén arregladas/hechas
+si es que se pueden.
 
 **Mal:**
 ```javascript
-
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
-for (let i = 0, len = list.length; i < len; i++) {
+// En los navegadores antiguos, cada iteración en la que `list.length` no esté cacheada
+// podría ser costosa por el recálculo de este valor. En los modernos, ya está optimizado
+for (let i = 0, tamaño = lista.length; i < tamaño; i++) {
   // ...
 }
 ```
 
 **Bien:**
 ```javascript
-for (let i = 0; i < list.length; i++) {
+for (let i = 0; i < lista.length; i++) {
   // ...
 }
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Remove dead code
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+### Borra código inútil
+El código inútil es tan malo como la duplicidad. No hay razón alguna para mantenerlo
+en tu código. Si no está siendo usado por nadie, ¡bórralo! Aún constará en tu
+sistema de versiones para el caso que lo necesites.
 
 **Mal:**
 ```javascript
-function oldRequestModule(url) {
+function antiguoModuloDePeticiones(url) {
   // ...
 }
 
-function newRequestModule(url) {
+function nuevoModuloDePeticiones(url) {
   // ...
 }
 
-const req = newRequestModule;
-inventoryTracker('apples', req, 'www.inventory-awesome.io');
+const peticion = nuevoModuloDePeticiones;
+calculadorDeInventario('manzanas', peticion, 'www.inventory-awesome.io');
 
 ```
 
 **Bien:**
 ```javascript
-function newRequestModule(url) {
+function nuevoModuloDePeticiones(url) {
   // ...
 }
 
-const req = newRequestModule;
-inventoryTracker('apples', req, 'www.inventory-awesome.io');
+const peticion = nuevoModuloDePeticiones;
+calculadorDeInventario('manzanas', peticion, 'www.inventory-awesome.io');
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-## **Objects and Data Structures**
-### Use getters and setters
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+## Objectos y estructuras de datos
+### Utiliza setters y getters
+Usar `getters` y `setters` para acceder a la información del objeto estaría mejor que
+simplemente accediendo a esa propiedad del objeto. ¿Por qué?
 
-* When you want to do more beyond getting an object property, you don't have
-to look up and change every accessor in your codebase.
+* Cuando quieres modificar una propiedad de un objeto, no tienes que ir mirando
+si existe o no existe para seguir mirando a niveles más profundos del objeto.
+*
 * Makes adding validation simple when doing a `set`.
-* Encapsulates the internal representation.
-* Easy to add logging and error handling when getting and setting.
-* You can lazy load your object's properties, let's say getting it from a
-server.
+* Encapsula la representación interna (en caso de tener que comprobar cosas, mirar en varios sitios...)
+* Es sencillo añadir mensajes y manejos de error cuando hacemos `get` y `set`
+* Te permite poder hacer lazy load en caso de que los datos se recojan de una Base de Datos (bbdd)
 
 
 **Mal:**
 ```javascript
-function makeBankAccount() {
+function crearCuentaBancaria() {
   // ...
 
   return {
@@ -946,25 +949,25 @@ function makeBankAccount() {
   };
 }
 
-const account = makeBankAccount();
-account.balance = 100;
+const cuenta = crearCuentaBancaria();
+cuenta.balance = 100;
 ```
 
 **Bien:**
 ```javascript
-function makeBankAccount() {
-  // this one is private
+function crearCuentaBancaria() {
+  // Esta es privada
   let balance = 0;
 
-  // a "getter", made public via the returned object below
-  function getBalance() {
+  // Un "getter", hecho público a través del objeto que retornamos abajo
+  function cogerBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
-  function setBalance(amount) {
-    // ... validate before updating the balance
-    balance = amount;
+  // Un "setter", hecho público a través del objeto que retornamos abajo
+  function introducirBalance(cantidad) {
+    // ... validamos antes de hcaer un balance
+    balance = cantidad;
   }
 
   return {
@@ -974,119 +977,121 @@ function makeBankAccount() {
   };
 }
 
-const account = makeBankAccount();
-account.setBalance(100);
+const cuena = crearCuentaBancaria();
+cuena.setBalance(100);
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
 
-### Make objects have private members
-This can be accomplished through closures (for ES5 and below).
+### Hacer que los objetos tengan miembros privados
+Esto se puede hacer mediante `clojures` *(de ES5 en adelante)*.
 
 **Mal:**
 ```javascript
 
-const Employee = function(name) {
-  this.name = name;
+const Empleado = function(nombre) {
+  this.nombre = nombre;
 };
 
-Employee.prototype.getName = function getName() {
-  return this.name;
+Empleado.prototype.cogerNombre = function cogerNombre() {
+  return this.nombre;
 };
 
-const employee = new Employee('John Doe');
-console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
-delete employee.name;
-console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
+const empleado = new Empleado('John Doe');
+console.log(`Nombre del empleado: ${empleado.cogerNombre()}`); // Nombre del empleado: John Doe
+delete empleado.nombre;
+console.log(`Nombre del empleado: ${empleado.cogerNombre()}`); // Nombre del empleado: undefined
 ```
 
 **Bien:**
 ```javascript
-function makeEmployee(name) {
+function crearEmpleado(name) {
   return {
-    getName() {
+    cogerNombre() {
       return name;
     },
   };
 }
 
-const employee = makeEmployee('John Doe');
-console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
-delete employee.name;
-console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
+const empleado = crearEmpleado('John Doe');
+console.log(`Nombre del empleado: ${empleado.cogerNombre()}`); // Nombre del empleado: John Doe
+delete empleado.name;
+console.log(`Nombre del empleado: ${empleado.cogerNombre()}`); // Nombre del empleado: John Doe
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
 
-## **Classes**
-### Prefer ES2015/ES6 classes over ES5 plain functions
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+## Clases
+### Dar prioridad a classes de ES2015/ES6 que a las funciones planas de ES5
+Es muy complicado de conseguir una código que sea entendible y fácil de leer con
+herencia de clases, construcción y metodos típicos de clases con las clases de ES5.
+Si necesitas herencia (y de seguro, que no la necesitas) entonces, dale prioridad a
+las clases ES2015/ES6. De todas las maneras, deberías preferir pequeñas funciones antes
+de ponerte a hacer clases. Solo cuando tengas un código largo o cuando veas necesaria
+la implementación de clases, añadelas.
 
 **Mal:**
 ```javascript
-const Animal = function(age) {
+const Animal = function(edad) {
   if (!(this instanceof Animal)) {
-    throw new Error('Instantiate Animal with `new`');
+    throw new Error('Inicializa Animal con `new`');
   }
 
-  this.age = age;
+  this.edad = edad;
 };
 
-Animal.prototype.move = function move() {};
+Animal.prototype.mover = function mover() {};
 
-const Mammal = function(age, furColor) {
-  if (!(this instanceof Mammal)) {
-    throw new Error('Instantiate Mammal with `new`');
+const Mamifero = function(edad, furColor) {
+  if (!(this instanceof Mamifero)) {
+    throw new Error('Inicializa Mamifero con `new`');
   }
 
-  Animal.call(this, age);
+  Animal.call(this, edad);
   this.furColor = furColor;
 };
 
-Mammal.prototype = Object.create(Animal.prototype);
-Mammal.prototype.constructor = Mammal;
-Mammal.prototype.liveBirth = function liveBirth() {};
+Mamifero.prototype = Object.create(Animal.prototype);
+Mamifero.prototype.constructor = Mamifero;
+Mamifero.prototype.aniversario = function aniversario() {};
 
-const Human = function(age, furColor, languageSpoken) {
-  if (!(this instanceof Human)) {
-    throw new Error('Instantiate Human with `new`');
+const Humano = function(edad, furColor, idioma) {
+  if (!(this instanceof Humano)) {
+    throw new Error('Inicializa Humano con `new`');
   }
 
-  Mammal.call(this, age, furColor);
-  this.languageSpoken = languageSpoken;
+  Mammal.call(this, edad, furColor);
+  this.idioma = idioma;
 };
 
-Human.prototype = Object.create(Mammal.prototype);
-Human.prototype.constructor = Human;
-Human.prototype.speak = function speak() {};
+Humano.prototype = Object.create(Mammal.prototype);
+Humano.prototype.constructor = Humano;
+Humano.prototype.hablar = function hablar() {};
 ```
 
 **Bien:**
 ```javascript
 class Animal {
-  constructor(age) {
-    this.age = age;
+  constructor(edad) {
+    this.edad = edad;
   }
 
-  move() { /* ... */ }
+  mover() { /* ... */ }
 }
 
-class Mammal extends Animal {
-  constructor(age, furColor) {
-    super(age);
+class Mamifero extends Animal {
+  constructor(edad, furColor) {
+    super(edad);
     this.furColor = furColor;
   }
 
-  liveBirth() { /* ... */ }
+  aniversario() { /* ... */ }
 }
 
-class Human extends Mammal {
-  constructor(age, furColor, languageSpoken) {
-    super(age, furColor);
-    this.languageSpoken = languageSpoken;
+class Human extends Mamifero {
+  constructor(edad, furColor, idioma) {
+    super(edad, furColor);
+    this.idioma = idioma;
   }
 
   speak() { /* ... */ }
@@ -1095,80 +1100,80 @@ class Human extends Mammal {
 **[⬆ Volver arriba](#table-of-contents)**
 
 
-### Use method chaining
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+### Utiliza el anidación de funciones
+Este es un patrón útil en Javascript y verás que muchas librerías como jQuery
+o Lodash lo usan. Permite que tu código sea expresivo y menos verboso.
+Por esa razón, utiliza las funciones anidadas y date cuenta de que tan limpio estará
+tu código. En las funciones de tu clase, sencillamente retorna `this` al final de cada una
+y con eso, tienes todo lo necesario pra poder anidar las llamadas a las funciones.
 
 **Mal:**
 ```javascript
-class Car {
-  constructor(make, model, color) {
-    this.make = make;
-    this.model = model;
+class Coche {
+  constructor(marca, modelo, color) {
+    this.marca = marca;
+    this.modelo = modelo;
     this.color = color;
   }
 
-  setMake(make) {
-    this.make = make;
+  introducirMarca(marca) {
+    this.marca = marca;
   }
 
-  setModel(model) {
-    this.model = model;
+  introducirModelo(modelo) {
+    this.modelo = modelo;
   }
 
-  setColor(color) {
+  introducirColor(color) {
     this.color = color;
   }
 
-  save() {
-    console.log(this.make, this.model, this.color);
+  guardar() {
+    console.log(this.marca, this.modelo, this.color);
   }
 }
 
-const car = new Car('Ford','F-150','red');
-car.setColor('pink');
-car.save();
+const coche = new Coche('Ford','F-150','rojo');
+coche.introducirColor('rosa');
+coche.guardar();
 ```
 
 **Bien:**
 ```javascript
-class Car {
-  constructor(make, model, color) {
-    this.make = make;
-    this.model = model;
+class Coche {
+  constructor(marca, modelo, color) {
+    this.marca = marca;
+    this.modelo = modelo;
     this.color = color;
   }
 
-  setMake(make) {
-    this.make = make;
-    // NOTE: Returning this for chaining
+  introducirMarca(marca) {
+    this.marca = marca;
+    // NOTE: Retornamos this para poder anidas funciones
     return this;
   }
 
-  setModel(model) {
-    this.model = model;
-    // NOTE: Returning this for chaining
+  introducirModelo(modelo) {
+    this.modelo = modelo;
+    // NOTE: Retornamos this para poder anidas funciones
     return this;
   }
 
-  setColor(color) {
+  introducirColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // NOTE: Retornamos this para poder anidas funciones
     return this;
   }
 
   save() {
-    console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    console.log(this.marca, this.modelo, this.color);
+    // NOTE: Retornamos this para poder anidas funciones
     return this;
   }
 }
 
-const car = new Car('Ford','F-150','red')
-  .setColor('pink')
+const coche = new Coche('Ford','F-150','rojo')
+  .introducirColor('rosa')
   .save();
 ```
 **[⬆ Volver arriba](#table-of-contents)**
