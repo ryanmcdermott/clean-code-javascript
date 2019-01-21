@@ -438,7 +438,7 @@ Si solo tienes una, la posibilidad de cometer una error se reduce a ésta!
 
 A menudo tienes código duplicado porque tienes dos o más cosas ligeramente
 diferentes, que tienen mucho en común, pero sus diferencias te obligan a tener
-ese código de más. Borrar la duplicidad de código significa crear una abstracción
+ese código de más. Borrar la duplicación de código significa crear una abstracción
 que pueda manejar este conjunto de cosas diferentes con una sola función/módulo/clase.
 
 Hacer que la abstracción sea correcta es fundamental y a veces bastante complejo.
@@ -650,21 +650,20 @@ console.log(nuevoNombre); // ['Ryan', 'McDermott'];
 ### Evita los efectos secundarios (parte 2)
 
 En JavaScript, los primitivos se pasan por valor y los objetos / arrays se pasan por
-referencia. En el caso de objetos y arrays, si su función hace un cambio
-en una matriz de carro de la compra, por ejemplo, agregando un artículo para comprar,
-entonces cualquier otra función que use ese array `carrito` se verá afectada por esta
-modificación. Eso puede ser genial, sin embargo, también puede ser malo. Imaginemos una
-mala situación:
+referencia. En el caso de objetos y arrays, si su función hace un cambio como por ejemplo,
+añadiendo un elemento al array que representa el carrito de la compra, entonces cualquier
+otra función que use ese array `carrito` se verá afectada por esta modificación.
+Eso puede ser genial, sin embargo, también puede ser malo. Imaginemos una mala situación:
 
 El usuario hace clic en el botón "Comprar", que llama a una función de "compra" que
-genera una petición de red y envía el array `carrito` al servidor. Porque
-de una mala conexión de red, la función `comprar` tiene que seguir reintentando
-solicitud. Ahora, ¿qué pasa si mientras tanto el usuario hace clic accidentalmente en
-el botón _"Agregar al carrito"_ en un elemento que realmente no quiere antes de
-que comience la solicitud de red? Si eso sucede y la solicitud de red comienza,
-entonces esa función de compra enviará el artículo agregado accidentalmente porque
-tiene una referencia a una compra matriz del carro que la función `añadirObjetoAlCarrito`
-modificó agregando un elemento que no deseado.
+genera una petición de red y envía el array `carrito` al servidor. Dada una mala
+conexión de red, la función `comprar` tiene que seguir reintentando la solicitud.
+Ahora, ¿Qué pasa si mientras tanto el usuario hace clic accidentalmente en el botón
+_"Agregar al carrito"_ en un elemento que realmente no quiere, antes de que comience
+la solicitud de red? Si esto sucede y la solicitud de red comienza, entonces esa
+función de compra enviará el artículo agregado accidentalmente porque tiene una
+referencia al objeto dado que la función `añadirObjetoAlCarrito` modificó el `carrito`
+agregando un elemento que no deseado.
 
 Una buena solución para `añadirObjetoAlCarrito` podría ser clonar el `carrito`, editarlo,
 y retornar la copia. Esto nos asegura que ninguna otra función tiene referencia al
@@ -672,14 +671,16 @@ objeto con los campos modificados. Así pues, ninguna otra función se verá afe
 por nuestros cambios.
 
 Dos advertencias que mencionar para este enfoque:
-   1. Puede haber casos en los que realmente desee modificar el objeto de entrada,
-pero cuando adopte esta práctica de programación encontrará que esos casos
-son bastante raros ¡La mayoría de las cosas se pueden refaccionar para que no tengan efectos secundarios!
+1. Puede haber casos en los que realmente desee modificar el objeto de entrada,
+pero cuando adopte esta práctica de programación encontrará que esos casos son
+bastante raros ¡La mayoría de las cosas se pueden refactorizar para que no tengan
+efectos secundarios!
 
-2. Clonar objetos grandes puede ser muy costosa en términos de rendimiento. Por suerte,
-   esto no es un gran problema en la práctica porque hay [buenas bibliotecas](https://facebook.github.io/immutable-js/)
-   que permiten este tipo de enfoque de programación. Es rápido y no requiere tanta memoria como
-   te costaría a ti clonar manualmente los arrays y los objetos.
+2. Clonar objetos grandes puede ser muy costosa en términos de rendimiento.
+Por suerte, en la práctica, esto no es un gran problema dado que hay
+[buenas librerías](https://facebook.github.io/immutable-js/) que permiten este
+tipo de enfoque de programación. Es rápido y no requiere tanta memoria como te
+costaría a ti clonar manualmente los arrays y los objetos.
 
 **Mal:**
 
@@ -701,14 +702,15 @@ const añadirObjetoAlCarrito = (carrito, objeto) => {
 
 ### No escribas en variables globales
 
-La contaminación global es una mala práctica en JavaScript porque podría chocar con otra
-librería y el usuario de tu API no serían conscientes de ello hasta que tuviese un error
-en producción. Pensemos en un ejemplo: que pasaría si quisieras extender los arreglos de Javascript
-para tener un método `diff` que pudiera enseñar la diferencia entre dos arrays?
-Podrías escribir tu nueva función en el `Array.prototype`, pero podría chocar con otra librería que intentó
-hacer lo mismo. ¿Qué pasa si esa otra librería estaba usando `diff` para encontrar
-la diferencia entre los elementos primero y último de una matriz? Tendríamos problemas... Por eso,
-sería mucho mejor usar las clases ES2015 / ES6 y simplemente extender el `Array` global.
+La contaminación global es una mala práctica en JavaScript porque podría chocar
+con otra librería y usuarios usuarios de tu API no serían conscientes de ello hasta
+que tuviesen un error en producción. Pensemos en un ejemplo: ¿Qué pasaría si quisieras 
+extender los arrays de Javascript para tener un método `diff` que pudiera enseñar la
+diferencia entre dos arrays? Podrías escribir tu nueva función en el `Array.prototype`,
+pero podría chocar con otra librería que intentó hacer lo mismo. ¿Qué pasa si esa otra
+librería estaba usando `diff` para encontrar la diferencia entre los elementos primero
+y último de una matriz? Tendríamos problemas... Por eso, sería mucho mejor usar las
+clases ES2015 / ES6 y simplemente extender el `Array` global.
 
 **Mal:**
 
@@ -732,11 +734,11 @@ class SuperArray extends Array {
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Preferir la programación funcional en vez de la programación imperativa
+### Da prioridad a la programación funcional en vez de la programación imperativa
 
-Javascript no es un lenguage funcional en tal medida como lo es Haskell,
-pero tiene ascpectos que lo favorece. Los lenguages funcionales pueden ser más
-fáciles y limpios de probar/_testear_. Favorece este estilo de programación cuando puedas.
+Javascript no es un lenguage funcional en la misma medida que lo es Haskell, pero
+tiene aspectos que lo favorecen. Los lenguages funcionales pueden ser más fáciles
+y limpios de *testear*. Favorece este estilo de programación siempre que puedas.
 
 **Mal:**
 
@@ -825,11 +827,11 @@ if (deberiaMostrarSpinner(fsmInstance, listNodeInstance)) {
 **Mal:**
 
 ```javascript
-function noEstaElNodoDelDOMPresente(node) {
+function noEstaElNodoPresente(node) {
   // ...
 }
 
-if (!noEstaElNodoDelDOMPresente(node)) {
+if (!noEstaElNodoPresente(node)) {
   // ...
 }
 ```
@@ -837,11 +839,11 @@ if (!noEstaElNodoDelDOMPresente(node)) {
 **Bien:**
 
 ```javascript
-function estaElNodoDelDOMPresente(node) {
+function estaElNodoPresente(node) {
   // ...
 }
 
-if (estaElNodoDelDOMPresente(node)) {
+if (estaElNodoPresente(node)) {
   // ...
 }
 ```
@@ -850,21 +852,21 @@ if (estaElNodoDelDOMPresente(node)) {
 
 ### Evita condicionales
 
-Esto parece una tarea imposible. Al escuchar esto por primera vez, la mayoría de la gente
-dice _"¿como voy a ser capaz de hacer cosas sin un `if`"?_ La respuesta a eso, es que
-deberías usar polimorfismo para conserguir lo mismo en la gran mayoría de los casos. La segunda
-pregunta que normalmente la gente hace es, _¿Bueno está bien pero para que voy a querer hacerlo?_
-La respuesta es uno de los conceptos previos que hemos visto de _Código limpio_: Una
-función debería hacer únicamente una cosa. Cuando tienes una función o clase que poseen un
-`if`, le estás diciendo al usuario que tu función está haciendo más de una cosa.
-Recuerda, tan sólo una cosa.
+Esto parece una tarea imposible. Al escuchar esto por primera vez, la mayoría de
+la gente dice _"¿como voy a ser capaz de hacer cosas sin un `if`"?_ La respuesta a eso,
+es que deberías usar polimorfismo para conserguir lo mismo en la gran mayoría de los
+casos. La segunda pregunta que normalmente la gente hace es, _¿Bueno está bien pero
+para que voy a querer hacerlo?_ La respuesta es uno de los conceptos previos que
+hemos visto de *Código limpio*: Una función debería hacer únicamente una cosa.
+Cuando tienes una función o clase que posee un `if`, le estás diciendo al usuario
+que tu función está haciendo más de una cosa. Recuerda, tan sólo una cosa.
 
 **Mal:**
 
 ```javascript
 class Avion {
   // ...
-  getCruisingAltitude() {
+  obtenerAlturaDeVuelo() {
     switch (this.tipo) {
       case "777":
         return this.cogerAlturaMaxima() - this.conseguirNumeroPasajeros();
@@ -886,21 +888,21 @@ class Avion {
 
 class Boeing777 extends Avion {
   // ...
-  getCruisingAltitude() {
+  obtenerAlturaDeVuelo() {
     return this.cogerAlturaMaxima() - this.conseguirNumeroPasajeros();
   }
 }
 
 class AirForceOne extends Avion {
   // ...
-  getCruisingAltitude() {
+  obtenerAlturaDeVuelo() {
     return this.cogerAlturaMaxima();
   }
 }
 
 class Cessna extends Avion {
   // ...
-  getCruisingAltitude() {
+  obtenerAlturaDeVuelo() {
     return this.cogerAlturaMaxima() - this.getFuelExpenditure();
   }
 }
@@ -908,13 +910,13 @@ class Cessna extends Avion {
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Evita control de tipos (parte 1)
+### Evita el control de tipos (parte 1)
 
-Javascript es un lenguaje no tipado, eso significa que las funciones pueden recibir
+Javascript es un lenguaje no tipado. Esto significa que las funciones pueden recibir
 cualquier tipo como argumento. A veces, nos aprovechamos de eso... y es por eso, que
-se vuelve muy tentador el controlar los tipos de los argumentos de la función.
-Hay algunas soluciones para evitar esto. La primera, son APIs consistentes.
-Por API se entiende de que manera nos comunicamos con ese módulo/función.
+se vuelve muy tentador el controlar los tipos de los argumentos de la función. Hay
+algunas soluciones para evitar esto. La primera, son APIs consistentes. Por API se
+entiende de que manera nos comunicamos con ese módulo/función.
 
 **Mal:**
 
@@ -940,15 +942,15 @@ function viajarATexas(vehiculo) {
 
 ### Evita control de tipos (parte 2)
 
-Si estas trabajando con los tipos primitivos como son las `cadenas` o `enteros`,
+Si estás trabajando con los tipos primitivos como son las `cadenas` o `enteros`,
 y no puedes usar polimorfismo pero aún ves la necesidad del control de tipos,
 deberías considerar `Typescript`. Es una excelente alternativa al `Javascript`
-convencional la que nos aporta control de tipos de manera estática entre otras muchas cosas.
-El problems de controlar manualmente el tipado en `Javascript` es que para hacerlo
-bien, necesitamos añadir mucho código a bajo nivel que afecta a la legibilidad del código.
-Mantén tu código `Javascvript` limpio, escribe pruebas/_tests_ y ten buenas revisiones de código.
-Si no, haz todo esto con la herramienta `Typescript` que como ya hemos dicho, es una
-muy buena alternativa.
+convencional que nos aporta control de tipos de manera estática entre otras
+muchas cosas. El problema de controlar manualmente el tipado en `Javascript` es
+que para hacerlo bien, necesitamos añadir mucho código a bajo nivel que afecta a
+la legibilidad del código. Mantén tu código `Javascript` limpio, escribe *tests*
+y intenta tener revisiones de código. Si no, intenta cubrir el máximo de cosas con 
+`Typescript` que como ya hemos dicho, es una muy buena alternativa.
 
 **Mal:**
 
@@ -975,12 +977,11 @@ function combina(valor1, valor2) {
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### No ultra optimizes
+### No optimizes al máximo
 
-Los navegadores modernos hacen mucha optimizacón por debajo en tiempo de ejecución.
-Muchas veces, si estás tratando de optimizar tu código... estás perdiendo el tiempo.
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [Esta es una buena documentación](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+Los navegadores modernos hacen mucha optimización por detrás en tiempo de ejecución.
+Muchas veces, al interntar optimizar tu código... estás perdiendo el tiempo.
+[Esta es una buena documentación](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
 para ver donde falta optimización. Pon el foco en éstas hasta que estén arregladas/hechas
 si es que se pueden.
 
@@ -1006,9 +1007,9 @@ for (let i = 0; i < lista.length; i++) {
 
 ### Borra código inútil
 
-El código inútil es tan malo como la duplicidad. No hay razón alguna para mantenerlo
-en tu código. Si no está siendo usado por nadie, ¡bórralo! Aún constará en tu
-sistema de versiones para el caso que lo necesites.
+El código inútil es tan malo como la duplicación. No hay razón alguna para
+mantenerlo en tu código. Si no está siendo usado por nadie, ¡Bórralo! Siempre
+estará disponible en sistema de versiones para el caso que lo necesites.
 
 **Mal:**
 
@@ -1042,13 +1043,11 @@ calculadorDeInventario("manzanas", peticion, "www.inventory-awesome.io");
 
 ### Utiliza setters y getters
 
-Usar `getters` y `setters` para acceder a la información del objeto estaría mejor que
-simplemente accediendo a esa propiedad del objeto. ¿Por qué?
+Usar `getters` y `setters` para acceder a la información del objeto está mejor
+que simplemente accediendo a esa propiedad del objeto. ¿Por qué?
 
-- Cuando quieres modificar una propiedad de un objeto, no tienes que ir mirando
+- Si quieres modificar una propiedad de un objeto, no tienes que ir mirando
   si existe o no existe para seguir mirando a niveles más profundos del objeto.
--
-- Makes adding validation simple when doing a `set`.
 - Encapsula la representación interna (en caso de tener que comprobar cosas, mirar en varios sitios...)
 - Es sencillo añadir mensajes y manejos de error cuando hacemos `get` y `set`
 - Te permite poder hacer lazy load en caso de que los datos se recojan de una Base de Datos (bbdd)
@@ -1089,18 +1088,18 @@ function crearCuentaBancaria() {
 
   return {
     // ...
-    getBalance,
-    setBalance
+    cogerBalance,
+    introducirBalance
   };
 }
 
-const cuena = crearCuentaBancaria();
-cuena.setBalance(100);
+const cuenta = crearCuentaBancaria();
+cuenta.introducirBalance(100);
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Hacer que los objetos tengan miembros privados
+### Hacer que los objetos tengan atributos/métodos privados
 
 Esto se puede hacer mediante `clojures` _(de ES5 en adelante)_.
 
@@ -1142,14 +1141,14 @@ console.log(`Nombre del empleado: ${empleado.cogerNombre()}`); // Nombre del emp
 
 ## Clases
 
-### Dar prioridad a classes de ES2015/ES6 que a las funciones planas de ES5
+### Prioriza las classes de ES2015/ES6 antes que las funciones planas de ES50
 
-Es muy complicado de conseguir una código que sea entendible y fácil de leer con
+Es muy complicado de conseguir que un código sea entendible y fácil de leer con
 herencia de clases, construcción y metodos típicos de clases con las clases de ES5.
 Si necesitas herencia (y de seguro, que no la necesitas) entonces, dale prioridad a
-las clases ES2015/ES6. De todas las maneras, deberías preferir pequeñas funciones antes
-de ponerte a hacer clases. Solo cuando tengas un código largo o cuando veas necesaria
-la implementación de clases, añadelas.
+las clases ES2015/ES6. De todas las maneras, deberías preferir pequeñas funciones
+antes que ponerte a hacer clases. Solo cuando tengas un código largo o cuando veas
+necesaria la implementación de clases, añádelas.
 
 **Mal:**
 
@@ -1182,11 +1181,11 @@ const Humano = function(edad, furColor, idioma) {
     throw new Error("Inicializa Humano con `new`");
   }
 
-  Mammal.call(this, edad, furColor);
+  Mamifero.call(this, edad, furColor);
   this.idioma = idioma;
 };
 
-Humano.prototype = Object.create(Mammal.prototype);
+Humano.prototype = Object.create(Mamifero.prototype);
 Humano.prototype.constructor = Humano;
 Humano.prototype.hablar = function hablar() {};
 ```
@@ -1221,7 +1220,7 @@ class Human extends Mamifero {
     this.idioma = idioma;
   }
 
-  speak() {
+  hablar() {
     /* ... */
   }
 }
@@ -1234,8 +1233,9 @@ class Human extends Mamifero {
 Este es un patrón útil en Javascript y verás que muchas librerías como jQuery
 o Lodash lo usan. Permite que tu código sea expresivo y menos verboso.
 Por esa razón, utiliza las funciones anidadas y date cuenta de que tan limpio estará
-tu código. En las funciones de tu clase, sencillamente retorna `this` al final de cada una
-y con eso, tienes todo lo necesario pra poder anidar las llamadas a las funciones.
+tu código. En las funciones de tu clase, sencillamente retorna `this` al final de
+cada una y con eso, tienes todo lo necesario pra poder anidar las llamadas a las
+funciones.
 
 **Mal:**
 
@@ -1297,28 +1297,28 @@ class Coche {
     return this;
   }
 
-  save() {
+  guardar() {
     console.log(this.marca, this.modelo, this.color);
     // NOTE: Retornamos this para poder anidas funciones
     return this;
   }
 }
 
-const coche = new Coche("Ford", "F-150", "rojo").introducirColor("rosa").save();
+const coche = new Coche("Ford", "F-150", "rojo").introducirColor("rosa").guardar();
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Favorece la composición en vez de la herecia
+### Prioriza la composición en vez de la herecia
 
 Como se citó en [_Patrones de Diseño_](https://en.wikipedia.org/wiki/Design_Patterns)
-por the Gang of Four, deberías preferir la composición en vez de la herecia siempre
-que puedas. Hay muy buenas razoes para usar tanto la herecia como la composición.
-El objetivo principal es remarcar que nuestra mente siempre piensa en primera instancia
-en la herencia como primera opción, pero deberíamos de pensar que tan bien nos
-encaja la composición en ese caso particular, en muchas ocasiones lo hace.
+por "the Gang of Four", deberías priorizar la composición en vez de la herecia
+siempre que puedas. Hay muy buenas razones para usar tanto la herecia como la
+composición. El problema principal es que nuestra mente siempre tiende a la herencia
+como primera opción, pero deberíamos de pensar qué tan bien nos encaja la composición
+en ese caso particular porque en muchas ocasiones es lo más acertado.
 
-Te estarás preguntando entonces, ¿Cuando debería yo usar la herencia? Todo depende.
+Te estarás preguntando entonces, _¿Cuando debería yo usar la herencia?_ Todo depende.
 Depende del problema que tengas entre mano, pero ya hay ocasiones particulares donde
 la herencia tiene más sentido que la composición:
 
@@ -1384,12 +1384,12 @@ class Empleado {
 ### Principio de Responsabilidad Única (SRP)
 
 Como se cita en _Código Limpio_, "No debería haber nunca más de un motivo para
-que una clase cambie". Es muy tentador acribillar a una clase con un montón de funcionalidad.
-El problema que tiene esto, es que tu clase no tendrá cohesión y tendrá bastantes
-motivos por lo que cambiar. Es por eso que es importante reducir el número de veces que tendrás
-que modificar una clase. Y Lo es, porque en caso de que tengamos una clase que haga
-más de una cosa y modifiquemos una de ellas, no sabemos que efectos colaterales puede tener
-esta acción en las demás.
+que una clase cambie". Es muy tentador acribillar a una clase con un montón de
+funcionalidad. El problema que tiene esto, es que tu clase no tendrá cohesión
+y tendrá bastantes motivos por los que cambiar. Es por eso que es importante
+reducir el número de veces que tendrás que modificar una clase. Y lo es, porque
+en caso de que tengamos una clase que haga más de una cosa y modifiquemos una
+de ellas, no podemos saber que efectos colaterales puede tener esta acción en las demás.
 
 **Mal:**
 
@@ -1442,8 +1442,8 @@ class UserSettings {
 
 ### Principio de abierto/cerrado (OCP)
 
-Citado por Bertrand Meyer: "Las entidades de software (clases, módulos, funciones, ...)
-deberían estar abiertas a extensión pere cerradas a modificación." ¿Qué significa esto?
+Citado por Bertrand Meyer: _"Las entidades de software (clases, módulos, funciones, ...)
+deberían estar abiertas a extensión pere cerradas a modificación."_ ¿Qué significa esto?
 Básicamente significa que los usuarios deberían de ser capaces de añadir funcionalidad
 a la aplicación sin tener que tocar el código creado hasta ahora.
 
