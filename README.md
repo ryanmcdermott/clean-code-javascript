@@ -1178,41 +1178,41 @@ const coche = new Coche('Ford','F-150','rojo')
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Prefer composition over inheritance
-As stated famously in [*Design Patterns*](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+### Favorece la composición en vez de la herecia
+Como se citó en [*Patrones de Diseño*](https://en.wikipedia.org/wiki/Design_Patterns)
+por the Gang of Four, deberías preferir la composición en vez de la herecia siempre
+que puedas. Hay muy buenas razoes para usar tanto la herecia como la composición.
+El objetivo principal es remarcar que nuestra mente siempre piensa en primera instancia
+en la herencia como primera opción, pero deberíamos de pensar que tan bien nos
+encaja la composición en ese caso particular, en muchas ocasiones lo hace.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Te estarás preguntando entonces, ¿Cuando debería yo usar la herencia? Todo depende.
+Depende del problema que tengas entre mano, pero ya hay ocasiones particulares donde
+la herencia tiene más sentido que la composición:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-(Change the caloric expenditure of all animals when they move).
+1. Tu herencia representa una relación "es un/a" en vez de "tiene un/a"
+(Humano->Animal vs. Usuario->DetallesUsuario)
+2. Puedes reutilizar código desde las clases base (Los humanos pueden moverse como animales)
+3. Quieres hacer cambios generales a clases derivadas cambiando la clase base. 
+(Cambiar el consumo de calorías a todos los animales mientras se mueven)
 
 **Mal:**
 ```javascript
-class Employee {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
+class Empleado {
+  constructor(nombre, correoElectronico) {
+    this.nombre = nombre;
+    this.correoElectronico = correoElectronico;
   }
 
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
-class EmployeeTaxData extends Employee {
-  constructor(ssn, salary) {
+// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Empleado
+class InformacionImpuestosEmpleado extends Empleado {
+  constructor(ssn, salario) {
     super();
     this.ssn = ssn;
-    this.salary = salary;
+    this.salario = salario;
   }
 
   // ...
@@ -1221,23 +1221,23 @@ class EmployeeTaxData extends Employee {
 
 **Bien:**
 ```javascript
-class EmployeeTaxData {
-  constructor(ssn, salary) {
+class InformacionImpuestosEmpleado {
+  constructor(ssn, salario) {
     this.ssn = ssn;
-    this.salary = salary;
+    this.salario = salario;
   }
 
   // ...
 }
 
-class Employee {
-  constructor(name, email) {
-    this.name = name;
-    this.email = email;
+class Empleado {
+  constructor(nombre, correoElectronico) {
+    this.nombre = nombre;
+    this.correoElectronico = correoElectronico;
   }
 
-  setTaxData(ssn, salary) {
-    this.taxData = new EmployeeTaxData(ssn, salary);
+  introducirInformacionImpuestos(ssn, salario) {
+    this.informacionImpuestos = new InformacionImpuestosEmpleado(ssn, salario);
   }
   // ...
 }
