@@ -1301,25 +1301,25 @@ class UserSettings {
 ```
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Open/Closed Principle (OCP)
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+### Principio de apertura/cierre (OCP)
+Citado por Bertrand Meyer: "Las entidades de software (clases, módulos, funciones, ...)
+deberían estar abiertas a extensión pere cerradas a modificación." ¿Qué significa esto?
+Básicamente significa que los usuarios deberían de ser capaces de añadir funcionalidad
+a la aplicación sin tener que tocar el código creado hasta ahora.
 
 **Mal:**
 ```javascript
-class AjaxAdapter extends Adapter {
+class AdaptadorAjax extends Adaptador {
   constructor() {
     super();
-    this.name = 'ajaxAdapter';
+    this.name = 'adaptadorAjax';
   }
 }
 
-class NodeAdapter extends Adapter {
+class AdaptadorNodos extends Adaptador {
   constructor() {
     super();
-    this.name = 'nodeAdapter';
+    this.nombre = 'adaptadorNodos';
   }
 }
 
@@ -1329,59 +1329,59 @@ class HttpRequester {
   }
 
   fetch(url) {
-    if (this.adapter.name === 'ajaxAdapter') {
-      return makeAjaxCall(url).then((response) => {
-        // transform response and return
+    if (this.adapter.nombre === 'adaptadorAjax') {
+      return hacerLlamadaAjax(url).then((respuesta) => {
+        // transformar la respuesta y devolverla
       });
-    } else if (this.adapter.name === 'httpNodeAdapter') {
-      return makeHttpCall(url).then((response) => {
-        // transform response and return
+    } else if (this.adapter.nombre === 'adaptadorHttpNodos') {
+      return hacerLlamadaHttp(url).then((respuesta) => {
+        // transformar la respuesta y devolverla
       });
     }
   }
 }
 
-function makeAjaxCall(url) {
+function hacerLlamadaAjax(url) {
   // request and return promise
 }
 
-function makeHttpCall(url) {
+function hacerLlamadaHttp(url) {
   // request and return promise
 }
 ```
 
 **Bien:**
 ```javascript
-class AjaxAdapter extends Adapter {
+class AdaptadorAjax extends Adapter {
   constructor() {
     super();
-    this.name = 'ajaxAdapter';
+    this.nombre = 'adaptadorAjax';
   }
 
-  request(url) {
-    // request and return promise
+  pedir(url) {
+    // Pedir y devolver la promesa
   }
 }
 
-class NodeAdapter extends Adapter {
+class AdaptadorNodos extends Adapter {
   constructor() {
     super();
-    this.name = 'nodeAdapter';
+    this.nombre = 'adaptadorNodos';
   }
 
-  request(url) {
-    // request and return promise
+  pedir(url) {
+    // Pedir y devolver la promesa
   }
 }
 
-class HttpRequester {
-  constructor(adapter) {
-    this.adapter = adapter;
+class EjecutadorPeticionesHttp {
+  constructor(adaptador) {
+    this.adaptador = adaptador;
   }
 
   fetch(url) {
-    return this.adapter.request(url).then((response) => {
-      // transform response and return
+    return this.adaptador.pedir(url).then((respuesta) => {
+      // Transformar y devolver la respuesta
     });
   }
 }
