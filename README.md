@@ -1531,31 +1531,28 @@ class EjecutadorPeticionesHttp {
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Liskov Substitution Principle (LSP)
+### Principio de sustitución de Liskov (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+Este es un término que asusta para lo sencillo que es. Estrictamente se define como
+"Si S es un subtipo de T, entonces los objetos del tipo T deberían poderse substituir
+por objetos del tipo S".
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Un ejemplo práctico vien a ser si tenemos una *clase padre* y una *clase hija*,
+entonces ambas han de poderse substituir la una por la otra y viceversa sin recibir
+ningún tipo de error o datos erróneos. Un caso práctico es el del cuadrado y el
+rectángulo. Geométricamente, un cuadrado es un rectángulo, pero si lo creamos
+con una relación "es un" a través de herencia, empezamos a tener problemas...
 
 **Mal:**
 
 ```javascript
-class Rectangle {
+class Rectangulo {
   constructor() {
-    this.width = 0;
-    this.height = 0;
+    this.anchura = 0;
+    this.altura = 0;
   }
 
-  setColor(color) {
+  introducirColor(color) {
     // ...
   }
 
@@ -1563,49 +1560,49 @@ class Rectangle {
     // ...
   }
 
-  setWidth(width) {
-    this.width = width;
+  introducirAnchura(anchura) {
+    this.anchura = anchura;
   }
 
-  setHeight(height) {
-    this.height = height;
+  introducirAltura(altura) {
+    this.altura = altura;
   }
 
-  getArea() {
-    return this.width * this.height;
-  }
-}
-
-class Square extends Rectangle {
-  setWidth(width) {
-    this.width = width;
-    this.height = width;
-  }
-
-  setHeight(height) {
-    this.width = height;
-    this.height = height;
+  conseguirArea() {
+    return this.anchura * this.altura;
   }
 }
 
-function renderLargeRectangles(rectangles) {
-  rectangles.forEach(rectangle => {
-    rectangle.setWidth(4);
-    rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
-    rectangle.render(area);
+class Cuadrado extends Rectangulo {
+  introducirAnchura(anchura) {
+    this.anchura = anchura;
+    this.altura = anchura;
+  }
+
+  introducirAltura(altura) {
+    this.width = altura;
+    this.altura = altura;
+  }
+}
+
+function renderizaRectangulosLargos(rectangulos) {
+  rectangulos.forEach(rectangulo => {
+    rectangulo.introducirAnchura(4);
+    rectangulo.introducirAltura(5);
+    const area = rectangulo.conseguirArea(); // MAL: Para el cuadrado devuelve 25 y devería ser 20
+    rectangulo.render(area);
   });
 }
 
-const rectangles = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeRectangles(rectangles);
+const rectangulos = [new Rectangulo(), new Rectangulo(), new Cuadrado()];
+renderizaRectangulosLargos(rectangulos);
 ```
 
 **Bien:**
 
 ```javascript
-class Shape {
-  setColor(color) {
+class Forma {
+  introducirColor(color) {
     // ...
   }
 
@@ -1614,80 +1611,79 @@ class Shape {
   }
 }
 
-class Rectangle extends Shape {
+class Rectangulo extends Forma {
   constructor(width, height) {
     super();
-    this.width = width;
-    this.height = height;
+    this.anchura = anchura;
+    this.altura = altura;
   }
 
-  getArea() {
-    return this.width * this.height;
+  conseguirArea() {
+    return this.anchura * this.altura;
   }
 }
 
-class Square extends Shape {
-  constructor(length) {
+class Cuadrado extends Forma {
+  constructor(distancia) {
     super();
-    this.length = length;
+    this.distancia = distancia;
   }
 
-  getArea() {
-    return this.length * this.length;
+  conseguirArea() {
+    return this.distancia * this.distancia;
   }
 }
 
-function renderLargeShapes(shapes) {
+function renderizaRectangulosLargos(shapes) {
   shapes.forEach(shape => {
-    const area = shape.getArea();
+    const area = shape.conseguirArea();
     shape.render(area);
   });
 }
 
-const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
-renderLargeShapes(shapes);
+const shapes = [new Rectangulo(4, 5), new Rectangulo(4, 5), new Cuadrado(5)];
+renderizaRectangulosLargos(shapes);
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Interface Segregation Principle (ISP)
+### Principio de Segregacion de Interfaces (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+Javascript no dispone de interfaces así que no podemos aplicar el principio como
+tal. De todas maneras, es importante conceptualmente hablando aunque no tengamos
+tipados como tal, pues eso resulta haciendo un código mantenible igualmente.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+*ISP* dice que "los servicios no deberían estar forzados a depender de interfaces
+que realmente no usan".
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Un buen ejemplo en javascript sería las típicas clases que requieren de un
+enormes objetos de configuración. No hacer que los servicios requieran de
+grandes cantidades de opciones es beneficioso, porque la gran mayoría del tiempo,
+no necesitarán esa configuración. Hacerlos opcionales ayuda a no tener el problema
+de "Interaz gorda", en inglés conocido como "fat interface".
 
 **Mal:**
 
 ```javascript
 class DOMTraverser {
-  constructor(settings) {
-    this.settings = settings;
+  constructor(configuraciones) {
+    this.configuraciones = configuraciones;
     this.setup();
   }
 
-  setup() {
-    this.rootNode = this.settings.rootNode;
-    this.animationModule.setup();
+  preparar() {
+    this.nodoRaiz = this.configuraciones.nodoRaiz;
+    this.ModuloAnimacion.preparar();
   }
 
-  traverse() {
+  atravesar() {
     // ...
   }
 }
 
 const $ = new DOMTraverser({
-  rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  nodoRaiz: document.getElementsByTagName("body"),
+  moduloAnimacion() {} // Most of the time, we won't need to animate when traversing.
   // ...
 });
 ```
@@ -1696,137 +1692,142 @@ const $ = new DOMTraverser({
 
 ```javascript
 class DOMTraverser {
-  constructor(settings) {
-    this.settings = settings;
-    this.options = settings.options;
-    this.setup();
+  constructor(configuraciones) {
+    this.configuraciones = configuraciones;
+    this.opciones = configuraciones.opciones;
+    this.preparar();
   }
 
-  setup() {
-    this.rootNode = this.settings.rootNode;
-    this.setupOptions();
+  preparar() {
+    this.nodoRaiz = this.configuraciones.nodoRaiz;
+    this.prepararOpciones();
   }
 
-  setupOptions() {
-    if (this.options.animationModule) {
+  prepararOpciones() {
+    if (this.opciones.moduloAnimacion) {
       // ...
     }
   }
 
-  traverse() {
+  atravesar() {
     // ...
   }
 }
 
 const $ = new DOMTraverser({
-  rootNode: document.getElementsByTagName("body"),
-  options: {
-    animationModule() {}
+  nodoRaiz: document.getElementsByTagName("body"),
+  opciones: {
+    moduloAnimacion() {}
   }
 });
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Dependency Inversion Principle (DIP)
+### Principio de Inversión de Dependencias (DIP)
 
-This principle states two essential things:
+*Por favor, no confundir con Inyección de Dependencias.* Mucha gente se piensa
+que la "D" de *SOLID* es de Inyección de Dependencias _(Dependency Inection, DI)._
 
-1. High-level modules should not depend on low-level modules. Both should
-   depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-   abstractions.
+Este principio nos dice dos cosas básicamente:
+1. Módulos de alto nivel no deberían depender de módulos de bajo nivel. Ambos
+deberían depender de bastracciones.
+2. Las abstracciones no deberían depender de detalles si no que, los detalles
+deberían depender de abstracciones.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Esto puede ser algo complejo al principio, pero si has trabajado con AngularJS,
+has visto de manera indirecta esto con la Inyección de Dependencias. Como
+comentaba anteriormente, aunque no son lo mismo, van de la mano. La Inversión de
+Dependencías es posible gracias a la Inyección de Dependencias. *DI* hace posible
+que los módulos de alto nivel dependan de abstracciones y no de detalles.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+El mayor de los beneficioses la reducción del acoplamiento entre módulos. Cuánto
+mayor acoplamiento, mayor dificultad en refactorización.
+
+Como hemos comentado antes, `Javascript` no tiene interfaces así que los contratos
+son un poco... así asá. Están en nuestro cabeza y eso debemos tenerlo en cuenta.
+Mucha gente usa javascript docs, anotaciones en comentarios justo encima de los 
+módulos y algunas cosas más. Vamos a ver un ejemplo con `RastreadorDeInventario`.
 
 **Mal:**
 
 ```javascript
-class InventoryRequester {
+class SolicitadorDeInventario {
   constructor() {
     this.REQ_METHODS = ["HTTP"];
   }
 
-  requestItem(item) {
+  pedirArticulo(articulo) {
     // ...
   }
 }
 
-class InventoryTracker {
-  constructor(items) {
-    this.items = items;
+class RastreadorDeInventario {
+  constructor(articulos) {
+    this.articulos = articulos;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
-    this.requester = new InventoryRequester();
+    // MAL: Hemos creado una dependencia de una concreción que va atada a una implementación
+    // Deberíamos tener pedirArticulos  dependiendo únicamente de un método: 'solicitud'
+    this.solicitador = new SolicitadorDeInventario();
   }
 
-  requestItems() {
-    this.items.forEach(item => {
-      this.requester.requestItem(item);
+  pedirArticulos() {
+    this.articulos.forEach(articulo => {
+      this.solicitador.pedirArticulo(articulo);
     });
   }
 }
 
-const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
-inventoryTracker.requestItems();
+const rastreadorDeInventario = new RastreadorDeInventario(["manzanas", "platanos"]);
+rastreadorDeInventario.pedirArticulos();
 ```
 
 **Bien:**
 
 ```javascript
-class InventoryTracker {
-  constructor(items, requester) {
-    this.items = items;
-    this.requester = requester;
+class RastreadorDeInventario {
+  constructor(articulos, solicitador) {
+    this.articulos = articulos;
+    this.solicitador = solicitador;
   }
 
-  requestItems() {
-    this.items.forEach(item => {
-      this.requester.requestItem(item);
+  pedirArticulos() {
+    this.articulos.forEach(articulo => {
+      this.solicitador.pedirArticulo(articulo);
     });
   }
 }
 
-class InventoryRequesterV1 {
+class SolicitadorDeInventarioV1 {
   constructor() {
     this.REQ_METHODS = ["HTTP"];
   }
 
-  requestItem(item) {
+  pedirArticulo(articulo) {
     // ...
   }
 }
 
-class InventoryRequesterV2 {
+class SolicitadorDeInventarioV2 {
   constructor() {
     this.REQ_METHODS = ["WS"];
   }
 
-  requestItem(item) {
+  pedirArticulo(articulo) {
     // ...
   }
 }
 
 // By constructing our dependencies externally and injecting them, we can easily
 // substitute our request module for a fancy new one that uses WebSockets.
-const inventoryTracker = new InventoryTracker(
-  ["apples", "bananas"],
-  new InventoryRequesterV2()
+
+// Construyendo nuestras dependencias desde fuera e inyectandolas, podríamos
+// substituir nuestro Módulo solicitador por uno con websockets o lo que sea
+const rastreadorDeInventario = new RastreadorDeInventario(
+  ["manzanas", "platanos"],
+  new SolicitadorDeInventarioV2()
 );
-inventoryTracker.requestItems();
+rastreadorDeInventario.pedirArticulos();
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
