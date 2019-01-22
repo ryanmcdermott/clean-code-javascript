@@ -1,6 +1,6 @@
 # clean-code-javascript
 
-## Tabla de contenidos
+## Contenido
 
 1. [Introducción](#introduction)
 2. [Variables](#variables)
@@ -63,7 +63,7 @@ const yyyymmdstr = moment().format("YYYY/MM/DD");
 const fechaACtual = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Utiliza el mismo tipo de vocabulario para el mismo tipo de variables
 
@@ -81,7 +81,7 @@ conseguirRegistroCliente();)
 conseguirUsuario();
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Utiliza nombres que puedan ser buscados
 
@@ -109,7 +109,7 @@ const MILISEGUNDOS_POR_DIA = 86400000;
 setTimeout(blastOff, MILISEGUNDOS_POR_DIA);
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Utiliza variables explicativas
 
@@ -134,7 +134,7 @@ const [, ciudad, codigoPostal] =
 guardarCP(ciudad, codigoPostal);
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Evita relaciones mentales
 
@@ -169,7 +169,7 @@ direcciones.forEach(direccion => {
 });
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### No añadas contexto innecesario
 
@@ -203,7 +203,7 @@ function pintarCoche(coche) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Utiliza argumentos por defecto en vez de circuitos cortos o condicionales
 
@@ -230,7 +230,7 @@ function crearMicroCerveceria(nombre = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## Funciones
 
@@ -285,7 +285,7 @@ crearMenu({
 });
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Las funciones deberían hacer una cosa
 
@@ -322,7 +322,7 @@ function esClienteActivo(cliente) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Los nombres de las funciones deberían decir lo que hacen
 
@@ -350,7 +350,7 @@ const fecha = new Date();
 añadirMesAFecha(1, fecha);
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Las funciones deberían ser únicamente de un nivel de abstracción
 
@@ -422,7 +422,7 @@ function lexer(tokens) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Elimina código duplicado
 
@@ -509,7 +509,7 @@ function showEmployeeList(empleados) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Asigna objetos por defecto con Object.assign
 
@@ -562,7 +562,7 @@ function crearMenu(configuracion) {
 crearMenu(configuracionMenu);
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### No utilices banderas o flags
 
@@ -594,7 +594,7 @@ function crearFicheroTemporal(nombre) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Evita los efectos secundarios (parte 1)
 
@@ -645,7 +645,7 @@ console.log(nombre); // 'Ryan McDermott';
 console.log(nuevoNombre); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Evita los efectos secundarios (parte 2)
 
@@ -698,7 +698,7 @@ const añadirObjetoAlCarrito = (carrito, objeto) => {
 };
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### No escribas en variables globales
 
@@ -732,7 +732,7 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Da prioridad a la programación funcional en vez de la programación imperativa
 
@@ -796,7 +796,7 @@ const salidaFinal = datosSalidaProgramadores
   .reduce((totalLinias, linias) => totalLinias + linias);
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Encapsula los condicionales
 
@@ -820,7 +820,7 @@ if (deberiaMostrarSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Evita condicionales negativos
 
@@ -848,7 +848,7 @@ if (estaElNodoPresente(node)) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Evita condicionales
 
@@ -908,7 +908,7 @@ class Cessna extends Avion {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Evita el control de tipos (parte 1)
 
@@ -938,7 +938,7 @@ function viajarATexas(vehiculo) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Evita control de tipos (parte 2)
 
@@ -975,7 +975,7 @@ function combina(valor1, valor2) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### No optimizes al máximo
 
@@ -1003,7 +1003,7 @@ for (let i = 0; i < lista.length; i++) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Borra código inútil
 
@@ -1037,7 +1037,7 @@ const peticion = nuevoModuloDePeticiones;
 calculadorDeInventario("manzanas", peticion, "www.inventory-awesome.io");
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## Objectos y estructuras de datos
 
@@ -1097,7 +1097,7 @@ const cuenta = crearCuentaBancaria();
 cuenta.introducirBalance(100);
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Hacer que los objetos tengan atributos/métodos privados
 
@@ -1137,7 +1137,7 @@ delete empleado.name;
 console.log(`Nombre del empleado: ${empleado.cogerNombre()}`); // Nombre del empleado: John Doe
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## Clases
 
@@ -1226,7 +1226,7 @@ class Human extends Mamifero {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Utiliza el anidación de funciones
 
@@ -1307,7 +1307,7 @@ class Coche {
 const coche = new Coche("Ford", "F-150", "rojo").introducirColor("rosa").guardar();
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Prioriza la composición en vez de la herecia
 
@@ -1377,7 +1377,7 @@ class Empleado {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## **SOLID**
 
@@ -1438,7 +1438,7 @@ class UserSettings {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Principio de abierto/cerrado (OCP)
 
@@ -1529,7 +1529,7 @@ class EjecutadorPeticionesHttp {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Principio de sustitución de Liskov (LSP)
 
@@ -1645,7 +1645,7 @@ const shapes = [new Rectangulo(4, 5), new Rectangulo(4, 5), new Cuadrado(5)];
 renderizaRectangulosLargos(shapes);
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Principio de Segregacion de Interfaces (ISP)
 
@@ -1722,7 +1722,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Principio de Inversión de Dependencias (DIP)
 
@@ -1830,7 +1830,7 @@ const rastreadorDeInventario = new RastreadorDeInventario(
 rastreadorDeInventario.pedirArticulos();
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## **Testing**
 
@@ -1901,7 +1901,7 @@ describe("MakeMomentJSGreatAgain", () => {
 });
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## Concurrencia
 
@@ -1958,7 +1958,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Async/Await is incluso más limpio que las Promesas
 
@@ -2006,7 +2006,7 @@ async function conseguirArticulosDeCodigoLimpio() {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## Manejo de errores
 
@@ -2083,7 +2083,7 @@ cogerDatos()
   });
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## Formato
 
@@ -2134,7 +2134,7 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Funciones que llaman y funciones que son llamadas, deberían estar cerca
 
@@ -2225,7 +2225,7 @@ const review = new RevisionDeRendimiento(empleado);
 review.executarRevision();
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## Comentarios
 
@@ -2276,7 +2276,7 @@ function hashIt(datos) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### No dejes código comentado en tu repositorio
 
@@ -2301,7 +2301,7 @@ hacerCosas();
 hacerCosas();
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### No hagas un diario de comentarios
 
@@ -2332,7 +2332,7 @@ function combinar(a, b) {
 }
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ### Evita los marcadores de secciones
 
@@ -2373,7 +2373,7 @@ const acciones = function() {
 };
 ```
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
 
 ## Traducciones
 
@@ -2398,4 +2398,4 @@ También esta disponible en otros idiomas
 - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**:
   [frappacchio/clean-code-javascript/](https://github.com/frappacchio/clean-code-javascript/)
 
-**[⬆ Volver arriba](#table-of-contents)**
+**[⬆ Volver arriba](#contenido)**
