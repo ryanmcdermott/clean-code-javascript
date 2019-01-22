@@ -2008,27 +2008,25 @@ async function conseguirArticulosDeCodigoLimpio() {
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-## **Error Handling**
+## Manejo de errores
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+¡Lanzar errores está bien! Significa que en tiempo de ejecución se ha detectado
+que algo no estaba funcionando como debía y se ha parado la ejecución del trozo
+de código. Además se notifica siempre en la consola del navegador.
 
-### Don't ignore caught errors
+### No ignores los errores capturados
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+No hacer nada con los errores capturados no te da la opción de anticiparte
+o arreglar dicho error. El printar el error por la consola del navegador
+no es una solución, pues la gran mayoría de veces nadie es consciente de eso
+y el error pasas desapercibido. Envuelve tu código con `try/catch` y es ahí
+donde tendrás que elaborar tu plan de reacción a posibles errores
 
 **Mal:**
 
 ```javascript
 try {
-  functionThatMightThrow();
+  functionQueDeberiaLanzarError();
 } catch (error) {
   console.log(error);
 }
@@ -2038,29 +2036,29 @@ try {
 
 ```javascript
 try {
-  functionThatMightThrow();
+  functionQueDeberiaLanzarError();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // Una option (algo más molesta que el convencional console.log)
   console.error(error);
-  // Another option:
-  notifyUserOfError(error);
-  // Another option:
-  reportErrorToService(error);
-  // OR do all three!
+  // Otra opción:
+  notificarAlUsuarioDelError(error);
+  // Otra opción:
+  reportarElArrorAUnServicio(error);
+  // O hazlas todas!
 }
 ```
 
-### Don't ignore rejected promises
+### No ignores las promesas rechazadas
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+No ignores las promesas que han sido rechadas por la misma razón que no deberías
+ignorar errores capturados en el `try/catch`.
 
 **Mal:**
 
 ```javascript
-getdata()
-  .then(data => {
-    functionThatMightThrow(data);
+cogerDatos()
+  .then(datos => {
+    functionQueDeberiaLanzarError(datos);
   })
   .catch(error => {
     console.log(error);
@@ -2070,18 +2068,18 @@ getdata()
 **Bien:**
 
 ```javascript
-getdata()
-  .then(data => {
-    functionThatMightThrow(data);
+cogerDatos()
+  .then(datos => {
+    functionQueDeberiaLanzarError(datos);
   })
   .catch(error => {
-    // One option (more noisy than console.log):
+    // Una option (algo más molesta que el convencional console.log)
     console.error(error);
-    // Another option:
-    notifyUserOfError(error);
-    // Another option:
-    reportErrorToService(error);
-    // OR do all three!
+    // Otra opción:
+    notificarAlUsuarioDelError(error);
+    // Otra opción:
+    reportarElArrorAUnServicio(error);
+    // O hazlas todas!
   });
 ```
 
