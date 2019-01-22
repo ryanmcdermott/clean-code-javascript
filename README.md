@@ -1464,7 +1464,7 @@ class AdaptadorNodos extends Adaptador {
   }
 }
 
-class HttpRequester {
+class  {
   constructor(adapter) {
     this.adapter = adapter;
   }
@@ -1834,20 +1834,20 @@ rastreadorDeInventario.pedirArticulos();
 
 ## **Testing**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](http://gotwarlost.github.io/istanbul/).
+El testing es más importante que la entrega. Si no tienes test o tienes muchos
+que no soy de gran ayuda, cada vez que quieras entregar valor no estarás seguro
+de ue eso funciona debidamente y que nada falla. Puedes decidir con el equipo
+cuál es el porcentaje al que queréis ceñiros pero, la única manera de tener 
+confianza total de que nada falla, es teniendo 100% de covertura de test. Para
+esto, ncesitarás tener una gran herramienta para poder testear pero también
+una que te calcule adecuadamente [el porcentaje cubierto](http://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](http://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+No hay excusas para no escribir tests. Hay
+[un montón de frameworks de JS](http://jstherightway.org/#testing-tools) entre
+los que podréis tu y tu equipo decidir. Una vez hayáis elegido el framework,
+para cada nueva funcionalidad que se quiera añadir a la plataforma, escribir tests.
+Si prefieres hacer *Test-Driven Development* me parece bien, pero la ide principal de 
+los test es dar confianza suficiente al programador para que pueda seguir entregando valor.
 
 ### Single concept per test
 
