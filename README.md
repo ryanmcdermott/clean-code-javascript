@@ -1849,7 +1849,7 @@ para cada nueva funcionalidad que se quiera añadir a la plataforma, escribir te
 Si prefieres hacer *Test-Driven Development* me parece bien, pero la ide principal de 
 los test es dar confianza suficiente al programador para que pueda seguir entregando valor.
 
-### Single concept per test
+### Sólo un concepto por test
 
 **Mal:**
 
@@ -1857,7 +1857,7 @@ los test es dar confianza suficiente al programador para que pueda seguir entreg
 import assert from "assert";
 
 describe("MakeMomentJSGreatAgain", () => {
-  it("handles date boundaries", () => {
+  it("maneja límites de las fechas", () => {
     let date;
 
     date = new MakeMomentJSGreatAgain("1/1/2015");
@@ -1881,19 +1881,19 @@ describe("MakeMomentJSGreatAgain", () => {
 import assert from "assert";
 
 describe("MakeMomentJSGreatAgain", () => {
-  it("handles 30-day months", () => {
+  it("Maneja los meses con 30 días", () => {
     const date = new MakeMomentJSGreatAgain("1/1/2015");
     date.addDays(30);
     assert.equal("1/31/2015", date);
   });
 
-  it("handles leap year", () => {
+  it("Maneja los años bisiestos", () => {
     const date = new MakeMomentJSGreatAgain("2/1/2016");
     date.addDays(28);
     assert.equal("02/29/2016", date);
   });
 
-  it("handles non-leap year", () => {
+  it("Maneja los años NO bisiestos", () => {
     const date = new MakeMomentJSGreatAgain("2/1/2015");
     date.addDays(28);
     assert.equal("03/01/2015", date);
