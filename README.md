@@ -1,5 +1,9 @@
 # clean-code-javascript
 
+Este contenido no es original. está traducido de [aquí](https://github.com/ryanmcdermott/clean-code-javascript).
+Tampoco significa que todo lo que esté en este repositorio lo comparta. De hecho,
+hay unas cosas en las que no estoy de acuerdo.
+
 ## Contenido
 
 1. [Introducción](#introduction)
