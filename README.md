@@ -2085,34 +2085,34 @@ cogerDatos()
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-## **Formatting**
+## Formato
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](http://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+El formato del código es algo subjetivo. Como otras reglas aquí, no hay una regla
+que deberías seguir o una fórmula secreta. Lo que si que está claro es que no
+deberíamos discutir ni crear conflictos con nuestros compañeros de trabajo acerca
+de estas reglas. Hay unas cuantas [herrmientas](http://standardjs.com/rules.html)
+que automatizan todas las reglas de formato de texto. ¡Ahorrarse tiempo en estas
+formateando el texto es un pasada!
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
 
-### Use consistent capitalization
+### Usa consistenemente la capitalización
 
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+Como ya hemos dicho, `javascript` es un lenguage no tipado así pues, la
+capitalización de las variables importa, y mucho. Estas son reglas totalmente
+subjetivas así que como equipo, podéis elegir lo que más os guste/convenga.
+La cuestión es que independientemente de lo que decidáis, seáis consistentes.
 
 **Mal:**
 
 ```javascript
-const DAYS_IN_WEEK = 7;
-const daysInMonth = 30;
+const DIAS_POR_SEMANA = 7;
+const diasPorMes = 30;
 
-const songs = ["Back In Black", "Stairway to Heaven", "Hey Jude"];
-const Artists = ["ACDC", "Led Zeppelin", "The Beatles"];
+const canciones = ["Back In Black", "Stairway to Heaven", "Hey Jude"];
+const Artistas = ["ACDC", "Led Zeppelin", "The Beatles"];
 
-function eraseDatabase() {}
-function restore_database() {}
+function borrarBaseDeDatos() {}
+function restablecer_baseDeDatos() {}
 
 class animal {}
 class Alpaca {}
@@ -2121,14 +2121,14 @@ class Alpaca {}
 **Bien:**
 
 ```javascript
-const DAYS_IN_WEEK = 7;
-const DAYS_IN_MONTH = 30;
+const DIAS_POR_SEMANA = 7;
+const DIAS_POR_MES = 30;
 
-const SONGS = ["Back In Black", "Stairway to Heaven", "Hey Jude"];
-const ARTISTS = ["ACDC", "Led Zeppelin", "The Beatles"];
+const CANCIONES = ["Back In Black", "Stairway to Heaven", "Hey Jude"];
+const ARTISTAS = ["ACDC", "Led Zeppelin", "The Beatles"];
 
-function eraseDatabase() {}
-function restoreDatabase() {}
+function borrarBaseDeDatos() {}
+function restablecerBaseDeDatos() {}
 
 class Animal {}
 class Alpaca {}
@@ -2136,90 +2136,93 @@ class Alpaca {}
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Function callers and callees should be close
+### Funciones que llaman y funciones que son llamadas, deberían estar cerca
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Si una función llama a otra, haz que esta función que va a ser llamada esté
+lo más cerca posible de la función que la llama. Idealmente, situa siempre
+la función que va a ser llamada justo después de la función que la ejecuta.
+¿El motivo? Pues normalmente acostumbramos a leer de arriba abajo y tampoco
+queremos tener que hacer *scroll* hasta abajo del todo del ficheor para volver
+a subir.
 
 **Mal:**
 
 ```javascript
-class PerformanceReview {
-  constructor(employee) {
-    this.employee = employee;
+class RevisionDeRendimiento {
+  constructor(empleado) {
+    this.empleado = empleado;
   }
 
-  lookupPeers() {
-    return db.lookup(this.employee, "peers");
+  conseguirCompañeros() {
+    return db.buscar(this.empleado, "compañeros");
   }
 
-  lookupManager() {
-    return db.lookup(this.employee, "manager");
+  conseguirJefe() {
+    return db.buscar(this.empleado, "jefe");
   }
 
-  getPeerReviews() {
-    const peers = this.lookupPeers();
+  conseguirOpinionDeLosCompañeros() {
+    const compañeros = this.conseguirCompañeros();
     // ...
   }
 
-  perfReview() {
-    this.getPeerReviews();
-    this.getManagerReview();
-    this.getSelfReview();
+  executarRevision() {
+    this.conseguirOpinionDeLosCompañeros();
+    this.conseguirOpinionDelJefe();
+    this.conseguirAutoRevision();
   }
 
-  getManagerReview() {
-    const manager = this.lookupManager();
+  conseguirOpinionDelJefe() {
+    const jefe = this.conseguirJefe();
   }
 
-  getSelfReview() {
+  conseguirAutoRevision() {
     // ...
   }
 }
 
-const review = new PerformanceReview(employee);
-review.perfReview();
+const review = new RevisionDeRendimiento(empleado);
+review.executarRevision();
 ```
 
 **Bien:**
 
 ```javascript
-class PerformanceReview {
-  constructor(employee) {
-    this.employee = employee;
+class RevisionDeRendimiento {
+  constructor(empleado) {
+    this.empleado = empleado;
   }
 
-  perfReview() {
-    this.getPeerReviews();
-    this.getManagerReview();
-    this.getSelfReview();
+  executarRevision() {
+    this.conseguirOpinionDeLosCompañeros();
+    this.conseguirOpinionDelJefe();
+    this.conseguirAutoRevision();
   }
 
-  getPeerReviews() {
-    const peers = this.lookupPeers();
+  conseguirOpinionDeLosCompañeros() {
+    const compañeros = this.conseguirCompañeros();
     // ...
   }
 
-  lookupPeers() {
-    return db.lookup(this.employee, "peers");
+  conseguirCompañeros() {
+    return db.buscar(this.empleado, "compañeros");
   }
 
-  getManagerReview() {
-    const manager = this.lookupManager();
+  conseguirOpinionDelJefe() {
+    const jefe = this.conseguirJefe();
   }
 
-  lookupManager() {
-    return db.lookup(this.employee, "manager");
+  conseguirJefe() {
+    return db.buscar(this.empleado, "jefe");
   }
 
-  getSelfReview() {
+  conseguirAutoRevision() {
     // ...
   }
 }
 
-const review = new PerformanceReview(employee);
-review.perfReview();
+const review = new RevisionDeRendimiento(empleado);
+review.executarRevision();
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
