@@ -1913,7 +1913,7 @@ A y B, se dice que B es el callback de A si la función B es pasada como paráme
 a la función A y esta, se ejecuta este callback una vez ha terminado_
 
 Los `callbacks` no son limpios ni en cuanto a legibilidad ni en cuanto a formato
-de texto _(dado que provocan niveles de anidación)_. Con ES2015/ES6 las promesas
+de texto _(dado que provocan niveles de identación)_. Con ES2015/ES6 las promesas
 son un tipo global. ¡Úsalas!
 
 **Mal:**
@@ -2227,29 +2227,33 @@ review.executarRevision();
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-## **Comments**
+## Comentarios
 
-### Only comment things that have business logic complexity.
+### Comenta únicamente la lógica de negocio que es compleja
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+Los comentarios son una disculpa, no un requerimiento. Supuesatmente se dice
+que un buen código debería comentarse por si mismo. Un código perfecto no 
+está optimizado para la máquina sinó que lo está para la manteniblidad de éste
+por un compañero o futuro compañero. Para esto, ha de ser lo más semántico posible.
+El código ha de estar escrito para que niños pequeños lo entiendan.
 
 **Mal:**
 
 ```javascript
-function hashIt(data) {
-  // The hash
+function hashIt(datos) {
+  // El hash
   let hash = 0;
 
-  // Length of string
-  const length = data.length;
+  // Tamaño del string
+  const tamaño = datos.length;
 
-  // Loop through every character in data
-  for (let i = 0; i < length; i++) {
-    // Get character code.
-    const char = data.charCodeAt(i);
-    // Make the hash
+  // Iteramos a través de cada carácter de los datos
+  for (let i = 0; i < tamaño; i++) {
+    // Coger código del caracter
+    const char = datos.charCodeAt(i);
+    // Crear el hash
     hash = (hash << 5) - hash + char;
-    // Convert to 32-bit integer
+    // Convertir a un entero de 32 bits
     hash &= hash;
   }
 }
@@ -2258,15 +2262,15 @@ function hashIt(data) {
 **Bien:**
 
 ```javascript
-function hashIt(data) {
+function hashIt(datos) {
   let hash = 0;
-  const length = data.length;
+  const tamaño = datos.length;
 
-  for (let i = 0; i < length; i++) {
-    const char = data.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
+  for (let i = 0; i < tamaño; i++) {
+    const caracter = datos.charCodeAt(i);
+    hash = (hash << 5) - hash + caracter;
 
-    // Convert to 32-bit integer
+    // Convertir a un entero de 32 bits
     hash &= hash;
   }
 }
@@ -2274,42 +2278,48 @@ function hashIt(data) {
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Don't leave commented out code in your codebase
+### No dejes código comentado en tu repositorio
 
-Version control exists for a reason. Leave old code in your history.
+El control de versiones existe para algo. Si tu motivo o excusa por el que comentar
+un código es porque en breves o algun día lo vas a necesitas, eso no me sirve. Ese
+código que acabas de borrar consta en alguna de tus versiones de tu código fuente.
+Lo que deberías hacer entonces quizás, es usar `git tags`, poner el código de la 
+tarea en el nombre del commit, etc... Hay muchos truquitos para hacer eso!
 
 **Mal:**
 
 ```javascript
-doStuff();
-// doOtherStuff();
-// doSomeMoreStuff();
-// doSoMuchStuff();
+hacerCosas();
+// hacerOtrasCosas();
+// hacerCosasAunMasRaras();
+// estoHaceMaravillas();
 ```
 
 **Bien:**
 
 ```javascript
-doStuff();
+hacerCosas();
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Don't have journal comments
+### No hagas un diario de comentarios
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Recuerda ¡Usa el control de versioens! No hay motivo alguno para tener código
+muerto, código comentado y aún menos, un diadrio o resumen de modificaciones en
+tus comentarios. Si quieres ver las modificaciones, usa `git log`, la herramiento
+`blame` o incluso el `history`.
 
 **Mal:**
 
 ```javascript
 /**
- * 2016-12-20: Removed monads, didn't understand them (RM)
- * 2016-10-01: Improved using special monads (JP)
- * 2016-02-03: Removed type-checking (LI)
- * 2015-03-14: Added combine with type-checking (JR)
+ * 2016-12-20: `monads` borrados, no hay quien los entienda
+ * 2016-10-01: Código mejorado con 'monads'
+ * 2016-02-03: Borrado tipado 
+ * 2015-03-14: Añadido tipado
  */
-function combine(a, b) {
+function combinar(a, b) {
   return a + b;
 }
 ```
@@ -2317,33 +2327,35 @@ function combine(a, b) {
 **Bien:**
 
 ```javascript
-function combine(a, b) {
+function combinar(a, b) {
   return a + b;
 }
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Avoid positional markers
+### Evita los marcadores de secciones
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+Normalmente acostumbran a ser molestos. Deja que las variables y las funciones
+hagan su función con sus identaciones naturales y de esta manera, formateen el
+có correctamente
+.
 
 **Mal:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
-// Scope Model Instantiation
+// Instanciación del Modelo Scope
 ////////////////////////////////////////////////////////////////////////////////
-$scope.model = {
+$scope.modelo = {
   menu: "foo",
   nav: "bar"
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-// Action setup
+// Preparación de la acción
 ////////////////////////////////////////////////////////////////////////////////
-const actions = function() {
+const acciones = function() {
   // ...
 };
 ```
@@ -2351,12 +2363,12 @@ const actions = function() {
 **Bien:**
 
 ```javascript
-$scope.model = {
+$scope.modelo = {
   menu: "foo",
   nav: "bar"
 };
 
-const actions = function() {
+const acciones = function() {
   // ...
 };
 ```
