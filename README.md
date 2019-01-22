@@ -1858,19 +1858,19 @@ import assert from "assert";
 
 describe("MakeMomentJSGreatAgain", () => {
   it("maneja límites de las fechas", () => {
-    let date;
+    let fecha;
 
-    date = new MakeMomentJSGreatAgain("1/1/2015");
-    date.addDays(30);
-    assert.equal("1/31/2015", date);
+    fecha = new MakeMomentJSGreatAgain("1/1/2015");
+    fecha.addDays(30);
+    assert.equal("1/31/2015", fecha);
 
-    date = new MakeMomentJSGreatAgain("2/1/2016");
-    date.addDays(28);
-    assert.equal("02/29/2016", date);
+    fecha = new MakeMomentJSGreatAgain("2/1/2016");
+    fecha.addDays(28);
+    assert.equal("02/29/2016", fecha);
 
-    date = new MakeMomentJSGreatAgain("2/1/2015");
-    date.addDays(28);
-    assert.equal("03/01/2015", date);
+    fecha = new MakeMomentJSGreatAgain("2/1/2015");
+    fecha.addDays(28);
+    assert.equal("03/01/2015", fecha);
   });
 });
 ```
@@ -1882,33 +1882,39 @@ import assert from "assert";
 
 describe("MakeMomentJSGreatAgain", () => {
   it("Maneja los meses con 30 días", () => {
-    const date = new MakeMomentJSGreatAgain("1/1/2015");
-    date.addDays(30);
-    assert.equal("1/31/2015", date);
+    const fecha = new MakeMomentJSGreatAgain("1/1/2015");
+    fecha.addDays(30);
+    assert.equal("1/31/2015", fecha);
   });
 
   it("Maneja los años bisiestos", () => {
-    const date = new MakeMomentJSGreatAgain("2/1/2016");
-    date.addDays(28);
-    assert.equal("02/29/2016", date);
+    const fecha = new MakeMomentJSGreatAgain("2/1/2016");
+    fecha.addDays(28);
+    assert.equal("02/29/2016", fecha);
   });
 
   it("Maneja los años NO bisiestos", () => {
-    const date = new MakeMomentJSGreatAgain("2/1/2015");
-    date.addDays(28);
-    assert.equal("03/01/2015", date);
+    const fecha = new MakeMomentJSGreatAgain("2/1/2015");
+    fecha.addDays(28);
+    assert.equal("03/01/2015", fecha);
   });
 });
 ```
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-## **Concurrency**
+## Concurrencia
 
-### Use Promises, not callbacks
+### Usa Promesas, no callbacks
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+_Los callbacks son funciones que se pasan como parámetros a otras funciones
+para ser ejecutaras una vez esta función termina. Por ejemplo: Dada las funciones
+A y B, se dice que B es el callback de A si la función B es pasada como parámetro
+a la función A y esta, se ejecuta este callback una vez ha terminado_
+
+Los `callbacks` no son limpios ni en cuanto a legibilidad ni en cuanto a formato
+de texto _(dado que provocan niveles de anidación)_. Con ES2015/ES6 las promesas
+son un tipo global. ¡Úsalas!
 
 **Mal:**
 
@@ -1918,11 +1924,11 @@ import { writeFile } from "fs";
 
 get(
   "https://en.wikipedia.org/wiki/Robert_Cecil_Martin",
-  (requestErr, response) => {
+  (requestErr, respuesta) => {
     if (requestErr) {
       console.error(requestErr);
     } else {
-      writeFile("article.html", response.body, writeErr => {
+      writeFile("article.html", respuesta.body, writeErr => {
         if (writeErr) {
           console.error(writeErr);
         } else {
@@ -1941,8 +1947,8 @@ import { get } from "request";
 import { writeFile } from "fs";
 
 get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
-  .then(response => {
-    return writeFile("article.html", response);
+  .then(respuesta => {
+    return writeFile("article.html", respuesta);
   })
   .then(() => {
     console.log("File written");
@@ -1954,13 +1960,14 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 **[⬆ Volver arriba](#table-of-contents)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await is incluso más limpio que las Promesas
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Las promesas son una elección más limpia que los callbacks pero ES2017/ES8
+trae la funcionalidad de `async/await` que es incluos más limpio que las promesas.
+Todo lo que tienes que hacer es añadir el prefijo `async` a una función y entonces 
+ya podemos usar esa función de manera imperative sin ningún `.then()`. La
+palabra `await` la usarás para hacer que ese código asincrono se comporte de
+"manera síncrona".
 
 **Mal:**
 
@@ -1969,8 +1976,8 @@ import { get } from "request-promise";
 import { writeFile } from "fs-promise";
 
 get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
-  .then(response => {
-    return writeFile("article.html", response);
+  .then(respuesrta => {
+    return writeFile("article.html", respuesrta);
   })
   .then(() => {
     console.log("File written");
@@ -1986,12 +1993,12 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 import { get } from "request-promise";
 import { writeFile } from "fs-promise";
 
-async function getCleanCodeArticle() {
+async function conseguirArticulosDeCodigoLimpio() {
   try {
-    const response = await get(
+    const respuesrta = await get(
       "https://en.wikipedia.org/wiki/Robert_Cecil_Martin"
     );
-    await writeFile("article.html", response);
+    await writeFile("article.html", respuesrta);
     console.log("File written");
   } catch (err) {
     console.error(err);
