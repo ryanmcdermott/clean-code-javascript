@@ -345,8 +345,8 @@ function parseBetterJSAlternative(code) {
 ```javascript
 function parseBetterJSAlternative(code) {
   const tokens = tokenize(code);
-  const ast = lexer(tokens);
-  ast.forEach((node) => {
+  const syntaxTree = parse(tokens);
+  syntaxTree.forEach((node) => {
     // parse...
   });
 }
@@ -367,13 +367,13 @@ function tokenize(code) {
   return tokens;
 }
 
-function lexer(tokens) {
-  const ast = [];
+function parse(tokens) {
+  const syntaxTree = [];
   tokens.forEach((token) => {
-    ast.push( /* ... */ );
+    syntaxTree.push( /* ... */ );
   });
 
-  return ast;
+  return syntaxTree;
 }
 ```
 **[⬆ back to top](#table-of-contents)**
