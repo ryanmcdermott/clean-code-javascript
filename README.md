@@ -489,7 +489,7 @@ function mostrarListaJefes(jefes) {
 **Bien:**
 
 ```javascript
-function showEmployeeList(empleados) {
+function mostrarListaEmpleados(empleados) {
   empleados.forEach(empleado => {
     const salarioEsperado = empleado.calcularSalarioEsperado();
     const experiencia = empleado.conseguirExperiencia();
