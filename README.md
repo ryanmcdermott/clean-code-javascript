@@ -120,7 +120,7 @@ setTimeout(blastOff, MILISEGUNDOS_POR_DIA);
 **Mal:**
 
 ```javascript
-const direccion = "One Infinite Loop, Cupertino 95014";
+const direccion = "Calle Mallorca, Barcelona 95014";
 const expresionRegularCodigoPostalCiudad = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 guardarCP(
   direccion.match(expresionRegularCodigoPostalCiudad)[1],
@@ -147,8 +147,8 @@ Explícito es mejor que implícito.
 **Mal:**
 
 ```javascript
-const direcciones = ["Austin", "New York", "San Francisco"];
-direcciones.forEach(l => {
+const ciudades = ["Barcelona", "Madrid", "Sitges"];
+ciudades.forEach(l => {
   hacerAlgo();
   hacerAlgoMas();
   // ...
@@ -162,8 +162,8 @@ direcciones.forEach(l => {
 **Bien:**
 
 ```javascript
-const direcciones = ["Austin", "New York", "San Francisco"];
-direcciones.forEach(direccion => {
+const ciudades = ["Barcelona", "Madrid", "Sitges"];
+ciudades.forEach(direccion => {
   hacerAlgo();
   hacerAlgoMas();
   // ...
