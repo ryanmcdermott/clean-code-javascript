@@ -61,7 +61,7 @@ de los primeros borradores. En vez de eso, ¡Vence al código!
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 const fechaACtual = moment().format("YYYY/MM/DD");
@@ -79,7 +79,7 @@ conseguirDatosCliente();
 conseguirRegistroCliente();)
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 conseguirUsuario();
@@ -104,7 +104,7 @@ pueden ayudan a identificar constantes no nombradas.
 setTimeout(blastOff, 86400000);
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 // Declaralas como constantes nombradas
@@ -128,7 +128,7 @@ guardarCP(
 );
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 const direccion = "One Infinite Loop, Cupertino 95014";
@@ -159,7 +159,7 @@ ciudades.forEach(l => {
 });
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 const ciudades = ["Barcelona", "Madrid", "Sitges"];
@@ -193,7 +193,7 @@ function pintarCoche(coche) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 const Coche = {
@@ -226,7 +226,7 @@ function crearMicroCerveceria(nombre) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function crearMicroCerveceria(nombre = "Hipster Brew Co.") {
@@ -274,7 +274,7 @@ function crearMenu(titulo, cuerpo, textoDelBoton, cancelable) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function crearMenu({ titulo, cuerpo, textoDelBoton, cancelable }) {
@@ -313,7 +313,7 @@ function enviarCorreoAClientes(clientes) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function enviarCorreoClientesActivos(clientes) {
@@ -343,7 +343,7 @@ const fecha = new Date();
 añadirAFecha(fecha, 1);
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function añadirMesAFecha(mes, fecha) {
@@ -389,7 +389,7 @@ function analizarMejorAlternativaJavascript(codigo) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function analizarMejorAlternativaJavascript(codigo) {
@@ -486,7 +486,7 @@ function mostrarListaJefes(jefes) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function mostrarListaEmpleados(empleados) {
@@ -538,7 +538,7 @@ function crearMenu(config) {
 crearMenu(configuracionMenu);
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 const configuracionMenu = {
@@ -586,7 +586,7 @@ function crearFichero(nombre, temporal) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function crearFichero(nombre) {
@@ -635,7 +635,7 @@ separarEnNombreYApellido();
 console.log(nombre); // ['Ryan', 'McDermott'];
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function separarEnNombreYApellido) {
@@ -694,7 +694,7 @@ const añadirObjetoAlCarrito = (carrito, objeto) => {
 };
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 const añadirObjetoAlCarrito = (carrito, objeto) => {
@@ -725,7 +725,7 @@ Array.prototype.diff = function diff(matrizDeComparación) {
 };
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class SuperArray extends Array {
@@ -773,7 +773,7 @@ for (let i = 0; i < datosSalidaProgramadores.length; i++) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 const datosSalidaProgramadores = [
@@ -812,7 +812,7 @@ if (fsm.state === "cogiendoDatos" && estaVacio(listaNodos)) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function deberiaMostrarSpinner(fsm, listaNodos) {
@@ -840,7 +840,7 @@ if (!noEstaElNodoPresente(node)) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function estaElNodoPresente(node) {
@@ -883,7 +883,7 @@ class Avion {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class Avion {
@@ -934,7 +934,7 @@ function viajarATexas(vehiculo) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function viajarATexas(vehiculo) {
@@ -971,7 +971,7 @@ function combina(valor1, valor2) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function combina(valor1, valor2) {
@@ -999,7 +999,7 @@ for (let i = 0, tamaño = lista.length; i < tamaño; i++) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 for (let i = 0; i < lista.length; i++) {
@@ -1030,7 +1030,7 @@ const peticion = nuevoModuloDePeticiones;
 calculadorDeInventario("manzanas", peticion, "www.inventory-awesome.io");
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function nuevoModuloDePeticiones(url) {
@@ -1072,7 +1072,7 @@ const cuenta = crearCuentaBancaria();
 cuenta.balance = 100;
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function crearCuentaBancaria() {
@@ -1124,7 +1124,7 @@ delete empleado.nombre;
 console.log(`Nombre del empleado: ${empleado.cogerNombre()}`); // Nombre del empleado: undefined
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function crearEmpleado(name) {
@@ -1194,7 +1194,7 @@ Humano.prototype.constructor = Humano;
 Humano.prototype.hablar = function hablar() {};
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class Animal {
@@ -1273,7 +1273,7 @@ coche.introducirColor("rosa");
 coche.guardar();
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class Coche {
@@ -1356,7 +1356,7 @@ class InformacionImpuestosEmpleado extends Empleado {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class InformacionImpuestosEmpleado {
@@ -1415,7 +1415,7 @@ class OpcionesUsuario {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class AutenticationUsuario {
@@ -1495,7 +1495,7 @@ function hacerLlamadaHttp(url) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class AdaptadorAjax extends Adapter {
@@ -1602,7 +1602,7 @@ const rectangulos = [new Rectangulo(), new Rectangulo(), new Cuadrado()];
 renderizaRectangulosLargos(rectangulos);
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class Forma {
@@ -1692,7 +1692,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class DOMTraverser {
@@ -1786,7 +1786,7 @@ const rastreadorDeInventario = new RastreadorDeInventario(["manzanas", "platanos
 rastreadorDeInventario.pedirArticulos();
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class RastreadorDeInventario {
@@ -1879,7 +1879,7 @@ describe("MakeMomentJSGreatAgain", () => {
 });
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 import assert from "assert";
@@ -1944,7 +1944,7 @@ get(
 );
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 import { get } from "request";
@@ -1991,7 +1991,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 import { get } from "request-promise";
@@ -2036,7 +2036,7 @@ try {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 try {
@@ -2069,7 +2069,7 @@ cogerDatos()
   });
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 cogerDatos()
@@ -2122,7 +2122,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 const DIAS_POR_SEMANA = 7;
@@ -2189,7 +2189,7 @@ const review = new RevisionDeRendimiento(empleado);
 review.executarRevision();
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 class RevisionDeRendimiento {
@@ -2263,7 +2263,7 @@ function hashIt(datos) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function hashIt(datos) {
@@ -2299,7 +2299,7 @@ hacerCosas();
 // estoHaceMaravillas();
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 hacerCosas();
@@ -2328,7 +2328,7 @@ function combinar(a, b) {
 }
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 function combinar(a, b) {
@@ -2364,7 +2364,7 @@ const acciones = function() {
 };
 ```
 
-**Bien:**
+**👨‍🏫Bien:**
 
 ```javascript
 $scope.modelo = {
