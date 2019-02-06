@@ -55,13 +55,13 @@ de los primeros borradores. En vez de eso, ¡Vence al código!
 
 ### Utiliza nombres con sentido y de fácil pronunciación para las variables
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 const fechaACtual = moment().format("YYYY/MM/DD");
@@ -71,7 +71,7 @@ const fechaACtual = moment().format("YYYY/MM/DD");
 
 ### Utiliza el mismo tipo de vocabulario para el mismo tipo de variables
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 conseguirInformacionUsuario();
@@ -79,7 +79,7 @@ conseguirDatosCliente();
 conseguirRegistroCliente();)
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 conseguirUsuario();
@@ -97,14 +97,14 @@ Haz tus variables sean fáciles de entender y buscar. Herramientas como
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 pueden ayudan a identificar constantes no nombradas.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 // Para que cojones sirve 86400000?
 setTimeout(blastOff, 86400000);
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 // Declaralas como constantes nombradas
@@ -117,7 +117,7 @@ setTimeout(blastOff, MILISEGUNDOS_POR_DIA);
 
 ### Utiliza variables explicativas
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const direccion = "Calle Mallorca, Barcelona 95014";
@@ -128,7 +128,7 @@ guardarCP(
 );
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 const direccion = "One Infinite Loop, Cupertino 95014";
@@ -144,7 +144,7 @@ guardarCP(ciudad, codigoPostal);
 
 Explícito es mejor que implícito.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const ciudades = ["Barcelona", "Madrid", "Sitges"];
@@ -159,7 +159,7 @@ ciudades.forEach(l => {
 });
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 const ciudades = ["Barcelona", "Madrid", "Sitges"];
@@ -179,7 +179,7 @@ ciudades.forEach(direccion => {
 
 Si tu nombre de clase/objeto ya dice algo, no lo repitas en tu nombre de variable
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const Coche = {
@@ -193,7 +193,7 @@ function pintarCoche(coche) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 const Coche = {
@@ -217,7 +217,7 @@ valor del parámetro sea `undefined`. Otros valores "falsos" como `''`, `" "`,
 `false`,`null`, `0` y `NaN`, no serán reemplazado por un valor predeterminado
 pues se consideran valores como tal.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function crearMicroCerveceria(nombre) {
@@ -226,7 +226,7 @@ function crearMicroCerveceria(nombre) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function crearMicroCerveceria(nombre = "Hipster Brew Co.") {
@@ -266,7 +266,7 @@ de desestructuración que nos ofrece ES2015/ES6. Éstas tienen algunas ventajas:
 3. Las herramientas lintera o _linterns_ pueden avisarte de qué propiedades del
    objeto parámetro no están en uso. _Cosa que es imposile sin desestructuración._
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function crearMenu(titulo, cuerpo, textoDelBoton, cancelable) {
@@ -274,7 +274,7 @@ function crearMenu(titulo, cuerpo, textoDelBoton, cancelable) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function crearMenu({ titulo, cuerpo, textoDelBoton, cancelable }) {
@@ -300,7 +300,7 @@ modificadas y mantenidas con mayor facilidad y tu código será mucho más limpi
 De toda esta guía... si has de aprender algo, que sea esto. Ya estarás mmuy
 por delante de muchos desarrolladores de software.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function enviarCorreoAClientes(clientes) {
@@ -313,7 +313,7 @@ function enviarCorreoAClientes(clientes) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function enviarCorreoClientesActivos(clientes) {
@@ -330,7 +330,7 @@ function esClienteActivo(cliente) {
 
 ### Los nombres de las funciones deberían decir lo que hacen
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function añadirAFecha(fecha, mes) {
@@ -343,7 +343,7 @@ const fecha = new Date();
 añadirAFecha(fecha, 1);
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function añadirMesAFecha(mes, fecha) {
@@ -360,9 +360,9 @@ añadirMesAFecha(1, fecha);
 
 Cuando tienes más de un nivel de abstracción, tu función normalmente está
 hacicendo demasiado. Separarla en funciones más pequeñas te ayudará a poder
-reutilizar código y te facilitará el *testear* éstas.
+reutilizar código y te facilitará el _testear_ éstas.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function analizarMejorAlternativaJavascript(codigo) {
@@ -389,7 +389,7 @@ function analizarMejorAlternativaJavascript(codigo) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function analizarMejorAlternativaJavascript(codigo) {
@@ -446,13 +446,13 @@ ese código de más. Borrar la duplicación de código significa crear una abstr
 que pueda manejar este conjunto de cosas diferentes con una sola función/módulo/clase.
 
 Hacer que la abstracción sea correcta es fundamental y a veces bastante complejo.
-Es por eso que debes seguir los Principios `SOLID` establecidos en la sección *Clases*.
+Es por eso que debes seguir los Principios `SOLID` establecidos en la sección _Clases_.
 Las malas abstracciones pueden ser peores que el código duplicado. ¡Así que ten cuidado!
 Dicho esto, si se puede hacer una buena abstracción, ¡Házla! Evita repetirte
 porque de lo contrario, como hemos comentado anteriormente, te verás editando
 en más de un lugar para modificar un comportamiento.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function mostrarListaDesarrolladores(desarrolladores) {
@@ -486,7 +486,7 @@ function mostrarListaJefes(jefes) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function mostrarListaEmpleados(empleados) {
@@ -517,7 +517,7 @@ function mostrarListaEmpleados(empleados) {
 
 ### Asigna objetos por defecto con Object.assign
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const configuracionMenu = {
@@ -538,7 +538,7 @@ function crearMenu(config) {
 crearMenu(configuracionMenu);
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 const configuracionMenu = {
@@ -570,11 +570,11 @@ crearMenu(configuracionMenu);
 
 ### No utilices banderas o flags
 
-Las banderas o *flags* te indican de que esa función hace más de una cosa. Ya
+Las banderas o _flags_ te indican de que esa función hace más de una cosa. Ya
 que como vamos repitiendo, nuestras funciones solo deberían hacer una cosa, separa
-esa lógica que es diferenciada por la bandera o *flag* en una nueva función.
+esa lógica que es diferenciada por la bandera o _flag_ en una nueva función.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function crearFichero(nombre, temporal) {
@@ -586,7 +586,7 @@ function crearFichero(nombre, temporal) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function crearFichero(nombre) {
@@ -618,7 +618,7 @@ sin ninguna estructura, usando tipos de datos mutables que pueden ser escritos p
 y no centralizar donde se producen sus efectos secundarios. Si puedes hacer esto, serás
 más feliz que la gran mayoría de otros programadores.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 // Variable Global referenciada por la siguiente función
@@ -635,7 +635,7 @@ separarEnNombreYApellido();
 console.log(nombre); // ['Ryan', 'McDermott'];
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function separarEnNombreYApellido) {
@@ -675,18 +675,19 @@ objeto con los campos modificados. Así pues, ninguna otra función se verá afe
 por nuestros cambios.
 
 Dos advertencias que mencionar para este enfoque:
+
 1. Puede haber casos en los que realmente desee modificar el objeto de entrada,
-pero cuando adopte esta práctica de programación encontrará que esos casos son
-bastante raros ¡La mayoría de las cosas se pueden refactorizar para que no tengan
-efectos secundarios!
+   pero cuando adopte esta práctica de programación encontrará que esos casos son
+   bastante raros ¡La mayoría de las cosas se pueden refactorizar para que no tengan
+   efectos secundarios!
 
 2. Clonar objetos grandes puede ser muy costosa en términos de rendimiento.
-Por suerte, en la práctica, esto no es un gran problema dado que hay
-[buenas librerías](https://facebook.github.io/immutable-js/) que permiten este
-tipo de enfoque de programación. Es rápido y no requiere tanta memoria como te
-costaría a ti clonar manualmente los arrays y los objetos.
+   Por suerte, en la práctica, esto no es un gran problema dado que hay
+   [buenas librerías](https://facebook.github.io/immutable-js/) que permiten este
+   tipo de enfoque de programación. Es rápido y no requiere tanta memoria como te
+   costaría a ti clonar manualmente los arrays y los objetos.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const añadirObjetoAlCarrito = (carrito, objeto) => {
@@ -694,7 +695,7 @@ const añadirObjetoAlCarrito = (carrito, objeto) => {
 };
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 const añadirObjetoAlCarrito = (carrito, objeto) => {
@@ -708,7 +709,7 @@ const añadirObjetoAlCarrito = (carrito, objeto) => {
 
 La contaminación global es una mala práctica en JavaScript porque podría chocar
 con otra librería y usuarios usuarios de tu API no serían conscientes de ello hasta
-que tuviesen un error en producción. Pensemos en un ejemplo: ¿Qué pasaría si quisieras 
+que tuviesen un error en producción. Pensemos en un ejemplo: ¿Qué pasaría si quisieras
 extender los arrays de Javascript para tener un método `diff` que pudiera enseñar la
 diferencia entre dos arrays? Podrías escribir tu nueva función en el `Array.prototype`,
 pero podría chocar con otra librería que intentó hacer lo mismo. ¿Qué pasa si esa otra
@@ -716,7 +717,7 @@ librería estaba usando `diff` para encontrar la diferencia entre los elementos 
 y último de una matriz? Tendríamos problemas... Por eso, sería mucho mejor usar las
 clases ES2015 / ES6 y simplemente extender el `Array` global.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 Array.prototype.diff = function diff(matrizDeComparación) {
@@ -725,7 +726,7 @@ Array.prototype.diff = function diff(matrizDeComparación) {
 };
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class SuperArray extends Array {
@@ -742,9 +743,9 @@ class SuperArray extends Array {
 
 Javascript no es un lenguage funcional en la misma medida que lo es Haskell, pero
 tiene aspectos que lo favorecen. Los lenguages funcionales pueden ser más fáciles
-y limpios de *testear*. Favorece este estilo de programación siempre que puedas.
+y limpios de _testear_. Favorece este estilo de programación siempre que puedas.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const datosSalidaProgramadores = [
@@ -773,7 +774,7 @@ for (let i = 0; i < datosSalidaProgramadores.length; i++) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 const datosSalidaProgramadores = [
@@ -804,7 +805,7 @@ const salidaFinal = datosSalidaProgramadores
 
 ### Encapsula los condicionales
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 if (fsm.state === "cogiendoDatos" && estaVacio(listaNodos)) {
@@ -812,7 +813,7 @@ if (fsm.state === "cogiendoDatos" && estaVacio(listaNodos)) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function deberiaMostrarSpinner(fsm, listaNodos) {
@@ -828,7 +829,7 @@ if (deberiaMostrarSpinner(fsmInstance, listNodeInstance)) {
 
 ### Evita condicionales negativos
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function noEstaElNodoPresente(node) {
@@ -840,7 +841,7 @@ if (!noEstaElNodoPresente(node)) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function estaElNodoPresente(node) {
@@ -861,11 +862,11 @@ la gente dice _"¿como voy a ser capaz de hacer cosas sin un `if`"?_ La respuest
 es que deberías usar polimorfismo para conserguir lo mismo en la gran mayoría de los
 casos. La segunda pregunta que normalmente la gente hace es, _¿Bueno está bien pero
 para que voy a querer hacerlo?_ La respuesta es uno de los conceptos previos que
-hemos visto de *Código limpio*: Una función debería hacer únicamente una cosa.
+hemos visto de _Código limpio_: Una función debería hacer únicamente una cosa.
 Cuando tienes una función o clase que posee un `if`, le estás diciendo al usuario
 que tu función está haciendo más de una cosa. Recuerda, tan sólo una cosa.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class Avion {
@@ -883,7 +884,7 @@ class Avion {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class Avion {
@@ -922,7 +923,7 @@ se vuelve muy tentador el controlar los tipos de los argumentos de la función. 
 algunas soluciones para evitar esto. La primera, son APIs consistentes. Por API se
 entiende de que manera nos comunicamos con ese módulo/función.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function viajarATexas(vehiculo) {
@@ -934,7 +935,7 @@ function viajarATexas(vehiculo) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function viajarATexas(vehiculo) {
@@ -952,11 +953,11 @@ deberías considerar `Typescript`. Es una excelente alternativa al `Javascript`
 convencional que nos aporta control de tipos de manera estática entre otras
 muchas cosas. El problema de controlar manualmente el tipado en `Javascript` es
 que para hacerlo bien, necesitamos añadir mucho código a bajo nivel que afecta a
-la legibilidad del código. Mantén tu código `Javascript` limpio, escribe *tests*
-y intenta tener revisiones de código. Si no, intenta cubrir el máximo de cosas con 
+la legibilidad del código. Mantén tu código `Javascript` limpio, escribe _tests_
+y intenta tener revisiones de código. Si no, intenta cubrir el máximo de cosas con
 `Typescript` que como ya hemos dicho, es una muy buena alternativa.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function combina(valor1, valor2) {
@@ -971,7 +972,7 @@ function combina(valor1, valor2) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function combina(valor1, valor2) {
@@ -989,7 +990,7 @@ Muchas veces, al interntar optimizar tu código... estás perdiendo el tiempo.
 para ver donde falta optimización. Pon el foco en éstas hasta que estén arregladas/hechas
 si es que se pueden.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 // En los navegadores antiguos, cada iteración en la que `list.length` no esté cacheada
@@ -999,7 +1000,7 @@ for (let i = 0, tamaño = lista.length; i < tamaño; i++) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 for (let i = 0; i < lista.length; i++) {
@@ -1015,7 +1016,7 @@ El código inútil es tan malo como la duplicación. No hay razón alguna para
 mantenerlo en tu código. Si no está siendo usado por nadie, ¡Bórralo! Siempre
 estará disponible en sistema de versiones para el caso que lo necesites.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function antiguoModuloDePeticiones(url) {
@@ -1030,7 +1031,7 @@ const peticion = nuevoModuloDePeticiones;
 calculadorDeInventario("manzanas", peticion, "www.inventory-awesome.io");
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function nuevoModuloDePeticiones(url) {
@@ -1056,7 +1057,7 @@ que simplemente accediendo a esa propiedad del objeto. ¿Por qué?
 - Es sencillo añadir mensajes y manejos de error cuando hacemos `get` y `set`
 - Te permite poder hacer lazy load en caso de que los datos se recojan de una Base de Datos (bbdd)
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function crearCuentaBancaria() {
@@ -1072,7 +1073,7 @@ const cuenta = crearCuentaBancaria();
 cuenta.balance = 100;
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function crearCuentaBancaria() {
@@ -1107,7 +1108,7 @@ cuenta.introducirBalance(100);
 
 Esto se puede hacer mediante `clojures` _(de ES5 en adelante)_.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const Empleado = function(nombre) {
@@ -1124,7 +1125,7 @@ delete empleado.nombre;
 console.log(`Nombre del empleado: ${empleado.cogerNombre()}`); // Nombre del empleado: undefined
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function crearEmpleado(name) {
@@ -1154,7 +1155,7 @@ las clases ES2015/ES6. De todas las maneras, deberías preferir pequeñas funcio
 antes que ponerte a hacer clases. Solo cuando tengas un código largo o cuando veas
 necesaria la implementación de clases, añádelas.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const Animal = function(edad) {
@@ -1194,7 +1195,7 @@ Humano.prototype.constructor = Humano;
 Humano.prototype.hablar = function hablar() {};
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class Animal {
@@ -1241,7 +1242,7 @@ tu código. En las funciones de tu clase, sencillamente retorna `this` al final 
 cada una y con eso, tienes todo lo necesario pra poder anidar las llamadas a las
 funciones.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class Coche {
@@ -1273,7 +1274,7 @@ coche.introducirColor("rosa");
 coche.guardar();
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class Coche {
@@ -1308,7 +1309,9 @@ class Coche {
   }
 }
 
-const coche = new Coche("Ford", "F-150", "rojo").introducirColor("rosa").guardar();
+const coche = new Coche("Ford", "F-150", "rojo")
+  .introducirColor("rosa")
+  .guardar();
 ```
 
 **[⬆ Volver arriba](#contenido)**
@@ -1332,7 +1335,7 @@ la herencia tiene más sentido que la composición:
 3. Quieres hacer cambios generales a clases derivadas cambiando la clase base.
    (Cambiar el consumo de calorías a todos los animales mientras se mueven)
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class Empleado {
@@ -1356,7 +1359,7 @@ class InformacionImpuestosEmpleado extends Empleado {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class InformacionImpuestosEmpleado {
@@ -1395,7 +1398,7 @@ reducir el número de veces que tendrás que modificar una clase. Y lo es, porqu
 en caso de que tengamos una clase que haga más de una cosa y modifiquemos una
 de ellas, no podemos saber que efectos colaterales puede tener esta acción en las demás.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class OpcionesUsuario {
@@ -1415,7 +1418,7 @@ class OpcionesUsuario {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class AutenticationUsuario {
@@ -1451,7 +1454,7 @@ deberían estar abiertas a extensión pere cerradas a modificación."_ ¿Qué si
 Básicamente significa que los usuarios deberían de ser capaces de añadir funcionalidad
 a la aplicación sin tener que tocar el código creado hasta ahora.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class AdaptadorAjax extends Adaptador {
@@ -1495,7 +1498,7 @@ function hacerLlamadaHttp(url) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class AdaptadorAjax extends Adapter {
@@ -1541,13 +1544,13 @@ Este es un término que asusta para lo sencillo que es. Estrictamente se define 
 "Si S es un subtipo de T, entonces los objetos del tipo T deberían poderse substituir
 por objetos del tipo S".
 
-Un ejemplo práctico vien a ser si tenemos una *clase padre* y una *clase hija*,
+Un ejemplo práctico vien a ser si tenemos una _clase padre_ y una _clase hija_,
 entonces ambas han de poderse substituir la una por la otra y viceversa sin recibir
 ningún tipo de error o datos erróneos. Un caso práctico es el del cuadrado y el
 rectángulo. Geométricamente, un cuadrado es un rectángulo, pero si lo creamos
 con una relación "es un" a través de herencia, empezamos a tener problemas...
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class Rectangulo {
@@ -1602,7 +1605,7 @@ const rectangulos = [new Rectangulo(), new Rectangulo(), new Cuadrado()];
 renderizaRectangulosLargos(rectangulos);
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class Forma {
@@ -1657,7 +1660,7 @@ Javascript no dispone de interfaces así que no podemos aplicar el principio com
 tal. De todas maneras, es importante conceptualmente hablando aunque no tengamos
 tipados como tal, pues eso resulta haciendo un código mantenible igualmente.
 
-*ISP* dice que "los servicios no deberían estar forzados a depender de interfaces
+_ISP_ dice que "los servicios no deberían estar forzados a depender de interfaces
 que realmente no usan".
 
 Un buen ejemplo en javascript sería las típicas clases que requieren de un
@@ -1666,7 +1669,7 @@ grandes cantidades de opciones es beneficioso, porque la gran mayoría del tiemp
 no necesitarán esa configuración. Hacerlos opcionales ayuda a no tener el problema
 de "Interaz gorda", en inglés conocido como "fat interface".
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class DOMTraverser {
@@ -1692,7 +1695,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class DOMTraverser {
@@ -1730,19 +1733,20 @@ const $ = new DOMTraverser({
 
 ### Principio de Inversión de Dependencias (DIP)
 
-*Por favor, no confundir con Inyección de Dependencias.* Mucha gente se piensa
-que la "D" de *SOLID* es de Inyección de Dependencias _(Dependency Inection, DI)._
+_Por favor, no confundir con Inyección de Dependencias._ Mucha gente se piensa
+que la "D" de _SOLID_ es de Inyección de Dependencias _(Dependency Inection, DI)._
 
 Este principio nos dice dos cosas básicamente:
+
 1. Módulos de alto nivel no deberían depender de módulos de bajo nivel. Ambos
-deberían depender de abstracciones.
+   deberían depender de abstracciones.
 2. Las abstracciones no deberían depender de detalles si no que, los detalles
-deberían depender de abstracciones.
+   deberían depender de abstracciones.
 
 Esto puede ser algo complejo al principio, pero si has trabajado con AngularJS,
 has visto de manera indirecta esto con la Inyección de Dependencias. Como
 comentaba anteriormente, aunque no son lo mismo, van de la mano. La Inversión de
-Dependencías es posible gracias a la Inyección de Dependencias. *DI* hace posible
+Dependencías es posible gracias a la Inyección de Dependencias. _DI_ hace posible
 que los módulos de alto nivel dependan de abstracciones y no de detalles.
 
 El mayor de los beneficioses la reducción del acoplamiento entre módulos. Cuánto
@@ -1750,10 +1754,10 @@ mayor acoplamiento, mayor dificultad en refactorización.
 
 Como hemos comentado antes, `Javascript` no tiene interfaces así que los contratos
 son un poco... así asá. Están en nuestro cabeza y eso debemos tenerlo en cuenta.
-Mucha gente usa javascript docs, anotaciones en comentarios justo encima de los 
+Mucha gente usa javascript docs, anotaciones en comentarios justo encima de los
 módulos y algunas cosas más. Vamos a ver un ejemplo con `RastreadorDeInventario`.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class SolicitadorDeInventario {
@@ -1782,11 +1786,14 @@ class RastreadorDeInventario {
   }
 }
 
-const rastreadorDeInventario = new RastreadorDeInventario(["manzanas", "platanos"]);
+const rastreadorDeInventario = new RastreadorDeInventario([
+  "manzanas",
+  "platanos"
+]);
 rastreadorDeInventario.pedirArticulos();
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class RastreadorDeInventario {
@@ -1841,7 +1848,7 @@ rastreadorDeInventario.pedirArticulos();
 El testing es más importante que la entrega. Si no tienes test o tienes muchos
 que no soy de gran ayuda, cada vez que quieras entregar valor no estarás seguro
 de ue eso funciona debidamente y que nada falla. Puedes decidir con el equipo
-cuál es el porcentaje al que queréis ceñiros pero, la única manera de tener 
+cuál es el porcentaje al que queréis ceñiros pero, la única manera de tener
 confianza total de que nada falla, es teniendo 100% de covertura de test. Para
 esto, ncesitarás tener una gran herramienta para poder testear pero también
 una que te calcule adecuadamente [el porcentaje cubierto](http://gotwarlost.github.io/istanbul/).
@@ -1850,12 +1857,12 @@ No hay excusas para no escribir tests. Hay
 [un montón de frameworks de JS](http://jstherightway.org/#testing-tools) entre
 los que podréis tu y tu equipo decidir. Una vez hayáis elegido el framework,
 para cada nueva funcionalidad que se quiera añadir a la plataforma, escribir tests.
-Si prefieres hacer *Test-Driven Development* me parece bien, pero la ide principal de 
+Si prefieres hacer _Test-Driven Development_ me parece bien, pero la ide principal de
 los test es dar confianza suficiente al programador para que pueda seguir entregando valor.
 
 ### Sólo un concepto por test
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 import assert from "assert";
@@ -1879,7 +1886,7 @@ describe("MakeMomentJSGreatAgain", () => {
 });
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 import assert from "assert";
@@ -1920,7 +1927,7 @@ Los `callbacks` no son limpios ni en cuanto a legibilidad ni en cuanto a formato
 de texto _(dado que provocan niveles de identación)_. Con ES2015/ES6 las promesas
 son un tipo global. ¡Úsalas!
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 import { get } from "request";
@@ -1944,7 +1951,7 @@ get(
 );
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 import { get } from "request";
@@ -1968,12 +1975,12 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 Las promesas son una elección más limpia que los callbacks pero ES2017/ES8
 trae la funcionalidad de `async/await` que es incluos más limpio que las promesas.
-Todo lo que tienes que hacer es añadir el prefijo `async` a una función y entonces 
+Todo lo que tienes que hacer es añadir el prefijo `async` a una función y entonces
 ya podemos usar esa función de manera imperative sin ningún `.then()`. La
 palabra `await` la usarás para hacer que ese código asincrono se comporte de
 "manera síncrona".
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1991,7 +1998,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 import { get } from "request-promise";
@@ -2026,7 +2033,7 @@ no es una solución, pues la gran mayoría de veces nadie es consciente de eso
 y el error pasas desapercibido. Envuelve tu código con `try/catch` y es ahí
 donde tendrás que elaborar tu plan de reacción a posibles errores
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 try {
@@ -2036,7 +2043,7 @@ try {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 try {
@@ -2057,7 +2064,7 @@ try {
 No ignores las promesas que han sido rechadas por la misma razón que no deberías
 ignorar errores capturados en el `try/catch`.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 cogerDatos()
@@ -2069,7 +2076,7 @@ cogerDatos()
   });
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 cogerDatos()
@@ -2098,7 +2105,6 @@ de estas reglas. Hay unas cuantas [herrmientas](http://standardjs.com/rules.html
 que automatizan todas las reglas de formato de texto. ¡Ahorrarse tiempo en estas
 formateando el texto es un pasada!
 
-
 ### Usa consistenemente la capitalización
 
 Como ya hemos dicho, `javascript` es un lenguage no tipado así pues, la
@@ -2106,7 +2112,7 @@ capitalización de las variables importa, y mucho. Estas son reglas totalmente
 subjetivas así que como equipo, podéis elegir lo que más os guste/convenga.
 La cuestión es que independientemente de lo que decidáis, seáis consistentes.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 const DIAS_POR_SEMANA = 7;
@@ -2122,7 +2128,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 const DIAS_POR_SEMANA = 7;
@@ -2146,10 +2152,10 @@ Si una función llama a otra, haz que esta función que va a ser llamada esté
 lo más cerca posible de la función que la llama. Idealmente, situa siempre
 la función que va a ser llamada justo después de la función que la ejecuta.
 ¿El motivo? Pues normalmente acostumbramos a leer de arriba abajo y tampoco
-queremos tener que hacer *scroll* hasta abajo del todo del ficheor para volver
+queremos tener que hacer _scroll_ hasta abajo del todo del ficheor para volver
 a subir.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 class RevisionDeRendimiento {
@@ -2189,7 +2195,7 @@ const review = new RevisionDeRendimiento(empleado);
 review.executarRevision();
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 class RevisionDeRendimiento {
@@ -2236,12 +2242,12 @@ review.executarRevision();
 ### Comenta únicamente la lógica de negocio que es compleja
 
 Los comentarios son una disculpa, no un requerimiento. Supuesatmente se dice
-que un buen código debería comentarse por si mismo. Un código perfecto no 
+que un buen código debería comentarse por si mismo. Un código perfecto no
 está optimizado para la máquina sinó que lo está para la manteniblidad de éste
 por un compañero o futuro compañero. Para esto, ha de ser lo más semántico posible.
 El código ha de estar escrito para que niños pequeños lo entiendan.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 function hashIt(datos) {
@@ -2263,7 +2269,7 @@ function hashIt(datos) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function hashIt(datos) {
@@ -2287,10 +2293,10 @@ function hashIt(datos) {
 El control de versiones existe para algo. Si tu motivo o excusa por el que comentar
 un código es porque en breves o algun día lo vas a necesitas, eso no me sirve. Ese
 código que acabas de borrar consta en alguna de tus versiones de tu código fuente.
-Lo que deberías hacer entonces quizás, es usar `git tags`, poner el código de la 
+Lo que deberías hacer entonces quizás, es usar `git tags`, poner el código de la
 tarea en el nombre del commit, etc... Hay muchos truquitos para hacer eso!
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 hacerCosas();
@@ -2299,7 +2305,7 @@ hacerCosas();
 // estoHaceMaravillas();
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 hacerCosas();
@@ -2314,13 +2320,13 @@ muerto, código comentado y aún menos, un diadrio o resumen de modificaciones e
 tus comentarios. Si quieres ver las modificaciones, usa `git log`, la herramiento
 `blame` o incluso el `history`.
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 /**
  * 2016-12-20: `monads` borrados, no hay quien los entienda
  * 2016-10-01: Código mejorado con 'monads'
- * 2016-02-03: Borrado tipado 
+ * 2016-02-03: Borrado tipado
  * 2015-03-14: Añadido tipado
  */
 function combinar(a, b) {
@@ -2328,7 +2334,7 @@ function combinar(a, b) {
 }
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 function combinar(a, b) {
@@ -2345,7 +2351,7 @@ hagan su función con sus identaciones naturales y de esta manera, formateen el
 có correctamente
 .
 
-**🙅‍Mal:**
+**🙅‍ Mal:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
@@ -2364,7 +2370,7 @@ const acciones = function() {
 };
 ```
 
-**👨‍🏫Bien:**
+**👨‍🏫 Bien:**
 
 ```javascript
 $scope.modelo = {
