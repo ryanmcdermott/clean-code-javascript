@@ -55,7 +55,7 @@ de los primeros borradores. En vez de eso, ¡Vence al código!
 
 ### Utiliza nombres con sentido y de fácil pronunciación para las variables
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
@@ -71,7 +71,7 @@ const fechaACtual = moment().format("YYYY/MM/DD");
 
 ### Utiliza el mismo tipo de vocabulario para el mismo tipo de variables
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 conseguirInformacionUsuario();
@@ -97,7 +97,7 @@ Haz tus variables sean fáciles de entender y buscar. Herramientas como
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 pueden ayudan a identificar constantes no nombradas.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 // Para que cojones sirve 86400000?
@@ -117,7 +117,7 @@ setTimeout(blastOff, MILISEGUNDOS_POR_DIA);
 
 ### Utiliza variables explicativas
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const direccion = "Calle Mallorca, Barcelona 95014";
@@ -144,7 +144,7 @@ guardarCP(ciudad, codigoPostal);
 
 Explícito es mejor que implícito.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const ciudades = ["Barcelona", "Madrid", "Sitges"];
@@ -179,7 +179,7 @@ ciudades.forEach(direccion => {
 
 Si tu nombre de clase/objeto ya dice algo, no lo repitas en tu nombre de variable
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const Coche = {
@@ -217,7 +217,7 @@ valor del parámetro sea `undefined`. Otros valores "falsos" como `''`, `" "`,
 `false`,`null`, `0` y `NaN`, no serán reemplazado por un valor predeterminado
 pues se consideran valores como tal.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function crearMicroCerveceria(nombre) {
@@ -266,7 +266,7 @@ de desestructuración que nos ofrece ES2015/ES6. Éstas tienen algunas ventajas:
 3. Las herramientas lintera o _linterns_ pueden avisarte de qué propiedades del
    objeto parámetro no están en uso. _Cosa que es imposile sin desestructuración._
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function crearMenu(titulo, cuerpo, textoDelBoton, cancelable) {
@@ -300,7 +300,7 @@ modificadas y mantenidas con mayor facilidad y tu código será mucho más limpi
 De toda esta guía... si has de aprender algo, que sea esto. Ya estarás mmuy
 por delante de muchos desarrolladores de software.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function enviarCorreoAClientes(clientes) {
@@ -330,7 +330,7 @@ function esClienteActivo(cliente) {
 
 ### Los nombres de las funciones deberían decir lo que hacen
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function añadirAFecha(fecha, mes) {
@@ -362,7 +362,7 @@ Cuando tienes más de un nivel de abstracción, tu función normalmente está
 hacicendo demasiado. Separarla en funciones más pequeñas te ayudará a poder
 reutilizar código y te facilitará el *testear* éstas.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function analizarMejorAlternativaJavascript(codigo) {
@@ -452,7 +452,7 @@ Dicho esto, si se puede hacer una buena abstracción, ¡Házla! Evita repetirte
 porque de lo contrario, como hemos comentado anteriormente, te verás editando
 en más de un lugar para modificar un comportamiento.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function mostrarListaDesarrolladores(desarrolladores) {
@@ -517,7 +517,7 @@ function mostrarListaEmpleados(empleados) {
 
 ### Asigna objetos por defecto con Object.assign
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const configuracionMenu = {
@@ -574,7 +574,7 @@ Las banderas o *flags* te indican de que esa función hace más de una cosa. Ya
 que como vamos repitiendo, nuestras funciones solo deberían hacer una cosa, separa
 esa lógica que es diferenciada por la bandera o *flag* en una nueva función.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function crearFichero(nombre, temporal) {
@@ -618,7 +618,7 @@ sin ninguna estructura, usando tipos de datos mutables que pueden ser escritos p
 y no centralizar donde se producen sus efectos secundarios. Si puedes hacer esto, serás
 más feliz que la gran mayoría de otros programadores.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 // Variable Global referenciada por la siguiente función
@@ -686,7 +686,7 @@ Por suerte, en la práctica, esto no es un gran problema dado que hay
 tipo de enfoque de programación. Es rápido y no requiere tanta memoria como te
 costaría a ti clonar manualmente los arrays y los objetos.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const añadirObjetoAlCarrito = (carrito, objeto) => {
@@ -716,7 +716,7 @@ librería estaba usando `diff` para encontrar la diferencia entre los elementos 
 y último de una matriz? Tendríamos problemas... Por eso, sería mucho mejor usar las
 clases ES2015 / ES6 y simplemente extender el `Array` global.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 Array.prototype.diff = function diff(matrizDeComparación) {
@@ -744,7 +744,7 @@ Javascript no es un lenguage funcional en la misma medida que lo es Haskell, per
 tiene aspectos que lo favorecen. Los lenguages funcionales pueden ser más fáciles
 y limpios de *testear*. Favorece este estilo de programación siempre que puedas.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const datosSalidaProgramadores = [
@@ -804,7 +804,7 @@ const salidaFinal = datosSalidaProgramadores
 
 ### Encapsula los condicionales
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 if (fsm.state === "cogiendoDatos" && estaVacio(listaNodos)) {
@@ -828,7 +828,7 @@ if (deberiaMostrarSpinner(fsmInstance, listNodeInstance)) {
 
 ### Evita condicionales negativos
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function noEstaElNodoPresente(node) {
@@ -865,7 +865,7 @@ hemos visto de *Código limpio*: Una función debería hacer únicamente una cos
 Cuando tienes una función o clase que posee un `if`, le estás diciendo al usuario
 que tu función está haciendo más de una cosa. Recuerda, tan sólo una cosa.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class Avion {
@@ -922,7 +922,7 @@ se vuelve muy tentador el controlar los tipos de los argumentos de la función. 
 algunas soluciones para evitar esto. La primera, son APIs consistentes. Por API se
 entiende de que manera nos comunicamos con ese módulo/función.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function viajarATexas(vehiculo) {
@@ -956,7 +956,7 @@ la legibilidad del código. Mantén tu código `Javascript` limpio, escribe *tes
 y intenta tener revisiones de código. Si no, intenta cubrir el máximo de cosas con 
 `Typescript` que como ya hemos dicho, es una muy buena alternativa.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function combina(valor1, valor2) {
@@ -989,7 +989,7 @@ Muchas veces, al interntar optimizar tu código... estás perdiendo el tiempo.
 para ver donde falta optimización. Pon el foco en éstas hasta que estén arregladas/hechas
 si es que se pueden.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 // En los navegadores antiguos, cada iteración en la que `list.length` no esté cacheada
@@ -1015,7 +1015,7 @@ El código inútil es tan malo como la duplicación. No hay razón alguna para
 mantenerlo en tu código. Si no está siendo usado por nadie, ¡Bórralo! Siempre
 estará disponible en sistema de versiones para el caso que lo necesites.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function antiguoModuloDePeticiones(url) {
@@ -1056,7 +1056,7 @@ que simplemente accediendo a esa propiedad del objeto. ¿Por qué?
 - Es sencillo añadir mensajes y manejos de error cuando hacemos `get` y `set`
 - Te permite poder hacer lazy load en caso de que los datos se recojan de una Base de Datos (bbdd)
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function crearCuentaBancaria() {
@@ -1107,7 +1107,7 @@ cuenta.introducirBalance(100);
 
 Esto se puede hacer mediante `clojures` _(de ES5 en adelante)_.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const Empleado = function(nombre) {
@@ -1154,7 +1154,7 @@ las clases ES2015/ES6. De todas las maneras, deberías preferir pequeñas funcio
 antes que ponerte a hacer clases. Solo cuando tengas un código largo o cuando veas
 necesaria la implementación de clases, añádelas.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const Animal = function(edad) {
@@ -1241,7 +1241,7 @@ tu código. En las funciones de tu clase, sencillamente retorna `this` al final 
 cada una y con eso, tienes todo lo necesario pra poder anidar las llamadas a las
 funciones.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class Coche {
@@ -1332,7 +1332,7 @@ la herencia tiene más sentido que la composición:
 3. Quieres hacer cambios generales a clases derivadas cambiando la clase base.
    (Cambiar el consumo de calorías a todos los animales mientras se mueven)
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class Empleado {
@@ -1395,7 +1395,7 @@ reducir el número de veces que tendrás que modificar una clase. Y lo es, porqu
 en caso de que tengamos una clase que haga más de una cosa y modifiquemos una
 de ellas, no podemos saber que efectos colaterales puede tener esta acción en las demás.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class OpcionesUsuario {
@@ -1451,7 +1451,7 @@ deberían estar abiertas a extensión pere cerradas a modificación."_ ¿Qué si
 Básicamente significa que los usuarios deberían de ser capaces de añadir funcionalidad
 a la aplicación sin tener que tocar el código creado hasta ahora.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class AdaptadorAjax extends Adaptador {
@@ -1547,7 +1547,7 @@ ningún tipo de error o datos erróneos. Un caso práctico es el del cuadrado y 
 rectángulo. Geométricamente, un cuadrado es un rectángulo, pero si lo creamos
 con una relación "es un" a través de herencia, empezamos a tener problemas...
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class Rectangulo {
@@ -1666,7 +1666,7 @@ grandes cantidades de opciones es beneficioso, porque la gran mayoría del tiemp
 no necesitarán esa configuración. Hacerlos opcionales ayuda a no tener el problema
 de "Interaz gorda", en inglés conocido como "fat interface".
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class DOMTraverser {
@@ -1753,7 +1753,7 @@ son un poco... así asá. Están en nuestro cabeza y eso debemos tenerlo en cuen
 Mucha gente usa javascript docs, anotaciones en comentarios justo encima de los 
 módulos y algunas cosas más. Vamos a ver un ejemplo con `RastreadorDeInventario`.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class SolicitadorDeInventario {
@@ -1855,7 +1855,7 @@ los test es dar confianza suficiente al programador para que pueda seguir entreg
 
 ### Sólo un concepto por test
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 import assert from "assert";
@@ -1920,7 +1920,7 @@ Los `callbacks` no son limpios ni en cuanto a legibilidad ni en cuanto a formato
 de texto _(dado que provocan niveles de identación)_. Con ES2015/ES6 las promesas
 son un tipo global. ¡Úsalas!
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 import { get } from "request";
@@ -1973,7 +1973,7 @@ ya podemos usar esa función de manera imperative sin ningún `.then()`. La
 palabra `await` la usarás para hacer que ese código asincrono se comporte de
 "manera síncrona".
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 import { get } from "request-promise";
@@ -2026,7 +2026,7 @@ no es una solución, pues la gran mayoría de veces nadie es consciente de eso
 y el error pasas desapercibido. Envuelve tu código con `try/catch` y es ahí
 donde tendrás que elaborar tu plan de reacción a posibles errores
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 try {
@@ -2057,7 +2057,7 @@ try {
 No ignores las promesas que han sido rechadas por la misma razón que no deberías
 ignorar errores capturados en el `try/catch`.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 cogerDatos()
@@ -2106,7 +2106,7 @@ capitalización de las variables importa, y mucho. Estas son reglas totalmente
 subjetivas así que como equipo, podéis elegir lo que más os guste/convenga.
 La cuestión es que independientemente de lo que decidáis, seáis consistentes.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 const DIAS_POR_SEMANA = 7;
@@ -2149,7 +2149,7 @@ la función que va a ser llamada justo después de la función que la ejecuta.
 queremos tener que hacer *scroll* hasta abajo del todo del ficheor para volver
 a subir.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 class RevisionDeRendimiento {
@@ -2241,7 +2241,7 @@ está optimizado para la máquina sinó que lo está para la manteniblidad de é
 por un compañero o futuro compañero. Para esto, ha de ser lo más semántico posible.
 El código ha de estar escrito para que niños pequeños lo entiendan.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 function hashIt(datos) {
@@ -2290,7 +2290,7 @@ código que acabas de borrar consta en alguna de tus versiones de tu código fue
 Lo que deberías hacer entonces quizás, es usar `git tags`, poner el código de la 
 tarea en el nombre del commit, etc... Hay muchos truquitos para hacer eso!
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 hacerCosas();
@@ -2314,7 +2314,7 @@ muerto, código comentado y aún menos, un diadrio o resumen de modificaciones e
 tus comentarios. Si quieres ver las modificaciones, usa `git log`, la herramiento
 `blame` o incluso el `history`.
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 /**
@@ -2345,7 +2345,7 @@ hagan su función con sus identaciones naturales y de esta manera, formateen el
 có correctamente
 .
 
-**Mal:**
+**🙅‍Mal:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
