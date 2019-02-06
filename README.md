@@ -1735,7 +1735,7 @@ que la "D" de *SOLID* es de Inyección de Dependencias _(Dependency Inection, DI
 
 Este principio nos dice dos cosas básicamente:
 1. Módulos de alto nivel no deberían depender de módulos de bajo nivel. Ambos
-deberían depender de bastracciones.
+deberían depender de abstracciones.
 2. Las abstracciones no deberían depender de detalles si no que, los detalles
 deberían depender de abstracciones.
 
