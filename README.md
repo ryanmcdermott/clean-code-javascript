@@ -169,7 +169,7 @@ locations.forEach(location => {
 ### Don't add unneeded context
 
 If your class/object name tells you something, don't repeat that in your
-variable name.
+variable or function name.
 
 **Bad:**
 
@@ -185,7 +185,7 @@ function paintCar(car) {
 }
 ```
 
-**Good:**
+**Not so bad:**
 
 ```javascript
 const Car = {
@@ -195,10 +195,27 @@ const Car = {
 };
 
 function paintCar(car) {
-  car.color = "Red";
+  car.carColor = "Red";
 }
 ```
 
+**Good**
+
+```javascript
+class Car {
+  constructor(make, model, color) {
+    this.make = make;
+    this.model = model;
+    this.color = color;
+  }
+  
+  paint(color){
+    this.color = color;
+  }
+}
+const car = new Car("Honda", "Accord", "Blue");
+car.paint("Red");
+```
 **[⬆ back to top](#table-of-contents)**
 
 ### Use default arguments instead of short circuiting or conditionals
