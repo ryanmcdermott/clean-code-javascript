@@ -195,7 +195,7 @@ const Car = {
 };
 
 function paintCar(car) {
-  car.carColor = "Red";
+  car.color = "Red";
 }
 ```
 
