@@ -199,7 +199,7 @@ function paintCar(car) {
 }
 ```
 
-**Good**
+**Good:**
 
 ```javascript
 class Car {
