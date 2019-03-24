@@ -844,7 +844,7 @@ if (isDOMNodePresent(node)) {
 ### Avoid conditionals
 
 This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
+"how am I supposed to do anything without an `if statement?` The answer is that
 you can use polymorphism to achieve the same task in many cases. The second
 question is usually, "well that's great but why would I want to do that?" The
 answer is a previous clean code concept we learned: a function should only do
