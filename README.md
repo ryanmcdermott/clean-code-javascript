@@ -503,7 +503,7 @@ function showEmployeeList(employees) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Set default objects with Object.assign
+### Object.assign ile varsayılan nesneleri ayarlama
 
 **Yanlış:**
 
@@ -531,7 +531,7 @@ createMenu(menuConfig);
 ```javascript
 const menuConfig = {
   title: "Order",
-  // User did not include 'body' key
+  // Kullanıcı 'body' değerini atamamış
   buttonText: "Send",
   cancellable: true
 };
@@ -547,7 +547,7 @@ function createMenu(config) {
     config
   );
 
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config artık bu şekilde: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
@@ -556,9 +556,9 @@ createMenu(menuConfig);
 
 **[⬆ başa dön](#içindekiler)**
 
-### Don't use flags as function parameters
+### Karar verici fonksiyon parametreleri kullanmayın
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+Karar verici parametreler bir fonksiyonun birden fazla iş yaptığını gösterir. Fonksiyonlar tek iş yapmalılar. Boolean bir değer üzerinden yapacağı işe karar veren fonksiyonları birden fazla fonksiyona bölün.
 
 **Yanlış:**
 
