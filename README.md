@@ -22,7 +22,7 @@ okurken siz de höyküreceksiniz](https://www.osnews.com/images/comics/wtfm.jpg)
 
 Yazlım mühendisliği prensipleri, Robert C. Martin'in kitabından 
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-JavaScript için uyarlandı. Bu bir kod yazma semantik rehberi değildir. Bu JavaScript ile [okunabilir, yeniden kullanılabilir ve elden geçirilebilir](https://github.com/ryanmcdermott/3rs-of-software-architecture) yazılım üretebilmek için kullanlıabilecek bir rehber oluşturmak.
+JavaScript için uyarlandı. Bu belge bir kod yazma semantik rehberi değildir. Bu belge JavaScript ile [okunabilir, yeniden kullanılabilir ve elden geçirilebilir](https://github.com/ryanmcdermott/3rs-of-software-architecture) yazılım üretebilmek için kullanılabilecek bir rehber oluşturmak için yazıldı.
 
 Buradaki her ilkeye kesinlikle uyulması gerekmiyor ve hatta bir çoğu evrensel 
 olarak kabul edilmeyebilir. Bunlar yönergelerdir, daha fazlası değil, 
