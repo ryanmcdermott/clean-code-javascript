@@ -1,6 +1,6 @@
 # clean-code-javascript
 
-## İçindekiler
+## içindekiler
 
 1. [Giriş](#giriş)
 2. [Değişkenler](#değişkenler)
