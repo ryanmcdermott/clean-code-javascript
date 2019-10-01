@@ -586,28 +586,28 @@ function createTempFile(name) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Avoid Side Effects (part 1)
+### Yan etkilerden kaçınma (bölüm 1)
 
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+Bir fonksiyon, bir değeri almak ve başka bir değer veya değerler döndürmekten 
+başka bir şey yaparsa, bir yan etki oluşturur. Bu yan etki bir dosyaya yazmak, 
+bazı global değişkenleri değiştirmek veya yanlışlıkla tüm paranızı bir yabancıya 
+bağlamak olabilir.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+Zaman zaman bir programda yan etkilere ihtiyacınız olur. Önceki örnekte olduğu gibi, 
+bir dosyaya yazmanız gerekebilir. Yapmak istediğiniz şey, bunu yaptığınız yeri 
+merkezileştirmektir. Belirli bir dosyaya yazan çok sayıda fonksiyon ve sınıfa sahip olmayın. 
+Bunu yapan bir servis oluşturun. Sadece bir tane.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+Ana nokta, herhangi bir yapıya sahip olmadan nesneler arasında durum paylaşımı, herhangi 
+bir şey tarafından yazılabilen değişken yanları kullanmak ve yan etkilerin ortaya çıktığı 
+yerleri merkezileştirmemek gibi çok yapılan hatalarda kaçınmaktır. Bunu yapabilirseniz, diğer 
+programcıların büyük çoğunluğundan daha mutlu olursunuz.
 
 **Yanlış:**
 
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Global değişken aşağıdaki fonksiyon tarafındna kullanılıyor.
+// Eğer başka bir fonksiyon da bunu kullanıyorsa, bu artık array olduğu için sorun çıkarabilir..
 let name = "Ryan McDermott";
 
 function splitIntoFirstAndLastName() {
@@ -635,40 +635,40 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 **[⬆ başa dön](#içindekiler)**
 
-### Avoid Side Effects (part 2)
+### Yan etkilerden kaçınma (bölüm 1)
 
-In JavaScript, primitives are passed by value and objects/arrays are passed by
-reference. In the case of objects and arrays, if your function makes a change
-in a shopping cart array, for example, by adding an item to purchase,
-then any other function that uses that `cart` array will be affected by this
-addition. That may be great, however it can be bad too. Let's imagine a bad
-situation:
+JavaScript'te, ilkel değerler değer olarak ve nesneler/diziler referans 
+olarak  iletilir. Nesneler ve diziler söz konusu olduğunda, işleviniz bir 
+alışveriş sepeti dizisinde bir değişiklik yaparsa, örneğin satın almak 
+için bir öğe eklerse, bu `cart` dizisini kullanan diğer işlevler bu eklemeden 
+etkilenir. Bu iyi olabilir, ancak kötü de olabilir. Bunu anlamak için aşağıdaki 
+örneği düşünelim:
 
-The user clicks the "Purchase", button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because it has a reference to a shopping
-cart array that the `addItemToCart` function modified by adding an unwanted
-item.
+Kullanıcı, bir ağ isteğini başlatan ve `cart` dizisini sunucuya gönderen bir 
+`satın alma` fonksiyonunu çağıran "Purchase" düğmesini tıklar. Kötü bir ağ 
+bağlantısı nedeniyle, `satın alma` işlevinin isteği yeniden denemeye devam 
+etmesi gerekir. Şimdi, bu arada kullanıcı yanlışlıkla ağ isteği başlamadan önce 
+istemediği bir öğe üzerinde "Sepete Ekle" düğmesini yanlışlıkla tıklarsa ne olur? 
+Bu gerçekleşirse ve ağ isteği başlarsa, o zaman satın alma işlevi yanlışlıkla 
+eklenen öğeyi gönderir, çünkü istenmeyen bir öğe eklenerek değiştirilmiş bir 
+`addItemToCart` işlevinin değiştirdiği bir alışveriş sepeti dizisine bir başvuru 
+yapar.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`,
-edit it, and return the clone. This ensures that no other functions that are
-holding onto a reference of the shopping cart will be affected by any changes.
+`AddItemToCart` için her zaman `cart`'ı klonlamak, düzenlemek ve klonu geri göndermek 
+için harika bir çözüm olacaktır. Bu, alışveriş sepetinin referansını tutan başka hiçbir 
+fonksiyonun herhangi bir değişiklikten etkilenmemesini sağlar.
 
-Two caveats to mention to this approach:
+Bu yaklaşımda hatırlanması gereken iki uyarı:
 
-1. There might be cases where you actually want to modify the input object,
-   but when you adopt this programming practice you will find that those cases
-   are pretty rare. Most things can be refactored to have no side effects!
+1. Giriş nesnesini gerçekten değiştirmek istediğiniz durumlar olabilir, ancak bu programlama 
+   yaklaşımını uyguladığınızda, bu durumların oldukça nadir olduğunu göreceksiniz. Çoğu şey yan 
+   etkisi olmayacak şekilde yeniden yapılandırılabilir!
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily,
-   this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
-   this kind of programming approach to be fast and not as memory intensive as
-   it would be for you to manually clone objects and arrays.
+2. Büyük nesneleri klonlamak, performans açısından çok pahalı olabilir. Neyse ki, 
+   bu uygulamada büyük bir sorun değil çünkü bu tür bir programlama yaklaşımının 
+   hızlı ve hafıza yoğun olmamasına izin veren ve nesneleri ve dizileri elle 
+   klonlamanızdan daha [verimli yapan kütüphaneler](https://facebook.github.io/immutable-js/) 
+   var.
 
 **Yanlış:**
 
