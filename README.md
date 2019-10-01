@@ -1029,19 +1029,19 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 ## **Nesneler ve Veri Yapıları**
 
-### Use getters and setters
+### Getter Ve Setter kullanın
 
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+Nesnelerdeki verilere erişmek için getter ve setter kullanmak, yalnızca bir 
+nesnede özelliğe direk erişmekten daha iyi olabilir. "Neden?" diye sorabilirsin. 
+Peki, işte dağınık bir sebepler listesi:
 
-- When you want to do more beyond getting an object property, you don't have
-  to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a
-  server.
+- Bir nesne özelliği elde etmenin ötesinde daha fazla şey yapmak istediğinizde, 
+  kod tabanınızdaki her erişimi aramanız ve değiştirmeniz gerekmez.
+- Atama (`set`) yaparken doğrulama yapmanızı kolaylaştırır.
+- İç gösterimi koruyabilirsiniz.
+- Değer alırken ya da atama yaparken log ve hata kaydı oluşturmak kolaylaşır.
+- Nesnenizin özelliklerini tembel yaklaşımla yükleyebilirsiniz, örneğin bir 
+  sunucudan veri almayı düşünelim.
 
 **Yanlış:**
 
@@ -1066,14 +1066,14 @@ function makeBankAccount() {
   // this one is private
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // "getter", her yerden erişilebilir olmalı
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // "setter", her yerden erişilebilir olmalı
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... güncellemeden önce doğrulama yapabilirsiniz
     balance = amount;
   }
 
@@ -1090,9 +1090,9 @@ account.setBalance(100);
 
 **[⬆ başa dön](#içindekiler)**
 
-### Make objects have private members
+### Nesnelerin gizli (private) üyeleri olmasını sağlayın
 
-This can be accomplished through closures (for ES5 and below).
+Bu closer vasıtasıyla sağlanabilir (ES5 ve daha eski sürümler için).
 
 **Yanlış:**
 
@@ -1132,12 +1132,12 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 ## **Classes**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### Düz ES5 fonksiyonları yerine ES2015/ES6 sınıflarını tercih et
 
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+Klasik ES5 sınıfları için okunabilir sınıf mirası, construction ve yöntem tanımları 
+elde etmek çok zor. Kalıtıma ihtiyacınız varsa (ve olmaması gerektiğinin farkında olun), 
+o zaman ES2015/ES6 sınıflarını tercih edin. Bununla birlikte, kendinizi daha büyük ve daha 
+karmaşık nesnelere ihtiyaç duyana kadar sınıflara göre küçük fonksiyonlar tercih edin.
 
 **Yanlış:**
 
@@ -1217,13 +1217,13 @@ class Human extends Mammal {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Use method chaining
+### Yöntem zincirleme kullanın
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+Bu kalıp JavaScript'te çok kullanışlıdır ve bu kullanımı jQuery ve Lodash gibi 
+birçok kütüphanede görürsünüz. Kodunuzun anlamlı ve daha az ayrıntılı olmasını sağlar. 
+Bu nedenle diyelim ki, yöntem zincirleme kullanın ve kodunuzun ne kadar temiz olacağına 
+bakın. Sınıf tanımlamalarınızda, basitçe her yöntemin sonuna `this` döndürün ve 
+bunun üzerine daha fazla sınıf yöntemi zincirleyebilirsiniz.
 
 **Yanlış:**
 
@@ -1297,24 +1297,24 @@ const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 
 **[⬆ başa dön](#içindekiler)**
 
-### Prefer composition over inheritance
+### Kalıtım yerine kompozisyonu tercih et
 
-As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+Dörtlü Çetenin [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) makalesinde 
+ünlü bir şekilde belirtildiği gibi, kalıtım yapabileceğiniz yerde kompozisyonu tercih etmelisiniz. 
+Kalıtım kullanmak için birçok neden ve kompozisyon kullanmak için de birçok neden vardır. Bu en üst 
+noktadaki ana nokta, eğer zihniniz içgüdüsel olarak kalıtım kullanmaya meylederse, kompozisyonun 
+probleminizi daha iyi modelleyebileceğini düşünmeye çalışmanızdır. 
+Bu bazı durumlarda doğrudur.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+"Kalıtımı ne zaman kullanmalıyım?" diye merak ediyor olabilirsiniz. Elinizdeki probleminize 
+bağlıdır, işte size kalıtımın kompozisyondan daha mantıklı olduğu durumların uygun bir 
+liste:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-   relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-   (Change the caloric expenditure of all animals when they move).
+1. Kalıtım, "is-a" ilişkisini temsil eder, "has-a" ilişkisini temsil etmez 
+   (Human->Animal doğru, User->UserDetail yanlıştır.).
+2. Ana sınıftan gelen kodu kullanabildiğinizde (İnsanlar hayvanlar gibi hareket edebilirler).
+3. Bir temel sınıfı değiştirerek türetilmiş sınıflarda genel değişiklikler yapmak istiyorsanız.
+   (Hareket halindeyken tüm hayvanların kalori harcamalarını güncellemek).
 
 **Yanlış:**
 
