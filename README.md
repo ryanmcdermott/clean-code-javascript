@@ -10,10 +10,10 @@
 6. [SOLID](#solid)
 7. [Test etme](#test-etme)
 8. [Eşzamanlılık](#eşzamanlılık)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+9. [Hata Yakalama](#hata-yakalama)
+10. [Yazım Şekli](#yazım-şekli)
+11. [Yorumlar](#yorumlar)
+12. [Çeviri](#translation)
 
 ## Giriş
 
@@ -2067,22 +2067,22 @@ getdata()
 
 **[⬆ başa dön](#içindekiler)**
 
-## **Formatting**
+## **Yazım şekli**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+Kod yazım şekli kişisel bir konudur. Buradaki diğer kurallar gibi, takip edebileceğiniz 
+etkili ve hızlı bir kural yoktur. dikkat etmeniz gereken şey bu konu hakkında TARTIŞMALARA YOL AÇMAMAKTIR.
+Bunu otomatikleştirebileceğiniz [bir sürü araç](https://standardjs.com/rules.html) var.
+Birini kullanın! Kodlama şekli üzerine insanların tartışması para ve kaynak israfıdır.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+Otomatik formatlama (girintiler, sekmeler ve boşluklar, çift ve tek tırnaklar, vb.) 
+kapsamına girmeyen şeyler için aşağıdaki bazı yönergelere 
+bakın.
 
-### Use consistent capitalization
+### Tutarlı harf boyutlandırması kullanın
 
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+JavaScript tip zorunlu bir dil değildir, bu yüzden büyük harf size değişkenleriniz, 
+fonksiyonlarını vb. hakkında çok şey söyler. Bu kurallar tartışmaya açıktır, ekibiniz 
+ne isterse seçebilir. Mesele şu ki, neyi seçerseniz seçin, mutlaka tutarlı olun.
 
 **Yanlış:**
 
@@ -2118,11 +2118,11 @@ class Alpaca {}
 
 **[⬆ başa dön](#içindekiler)**
 
-### Function callers and callees should be close
+### Çağrılan ve çağıran fonksiyonlar birbirine yakın olmalı
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Bir fonksiyon diğerini çağırıyorsa, bu fonksiyonları kaynak dosyada dikey olarak birbirine yakın 
+tanımlayın. İdeal olarak, arayanı aranan fonksiyonun hemen üstünde tutun. Bir gazete gibi, 
+yukarıdan aşağıya kod okuma eğilimindeyiz. Bu nedenle, kodunuzu bu şekilde okunmasını sağlayın.
 
 **Yanlış:**
 
@@ -2206,11 +2206,11 @@ review.perfReview();
 
 **[⬆ başa dön](#içindekiler)**
 
-## **Comments**
+## **Yorumlar**
 
-### Only comment things that have business logic complexity.
+### Yalnızca iş akışı karmaşıklığı olduğunda yorum yazın
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+Yorumlar bir özür değil, bir gerekliliktir. İyi kod _çoğunlukla_ kendini belgeler.
 
 **Yanlış:**
 
@@ -2253,9 +2253,9 @@ function hashIt(data) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Don't leave commented out code in your codebase
+### Yorumla kapatılmış kodu kod tabanınızda bırakmayın
 
-Version control exists for a reason. Leave old code in your history.
+Sürüm kontrolü sistemlerinin bir amacı var. Eski kodu saklama işini sürüm geçmişinde bırak.
 
 **Yanlış:**
 
@@ -2274,10 +2274,10 @@ doStuff();
 
 **[⬆ başa dön](#içindekiler)**
 
-### Don't have journal comments
+### Hikaye şeklinde yorumlar yapmayın
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Unutma, sürüm kontrol sistemini kullan! Ölü kod, yorum içine alınmış kod ve özellikle 
+hikaye şeklinde yorumlara gerek yoktur. Geçmişi bulmak için `git log` kullanın!
 
 **Yanlış:**
 
@@ -2303,10 +2303,10 @@ function combine(a, b) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Avoid positional markers
+### Yer belirticileri kullanmayın
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+Genellikle sadece görüntü kirliliği eklerler. Fonksiyonların ve değişken adlarının 
+uygun girinti ve biçimlendirmeyle birlikte görsel yapıyı kodunuza vermesini sağlayın.
 
 **Yanlış:**
 
@@ -2342,29 +2342,29 @@ const actions = function() {
 
 **[⬆ başa dön](#içindekiler)**
 
-## Translation
+## Çeviri
 
-This is also available in other languages:
+Bu belge aşağıdaki dillere çevirilmiştir:
 
-- ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**:
+- ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **Fransızca**:
   [GavBaros/clean-code-javascript-fr](https://github.com/GavBaros/clean-code-javascript-fr)
-- ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
-- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **Spanish**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
-- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [tureey/clean-code-javascript](https://github.com/tureey/clean-code-javascript)
-- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**:
+- ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brezilya Portekizcesi**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
+- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Uruguay.png) **İspanyolca**: [andersontr15/clean-code-javascript](https://github.com/andersontr15/clean-code-javascript-es)
+- ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **İspanyolca**: [tureey/clean-code-javascript](https://github.com/tureey/clean-code-javascript)
+- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Çince**:
   - [alivebao/clean-code-js](https://github.com/alivebao/clean-code-js)
   - [beginor/clean-code-javascript](https://github.com/beginor/clean-code-javascript)
-- ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
-- ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
-- ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [greg-dev/clean-code-javascript-pl](https://github.com/greg-dev/clean-code-javascript-pl)
-- ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**:
+- ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **Almanca**: [marcbruederlin/clean-code-javascript](https://github.com/marcbruederlin/clean-code-javascript)
+- ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korece**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
+- ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polonyaca**: [greg-dev/clean-code-javascript-pl](https://github.com/greg-dev/clean-code-javascript-pl)
+- ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Rusça**:
   - [BoryaMogila/clean-code-javascript-ru/](https://github.com/BoryaMogila/clean-code-javascript-ru/)
   - [maksugr/clean-code-javascript](https://github.com/maksugr/clean-code-javascript)
-- ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
-- ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
-- ![id](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Indonesia.png) **Indonesian**:
+- ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamce**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
+- ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japonca**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
+- ![id](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Indonesia.png) **Endonezya dili**:
   [andirkh/clean-code-javascript/](https://github.com/andirkh/clean-code-javascript/)
-- ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**:
+- ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **İtalyanca**:
   [frappacchio/clean-code-javascript/](https://github.com/frappacchio/clean-code-javascript/)
 
 **[⬆ başa dön](#içindekiler)**
