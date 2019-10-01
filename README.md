@@ -8,8 +8,8 @@
 4. [Nesneler Ve Veri Yapıları](#nesneler-ve-veri-yapıları)
 5. [Classes](#classes)
 6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
+7. [Test etme](#test-etme)
+8. [Eşzamanlılık](#eşzamanlılık)
 9. [Error Handling](#error-handling)
 10. [Formatting](#formatting)
 11. [Comments](#comments)
@@ -811,7 +811,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Ter koşullandırmalardan kaçının
+### Ters koşul önermelerinden kaçının
 
 **Yanlış:**
 
@@ -839,7 +839,7 @@ if (isDOMNodePresent(node)) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Avoid conditionals
+### Koşul önermelerinden kaçının
 
 Bu imkansız bir iş gibi görünür. Bunu ilk duyduklarında, çoğu insan 
 "bir if ifadesi olmadan nasıl bir şey yapabilirim?" der. Cevap, birçok 
@@ -1890,12 +1890,12 @@ describe("MomentJS", () => {
 
 **[⬆ başa dön](#içindekiler)**
 
-## **Concurrency**
+## **Eşzamanlılık**
 
-### Use Promises, not callbacks
+### Promise kullanın, callback'leri değil
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+Callback'ler temiz değil ve aşırı miktarda dallanmaya neden oluyorlar. ES2015/ES6 ile, 
+Promise artık yerleşik bir küresel tiptir. Mutlaka kullanın!
 
 **Yanlış:**
 
@@ -1941,13 +1941,13 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 **[⬆ başa dön](#içindekiler)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await Promise'lerden daha temizdir
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Promise'ler geri Callback'lere göre çok temiz bir alternatif, ancak ES2017/ES8 
+daha temiz bir çözüm olan async ve wait yönteminide sağlıyor. İhtiyacınız olan 
+tek şey bir `async` anahtar kelimesinde önceden belirlenmiş bir fonksiyondur ve 
+ardından yapmak istediğiniz `then` fonksiyonlar zinciri olmadan zorunlu olarak 
+yazabilirsiniz. Bugün ES2017/ES8 özelliklerinden yararlanabiliyorsanız bunu kullanın!
 
 **Yanlış:**
 
@@ -1988,21 +1988,21 @@ async function getCleanCodeArticle() {
 
 **[⬆ başa dön](#içindekiler)**
 
-## **Error Handling**
+## **Hata yakalama**
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Fırlatılmış hatalar iyi bir şeydir! Programınızdaki bir şey ters gittiğinde 
+çalışma zamanının başarıyla tanımlandığı ve mevcut yığında işlev yürütmeyi 
+durdurarak, işlemi (o anki düğümde) öldürerek ve konsolda bir yığın izlemesi 
+ile size bildirerek sizi bilgilendirmesini sağlar.
 
-### Don't ignore caught errors
+### Yakalanmış hataları gözardı etmeyin
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+Yakalanan bir hata ile hiçbir şey yapmamak, size söylenen hatayı gidermek veya 
+hiç olumsuz cevap verebilmeniz için yardımcı olmaz. Hatayı sadece konsola 
+kaydetmek (`console.log`), konsola yazdırılan hatalardan oluşan bir denizde 
+kaybolabildiği için çoğunlukla faydalı değildir. Herhangi bir kod parçasını 
+bir `try/catch` içine alırsanız, orada bir hatanın olabileceğini düşünüyorsunuz ve 
+bu nedenle gerçekleştiği zaman için bir planınız olmalı veya bir kod oluşturmalısınız.
 
 **Yanlış:**
 
@@ -2030,10 +2030,10 @@ try {
 }
 ```
 
-### Don't ignore rejected promises
+### Reddedilen promise'leri gözardı etmeyin
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+`try/catch` bloğu içindeki hataları gözardı etmemenizin sebebbi olan gerekçeler 
+bunun için de geçerlidir.
 
 **Yanlış:**
 
