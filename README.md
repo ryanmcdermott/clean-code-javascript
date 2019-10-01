@@ -688,17 +688,17 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Don't write to global functions
+### Global fonksiyonları değiştirmeyin
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+Global kapsamı kirletmek JavaScript'te kötü bir uygulamadır çünkü başka bir 
+kütüphaneyle çakışabilirsiniz ve API'nizin kullanıcısı canlıda bir istisna 
+ile karşılaşana bundan haberdar olmaz. Bir örnek düşünelim: ya JavaScript'in 
+yerel `Array` yöntemini iki dizi arasındaki farkı gösterebilecek bir `diff` 
+yöntemine sahip olarak genişletmek istiyorsanız? Yeni işlevinizi Array.prototype 
+dosyasına yazabilirsiniz, ancak aynı şeyi yapmaya çalışan başka bir kitaplıkla 
+çakışabilir. Ya bu diğer kütüphane dizinin ilk ve son elemanları arasındaki farkı 
+bulmak için sadece `diff` kullanıyorsa? Bu yüzden sadece ES2015/ES6 sınıflarını kullanmak 
+ve sadece `Array` sınıfını genişletmek daha iyi olur.
 
 **Yanlış:**
 
@@ -722,11 +722,11 @@ class SuperArray extends Array {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Favor functional programming over imperative programming
+### Imperative programlama yerine fonksiyonel programlamayı tercih edin
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript, Haskell'in olduğu gibi fonksiyonel bir dil değildir, ancak fonksiyonel 
+bir tadı vardır. Fonksiyonel diller daha temiz ve test edilmesi daha kolay olabilir. 
+Yapabildiğiniz zaman bu programlama stilini tercih edin.
 
 **Yanlış:**
 
@@ -787,7 +787,7 @@ const totalOutput = programmerOutput.reduce(
 
 **[⬆ başa dön](#içindekiler)**
 
-### Encapsulate conditionals
+### Koşullamaları örtülü hale getirin (encapsulate)
 
 **Yanlış:**
 
@@ -811,7 +811,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Avoid negative conditionals
+### Ter koşullandırmalardan kaçının
 
 **Yanlış:**
 
@@ -841,14 +841,14 @@ if (isDOMNodePresent(node)) {
 
 ### Avoid conditionals
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+Bu imkansız bir iş gibi görünür. Bunu ilk duyduklarında, çoğu insan 
+"bir if ifadesi olmadan nasıl bir şey yapabilirim?" der. Cevap, birçok 
+durumda aynı görevi gerçekleştirmek için polimorfizmi kullanabileceğinizdir. 
+İkinci soru genellikle, "peki bu harika ama neden bunu yapmak isteyeyim?", 
+bu cevap ise daha önce öğrendiğimiz bir temiz kod kavramıdır: bir işlev yalnızca 
+bir şey yapmalıdır. `İf` deyimine sahip sınıf ve işlevleriniz olduğunda, 
+kullanıcınıza işlevinizin birden fazla şey yaptığını söylersiniz. Unutmayın, 
+sadece bir şey yapın.
 
 **Yanlış:**
 
@@ -899,12 +899,12 @@ class Cessna extends Airplane {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Avoid type-checking (part 1)
+### Tip kontrolünden kaçınma (bölüm 1)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript'te veri tiplerini tanımlamak zorunlu değildir, yani işlevleriniz herhangi 
+bir tipte parametre alabilir. Bazen bu özgürlükten sorun çıkarabiliyor ve fonksiyonlarınızda 
+tip kontrolü yapmak cazip hale gelebiliyor. Bunu yapmaktan kaçınmanın birçok yolu vardır. 
+Dikkate alınacak ilk şey tutarlı API'ler.
 
 **Yanlış:**
 
@@ -928,17 +928,17 @@ function travelToTexas(vehicle) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Avoid type-checking (part 2)
+### Tip kontrolünden kaçınma (bölüm 2)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Dizeler ve tam sayılar gibi temel ilkel değerlerle çalışıyorsanız,ve polimorfizmi 
+kullanamıyorsanız ancak hala tip kontrolü yapma ihtiyacı hissederseniz, TypeScript 
+kullanmayı düşünmelisiniz. Standart JavaScript sözdiziminin üstüne statik yazma 
+özelliği sağladığından normal JavaScript'e mükemmel bir alternatiftir. Normal 
+JavaScript'i manuel olarak kontrol etmekdeki sorun, bunu iyi yapmanın, aldığınız 
+sahte "tür güvenliği" nin kayda değer okunabilirlik için telafi etmeyecek kadar 
+fazladan ek yük gerektirmesidir. JavaScript'inizi temiz tutun, iyi testler yazın 
+ve iyi kod incelemeleri yapın. Aksi takdirde, hepsini yapın ama TypeScript ile 
+(dediğim gibi, harika bir alternatif!).
 
 **Yanlış:**
 
@@ -965,19 +965,19 @@ function combine(val1, val2) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Don't over-optimize
+### Gereksiz optimizasyon yapmayın
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+Modern tarayıcılar çalışma zamanında bir çok optimizasyon ön tanımlı olarak yaparlar. 
+Çoğu zaman, kendiniz optimize etmeye çalışıyorsanız, zamanınızı boşa harcıyorsunuz 
+demektir. Nerelerde optimizasyonun eksik olduğunu görmek için 
+[iyi kaynaklar](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) var. 
+Buradaki sorunlara çözülene kadar optimizasyon yapmayı hedefleyin.
 
 **Yanlış:**
 
 ```javascript
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// Eski tarayıcılarda döngünün her turunda `list.length` ön belleğe alınmadığı için pahalıydı
+// çünkğ her defa `list.length` tekrardan hesaplanıyordu. Modern tarayıcılarda bu sorun giderildi.
 for (let i = 0; len = list.length; i < len; i++) {
   // ...
 }
@@ -993,11 +993,11 @@ for (let i = 0; i < list.length; i++) {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Remove dead code
+### Ölü kodları silin
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+Ölü kod çoklanmış kod kadar kötüdür. Kod yığınınızda tutulmaları için bir sebep 
+yoktur. Eğer kullanılmıyorsa, ondan kurtulun! Sürüm kontrol sistemlerinde geriye 
+dönebildiğiniz için lazım olduğunda bulabilirsiniz.
 
 **Yanlış:**
 
