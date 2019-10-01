@@ -5,7 +5,7 @@
 1. [Giriş](#giriş)
 2. [Değişkenler](#değişkenler)
 3. [Fonksiyonlar](#fonksiyonlar)
-4. [Objects and Data Structures](#objects-and-data-structures)
+4. [Nesneler Ve Veri Yapıları](#nesneler-ve-veri-yapıları)
 5. [Classes](#classes)
 6. [SOLID](#solid)
 7. [Testing](#testing)
@@ -1027,7 +1027,7 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 **[⬆ başa dön](#içindekiler)**
 
-## **Objects and Data Structures**
+## **Nesneler ve Veri Yapıları**
 
 ### Use getters and setters
 
