@@ -1369,16 +1369,16 @@ class Employee {
 
 ## **SOLID**
 
-### Single Responsibility Principle (SRP)
+### Tek sorumluluk prensibi (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+Clean Code kitabında söylendiği gibi, "Bir sınıfın değişmesi için hiçbir zaman birden 
+fazla sebep olmamalıdır". Uçuşunuzda yalnızca bir valiz alabildiğiniz zamanki gibi 
+bir çok işlevi olan bir sınıfı sıkıştırarak çıkarmak cazip gelir. Bunun sorun 
+olmasının sebebi, bu durumda sınıfınızın kavramsal olarak uyumlu olmaması ve değişmesi 
+için birçok nedene sahip olmasıdır. Bir sınıfı gerektiğinde değiştirmek için ihtiyacınız 
+duyulan zamanı azaltmanız önemlidir. Bu önemlidir, çünkü çok fazla işlevsellik bir sınıftaysa 
+ve bir parçasını değiştirirseniz, bunun kod tabanınızdaki diğer bağımlı modülleri nasıl 
+etkileyeceğini anlamak zor olabilir.
 
 **Yanlış:**
 
@@ -1429,12 +1429,12 @@ class UserSettings {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Open/Closed Principle (OCP)
+### Açık/Kapalı Prensibi (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+Bertrand Meyer tarafından belirtildiği gibi, "yazılım varlıkları (sınıflar, modüller, 
+fonksiyonlar, vb.) genişlemek için açık, ancak değişiklik için kapalı olmalıdır". 
+Bu ne anlama geliyor? Bu ilke, temel olarak, kullanıcıların mevcut kodu değiştirmeden 
+yeni işlevler eklemelerine izin vermeniz gerektiğini belirtir.
 
 **Yanlış:**
 
@@ -1520,20 +1520,19 @@ class HttpRequester {
 
 **[⬆ başa dön](#içindekiler)**
 
-### Liskov Substitution Principle (LSP)
+### Liskov Yerdeğiştirme Prensibi (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+Bu çok basit bir kavram için karmaşık bir terimdir. Resmen "S, T'nin bir alt tipi ise, 
+o zaman T tipi olan nesneler, bu programın istenen özelliklerinden herhangi birini 
+değiştirmeden, S tipi olan nesnelerle (yani, S tipi objelerin yerini alabilir), 
+T tipi objelerin yerini alabilir. (doğruluk, yapılan görev vb.) Bu daha da karmaşık 
+bir tanım.
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Bunun için en iyi açıklama bir ana sınıfınız ve bir alt sınıfınız varsa, temel sınıf ve 
+alt sınıf yanlış sonuçlar alınmadan birbirlerinin yerine kullanılabilir. Bu hala kafa 
+karıştırıcı olabilir, o yüzden klasik kare dikdörtgen örneğine bakalım. Matematiksel 
+olarak, bir kare bir dikdörtgendir, ancak kalıtsallık yoluyla "is-a" ilişkisini 
+kullanarak modellerseniz, derhal başınız derde girer.
 
 **Yanlış:**
 
@@ -1581,7 +1580,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach(rectangle => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // BAD: Kare için 25 döner. 20 olmalı.
     rectangle.render(area);
   });
 }
@@ -1639,21 +1638,21 @@ renderLargeShapes(shapes);
 
 **[⬆ başa dön](#içindekiler)**
 
-### Interface Segregation Principle (ISP)
+### Arayüz Ayrım Prensibi (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+JavaScript'te interface yoktur, bu nedenle bu ilke diğerleri kadar uygulanabilir 
+değildir. Bununla birlikte, bu kavramJavaScript’in tip sistem eksikliğinde bile 
+faydalı ve önemlidir.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+Arayüz Ayrım Prensibi (ISP) "İstemcilerin kullanmadıkları arayüzlere bağlı 
+kalmaması gerektiğini" belirtmektedir. Arayüzler, kendi zayıf yapısı nedeniyle 
+JavaScript'te gizli sözleşmelerdir.
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Bu prensibi JavaScript'te gösteren iyi bir örnek, büyük ayar nesneleri 
+gerektiren sınıflardır. İstemciden büyük miktarda seçenek ayarlamalarını 
+istememek faydalıdır, çünkü çoğu zaman tüm ayarlara ihtiyaç duymazlar. 
+Bunları isteğe bağlı yapmak, "şişman interface" sahip olmamaya yardımcı 
+olur.
 
 **Yanlış:**
 
@@ -1676,7 +1675,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // Çoğu zaman gezinirken animate kullanma ihtiyacımız olmaz.
   // ...
 });
 ```
@@ -1717,28 +1716,28 @@ const $ = new DOMTraverser({
 
 **[⬆ başa dön](#içindekiler)**
 
-### Dependency Inversion Principle (DIP)
+### Bağımlılığın Ters Çevrilmesi (DIP)
 
-This principle states two essential things:
+Bu prensip ik temel şeyi belirtir:
 
-1. High-level modules should not depend on low-level modules. Both should
-   depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-   abstractions.
+1. Üst seviye modüller alt seviye modüllere bağımlı olmamalı. İkisi birden
+   ortak soyutlamalara bağımlı olmalı.
+2. Soyutlamalar ayrıntılara bağlı olmamalıdır. Ayrıntıkar soyutlamaya bağlı 
+   olmalıdır.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+İlk başta bunu anlamak zor olabilir, ancak AngularJS ile çalıştıysanız, 
+bu ilkenin Bağımlılık Enjeksiyonu (DI) şeklinde uygulandığını gördünüz. 
+Aynı kavramlar olmasalar da, DIP, yüksek seviye modüllerinin düşük seviye 
+modüllerinin ayrıntılarını bilmesini ve kurmasını önler. Bunu DI ile 
+başarabilir. Bunun en büyük yararı modüller arasındaki eşleşmeyi azaltmasıdır. 
+İkileme çok kötü bir gelişme şeklidir çünkü kodunuzu elden geçirilmesini 
+zorlaştırır.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Daha önce de belirtildiği gibi, JavaScript'in ara yüzleri bulunmadığından 
+bağımlı olan soyutlamalar gizli sözleşmelerdir. Başka bir deyişle, 
+bir nesnenin / sınıfın başka bir nesneye / sınıfa açtığı yöntem ve 
+özellikler. Aşağıdaki örnekte, gizli sözleşme, bir `InventoryTracker` 
+için herhangi bir Request modülünün bir `requestItems` yöntemine sahip olmasıdır.
 
 **Yanlış:**
 
@@ -1820,24 +1819,24 @@ inventoryTracker.requestItems();
 
 **[⬆ başa dön](#içindekiler)**
 
-## **Testing**
+## **Test etme**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](https://gotwarlost.github.io/istanbul/).
+Test, sonucu oluşturmaktan daha önemlidir. Eğer hiç testiniz yoksa veya yetersiz 
+miktarda ise, sonra kodu her gönderdiğinizde hiçbir şeyi bozmadığınızdan emin 
+olmayacaksınız. Neyin uygun bir miktar oluşturduğuna karar vermek ekibinize bağlıdır, 
+ancak %100 kapsama sahip olmak (tüm özellik ve branşlar) çok yüksek bir güven ve 
+geliştirici gönül rahatlığı elde etmenizdir. Bu, harika bir test çerçevesine 
+ek olarak, aynı zamanda bir[iyi kapsam aracı](https://gotwarlost.github.io/istanbul/) 
+sahip olmanız demektir.
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Test yazmamak için mazeret yok. Bol miktarda [JS test çatısı](https://jstherightway.org/#testing-tools) 
+var, bu yüzden ekibinizin tercih ettiği bir tane bulun. Takımınız için uygun 
+olanı bulduğunuzda, tanıttığınız her yeni özellik / modül için her zaman 
+testler yazmayı hedefleyin. Tercih ettiğiniz yöntem Test Tahrikli Geliştirme (TDD) ise, 
+bu harika, ancak asıl mesele, herhangi bir özelliği başlatmadan veya mevcut olanı yeniden 
+düzenlemeden önce kapsama hedeflerinize ulaştığınızdan emin olmaktır.
 
-### Single concept per test
+### Her test için tek kavram
 
 **Yanlış:**
 
