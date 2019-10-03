@@ -2345,7 +2345,7 @@ const actions = function() {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't user ternary operator to much
+### Don't use ternary operator to much
 
   
 
