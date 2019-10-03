@@ -2345,6 +2345,85 @@ const actions = function() {
 
 **[⬆ back to top](#table-of-contents)**
 
+### Don't user ternary operator to much
+
+  
+
+The ternary operator is good to use, which makes your code sorter something like ```isTrue ? return true : return false```, but not good enough if your condition is more complex, your code becomes hard to read something like below.
+sometimes you need to use normal if-else statement for a more complex condition
+  
+
+**Bad:**
+
+  
+
+```javascript
+
+function  getColor(type)  {
+
+type  ===  "red"
+
+?  console.log("red")
+
+:  type  ===  "blue"
+
+?  console.log("blue")
+
+:  type  ===  "green"
+
+?  console.log("green")
+
+:  type  ===  "gray"
+
+?  console.log("gray")
+
+:  console.log("no color")
+
+}
+
+getColor("green")
+//green
+
+```
+
+  
+
+**Good:**
+
+  
+
+```javascript
+function  getColor(type)  {
+
+if (type  ===  "red") {
+
+console.log("red")
+
+}  else  if (type  ===  "blue") {
+
+console.log("blue")
+
+}  else  if (type  ===  "green") {
+
+console.log("green")
+
+}  else  if (type  ===  "gray") {
+
+console.log("gray")
+
+}  else  {
+
+console.log("no color")
+
+}
+
+}
+
+getColor("green")
+//green
+
+```
+
 ## Translation
 
 This is also available in other languages:
