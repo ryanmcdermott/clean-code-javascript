@@ -1908,11 +1908,11 @@ import { writeFile } from "fs";
 
 get(
   "https://en.wikipedia.org/wiki/Robert_Cecil_Martin",
-  (requestErr, response) => {
+  (requestErr, response, body) => {
     if (requestErr) {
       console.error(requestErr);
     } else {
-      writeFile("article.html", response.body, writeErr => {
+      writeFile("article.html", body, writeErr => {
         if (writeErr) {
           console.error(writeErr);
         } else {
@@ -1927,12 +1927,12 @@ get(
 **Good:**
 
 ```javascript
-import { get } from "request";
-import { writeFile } from "fs";
+import { get } from "request-promise";
+import { writeFile } from "fs-extra";
 
 get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
-  .then(response => {
-    return writeFile("article.html", response);
+  .then(body => {
+    return writeFile("article.html", body);
   })
   .then(() => {
     console.log("File written");
@@ -1956,11 +1956,11 @@ today!
 
 ```javascript
 import { get } from "request-promise";
-import { writeFile } from "fs-promise";
+import { writeFile } from "fs-extra";
 
 get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
-  .then(response => {
-    return writeFile("article.html", response);
+  .then(body => {
+    return writeFile("article.html", body);
   })
   .then(() => {
     console.log("File written");
@@ -1974,19 +1974,21 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 ```javascript
 import { get } from "request-promise";
-import { writeFile } from "fs-promise";
+import { writeFile } from "fs-extra";
 
 async function getCleanCodeArticle() {
   try {
-    const response = await get(
+    const body = await get(
       "https://en.wikipedia.org/wiki/Robert_Cecil_Martin"
     );
-    await writeFile("article.html", response);
+    await writeFile("article.html", body);
     console.log("File written");
   } catch (err) {
     console.error(err);
   }
 }
+
+getCleanCodeArticle()
 ```
 
 **[⬆ back to top](#table-of-contents)**
