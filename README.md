@@ -175,7 +175,7 @@ variable name.
 
 ```javascript
 const Car = {
-  carMake: "Honda",
+  carBrand: "Honda",
   carModel: "Accord",
   carColor: "Blue"
 };
@@ -189,7 +189,7 @@ function paintCar(car) {
 
 ```javascript
 const Car = {
-  make: "Honda",
+  brand: "Honda",
   model: "Accord",
   color: "Blue"
 };
