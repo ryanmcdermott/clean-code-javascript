@@ -724,7 +724,7 @@ class SuperArray extends Array {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Favor functional programming over imperative programming
+### Functional programming: prefer it over imperative programming
 
 JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages can be cleaner and easier to test.
@@ -786,6 +786,45 @@ const totalOutput = programmerOutput.reduce(
   0
 );
 ```
+
+### Functional programming: let go of `let`, embrace `const`
+
+While `let` is the cool new kid on the block who substituted `var`, you should probably avoid `let` as well and try using `const` for good.
+
+When using `let`, you need to follow its flow to know what it's changing to and when, while references to variables declared with `const` never change. Whenever you use a `let`, you could probably use a `const` and make things much more readable by exporting functionality.
+
+**Bad:**
+
+```javascript
+let foobar = 'foo';
+
+if (!foobar.includes('bar')) {
+  foobar = `foo bar`;
+}
+
+console.log(foobar); // 'foo bar'
+```
+
+**Good:**
+
+```javascript
+function getFixedFoobarIfNeeded(foobar) {
+	if(foobar.includes('bar')) {
+		return foobar;
+	}
+
+	return 'foo bar';
+}
+
+const foobar = 'foo';
+const potentiallyFixedFoobar = getFixedFoobarIfNeeded(foobar);
+ 
+console.log(potentiallyFixedFoobar); // 'foo bar'
+```
+
+We get 2 added benefits here -
+1. Our code is more predictable - no references are changing anywhere
+2. We're exporting some of the behavior to an external function, making things clearer (as long as we use clear naming - which we are)
 
 **[⬆ back to top](#table-of-contents)**
 
