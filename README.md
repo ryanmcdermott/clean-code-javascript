@@ -3,20 +3,20 @@
 # clean-code-javascript
 
 ## সূচিপত্র
-১. [সূচনা](#সূচনা)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
-6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+1. [সূচনা](#সূচনা)
+2. [ভ্যারিয়েবলস](#ভ্যারিয়েবলস)
+3. [ফাংশনস](#ফাংশনস)
+4. [অবজেক্ট এবং ডাটা স্ট্রাকচার](#অবজেক্ট-এবং-ডাটা-স্ট্রাকচার)
+5. [ক্লাস](#ক্লাস)
+6. [সলিড(SOLID)](#সলিড(SOLID))
+7. [টেস্টিং](#টেস্টিং)
+8. [কনকারেন্সি](#কনকারেন্সি)
+9. [এরর হ্যান্ডলিং](#এরর-হ্যান্ডলিং)
+10. [ফরম্যাটিং](#ফরম্যাটিং)
+11. [কমেন্টস](#কমেন্টস)
+12. [অনুবাদ](#অনুবাদ)
 
-## সূচনা
+## **সূচনা**
 
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
@@ -44,7 +44,7 @@ shaped into its final form. Finally, we chisel away the imperfections when
 we review it with our peers. Don't beat yourself up for first drafts that need
 improvement. Beat up the code instead!
 
-## **Variables**
+## **ভ্যারিয়েবলস**
 
 ### Use meaningful and pronounceable variable names
 
@@ -228,7 +228,7 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Functions**
+## **ফাংশনস**
 
 ### Function arguments (2 or fewer ideally)
 
@@ -1030,7 +1030,7 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Objects and Data Structures**
+## **অবজেক্ট এবং ডাটা স্ট্রাকচার**
 
 ### Use getters and setters
 
@@ -1133,7 +1133,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Classes**
+## **ক্লাস**
 
 ### Prefer ES2015/ES6 classes over ES5 plain functions
 
@@ -1370,7 +1370,7 @@ class Employee {
 
 **[⬆ back to top](#table-of-contents)**
 
-## **SOLID**
+## **সলিড(SOLID)**
 
 ### Single Responsibility Principle (SRP)
 
@@ -1823,7 +1823,7 @@ inventoryTracker.requestItems();
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Testing**
+## **টেস্টিং**
 
 Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
@@ -1894,7 +1894,7 @@ describe("MomentJS", () => {
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Concurrency**
+## **কনকারেন্সি**
 
 ### Use Promises, not callbacks
 
@@ -1994,7 +1994,7 @@ getCleanCodeArticle()
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Error Handling**
+## **এরর হ্যান্ডলিং**
 
 Thrown errors are a good thing! They mean the runtime has successfully
 identified when something in your program has gone wrong and it's letting
@@ -2073,7 +2073,7 @@ getdata()
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Formatting**
+## **ফরম্যাটিং**
 
 Formatting is subjective. Like many rules herein, there is no hard and fast
 rule that you must follow. The main point is DO NOT ARGUE over formatting.
@@ -2212,7 +2212,7 @@ review.perfReview();
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Comments**
+## **কমেন্টস**
 
 ### Only comment things that have business logic complexity.
 
@@ -2348,7 +2348,7 @@ const actions = function() {
 
 **[⬆ back to top](#table-of-contents)**
 
-## Translation
+## **অনুবাদ**
 
 This is also available in other languages:
 
