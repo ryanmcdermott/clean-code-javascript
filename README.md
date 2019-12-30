@@ -1,8 +1,9 @@
+আসল রিপোজিটরি: ryanmcdermott/clean-code-javascript
+
 # clean-code-javascript
 
-## Table of Contents
-
-1. [Introduction](#introduction)
+## সূচিপত্র
+১. [সূচনা](#সূচনা)
 2. [Variables](#variables)
 3. [Functions](#functions)
 4. [Objects and Data Structures](#objects-and-data-structures)
@@ -15,7 +16,7 @@
 11. [Comments](#comments)
 12. [Translation](#translation)
 
-## Introduction
+## সূচনা
 
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
