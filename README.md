@@ -3,7 +3,7 @@
 # clean-code-javascript
 
 ## সূচিপত্র
-1. [সূচনা](#সূচনা)
+1. [ভূমিকা](#ভূমিকা)
 2. [ভ্যারিয়েবলস](#ভ্যারিয়েবলস)
 3. [ফাংশনস](#ফাংশনস)
 4. [অবজেক্ট এবং ডাটা স্ট্রাকচার](#অবজেক্ট-এবং-ডাটা-স্ট্রাকচার)
@@ -16,33 +16,18 @@
 11. [কমেন্টস](#কমেন্টস)
 12. [অনুবাদ](#অনুবাদ)
 
-## **সূচনা**
+## **ভূমিকা**
 
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+এখানে রবার্ট সি. মার্টিন এর [_Clean Code_ ](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) বইয়ে বর্নিত সফটওয়্যার ইঞ্জিনিয়ারিং এর নীতিগুলোকে জাভাস্ক্রিপ্ট এর জন্য কিছুটা পরিবর্তিত করা হয়েছে। এটা কোন স্টাইল গাইড না। এটা হল জাভাস্ক্রিপ্টের মাধ্যমে [সুপাঠ্য, পুনব্যবহারযোগ্য, রিফ্যাক্টরযোগ্য](https://github.com/ryanmcdermott/3rs-of-software-architecture) সফটওয়্যার তৈরি করার গাইড। 
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-_Clean Code_.
+ব্যাপারটা এমন না যে এখানে বর্নিত সব নিয়ম কঠোরভাবে মেনে চলতে হবে, এমনকি এখানে বর্নিত খুব কম নিয়মের সাথে সবাই একমত। এগুলো নির্দেশিকা ব্যাতিত কিছুই না। তবে এগুলো _Clean Code_ বইয়ের লেখকদের বহু বছরের সমষ্টিগত অভিজ্ঞতা থেকে বিধিবদ্ধ করা। 
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+আমাদের সফটওয়ার ইঞ্জিনিয়ারিং শিল্পের বয়স ৫০ বছরের কিছু বেশি এবং আমরা এখনও অনেক কিছু শিখছি। যখন সফটওয়ার আর্কিটেকচার স্থাপত্যকলার মত পুরনো হবে, তখন হয়ত আমরা মেনে চলার জন্য কিছু কঠোর নিয়ম পাব। সেদিনের আগ পর্যন্ত আমরা যে জাভাস্ক্রিপ্ট কোড তৈরি করছি তার মান যাচাই করার জন্য এই নির্দেশিকাটিকে ব্যবহার করতে পারি। 
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+ভূমিকা শেষ করার আগে একটা কথা, এই নিয়ম গুলো জানলেই তুমি আগের থেকে ভালো সফটওয়্যার ডেভেলপার  হয়ে যাবে না এবং এগুলো অনেক বছর ধরে মেনে চলা মানে এই না যে তুমি আর ভুল করবে না। মাটির দলা থেকে যেমন বিভিন্ন আকৃতি তৈরি হয়, তেমনি প্রতিটা কোড শুরু হয় প্রথম খসড়া থেকে। আমরা যখন সবশেষে আমাদের সহকর্মীদের সাথে কোড রিভিও করতে বসি তখন আমাদের কোডের অসম্পূর্ণতাগুলোকে চেঁছে ফেলে দিই। প্রথম খসড়াতে ভুল থাকবেই। এজন্য নিজেকে শাস্তি দিও না, বরং তোমার কোড ঝেড়েমুছে ঠিক কর। 
 
 ## **ভ্যারিয়েবলস**
 
@@ -2373,5 +2358,7 @@ This is also available in other languages:
   [andirkh/clean-code-javascript/](https://github.com/andirkh/clean-code-javascript/)
 - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**:
   [frappacchio/clean-code-javascript/](https://github.com/frappacchio/clean-code-javascript/)
-
+- ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Bangla(বাংলা)**:
+  [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
+  
 **[⬆ back to top](#table-of-contents)**
