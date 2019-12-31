@@ -31,25 +31,25 @@ you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
 ## **ভ্যারিয়েবলস**
 
-### Use meaningful and pronounceable variable names
+### ভ্যারিয়েবল এর নাম অর্থবহ হতে হবে
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
-### Use the same vocabulary for the same type of variable
+### একই ধরণের ভ্যারিয়েবলের নামকরনের জন্য একই শব্দ ব্যবহার করতে হবে। 
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 getUserInfo();
@@ -57,32 +57,26 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
-### Use searchable names
+### খুঁজতে সুবিধা হয় এমন নাম ব্যবহার করতে হবে
 
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
-[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+আমরা আমাদের ডেভেলপার জীবনে যত কোড লিখব, পড়তে হবে তার থেকে অনেক বেশি। একারণে সুপাঠ্য এবং সহজে খুঁজে পাওয়া যায় এমন কোড লিখা খুবই গুরুত্তপুর্ন। আমরা যদি আমাদের লিখা প্রোগ্রাম বুঝার জন্য ভ্যারিয়েবলের নাম যথেষ্ট অর্থবহ না করি, আমাদের পাঠকদের কষ্ট বাড়বে বই কমবে না। যেসকল ধ্রুবক এবং ভ্যারিয়েবলের নামকরন করা হয় নি সেগুলো চিহ্নিত করতে [buddy.js](https://github.com/danielstjules/buddy.js) এবং [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md) এর মত টুলগুলো আমাদের  সাহায্য করতে পারে। 
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 // What the heck is 86400000 for?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 // Declare them as capitalized named constants.
@@ -91,11 +85,11 @@ const MILLISECONDS_IN_A_DAY = 86400000;
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Use explanatory variables
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -106,7 +100,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -115,13 +109,13 @@ const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Avoid Mental Mapping
 
 Explicit is better than implicit.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -136,7 +130,7 @@ locations.forEach(l => {
 });
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -150,14 +144,14 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Don't add unneeded context
 
 If your class/object name tells you something, don't repeat that in your
 variable name.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const Car = {
@@ -171,7 +165,7 @@ function paintCar(car) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 const Car = {
@@ -185,7 +179,7 @@ function paintCar(car) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Use default arguments instead of short circuiting or conditionals
 
@@ -194,7 +188,7 @@ use them, your function will only provide default values for `undefined`
 arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
 `NaN`, will not be replaced by a default value.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -203,7 +197,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
@@ -211,7 +205,7 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **ফাংশনস**
 
@@ -244,7 +238,7 @@ destructuring syntax. This has a few advantages:
 3. Linters can warn you about unused properties, which would be impossible
    without destructuring.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -252,7 +246,7 @@ function createMenu(title, body, buttonText, cancellable) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
@@ -267,7 +261,7 @@ createMenu({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Functions should do one thing
 
@@ -277,7 +271,7 @@ When you can isolate a function to just one action, they can be refactored
 easily and your code will read much cleaner. If you take nothing else away from
 this guide other than this, you'll be ahead of many developers.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function emailClients(clients) {
@@ -290,7 +284,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function emailActiveClients(clients) {
@@ -303,11 +297,11 @@ function isActiveClient(client) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Function names should say what they do
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function addToDate(date, month) {
@@ -320,7 +314,7 @@ const date = new Date();
 addToDate(date, 1);
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function addMonthToDate(month, date) {
@@ -331,7 +325,7 @@ const date = new Date();
 addMonthToDate(1, date);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Functions should only be one level of abstraction
 
@@ -339,7 +333,7 @@ When you have more than one level of abstraction your function is usually
 doing too much. Splitting up functions leads to reusability and easier
 testing.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -366,7 +360,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -403,7 +397,7 @@ function parse(tokens) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Remove duplicate code
 
@@ -428,7 +422,7 @@ worse than duplicate code, so be careful! Having said this, if you can make
 a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
 updating multiple places anytime you want to change one thing.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function showDeveloperList(developers) {
@@ -462,7 +456,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function showEmployeeList(employees) {
@@ -489,11 +483,11 @@ function showEmployeeList(employees) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Set default objects with Object.assign
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const menuConfig = {
@@ -514,7 +508,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 const menuConfig = {
@@ -542,13 +536,13 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Don't use flags as function parameters
 
 Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function createFile(name, temp) {
@@ -560,7 +554,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function createFile(name) {
@@ -572,7 +566,7 @@ function createTempFile(name) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Avoid Side Effects (part 1)
 
@@ -591,7 +585,7 @@ without any structure, using mutable data types that can be written to by anythi
 and not centralizing where your side effects occur. If you can do this, you will
 be happier than the vast majority of other programmers.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 // Global variable referenced by following function.
@@ -607,7 +601,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function splitIntoFirstAndLastName(name) {
@@ -621,7 +615,7 @@ console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Avoid Side Effects (part 2)
 
@@ -658,7 +652,7 @@ Two caveats to mention to this approach:
    this kind of programming approach to be fast and not as memory intensive as
    it would be for you to manually clone objects and arrays.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -666,7 +660,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -674,7 +668,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Don't write to global functions
 
@@ -688,7 +682,7 @@ to do the same thing. What if that other library was just using `diff` to find
 the difference between the first and last elements of an array? This is why it
 would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -697,7 +691,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class SuperArray extends Array {
@@ -708,7 +702,7 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Favor functional programming over imperative programming
 
@@ -716,7 +710,7 @@ JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages can be cleaner and easier to test.
 Favor this style of programming when you can.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const programmerOutput = [
@@ -745,7 +739,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 const programmerOutput = [
@@ -773,11 +767,11 @@ const totalOutput = programmerOutput.reduce(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Encapsulate conditionals
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 if (fsm.state === "fetching" && isEmpty(listNode)) {
@@ -785,7 +779,7 @@ if (fsm.state === "fetching" && isEmpty(listNode)) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
@@ -797,11 +791,11 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Avoid negative conditionals
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function isDOMNodeNotPresent(node) {
@@ -813,7 +807,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function isDOMNodePresent(node) {
@@ -825,7 +819,7 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Avoid conditionals
 
@@ -838,7 +832,7 @@ one thing. When you have classes and functions that have `if` statements, you
 are telling your user that your function does more than one thing. Remember,
 just do one thing.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class Airplane {
@@ -856,7 +850,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class Airplane {
@@ -885,7 +879,7 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Avoid type-checking (part 1)
 
@@ -894,7 +888,7 @@ Sometimes you are bitten by this freedom and it becomes tempting to do
 type-checking in your functions. There are many ways to avoid having to do this.
 The first thing to consider is consistent APIs.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -906,7 +900,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -914,7 +908,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Avoid type-checking (part 2)
 
@@ -928,7 +922,7 @@ doesn't make up for the lost readability. Keep your JavaScript clean, write
 good tests, and have good code reviews. Otherwise, do all of that but with
 TypeScript (which, like I said, is a great alternative!).
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function combine(val1, val2) {
@@ -943,7 +937,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function combine(val1, val2) {
@@ -951,7 +945,7 @@ function combine(val1, val2) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Don't over-optimize
 
@@ -961,7 +955,7 @@ resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
 for seeing where optimization is lacking. Target those in the meantime, until
 they are fixed if they can be.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 // On old browsers, each iteration with uncached `list.length` would be costly
@@ -971,7 +965,7 @@ for (let i = 0, len = list.length; i < len; i++) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 for (let i = 0; i < list.length; i++) {
@@ -979,7 +973,7 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Remove dead code
 
@@ -987,7 +981,7 @@ Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
 in your version history if you still need it.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function oldRequestModule(url) {
@@ -1002,7 +996,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function newRequestModule(url) {
@@ -1013,7 +1007,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **অবজেক্ট এবং ডাটা স্ট্রাকচার**
 
@@ -1031,7 +1025,7 @@ unorganized list of reasons why:
 - You can lazy load your object's properties, let's say getting it from a
   server.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function makeBankAccount() {
@@ -1047,7 +1041,7 @@ const account = makeBankAccount();
 account.balance = 100;
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function makeBankAccount() {
@@ -1076,13 +1070,13 @@ const account = makeBankAccount();
 account.setBalance(100);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Make objects have private members
 
 This can be accomplished through closures (for ES5 and below).
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const Employee = function(name) {
@@ -1099,7 +1093,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function makeEmployee(name) {
@@ -1116,7 +1110,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **ক্লাস**
 
@@ -1127,7 +1121,7 @@ definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
 classes until you find yourself needing larger and more complex objects.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const Animal = function(age) {
@@ -1167,7 +1161,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class Animal {
@@ -1203,7 +1197,7 @@ class Human extends Mammal {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Use method chaining
 
@@ -1213,7 +1207,7 @@ For that reason, I say, use method chaining and take a look at how clean your co
 will be. In your class functions, simply return `this` at the end of every function,
 and you can chain further class methods onto it.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class Car {
@@ -1245,7 +1239,7 @@ car.setColor("pink");
 car.save();
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class Car {
@@ -1283,7 +1277,7 @@ class Car {
 const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Prefer composition over inheritance
 
@@ -1304,7 +1298,7 @@ makes more sense than composition:
 3. You want to make global changes to derived classes by changing a base class.
    (Change the caloric expenditure of all animals when they move).
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class Employee {
@@ -1328,7 +1322,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class EmployeeTaxData {
@@ -1353,7 +1347,7 @@ class Employee {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **সলিড(SOLID)**
 
@@ -1368,7 +1362,7 @@ It's important because if too much functionality is in one class and you modify
 a piece of it, it can be difficult to understand how that will affect other
 dependent modules in your codebase.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class UserSettings {
@@ -1388,7 +1382,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class UserAuth {
@@ -1415,7 +1409,7 @@ class UserSettings {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Open/Closed Principle (OCP)
 
@@ -1424,7 +1418,7 @@ etc.) should be open for extension, but closed for modification." What does that
 mean though? This principle basically states that you should allow users to
 add new functionalities without changing existing code.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1468,7 +1462,7 @@ function makeHttpCall(url) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1506,7 +1500,7 @@ class HttpRequester {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Liskov Substitution Principle (LSP)
 
@@ -1523,7 +1517,7 @@ classic Square-Rectangle example. Mathematically, a square is a rectangle, but
 if you model it using the "is-a" relationship via inheritance, you quickly
 get into trouble.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class Rectangle {
@@ -1578,7 +1572,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class Shape {
@@ -1625,7 +1619,7 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Interface Segregation Principle (ISP)
 
@@ -1643,7 +1637,7 @@ huge amounts of options is beneficial, because most of the time they won't need
 all of the settings. Making them optional helps prevent having a
 "fat interface".
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class DOMTraverser {
@@ -1669,7 +1663,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class DOMTraverser {
@@ -1703,7 +1697,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Dependency Inversion Principle (DIP)
 
@@ -1728,7 +1722,7 @@ and properties that an object/class exposes to another object/class. In the
 example below, the implicit contract is that any Request module for an
 `InventoryTracker` will have a `requestItems` method.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class InventoryRequester {
@@ -1761,7 +1755,7 @@ const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class InventoryTracker {
@@ -1806,7 +1800,7 @@ const inventoryTracker = new InventoryTracker(
 inventoryTracker.requestItems();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **টেস্টিং**
 
@@ -1827,7 +1821,7 @@ or refactoring an existing one.
 
 ### Single concept per test
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 import assert from "assert";
@@ -1851,7 +1845,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 import assert from "assert";
@@ -1877,7 +1871,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **কনকারেন্সি**
 
@@ -1886,7 +1880,7 @@ describe("MomentJS", () => {
 Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 import { get } from "request";
@@ -1910,7 +1904,7 @@ get(
 );
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1928,7 +1922,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Async/Await are even cleaner than Promises
 
@@ -1938,7 +1932,7 @@ in an `async` keyword, and then you can write your logic imperatively without
 a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
 today!
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1956,7 +1950,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1977,7 +1971,7 @@ async function getCleanCodeArticle() {
 getCleanCodeArticle()
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **এরর হ্যান্ডলিং**
 
@@ -1995,7 +1989,7 @@ to the console. If you wrap any bit of code in a `try/catch` it means you
 think an error may occur there and therefore you should have a plan,
 or create a code path, for when it occurs.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 try {
@@ -2005,7 +1999,7 @@ try {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 try {
@@ -2026,7 +2020,7 @@ try {
 For the same reason you shouldn't ignore caught errors
 from `try/catch`.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 getdata()
@@ -2038,7 +2032,7 @@ getdata()
   });
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 getdata()
@@ -2056,7 +2050,7 @@ getdata()
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **ফরম্যাটিং**
 
@@ -2075,7 +2069,7 @@ JavaScript is untyped, so capitalization tells you a lot about your variables,
 functions, etc. These rules are subjective, so your team can choose whatever
 they want. The point is, no matter what you all choose, just be consistent.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2091,7 +2085,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2107,7 +2101,7 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Function callers and callees should be close
 
@@ -2115,7 +2109,7 @@ If a function calls another, keep those functions vertically close in the source
 file. Ideally, keep the caller right above the callee. We tend to read code from
 top-to-bottom, like a newspaper. Because of this, make your code read that way.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 class PerformanceReview {
@@ -2155,7 +2149,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 class PerformanceReview {
@@ -2195,7 +2189,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **কমেন্টস**
 
@@ -2203,7 +2197,7 @@ review.perfReview();
 
 Comments are an apology, not a requirement. Good code _mostly_ documents itself.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 function hashIt(data) {
@@ -2225,7 +2219,7 @@ function hashIt(data) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function hashIt(data) {
@@ -2242,13 +2236,13 @@ function hashIt(data) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Don't leave commented out code in your codebase
 
 Version control exists for a reason. Leave old code in your history.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 doStuff();
@@ -2257,20 +2251,20 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 doStuff();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Don't have journal comments
 
 Remember, use version control! There's no need for dead code, commented code,
 and especially journal comments. Use `git log` to get history!
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 /**
@@ -2284,7 +2278,7 @@ function combine(a, b) {
 }
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 function combine(a, b) {
@@ -2292,14 +2286,14 @@ function combine(a, b) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ### Avoid positional markers
 
 They usually just add noise. Let the functions and variable names along with the
 proper indentation and formatting give the visual structure to your code.
 
-**Bad:**
+**খারাপ কোড:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
@@ -2318,7 +2312,7 @@ const actions = function() {
 };
 ```
 
-**Good:**
+**ভালো কোড:**
 
 ```javascript
 $scope.model = {
@@ -2331,7 +2325,7 @@ const actions = function() {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
 
 ## **অনুবাদ**
 
@@ -2361,4 +2355,4 @@ This is also available in other languages:
 - ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Bangla(বাংলা)**:
   [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
   
-**[⬆ back to top](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
