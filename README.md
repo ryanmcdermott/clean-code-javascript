@@ -45,7 +45,7 @@ const yyyymmdstr = moment().format("YYYY/MM/DD");
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### একই ধরণের ভ্যারিয়েবলের নামকরনের জন্য একই ধরণের শব্দ ব্যবহার করতে হবে। 
 
@@ -63,7 +63,7 @@ getCustomerRecord();
 getUser();
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### খুঁজতে সুবিধা হয় এমন নাম ব্যবহার করতে হবে
 
@@ -85,7 +85,7 @@ const MILLISECONDS_IN_A_DAY = 86400000;
 setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Use explanatory variables
 
@@ -109,7 +109,7 @@ const [, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Avoid Mental Mapping
 
@@ -144,7 +144,7 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Don't add unneeded context
 
@@ -179,7 +179,7 @@ function paintCar(car) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Use default arguments instead of short circuiting or conditionals
 
@@ -205,7 +205,7 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **ফাংশনস**
 
@@ -261,7 +261,7 @@ createMenu({
 });
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Functions should do one thing
 
@@ -297,7 +297,7 @@ function isActiveClient(client) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Function names should say what they do
 
@@ -325,7 +325,7 @@ const date = new Date();
 addMonthToDate(1, date);
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Functions should only be one level of abstraction
 
@@ -397,7 +397,7 @@ function parse(tokens) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Remove duplicate code
 
@@ -483,7 +483,7 @@ function showEmployeeList(employees) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Set default objects with Object.assign
 
@@ -536,7 +536,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Don't use flags as function parameters
 
@@ -566,7 +566,7 @@ function createTempFile(name) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Avoid Side Effects (part 1)
 
@@ -615,7 +615,7 @@ console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Avoid Side Effects (part 2)
 
@@ -668,7 +668,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Don't write to global functions
 
@@ -702,7 +702,7 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Favor functional programming over imperative programming
 
@@ -767,7 +767,7 @@ const totalOutput = programmerOutput.reduce(
 );
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Encapsulate conditionals
 
@@ -791,7 +791,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Avoid negative conditionals
 
@@ -819,7 +819,7 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Avoid conditionals
 
@@ -879,7 +879,7 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Avoid type-checking (part 1)
 
@@ -908,7 +908,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Avoid type-checking (part 2)
 
@@ -945,7 +945,7 @@ function combine(val1, val2) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Don't over-optimize
 
@@ -973,7 +973,7 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Remove dead code
 
@@ -1007,7 +1007,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **অবজেক্ট এবং ডাটা স্ট্রাকচার**
 
@@ -1070,7 +1070,7 @@ const account = makeBankAccount();
 account.setBalance(100);
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Make objects have private members
 
@@ -1110,7 +1110,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **ক্লাস**
 
@@ -1197,7 +1197,7 @@ class Human extends Mammal {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Use method chaining
 
@@ -1277,7 +1277,7 @@ class Car {
 const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Prefer composition over inheritance
 
@@ -1347,7 +1347,7 @@ class Employee {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **সলিড(SOLID)**
 
@@ -1409,7 +1409,7 @@ class UserSettings {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Open/Closed Principle (OCP)
 
@@ -1500,7 +1500,7 @@ class HttpRequester {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Liskov Substitution Principle (LSP)
 
@@ -1619,7 +1619,7 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Interface Segregation Principle (ISP)
 
@@ -1697,7 +1697,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Dependency Inversion Principle (DIP)
 
@@ -1800,7 +1800,7 @@ const inventoryTracker = new InventoryTracker(
 inventoryTracker.requestItems();
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **টেস্টিং**
 
@@ -1871,7 +1871,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **কনকারেন্সি**
 
@@ -1922,7 +1922,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Async/Await are even cleaner than Promises
 
@@ -1971,7 +1971,7 @@ async function getCleanCodeArticle() {
 getCleanCodeArticle()
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **এরর হ্যান্ডলিং**
 
@@ -2050,7 +2050,7 @@ getdata()
   });
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **ফরম্যাটিং**
 
@@ -2101,7 +2101,7 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Function callers and callees should be close
 
@@ -2189,7 +2189,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **কমেন্টস**
 
@@ -2236,7 +2236,7 @@ function hashIt(data) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Don't leave commented out code in your codebase
 
@@ -2257,7 +2257,7 @@ doStuff();
 doStuff();
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Don't have journal comments
 
@@ -2286,7 +2286,7 @@ function combine(a, b) {
 }
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ### Avoid positional markers
 
@@ -2325,7 +2325,7 @@ const actions = function() {
 };
 ```
 
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
 ## **অনুবাদ**
 
@@ -2355,4 +2355,4 @@ This is also available in other languages:
 - ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Bangla(বাংলা)**:
   [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
   
-**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#table-of-contents)**
+**[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
