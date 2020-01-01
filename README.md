@@ -205,34 +205,18 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 ## **ফাংশনস**
 
-### Function arguments (2 or fewer ideally)
+### ফাংশন আর্গুমেন্টস (২টার বেশি নয়, ১ টা হলে ভাল হয়) 
 
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
+ফাংশন টেস্টিং সহজ করার জন্য, ফাংশন প্যারামিটার কে সীমাবদ্ধ করা খুবই গুরুত্তপুর্ন । ফাংশন প্যারামিটার ৩ এর অধিক হলে, বিন্যাস সমাবেশের কারণে আমাদের টেস্ট কেসের সংখ্যা বেড়ে যায়। 
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
+একদমই অপারগ হলে ৩ টি ফাংশন প্যারামিটার ব্যবহার করা উচিত। তবে আদর্শ হল ২ বা তার কম। এর থেকে বেশি প্যারামিটার হলে তাদেরকে একটা অবজেক্ট এর মধ্যে একত্রীকরণের মাধ্যমে প্যারামিটার এর সংখ্যা কমিয়ে আনতে হবে। 
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+যেহেতু জাভাস্ক্রিপ্ট এ  অবজেক্ট তৈরি করতে গেলে ক্লাস বয়লারপ্লেট লাগে না, তাই যদি তোমার অনেকগুলো প্যারামিটার প্রয়োজন হয় তবে তুমি অবজেক্ট ব্যবহার করতে পার। 
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
-
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-3. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+একটা ফাংশনে কি কি প্যারামিটার আসলে যাচ্ছে তা বুঝানোর জন্য ES2015/ES6 এর destructuring syntax ব্যবহার করতে পার। এটার কিছু সুবিধা আছে, 
+1. যখন কেউ ফাংশন সিগনেচার দেখবে তখনি বুঝে ফেলবে কি কি প্যারামিটার দেয়া হচ্ছে ফাংশনের মধ্যে। 
+2. Destructring করলে, ফাংশনের আর্গুমেন্ট হিসেবে যে প্রিমিটিভ ভ্যালু দেয়া হয়েছে সেগুলো ক্লোন হয়ে যায়। যা কিনা আমাদের কে সাইড ইফেক্ট প্রতিরোধ করতে সহায়তা করে। তবে মাথায় রাখতে হবে, যদি এরে বা অবজেক্ট destructure করা হয়, সেক্ষেত্রে এরা ক্লোন হয় না। 
+3. অব্যবহৃত প্যারামিটার খুঁজে বের করতে লীনটার আমাদের হেল্প করতে পারে। কিন্তু Destructure না করলে হয়ত এটা সম্ভব হত না। 
 
 **খারাপ কোড:**
 
@@ -259,13 +243,9 @@ createMenu({
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Functions should do one thing
+### প্রতিটা ফাংশনের শুধু মাত্র একটি কাজ করা উচিত
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, they can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+সফটওয়্যার ইঞ্জিনিয়ারিং এ এখন পর্যন্ত এটাই সব থেকে গুরুত্তপুর্ন নীতি। যেসব ফাংশন যদি একের অধিক কাজ করে, সেসব ফাংশন টেস্ট করা, অন্য যায়গায় পুনব্যবহার করা কঠিন হয়ে যায়। একটি ফাংশন যদি কেবল একটি কাজ করে তবে তোমার কোড সুপাঠ্য এবং সহজে পুনরায় লেখা যাবে। তুমি যদি এই গাইডের আর কিছু না গ্রহণ করে  শুধু এই নিয়মটি গ্রহণ কর, তাহলেই তুমি অন্য ডেভেলপের থেকে অনেক এগিয়ে যাবে। 
 
 **খারাপ কোড:**
 
@@ -295,7 +275,7 @@ function isActiveClient(client) {
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Function names should say what they do
+### ফাংশনের নামেই বলা থাকতে হবে সেটি কি করে
 
 **খারাপ কোড:**
 
@@ -323,11 +303,9 @@ addMonthToDate(1, date);
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Functions should only be one level of abstraction
+### ফাংশনে শুধু একধাপ অ্যাবস্ট্রাকশন থাকতে পারবে 
 
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+তোমার ফাংশনে একের অধিক ধাপে অ্যাবস্ট্রাকশন থাকা মানেই তোমার ফাংশন একের অধিক কাজ করছে। একে বিভিন্ন ছোটছোট ভাগে বিভক্ত করলে পুনরায় ব্যবহার করা , টেস্টিং করা সহজ হয়ে যায়। 
 
 **খারাপ কোড:**
 
@@ -395,28 +373,15 @@ function parse(tokens) {
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Remove duplicate code
+### ডুপ্লিকেট কোড থাকা যাবে না
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+তোমার সর্বোচ্চ চেষ্টা করবে যেন ডুপ্লিকেট কোড না থাকে। ডুপ্লিকেট কোড থাকা মানেই, কখনো কোন একটার লজিক পরিবর্তন করা লাগলে তোমার সবগুলো ডুপ্লিকেট কোডে পরিবর্তন করা লাগবে। 
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+চিন্তা কর তুমি একটা রেস্টুরেন্ট এ আছো এবং তোমার কাজ হচ্ছে রেস্টুরেন্ট এর স্টোরে কি কি আছে সেগুলোর খবর রাখা। মানে হল রেস্টুরেন্টে কতটুকু টমাটো, পেঁয়াজ, হলুদ, মশলা আছে সেগুলোর হিসাব রাখা। তুমি যদি অনেকগুলো যায়গায় এদের হিসাব রাখ, কোন একটার হিশাব কমলে বা বাড়লে তোমার সব লিস্টে পরিবর্তন করা লাগবে। কিন্তু তুমি যদি একটা লিস্টে এদের হিসাব রাখতে তাহলে একটা লিস্টে পরিবর্তন করলেই হত। 
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+মাঝে মাঝে এমন হয় যে আমাদের ডুপ্লিকেট কোড লিখতে হয়, কারণ দেখা যায়, ২ টা ফাংশন প্রায় একই কাজ করছে শুধু সামান্য একটু পার্থক্য আছে। এই সামান্য পার্থক্যের জন্য আমাদের ২ টা ফাংশন লেখা লাগে। এক্ষেত্রে একটা সমাধান হল, একটা অ্যাবস্ট্রাকশন তৈরি করা। 
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the _Classes_ section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+এই অ্যাবস্ট্রাকশনটা ঠিকঠাক ভাবে করতে পারা খুবই গুরুত্বপুর্ন। একারণে তোমার উচিত _ক্লাস_ অধ্যায়ে বর্নিত SOLID প্রিন্সিপাল মেনে চলা। ভুল অ্যাবস্ট্রাকশন ডুপ্লিকেট কোড থেকেও ক্ষতিকর, অতএব সাধু সাবধান! তুমি যদি সঠিক ভাবে অ্যাবস্ট্রাকশন তৈরি করতে পার তবে করে ফেল। তা নাহলে একটা পরিবর্তনের জন্য একাধিক জায়গায় পরিবর্তন করা লাগবে। 
 
 **খারাপ কোড:**
 
@@ -444,7 +409,7 @@ function showManagerList(managers) {
     const data = {
       expectedSalary,
       experience,
-      portfolio
+      portfolio### Function names should say what they do
     };
 
     render(data);
@@ -481,7 +446,7 @@ function showEmployeeList(employees) {
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Set default objects with Object.assign
+### ডিফল্ট অবজেক্ট সেট করার সময় Object.assign ব্যবহার কর
 
 **খারাপ কোড:**
 
@@ -534,9 +499,9 @@ createMenu(menuConfig);
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Don't use flags as function parameters
+### ফাংশন প্যারামিটার হিসেবে ফ্ল্যাগ ব্যবহার করবে না 
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+ফ্ল্যাগ ব্যবহার করলে তোমার কোড রিভিওয়ার বুঝতে পারে যে এই ফাংশনটি একাধিক কাজ করছে। যদি ফ্ল্যাগ এর ভ্যালু এর উপর নির্ভর করে তোমার কোডফ্লো বিভিন্ন দিকে যায়, তবে তাদের কে আলাদা ফাংশনে রূপান্তরিত কর। তারপর তোমার ফ্ল্যাগ এর উপর নির্ভর করে বিভিন্ন ফাংশন কে কল কর। 
 
 **খারাপ কোড:**
 
@@ -563,6 +528,7 @@ function createTempFile(name) {
 ```
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
+
 
 ### Avoid Side Effects (part 1)
 
