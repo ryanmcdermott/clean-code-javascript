@@ -87,7 +87,7 @@ setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Use explanatory variables
+### নাম দেখেই যেন বুঝা যায় এইরকমভাবে ভ্যারিয়েবল এর নামকরন করতে হবে। 
 
 **খারাপ কোড:**
 
@@ -111,9 +111,9 @@ saveCityZipCode(city, zipCode);
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Avoid Mental Mapping
+### মেন্টাল ম্যাপিং এড়িয়ে চলতে হবে
 
-Explicit is better than implicit.
+নাই মামার চেয়ে কানা মামা ভালো। ভ্যারিয়েবলের নামকরনের সময় এর খেয়াল রাখতে হবে নাম থেকে যেন এর কাজ বুঝা যায়। 
 
 **খারাপ কোড:**
 
@@ -146,10 +146,9 @@ locations.forEach(location => {
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Don't add unneeded context
+### অপ্রয়োজনীয় কন্টেক্সট যোগ করার দরকার নেই
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+ক্লাস/অবজেক্ট এর নাম থেকে কোন তথ্য জানা গেলে সেই তথ্য আবার ভ্যারিয়েবলের নামের মধ্যে রাখার দরকার নেই। 
 
 **খারাপ কোড:**
 
@@ -181,12 +180,9 @@ function paintCar(car) {
 
 **[⬆ উপরে ফিরে যেতে এখানে ক্লিক করতে হবে](#সূচিপত্র)**
 
-### Use default arguments instead of short circuiting or conditionals
+### শর্ট সার্কিটিং/কন্ডিশনাল স্টেটমেন্ট থেকে ডিফন্ট ভ্যালু ব্যবহার করা ভালো। 
 
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+শর্ট সার্কিটিং থেকে ডিফল্ট আর্গুমেন্ট  অনেক বেশি পরিচ্ছন্ন। তবে এটা মাথায় রাখতে হবে যে, যদি আমরা ফাংশনে ডিফল্ট আর্গুমেন্ট  ব্যবহার করি তবে অসঙ্গায়িত আর্গুমেন্ট এর ক্ষেত্রেই শুধু মাত্র ডিফল্ট ভ্যালু ব্যবহৃত হবে। অন্যান্য falsy ভ্যালু, যেমনঃ `''`, `""`, `false`, `null`, `0`, এবং `NaN`, এগুলোর পরিবর্তে ডিফল্ট ভ্যালু বসবে না। 
 
 **খারাপ কোড:**
 
