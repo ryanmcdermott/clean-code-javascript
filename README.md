@@ -1132,6 +1132,26 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 **[⬆ back to top](#table-of-contents)**
 
+### Use Optional Chaining
+
+The optional chaining operator ?. permits reading the value of a property
+located deep within a chain of connected objects without having to expressly
+validate that each reference in the chain is valid.
+
+**Bad:**
+
+```javascript
+const name = user && user.profile && user.profile.name;
+```
+
+**Good:**
+
+```javascript
+const name = user?.profile?.name;
+```
+
+**[⬆ back to top](#table-of-contents)**
+
 ## **Classes**
 
 ### Prefer ES2015/ES6 classes over ES5 plain functions
