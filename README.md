@@ -1134,7 +1134,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 ### Use Optional Chaining
 
-The optional chaining operator ?. permits reading the value of a property
+The optional chaining operator `?.` permits reading the value of a property
 located deep within a chain of connected objects without having to expressly
 validate that each reference in the chain is valid.
 
