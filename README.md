@@ -251,11 +251,12 @@ destructuring syntax. This has a few advantages:
 
 1. When someone looks at the function signature, it's immediately clear what
    properties are being used.
-2. Destructuring also clones the specified primitive values of the argument
+2. It can be used to simulate named parameters.
+3. Destructuring also clones the specified primitive values of the argument
    object passed into the function. This can help prevent side effects. Note:
    objects and arrays that are destructured from the argument object are NOT
    cloned.
-3. Linters can warn you about unused properties, which would be impossible
+4. Linters can warn you about unused properties, which would be impossible
    without destructuring.
 
 **Bad:**
@@ -264,6 +265,9 @@ destructuring syntax. This has a few advantages:
 function createMenu(title, body, buttonText, cancellable) {
   // ...
 }
+
+createMenu("Foo", "Bar", "Baz", true);
+
 ```
 
 **Good:**
