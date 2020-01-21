@@ -650,7 +650,7 @@ then any other function that uses that `cart` array will be affected by this
 addition. That may be great, however it can be bad too. Let's imagine a bad
 situation:
 
-The user clicks the "Purchase", button which calls a `purchase` function that
+The user clicks the "Purchase" button which calls a `purchase` function that
 spawns a network request and sends the `cart` array to the server. Because
 of a bad network connection, the `purchase` function has to keep retrying the
 request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
