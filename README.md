@@ -543,7 +543,7 @@ const menuConfig = {
 };
 
 function createMenu(config) {
-  config = Object.assign(
+  let finalConfig = Object.assign(
     {
       title: "Foo",
       body: "Bar",
@@ -552,7 +552,7 @@ function createMenu(config) {
     },
     config
   );
-
+  return finalConfig
   // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
