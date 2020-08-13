@@ -15,6 +15,8 @@
 11. [Comments](#comments)
 12. [Translation](#translation)
 
+**A translated version of this document has been created by volunteers. If you're not good at English, check out [Tranlation](#translation)!**
+
 ## Introduction
 
 ![Humorous image of software quality estimation as a count of how many expletives
