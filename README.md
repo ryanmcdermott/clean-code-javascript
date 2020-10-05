@@ -643,26 +643,29 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 ### Avoid Side Effects (part 2)
 
-In JavaScript, primitives are passed by value and objects/arrays are passed by
-reference. In the case of objects and arrays, if your function makes a change
-in a shopping cart array, for example, by adding an item to purchase,
-then any other function that uses that `cart` array will be affected by this
-addition. That may be great, however it can be bad too. Let's imagine a bad
-situation:
+In JavaScript, some values are unchangeable (immutable) and some are changeable 
+(mutable). Objects and arrays are two kinds of mutable values so it's important 
+to handle them carefully when they're passed as parameters to a function. A 
+JavaScript function can change an object's properties or alter the contents of 
+an array which could easily cause bugs elsewhere.
+
+Suppose there's a function that accepts an array parameter representing a 
+shopping cart. If the function makes a change in that shopping cart array 
+- by adding an item to purchase, for example - then any other function that 
+uses that same `cart` array will be affected by this addition. That may be 
+great, however it could also be bad. Let's imagine a bad situation:
 
 The user clicks the "Purchase" button which calls a `purchase` function that
 spawns a network request and sends the `cart` array to the server. Because
 of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks "Add to Cart"
+request. Now, what if in the meantime the user accidentally clicks an "Add to Cart"
 button on an item they don't actually want before the network request begins?
 If that happens and the network request begins, then that purchase function
-will send the accidentally added item because it has a reference to a shopping
-cart array that the `addItemToCart` function modified by adding an unwanted
-item.
+will send the accidentally added item because the `cart` array was modified.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`,
-edit it, and return the clone. This ensures that no other functions that are
-holding onto a reference of the shopping cart will be affected by any changes.
+A great solution would be for the `addItemToCart` function to always clone the 
+`cart`, edit it, and return the clone. This would ensure that functions that are still
+using the old shopping cart wouldn't be affected by the changes.
 
 Two caveats to mention to this approach:
 
