@@ -25,7 +25,7 @@ Software engineering principles, from Robert C. Martin's book
 adapted for JavaScript. This is not a style guide. It's a guide to producing
 [readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
+Not every principle here in has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
 ones codified over many years of collective experience by the authors of
 _Clean Code_.
