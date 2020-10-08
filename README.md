@@ -650,8 +650,8 @@ JavaScript function can change an object's properties or alter the contents of
 an array which could easily cause bugs elsewhere.
 
 Suppose there's a function that accepts an array parameter representing a 
-shopping cart. If the function makes a change in that shopping cart array 
-- by adding an item to purchase, for example - then any other function that 
+shopping cart. If the function makes a change in that shopping cart array - 
+by adding an item to purchase, for example - then any other function that 
 uses that same `cart` array will be affected by this addition. That may be 
 great, however it could also be bad. Let's imagine a bad situation:
 
