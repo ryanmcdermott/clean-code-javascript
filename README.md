@@ -2380,5 +2380,6 @@ This is also available in other languages:
 - ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Turkish**: [bsonmez/clean-code-javascript](https://github.com/bsonmez/clean-code-javascript/tree/turkish-translation)
 - ![ua](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Ukraine.png) **Ukrainian**: [mindfr1k/clean-code-javascript-ua](https://github.com/mindfr1k/clean-code-javascript-ua)
 - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
+- ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Myanmar.png) **Myanmar(Burmese)**: [htutwaiphyoe/clean-code-javascript/](https://github.com/htutwaiphyoe/clean-code-javascript/)
 
 **[⬆ back to top](#table-of-contents)**
