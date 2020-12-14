@@ -1087,7 +1087,7 @@ function crearCuentaBancaria() {
 
   // Un "setter", hecho público a través del objeto que retornamos abajo
   function introducirBalance(cantidad) {
-    // ... validamos antes de hcaer un balance
+    // ... validamos antes de hacer un balance
     balance = cantidad;
   }
 
