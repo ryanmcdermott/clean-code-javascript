@@ -45,6 +45,42 @@ improvement. Beat up the code instead!
 
 ## **Variables**
 
+### Use let/const instead of var
+
+Using let/const instead of var gives clarity on whether the value changes throughout the program or not. 
+
+This can help in a clear understanding of the program and also helps to reduce the comments.
+
+**Bad:**
+
+```javascript
+// Values that won't change
+var PI = 3.141592653589793238;
+var todo = [
+  "Read a book",
+  "Learn Javasciprt"
+];
+
+// Values that will change
+var userName = "John doe.";
+var userAge = 23;
+```
+
+**Good:**
+
+```javascript
+const PI = 3.141592653589793238;
+const todo = [
+  "Read a book",
+  "Learn Javasciprt"
+];
+
+let userName = "John doe.";
+let userAge = 23;
+```
+
+**[⬆ back to top](#table-of-contents)**
+
 ### Use meaningful and pronounceable variable names
 
 **Bad:**
