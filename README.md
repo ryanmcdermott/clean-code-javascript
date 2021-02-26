@@ -13,7 +13,8 @@
 9. [Error Handling](#error-handling)
 10. [Formatting](#formatting)
 11. [Comments](#comments)
-12. [Translation](#translation)
+12. [Streamlining](#streamlining)
+13. [Translation](#translation)
 
 ## Introduction
 
@@ -2350,6 +2351,32 @@ $scope.model = {
 const actions = function() {
   // ...
 };
+```
+**[⬆ back to top](#table-of-contents)**
+
+## **Streamlining**
+Code should be simple enough to understand. There are many features and capbility in new versions of javascript that make codes be simpler and let us streamline them. 
+
+### Use map
+
+if we have to write a method that takes an array of number and return the new array with each number in array double its value. This can be implemented as.
+
+**Bad:**
+
+```javascript
+const doubleList = list => {
+  const newList =[];
+  for (var i=0; i<list.length; i++) {
+    newList[i] = list[i] * 2;
+  }
+  return newList;
+};
+```
+
+**Good:**
+
+```javascript
+const doubleList = list => list.map(x => x * 2);
 ```
 
 **[⬆ back to top](#table-of-contents)**
