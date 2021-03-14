@@ -177,12 +177,11 @@ variable name.
 const Car = {
   carMake: "Honda",
   carModel: "Accord",
-  carColor: "Blue"
+  carColor: "Blue",
+  paintCar: function(color) {
+    this.carColor = color;
+  }
 };
-
-function paintCar(car) {
-  car.carColor = "Red";
-}
 ```
 
 **Good:**
@@ -191,12 +190,11 @@ function paintCar(car) {
 const Car = {
   make: "Honda",
   model: "Accord",
-  color: "Blue"
+  color: "Blue",
+  paint: function(color){
+    this.color = color
+  }
 };
-
-function paintCar(car) {
-  car.color = "Red";
-}
 ```
 
 **[⬆ back to top](#table-of-contents)**
