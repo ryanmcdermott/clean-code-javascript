@@ -201,12 +201,9 @@ function paintCar(car) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Use default parameters instead of short circuiting or conditionals
 
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+Default parameters are often cleaner than short circuiting.
 
 **Bad:**
 
@@ -224,6 +221,46 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
   // ...
 }
 ```
+**Note**:
+  Be aware that if you use `Default parameters`, your function will only provide default values for `undefined` parameters. Other **`falsy`** values such as **`''`**, **`""`**, **`false`**, **`null`**, **`0`**, and  **`NaN`**, will not be replaced by a default value.
+</details>
+<details>
+<summary>
+<i>Default parameters (click to see)</i>
+</summary>
+
+```javascript
+function foo(name = "foo") {
+ console.log(name);
+}
+foo(); // foo
+foo(undefined); // foo
+foo(null); // null
+foo(0); // 0
+//...
+```
+
+</details>
+
+</details>
+<details>
+<summary>
+<i>Default value using || (click to see)</i>
+</summary>
+
+```javascript
+function boo(name) {
+  name = name || "boo";
+  console.log(name);
+}
+boo(); //boo
+boo(undefined); //boo
+boo(null); //boo
+boo(0); //boo
+//...
+```
+
+</details>
 
 **[⬆ back to top](#table-of-contents)**
 
