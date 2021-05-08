@@ -987,7 +987,8 @@ they are fixed if they can be.
 ```javascript
 // On old browsers, each iteration with uncached `list.length` would be costly
 // because of `list.length` recomputation. In modern browsers, this is optimized.
-for (let i = 0, len = list.length; i < len; i++) {
+const len = list.length;
+for (let i = 0; i < len; i++) {
   // ...
 }
 ```
