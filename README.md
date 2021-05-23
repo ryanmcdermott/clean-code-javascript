@@ -100,9 +100,9 @@ setTimeout(blastOff, 86400000);
 
 ```javascript
 // Declare them as capitalized named constants.
-const MILLISECONDS_IN_A_DAY = 60 * 60 * 24 * 1000; //86400000;
+const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 
-setTimeout(blastOff, MILLISECONDS_IN_A_DAY);
+setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
 **[⬆ back to top](#table-of-contents)**
