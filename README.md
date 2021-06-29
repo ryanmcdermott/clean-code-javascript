@@ -511,6 +511,12 @@ function showEmployeeList(employees) {
 
 ### Set default objects with Object.assign
 
+When using default objects, always make it a point to copy over any
+values using Object.assign. This way, you'll avoid causing side
+effects/unexpected behavior since you won't be mutating the object that
+is passed in by reference, you'll just be using the copied values
+of that object.
+
 **Bad:**
 
 ```javascript
