@@ -1764,22 +1764,16 @@ inventoryTracker.requestItems();
 
 ## **Testare**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](https://gotwarlost.github.io/istanbul/).
+Testarea este mai importanta decat livrarea. Daca nu ai teste sau ai teste insuficiente,
+atunci cand livrezi codul nu poti fi sigur ca nu ai defectat ceva. Daca ai acoperire totala,
+vei avea incredere maxima in codul scris si vei fi mult mai linistit. Pe langa un framework grozav
+de testare, vei avea nevoie si de o [unealta buna de acoperire](https://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testare-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Nu exista nicio scuza pentru a nu scrie teste. Exista [o multime de framework-uri pentru teste in JavaScript](https://jstherightway.org/#testare-tools),
+asa ca gaseste-o pe cea care o prefera echipa si testeaza tot! Daca metoda ta preferata este Test Driven Development (TDD), este perfect! Ideea principala
+este sa te asiguri ca ai acoperit codul ca sa nu apara erori neasteptate dupa lansarea actualizarilor in urma modificarilor sau refactorizarilor.
 
-### Single concept per test
+### Testeaza individual
 
 **Gresit:**
 
@@ -1835,10 +1829,10 @@ describe("MomentJS", () => {
 
 ## **Concurenta**
 
-### Use Promises, not callbacks
+### Foloseste Promises, nu callback-uri
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+Callback-urile nu mai reprezinta o metoda buna, generand "spaghetti code" (cantitati excesive de cod inconjurat de alte cantitati excesive de cod ("nesting")).
+Cu ES2015/ES6, Promises sunt un tip global incorporat.
 
 **Gresit:**
 
@@ -1884,13 +1878,11 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await sunt si mai bune decat Promises
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Promises sunt o alternativa foarte buna pentru callback-uri, dar ES2017/ES8 a adus async si await, care ofera o solutie
+si mai curata. Tot ce ai nevoie este o functie cu prefixul `async` si poti scrie logica imperativa a programului fara un lant
+de functii `then`.
 
 **Gresit:**
 
