@@ -4,15 +4,15 @@
 
 1. [Introducere](#introducere)
 2. [Variabile](#variabile)
-3. [Functii](#functions)
-4. [Obiecte si structuri de date](#objects-and-data-structures)
-5. [Clase](#classes)
+3. [Functii](#functii)
+4. [Obiecte si structuri de date](#obiecte-si-structuri-de-date)
+5. [Clase](#clase)
 6. [SOLID](#solid)
-7. [Testare](#testing)
-8. [Concurenta](#concurrency)
-9. [Manipularea erorilor](#error-handling)
-10. [Formatare](#formatting)
-11. [Comentarii](#comments)
+7. [Testare](#testare)
+8. [Concurenta](#concurenta)
+9. [Manipularea erorilor](#manipularea-erorilor)
+10. [Formatare](#formatare)
+11. [Comentarii](#comentarii)
 
 ## Introducere
 
@@ -48,7 +48,7 @@ const yyyymmdstr = moment().format("YYYY/MM/DD");
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Foloseste acelasi vocabular pentru acelasi tip de variabila
 
@@ -66,7 +66,7 @@ getCustomerRecord();
 getUser();
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Use searchable names
 
@@ -94,7 +94,7 @@ const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Use explanatory variables
 
@@ -118,7 +118,7 @@ const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Avoid Mental Mapping
 
@@ -153,7 +153,7 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Don't add unneeded context
 
@@ -188,7 +188,7 @@ function paintCar(car, color) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Use default arguments instead of short circuiting or conditionals
 
@@ -214,7 +214,7 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **Functii**
 
@@ -274,7 +274,7 @@ createMenu({
 });
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Functions should do one thing
 
@@ -310,7 +310,7 @@ function isActiveClient(client) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Function names should say what they do
 
@@ -338,7 +338,7 @@ const date = new Date();
 addMonthToDate(1, date);
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Functions should only be one level of abstraction
 
@@ -410,7 +410,7 @@ function parse(tokens) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Remove duplicate code
 
@@ -496,7 +496,7 @@ function showEmployeeList(employees) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Set default objects with Object.assign
 
@@ -549,7 +549,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Don't use flags as function parameters
 
@@ -579,7 +579,7 @@ function createTempFile(name) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Avoid Side Effects (part 1)
 
@@ -628,7 +628,7 @@ console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Avoid Side Effects (part 2)
 
@@ -684,7 +684,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Don't write to global functions
 
@@ -718,7 +718,7 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Favor functional programming over imperative programming
 
@@ -783,7 +783,7 @@ const totalOutput = programmerOutput.reduce(
 );
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Encapsulate conditionals
 
@@ -807,7 +807,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Avoid negative conditionals
 
@@ -835,7 +835,7 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Avoid conditionals
 
@@ -895,7 +895,7 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Avoid type-checking (part 1)
 
@@ -924,7 +924,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Avoid type-checking (part 2)
 
@@ -961,7 +961,7 @@ function combine(val1, val2) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Don't over-optimize
 
@@ -989,7 +989,7 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Remove dead code
 
@@ -1023,7 +1023,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **Obiecte si structuri de date**
 
@@ -1086,7 +1086,7 @@ const account = makeBankAccount();
 account.setBalance(100);
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Make objects have private members
 
@@ -1126,7 +1126,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **Clase**
 
@@ -1213,7 +1213,7 @@ class Human extends Mammal {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Use method chaining
 
@@ -1293,7 +1293,7 @@ class Car {
 const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Prefer composition over inheritance
 
@@ -1363,7 +1363,7 @@ class Employee {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **SOLID**
 
@@ -1425,7 +1425,7 @@ class UserSettings {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Open/Closed Principle (OCP)
 
@@ -1516,7 +1516,7 @@ class HttpRequester {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Liskov Substitution Principle (LSP)
 
@@ -1635,7 +1635,7 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Interface Segregation Principle (ISP)
 
@@ -1713,7 +1713,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Dependency Inversion Principle (DIP)
 
@@ -1816,7 +1816,7 @@ const inventoryTracker = new InventoryTracker(
 inventoryTracker.requestItems();
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **Testare**
 
@@ -1828,7 +1828,7 @@ you achieve very high confidence and developer peace of mind. This means that
 in addition to having a great testing framework, you also need to use a
 [good coverage tool](https://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools), so find one that your team prefers.
+There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testare-tools), so find one that your team prefers.
 When you find one that works for your team, then aim to always write tests
 for every new feature/module you introduce. If your preferred method is
 Test Driven Development (TDD), that is great, but the main point is to just
@@ -1887,7 +1887,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **Concurenta**
 
@@ -1938,7 +1938,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Async/Await are even cleaner than Promises
 
@@ -1987,7 +1987,7 @@ async function getCleanCodeArticle() {
 getCleanCodeArticle()
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **Manipularea erorilor**
 
@@ -2066,7 +2066,7 @@ getdata()
   });
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **Formatare**
 
@@ -2117,7 +2117,7 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Function callers and callees should be close
 
@@ -2205,7 +2205,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **Comentarii**
 
@@ -2252,7 +2252,7 @@ function hashIt(data) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Don't leave commented out code in your codebase
 
@@ -2273,7 +2273,7 @@ doStuff();
 doStuff();
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Don't have journal comments
 
@@ -2302,7 +2302,7 @@ function combine(a, b) {
 }
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Avoid positional markers
 
@@ -2341,4 +2341,4 @@ const actions = function() {
 };
 ```
 
-**[⬆ inapoi la cuprins](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
