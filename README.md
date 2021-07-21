@@ -1,6 +1,6 @@
 # clean-code-javascript
 
-## Table of Contents
+## Cuprins
 
 1. [Introducere](#introduction)
 2. [Variabile](#variables)
@@ -16,8 +16,7 @@
 
 ## Introducere
 
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
+![Imagine umoristica a estimarii calitatii software-ului drept numarul de momente de confuzie cand recitesti codul](https://www.osnews.com/images/comics/wtfm.jpg)
 
 Software engineering principles, from Robert C. Martin's book
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
@@ -46,13 +45,13 @@ improvement. Beat up the code instead!
 
 ### Use meaningful and pronounceable variable names
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
@@ -62,7 +61,7 @@ const currentDate = moment().format("YYYY/MM/DD");
 
 ### Use the same vocabulary for the same type of variable
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 getUserInfo();
@@ -70,7 +69,7 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 getUser();
@@ -88,14 +87,14 @@ Make your names searchable. Tools like
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 can help identify unnamed constants.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 // What the heck is 86400000 for?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 // Declare them as capitalized named constants.
@@ -108,7 +107,7 @@ setTimeout(blastOff, MILLISECONDS_PER_DAY);
 
 ### Use explanatory variables
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -119,7 +118,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -134,7 +133,7 @@ saveCityZipCode(city, zipCode);
 
 Explicit is better than implicit.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -149,7 +148,7 @@ locations.forEach(l => {
 });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -170,7 +169,7 @@ locations.forEach(location => {
 If your class/object name tells you something, don't repeat that in your
 variable name.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const Car = {
@@ -184,7 +183,7 @@ function paintCar(car, color) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const Car = {
@@ -207,7 +206,7 @@ use them, your function will only provide default values for `undefined`
 arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
 `NaN`, will not be replaced by a default value.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -216,7 +215,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
@@ -258,7 +257,7 @@ destructuring syntax. This has a few advantages:
 4. Linters can warn you about unused properties, which would be impossible
    without destructuring.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -269,7 +268,7 @@ createMenu("Foo", "Bar", "Baz", true);
 
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
@@ -294,7 +293,7 @@ When you can isolate a function to just one action, it can be refactored
 easily and your code will read much cleaner. If you take nothing else away from
 this guide other than this, you'll be ahead of many developers.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function emailClients(clients) {
@@ -307,7 +306,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function emailActiveClients(clients) {
@@ -324,7 +323,7 @@ function isActiveClient(client) {
 
 ### Function names should say what they do
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function addToDate(date, month) {
@@ -337,7 +336,7 @@ const date = new Date();
 addToDate(date, 1);
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function addMonthToDate(month, date) {
@@ -356,7 +355,7 @@ When you have more than one level of abstraction your function is usually
 doing too much. Splitting up functions leads to reusability and easier
 testing.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -383,7 +382,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -445,7 +444,7 @@ worse than duplicate code, so be careful! Having said this, if you can make
 a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
 updating multiple places anytime you want to change one thing.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function showDeveloperList(developers) {
@@ -479,7 +478,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function showEmployeeList(employees) {
@@ -510,7 +509,7 @@ function showEmployeeList(employees) {
 
 ### Set default objects with Object.assign
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const menuConfig = {
@@ -531,7 +530,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const menuConfig = {
@@ -565,7 +564,7 @@ createMenu(menuConfig);
 
 Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function createFile(name, temp) {
@@ -577,7 +576,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function createFile(name) {
@@ -608,7 +607,7 @@ without any structure, using mutable data types that can be written to by anythi
 and not centralizing where your side effects occur. If you can do this, you will
 be happier than the vast majority of other programmers.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 // Global variable referenced by following function.
@@ -624,7 +623,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function splitIntoFirstAndLastName(name) {
@@ -678,7 +677,7 @@ Two caveats to mention to this approach:
    this kind of programming approach to be fast and not as memory intensive as
    it would be for you to manually clone objects and arrays.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -686,7 +685,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -708,7 +707,7 @@ to do the same thing. What if that other library was just using `diff` to find
 the difference between the first and last elements of an array? This is why it
 would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -717,7 +716,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class SuperArray extends Array {
@@ -736,7 +735,7 @@ JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages can be cleaner and easier to test.
 Favor this style of programming when you can.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const programmerOutput = [
@@ -765,7 +764,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const programmerOutput = [
@@ -797,7 +796,7 @@ const totalOutput = programmerOutput.reduce(
 
 ### Encapsulate conditionals
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 if (fsm.state === "fetching" && isEmpty(listNode)) {
@@ -805,7 +804,7 @@ if (fsm.state === "fetching" && isEmpty(listNode)) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
@@ -821,7 +820,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 
 ### Avoid negative conditionals
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function isDOMNodeNotPresent(node) {
@@ -833,7 +832,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function isDOMNodePresent(node) {
@@ -858,7 +857,7 @@ one thing. When you have classes and functions that have `if` statements, you
 are telling your user that your function does more than one thing. Remember,
 just do one thing.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class Airplane {
@@ -876,7 +875,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class Airplane {
@@ -914,7 +913,7 @@ Sometimes you are bitten by this freedom and it becomes tempting to do
 type-checking in your functions. There are many ways to avoid having to do this.
 The first thing to consider is consistent APIs.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -926,7 +925,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -948,7 +947,7 @@ doesn't make up for the lost readability. Keep your JavaScript clean, write
 good tests, and have good code reviews. Otherwise, do all of that but with
 TypeScript (which, like I said, is a great alternative!).
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function combine(val1, val2) {
@@ -963,7 +962,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function combine(val1, val2) {
@@ -981,7 +980,7 @@ resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
 for seeing where optimization is lacking. Target those in the meantime, until
 they are fixed if they can be.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 // On old browsers, each iteration with uncached `list.length` would be costly
@@ -991,7 +990,7 @@ for (let i = 0, len = list.length; i < len; i++) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 for (let i = 0; i < list.length; i++) {
@@ -1007,7 +1006,7 @@ Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
 in your version history if you still need it.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function oldRequestModule(url) {
@@ -1022,7 +1021,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function newRequestModule(url) {
@@ -1051,7 +1050,7 @@ unorganized list of reasons why:
 - You can lazy load your object's properties, let's say getting it from a
   server.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function makeBankAccount() {
@@ -1067,7 +1066,7 @@ const account = makeBankAccount();
 account.balance = 100;
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function makeBankAccount() {
@@ -1102,7 +1101,7 @@ account.setBalance(100);
 
 This can be accomplished through closures (for ES5 and below).
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const Employee = function(name) {
@@ -1119,7 +1118,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function makeEmployee(name) {
@@ -1147,7 +1146,7 @@ definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
 classes until you find yourself needing larger and more complex objects.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const Animal = function(age) {
@@ -1187,7 +1186,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class Animal {
@@ -1233,7 +1232,7 @@ For that reason, I say, use method chaining and take a look at how clean your co
 will be. In your class functions, simply return `this` at the end of every function,
 and you can chain further class methods onto it.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class Car {
@@ -1265,7 +1264,7 @@ car.setColor("pink");
 car.save();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class Car {
@@ -1324,7 +1323,7 @@ makes more sense than composition:
 3. You want to make global changes to derived classes by changing a base class.
    (Change the caloric expenditure of all animals when they move).
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class Employee {
@@ -1348,7 +1347,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class EmployeeTaxData {
@@ -1388,7 +1387,7 @@ It's important because if too much functionality is in one class and you modify
 a piece of it, it can be difficult to understand how that will affect other
 dependent modules in your codebase.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class UserSettings {
@@ -1408,7 +1407,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class UserAuth {
@@ -1444,7 +1443,7 @@ etc.) should be open for extension, but closed for modification." What does that
 mean though? This principle basically states that you should allow users to
 add new functionalities without changing existing code.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1488,7 +1487,7 @@ function makeHttpCall(url) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1543,7 +1542,7 @@ classic Square-Rectangle example. Mathematically, a square is a rectangle, but
 if you model it using the "is-a" relationship via inheritance, you quickly
 get into trouble.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class Rectangle {
@@ -1598,7 +1597,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class Shape {
@@ -1663,7 +1662,7 @@ huge amounts of options is beneficial, because most of the time they won't need
 all of the settings. Making them optional helps prevent having a
 "fat interface".
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class DOMTraverser {
@@ -1689,7 +1688,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class DOMTraverser {
@@ -1748,7 +1747,7 @@ and properties that an object/class exposes to another object/class. In the
 example below, the implicit contract is that any Request module for an
 `InventoryTracker` will have a `requestItems` method.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class InventoryRequester {
@@ -1781,7 +1780,7 @@ const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class InventoryTracker {
@@ -1847,7 +1846,7 @@ or refactoring an existing one.
 
 ### Single concept per test
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 import assert from "assert";
@@ -1871,7 +1870,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 import assert from "assert";
@@ -1906,7 +1905,7 @@ describe("MomentJS", () => {
 Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 import { get } from "request";
@@ -1930,7 +1929,7 @@ get(
 );
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1958,7 +1957,7 @@ in an `async` keyword, and then you can write your logic imperatively without
 a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
 today!
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1976,7 +1975,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 import { get } from "request-promise";
@@ -2015,7 +2014,7 @@ to the console. If you wrap any bit of code in a `try/catch` it means you
 think an error may occur there and therefore you should have a plan,
 or create a code path, for when it occurs.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 try {
@@ -2025,7 +2024,7 @@ try {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 try {
@@ -2046,7 +2045,7 @@ try {
 For the same reason you shouldn't ignore caught errors
 from `try/catch`.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 getdata()
@@ -2058,7 +2057,7 @@ getdata()
   });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 getdata()
@@ -2095,7 +2094,7 @@ JavaScript is untyped, so capitalization tells you a lot about your variables,
 functions, etc. These rules are subjective, so your team can choose whatever
 they want. The point is, no matter what you all choose, just be consistent.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2111,7 +2110,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2135,7 +2134,7 @@ If a function calls another, keep those functions vertically close in the source
 file. Ideally, keep the caller right above the callee. We tend to read code from
 top-to-bottom, like a newspaper. Because of this, make your code read that way.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class PerformanceReview {
@@ -2175,7 +2174,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class PerformanceReview {
@@ -2223,7 +2222,7 @@ review.perfReview();
 
 Comments are an apology, not a requirement. Good code _mostly_ documents itself.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function hashIt(data) {
@@ -2245,7 +2244,7 @@ function hashIt(data) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function hashIt(data) {
@@ -2268,7 +2267,7 @@ function hashIt(data) {
 
 Version control exists for a reason. Leave old code in your history.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 doStuff();
@@ -2277,7 +2276,7 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 doStuff();
@@ -2290,7 +2289,7 @@ doStuff();
 Remember, use version control! There's no need for dead code, commented code,
 and especially journal comments. Use `git log` to get history!
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 /**
@@ -2304,7 +2303,7 @@ function combine(a, b) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function combine(a, b) {
@@ -2319,7 +2318,7 @@ function combine(a, b) {
 They usually just add noise. Let the functions and variable names along with the
 proper indentation and formatting give the visual structure to your code.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
@@ -2338,7 +2337,7 @@ const actions = function() {
 };
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 $scope.model = {
