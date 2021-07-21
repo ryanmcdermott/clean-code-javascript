@@ -2,8 +2,8 @@
 
 ## Cuprins
 
-1. [Introducere](#introduction)
-2. [Variabile](#variables)
+1. [Introducere](#introducere)
+2. [Variabile](#variabile)
 3. [Functii](#functions)
 4. [Obiecte si structuri de date](#objects-and-data-structures)
 5. [Clase](#classes)
