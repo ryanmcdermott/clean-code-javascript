@@ -617,41 +617,41 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 ### Evita efectele secundare (Partea II)
 
-In JavaScript, some values are unchangeable (immutable) and some are changeable 
-(mutable). Objects and arrays are two kinds of mutable values so it's important 
-to handle them carefully when they're passed as parameters to a function. A 
-JavaScript function can change an object's properties or alter the contents of 
-an array which could easily cause bugs elsewhere.
+In JavaScript, unele valori sunt neschimbabile ("imutabile") si unele sunt
+schimbabile ("mutabile"). Obiectele si array-urile sunt 2 tipuri de valori
+mutabile, deci este important sa le manipulezi cu grija cand le trimiti drept
+parametrii spre o functie. O functie poate schimba o proprietate a unui obiect
+sau altera continutul unui array si poate genera un bug la care nici nu te-ai fi
+asteptat, totul intr-un mod foarte usor.
 
-Suppose there's a function that accepts an array parameter representing a 
-shopping cart. If the function makes a change in that shopping cart array - 
-by adding an item to purchase, for example - then any other function that 
-uses that same `cart` array will be affected by this addition. That may be 
-great, however it could also be bad. Let's imagine a bad situation:
+Presupunem ca este o functie care accepta un parametru array reprezentand un cos
+de cumparaturi. Daca functia face o modificare in array-ul cos de cumparaturi, adaugand
+un obiect spre cumparare, de exemplu, atunci orice alta functie care foloseste acelasi
+array drept cos va fi afectata de aceasta adaugare. Asta ar putea fi grozav, dar
+ar putea fi si groaznic! Sa ne imaginam o situatie nefavorabila:
 
-The user clicks the "Purchase" button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks an "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because the `cart` array was modified.
+Un utilizator apasa pe butonul de "Cumpara" care apeleaza functia `purchase`, trimitand
+un request si array-ul `cart` catre server. Din cauza unei probleme de Internet, functia
+`purchase` trebuie sa reincerce sa trimita request-ul. Acum, ce s-ar intampla daca utilizatorul
+apasa in acest timp, accidental, pe "Adauga in cos" la un obiect pe care nu il doreste, totul
+inainte ca request-ul sa fie finalizat cu succes? Daca presupunerea se intampla, atunci functia
+`purchase` va trimite accidental si obiectul adaugat din greseala in array-ul `cart`, deoarece
+array-ul va fi fost deja modificat.
 
-A great solution would be for the `addItemToCart` function to always clone the 
-`cart`, edit it, and return the clone. This would ensure that functions that are still
-using the old shopping cart wouldn't be affected by the changes.
+O solutie grozava ar fi pentru functia `addItemToCart` sa cloneze intotdeauna array-ul `cart`,
+sa-l editeze si sa returneze clona. Acest lucru ar asigura faptul ca functiile care folosesc in continuare
+array-ul vechi `cart` nu vor fi afectate de modificari.
 
-Two caveats to mention to this approach:
+Doua avertismente de mentionat pentru aceasta abordare:
 
-1. There might be cases where you actually want to modify the input object,
-   but when you adopt this programming practice you will find that those cases
-   are pretty rare. Most things can be refactored to have no side effects!
+1. Ar putea exista cazuri in care doriti sa modificati obiectul de input, dar cand adoptati
+aceasta practica de programare veti constata ca aceste cazuri sunt destul de rare. Majoritatea
+lucrurilor pot fi refactorizate pentru a nu avea efecte secundare.
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily,
-   this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
-   this kind of programming approach to be fast and not as memory intensive as
-   it would be for you to manually clone objects and arrays.
+2. Clonarea obiectelor mari poate fi foarte costisitoare din punct de vedere al performantei. Din fericire,
+aceasta nu este o problema importanta in practica, deoarece exista [librarii grozave](https://facebook.github.io/immutable-js/)
+care permit acest tip de abordare de programare sa fie rapida si nu la fel de intensa din punct de vedere
+al memoriei utilizate precum clonarea manuala de obiecte si array-uri.
 
 **Gresit:**
 
@@ -671,17 +671,15 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't write to global functions
+### Nu suprascrie functii globale
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+Poluarea spatiului global este o practica foarte rea in JavaScript, deoarece te-ai putea
+ciocni de alta librarie care a pus in practica aceasta metoda nedorita. Un exemplu ar fi:
+ce ar fi daca ai vrea sa extinzi metoda nativa Array a JavaScript pentru a adauga metoda
+`diff` care sa arate diferenta dintre 2 array-uri? Ai putea scrie noua ta functie in `Array.prototype`,
+dar te-ai putea ciocni de alta librarie care a incercat sa faca acelasi lucru. Ce ar fi daca acea
+librarie folosea `diff` pentru a gasi diferenta dintre primul si ultimul element al unui array? De aceea este
+de dorit sa folosesti, datorita ES2015/ES6, clase si sa extinzi `Array` global.
 
 **Gresit:**
 
@@ -705,11 +703,11 @@ class SuperArray extends Array {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Favor functional programming over imperative programming
+### Favorieaza paradigma programarii functionale impotriva celei imperative
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript nu este un limbaj functional asa cum este Haskell, dar cu siguranta
+poate fi folosit astfel. Limbajele functionale sunt adesea mai curate si mai usor
+de testat. Alege intotdeauna acest stil de programare cand poti!
 
 **Gresit:**
 
@@ -770,7 +768,7 @@ const totalOutput = programmerOutput.reduce(
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Encapsulate conditionals
+### Incapsuleaza conditiile
 
 **Gresit:**
 
@@ -794,7 +792,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid negative conditionals
+### Evita conditiile negative
 
 **Gresit:**
 
@@ -822,16 +820,13 @@ if (isDOMNodePresent(node)) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid conditionals
+### Evita conditiile
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+Aceasta pare o sarcina imposibila. La prima vedere, majoritatea oamenilor ar spune: "cum ar trebui sa fac ceva fara
+`if` ?" Raspunsul este ca puteti utiliza polimorfismul pentru a realiza aceeasi sarcina in multe cazuri. A doua intrebare
+este, de obicei, "Ok, dar de ce sa fac asta?", iar raspunsul este un concept mentionat anterior: o functie ar trebui sa faca
+un singur lucru. Cand aveti clase si functii cu instructiuni `if`, programatorul primeste informatia ca functia face mai mult de
+un lucru.
 
 **Gresit:**
 
@@ -882,12 +877,12 @@ class Cessna extends Airplane {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid type-checking (part 1)
+### Evita verificarea tipului variabilei (Partea I)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript nu impune tipuri stricte de date, ceea ce inseamna ca functiile pot primi
+orice tip de argument. Uneori aceasta libertate se intoarce impotriva ta si devine tentant
+sa faci verificarea tipului de date in interiorul functiei. Exista multe modalitati de a evita
+sa faci acest lucru. Primul lucru de luat in considerare sunt API-urile consistente.
 
 **Gresit:**
 
@@ -911,17 +906,16 @@ function travelToTexas(vehicle) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid type-checking (part 2)
+### Evita verificarea tipului variabilei (Partea II)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Daca lucerzi cu valori primitive de baza, cum ar fi siruri si numere intregi,
+si nu poti folosi polimorfismul, dar simti nevoia sa verifici tipul variabilei,
+ia in considerare utilizarea TypeScript. Aceasta este o alternativa excelenta
+JavaScript-ului normal, deoarece ofera tipizare statica pe langa sintaxa standard
+JavaScript. Problema cu verificarea manuala a tipului variabilei este ca, pentru
+a o face corect, trebuie scris mult cod in plus, iar sentimentul fals de siguranta nu
+compenseaza cu lizibilitatea pierduta. Pastreaza codul curat, scrie teste multe si dese
+si cauta sa primesti recenzii pozitive pentru codul scris.
 
 **Gresit:**
 
@@ -934,7 +928,7 @@ function combine(val1, val2) {
     return val1 + val2;
   }
 
-  throw new Error("Must be of type String or Number");
+  throw new Error("Trebuie sa fie de tipul String sau Number");
 }
 ```
 
