@@ -2270,6 +2270,6 @@ const actions = function() {
 
 ## Postarea originala in limba engleza
 
-- ![en](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/UnitedKingdom.png) **English**: [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript/)
+- ![en](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/United-Kingdom.png) **English**: [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript/)
 
-- ![ro](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Romania.png) **Romanian**: [dimaflorinalex/clean-code-javascript](https://github.com/dimaflorinalex/clean-code-javascript)
+**[⬆ inapoi la cuprins](#cuprins)**
