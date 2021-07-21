@@ -1596,19 +1596,14 @@ renderLargeShapes(shapes);
 
 ### Interface Segregation Principle (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+JavaScript nu are interfete, deci acest principiu nu poate fi aplicat la fel de strict.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+ISP afirma ca "Clientii nu trebuie obligati sa depinda de interfete pe care nu le folosesc.".
+"Interfetele sunt contracte implicite in JavaScript din cauza 'duck typing'-ului.".
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Un exemplu pentru acest principiu in JavaScript este cel al claselor care necesita obiecte mari pentru setari.
+Este benefic sa nu fie necesar pentru clienti sa configureze cantitati uriase de optiuni, deoarece de cele mai multe ori
+nu vor avea nevoie de toate setarile. Facand setari optionale ajuta la prevenirea unei interfete alambicate.
 
 **Gresit:**
 
@@ -1631,7 +1626,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // De cele mai multe ori, nu va trebui sa animam in timp ce traversam.
   // ...
 });
 ```
@@ -1674,26 +1669,18 @@ const $ = new DOMTraverser({
 
 ### Dependency Inversion Principle (DIP)
 
-This principle states two essential things:
+Acest principiu prevede doua lucruri esentiale:
 
-1. High-level modules should not depend on low-level modules. Both should
-   depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-   abstractions.
+1. Modulele de nivel superior nu ar trebui sa depinda de modulele de nivel inferior. Ambele ar trebui sa depinda de abstractii.
+2. Abstractiile nu ar trebui sa depinda de detalii. Detaliile ar trebui sa depinda de abstractii.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Daca ati lucrat cu AngularJS, ai obaservat o implementare a acestui principiu sub forma de "Dependency Injection" (DI). Desi nu sunt
+concepte identice, DIP impiedica modulele de nivel inalt sa cunoasca detaliile modulelor de nivel inferior si sa le configureze. Un avantaj
+imens al acestui fapt este ca reduce cuplarea intre module. Cuplarea este un model de dezvoltare gresit, deoarece face codul greu de refactorizat.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Dupa cum am mentionat anterior, JavaScript nu are interfete, deci abstractiile care depind de ele sunt contracte implicite, adica metodele si proprietatile
+pe care un obiect/clasa le expune unui alt obiect/clasa. In exemplul de mai jos, contractul implicit este ca orice modul Request pentru un `InventoryTracker`
+va avea o metoda `requestItems`.
 
 **Gresit:**
 
@@ -1712,8 +1699,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // Gresit: Tocmai ce am creat o dependenta asupra unei implementari specifice de request.
+    // Ar trebui ca requestItems sa depinda de o metoda de request: `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1764,8 +1751,8 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Construind dependentele noastre extern si injectandu-le, putem sa inlocuim
+// cu usurinta modulul de request cu unul modern care foloseste WebSockets.
 const inventoryTracker = new InventoryTracker(
   ["apples", "bananas"],
   new InventoryRequesterV2()
