@@ -401,28 +401,24 @@ function parse(tokens) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Remove duplicate code
+### Elimina codul duplicat
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+Fa tot ce iti sta in putinta pentru a evita codul duplicat. Codul duplicat este
+foarte rau, deoarece trebuie sa modifici in mai multe parti atunci cand trebuie
+sa schimbi ceva in logica de functionare a programului.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Imagineaza-ti ca ai un restaurant si tii evidenta inventarului materiei prime:
+rosii, ceapa, usturoi, condimente etc. Daca ai mai multe liste pe care tii evidenta,
+atunci trebuie actualizate toate atunci cand servesti un fel de mancare cu, spre exemplu,
+rosii. Daca ai o singura lista, este un singur loc unde trebuie sa faci actualizarea!
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+Adesea, codul duplicat apare, deoarece ai doua sau mai multe lucruri de indeplinit care
+sunt usor diferite, dar au multe in comun, insa diferentele te obliga sa ai mai multe
+functii separate cu roluri similare. Eliminarea codului duplicat inseamna abstractizarea care
+sa poata gestiona acest set de factori diferiti, folosindu-te de o singura functie / modul / clasa.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the _Classes_ section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Obtinerea corecta a abstractizarii este esentiala, de aceea ar trebui sa urmezi principiile SOLID
+din sectiunea _Clase_. Abstractizarea facuta gresit poate fi mai rea decat codul duplicat, deci fii atent!
 
 **Gresit:**
 
@@ -487,7 +483,7 @@ function showEmployeeList(employees) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Set default objects with Object.assign
+### Seteaza obiecte implicite cu Object.assign
 
 **Gresit:**
 
@@ -515,7 +511,7 @@ createMenu(menuConfig);
 ```javascript
 const menuConfig = {
   title: "Order",
-  // User did not include 'body' key
+  // Utilizatorul nu a inclus cheia 'body'
   buttonText: "Send",
   cancellable: true
 };
@@ -531,7 +527,7 @@ function createMenu(config) {
     config
   );
   return finalConfig
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // Obiectul "config" este acum: { title: "Order", body: "Bar", buttonText: "Send", cancellable: true }
   // ...
 }
 
@@ -540,9 +536,10 @@ createMenu(menuConfig);
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't use flags as function parameters
+### Nu utiliza "flags" drept parametri ai functiei
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+"Flags" transmit programatorului ca functia face mai mult decat un singur lucru, iar functiile ar trebui sa faca un singur lucru!
+Divizeaza functiile tale daca urmaresc cai diferite bazate pe o variabila tip "boolean" (bool);
 
 **Gresit:**
 
@@ -570,28 +567,27 @@ function createTempFile(name) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid Side Effects (part 1)
+### Evita efectele secundare (Partea I)
 
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+O functie produce efecte secundare daca face mai multe decat sa primeasca o valoare
+si sa returneze o alta valoare/valori. Un efect secundar ar putea fi scrierea intr-un
+fisier, modificarea unei variabile globale sau, accidental, sa transfere toti banii
+intr-un cont nedorit.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+In unele cazuri ai nevoie de efecte secundare. Ca in exemplul precedent, ai putea
+avea nevoie sa scrii intr-un fisier. Pentru a face acest lucru in siguranta, ai nevoie
+sa centralizezi codul. Nu trebuie sa ai multiple functii si clase care scriu intr-un anumit
+fisier, ci un singur serviciu care se ocupa de acest lucru.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+Ideea principala este sa eviti capcanele comune precum partajarea starii intre obiecte
+fara structura, folosirea de tipuri de date care pot fi scrise de oricine si necentralizarea unde
+pot aparea efecte secundare nedorite. Daca respecti acest sfat, vei fi ferit de multe batai de cap!
 
 **Gresit:**
 
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Variabila globala la care face referire urmatoarea functie.
+// Daca aveam o alta functie care folosea acest nume, acum ar fi fost un array care ar fi putut defecta programul.
 let name = "Ryan McDermott";
 
 function splitIntoFirstAndLastName() {
@@ -619,7 +615,7 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid Side Effects (part 2)
+### Evita efectele secundare (Partea II)
 
 In JavaScript, some values are unchangeable (immutable) and some are changeable 
 (mutable). Objects and arrays are two kinds of mutable values so it's important 
