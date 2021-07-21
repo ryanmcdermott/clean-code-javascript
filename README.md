@@ -23,10 +23,8 @@ Principii de inginerie software din cartea lui Robert C. Martin
 adaptate pentru JavaScript. Acesta este un ghid pentru a dezvolta software
 [citibil, reutilizabil si refactorabil](https://github.com/ryanmcdermott/3rs-of-software-architecture) in JavaScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-_Clean Code_.
+Nu toate principiile de aici trebuie respectate cu strictete, iar mai putine vor fi unanim agreate.
+Acestea sunt simple sfaturi in urma multor ani de experienta colectiva de catre autorii _Clean Code_.
 
 Our craft of software engineering is just a bit over 50 years old, and we are
 still learning a lot. When software architecture is as old as architecture
