@@ -18,10 +18,10 @@
 
 ![Imagine umoristica a estimarii calitatii software-ului drept numarul de momente de confuzie cand recitesti codul](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
+Principii de inginerie software din cartea lui Robert C. Martin
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+adaptate pentru JavaScript. Acesta este un ghid pentru a dezvolta software
+[citibil, reutilizabil si refactorabil](https://github.com/ryanmcdermott/3rs-of-software-architecture) in JavaScript.
 
 Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
