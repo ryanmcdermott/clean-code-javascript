@@ -1935,19 +1935,15 @@ getCleanCodeArticle()
 
 ## **Manipularea erorilor**
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Erorile sunt un lucru bun, deoarece inseamna ca au fost identificate cazuri in care programul
+tau nu functioneaza cum ar trebui si te instiinteaza de acest lucru, oferindu-ti, de asemenea,
+detalii cu privire la remedierea situatiei.
 
-### Don't ignore caught errors
+### Nu ignora erorile
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+Ignorand erorile nu inseamna ca le-ai reparat. Simpla notificare in consola (`console.log`) nu este varianta
+ideala, adesea fiind pierduta in marea de mesaje printate in consola. Daca infasori fiecare parte a codului in
+blocuri de `try/catch` vei avea control mai mare asupra erorilor.
 
 **Gresit:**
 
@@ -1965,20 +1961,19 @@ try {
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // O optiune (mai vizibila decat console.log):
   console.error(error);
-  // Another option:
+  // Alta optiune:
   notifyUserOfError(error);
-  // Another option:
+  // Alta optiune:
   reportErrorToService(error);
-  // OR do all three!
+  // Sau foloseste-le pe toate!
 }
 ```
 
-### Don't ignore rejected promises
+### Nu ignora "rejected promises"
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+Pentru acelasi motiv nu trebuie sa ignori erorile aruncate de `try/catch`.
 
 **Gresit:**
 
@@ -2000,13 +1995,13 @@ getdata()
     functionThatMightThrow(data);
   })
   .catch(error => {
-    // One option (more noisy than console.log):
+    // O optiune (mai vizibila decat console.log):
     console.error(error);
-    // Another option:
+    // Alta optiune:
     notifyUserOfError(error);
-    // Another option:
+    // Alta optiune:
     reportErrorToService(error);
-    // OR do all three!
+    // Sau foloseste-le pe toate!
   });
 ```
 
@@ -2014,20 +2009,14 @@ getdata()
 
 ## **Formatare**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+Formatarea este subiectiva. Foloseste-te de [tonele de programe](https://standardjs.com/rules.html) care automatizeaza formatarea.
+Este o risipa de timp si bani pentru programatori sa se certe asupra formatarii.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+### Foloseste majusculele cu incredere
 
-### Use consistent capitalization
-
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+JavaScript este "untyped" (nu cere impunerea unui tip strict variabilelor), deci scrierea cu
+majuscule iti va spune multe despre variabilele, functiile, clasele tale. Aceste reguli sunt subiective,
+singurul lucru pe care trebuie sa il tii minte este sa fii consistent in notatie.
 
 **Gresit:**
 
@@ -2063,11 +2052,11 @@ class Alpaca {}
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Function callers and callees should be close
+### Functiile apelante si functiile apelate trebuie sa fie aproape
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Daca o functie apeleaza o alta, tine-le aproape in codul sursa. Ideal este sa ai functia
+apelanta fix deasupra celei apelate. Tindem sa citim codul de sus in jos, ca un ziar.
+Din acest motiv, redacteaza codul pentru a putea fi citit natural.
 
 **Gresit:**
 
@@ -2153,9 +2142,9 @@ review.perfReview();
 
 ## **Comentarii**
 
-### Only comment things that have business logic complexity.
+### Comenteaza doar liniile de cod care au complexitate ridicata
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+Comentariile sunt o scuza, nu o cerinta. Codul bun se autodocumenteaza in mare parte.
 
 **Gresit:**
 
@@ -2198,9 +2187,9 @@ function hashIt(data) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't leave commented out code in your codebase
+### Nu lasa cod comentat printre liniile de cod curente
 
-Version control exists for a reason. Leave old code in your history.
+Versionarea exista dintr-un motiv. Lasa codul vechi in urma!
 
 **Gresit:**
 
@@ -2219,10 +2208,10 @@ doStuff();
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't have journal comments
+### Nu tine un jurnal in comentarii
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Aminteste-ti, foloseste sisteme de versionare! Nu este nevoie de cod neutilizat, cod comentat si nici de comentarii inutile.
+Foloseste `git log` pentru a obtine istoricul modificarilor!
 
 **Gresit:**
 
@@ -2248,10 +2237,9 @@ function combine(a, b) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid positional markers
+### Evita markerele pozitionale
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+Lasa functiile si numele variabilelor impreuna cu indentarea si formatarea corespunzatoare sa confere structura vizuala a codului.
 
 **Gresit:**
 
