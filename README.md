@@ -942,19 +942,17 @@ function combine(val1, val2) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't over-optimize
+### Nu supraoptimiza
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+Browserele moderne fac multe optimizari in spate, la runtime. De multe ori, daca supraoptimizezi
+nu faci altceva decat sa pierzi mult timp. [Exista multe resurse](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+pentru a vedea unde lipsesc optimizari. Ocupa-te de acelea intre timp, pana cand sunt reparate, daca pot fi reparate.
 
 **Gresit:**
 
 ```javascript
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// Pe browserele vechi, fiecare iteratie fara sa salvezi valoarea `list.length` este costisitoare
+// fiindca `list.length` este recalculat. In browserele moderne, acest lucru este optimizat.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
@@ -970,11 +968,11 @@ for (let i = 0; i < list.length; i++) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Remove dead code
+### Elimina codul neutilizat
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+Codul neutilizat este la fel de rau precum codul duplicat. Nu exista absolut niciun motiv
+pentru care sa nu il inlaturi. Daca nu este apelat, scapa de el! Va fi stocat in siguranta in
+istoricul sistemului de versionare daca vei avea vreodata nevoie de el.
 
 **Gresit:**
 
@@ -1006,19 +1004,18 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 ## **Obiecte si structuri de date**
 
-### Use getters and setters
+### Foloseste getters si setters
 
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+Folosind getters si setters pentru a accesa proprietatile unui obiect este mult mai bine
+decat sa accesezi direct proprietatile obiectului. Daca te intrebi "de ce?", aici este o lista
+cu cateva motive:
 
-- When you want to do more beyond getting an object property, you don't have
-  to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a
-  server.
+- Cand vrei sa faci mai mult decat doar sa primesti valoarea proprietatii obiectului, nu trebuie
+sa schimbi asta peste tot in cod.
+- Este mai usor sa adaugi validare unei singure functii `set` decat sa adaugi validarea peste tot in cod.
+- Incapsuleaza reprezentarea interna.
+- Este mai usor sa adaugi loguri si sa manipulezi erorile folosind functii tip `getters` si `setters`.
+- Te poti folosi de avantajul "lazy loading" pentru proprietatile obiectului (spre exemplu, le primesti de la un server).
 
 **Gresit:**
 
@@ -1040,17 +1037,17 @@ account.balance = 100;
 
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // variabila privata
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // functie "getter", facuta publica prin returnare
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // functie "setter", facuta publica prin returnare
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... valideaza inainte sa actualizezi soldul
     balance = amount;
   }
 
@@ -1067,9 +1064,9 @@ account.setBalance(100);
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Make objects have private members
+### Faceti ca obiectele sa aiba membri privati
 
-This can be accomplished through closures (for ES5 and below).
+Acest lucru poate fi realizat prin "closures" (pentru ES5 si mai jos).
 
 **Gresit:**
 
@@ -1109,12 +1106,11 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 ## **Clase**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### Alege clasele din ES2015/ES6 peste functiile simple din ES5
 
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+Este foarte dificil sa implementezi lizibil mostenirea, constructia si definitiile metodelor pentru clasele ES5 clasice.
+Daca ai nevoie de mostenire, atunci opteaza pentru clasele ES2015/ES6. Cu toate acestea, alege functiile mici peste
+clasele unde vei genera obiecte mari si complexe.
 
 **Gresit:**
 
@@ -1194,13 +1190,12 @@ class Human extends Mammal {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Use method chaining
+### Foloseste metoda inlantuirii
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+Acest pattern este foarte util in JavaScript si poate fi observat adesea in
+multe librarii precum jQuery sau Lodash. Aceasta metoda permite codului sa fie expresiv
+si mai compact. Pentru a putea folosi aceasta metoda, pur si simplu returnati `this` la sfarsitul
+fiecarei functii din clasa, astfel puteti inlantui alte metode ale clasei asupra obiectului respectiv.
 
 **Gresit:**
 
@@ -1246,25 +1241,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // NOTA: Returneaza `this` pentru inlantuire
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // NOTA: Returneaza `this` pentru inlantuire
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // NOTA: Returneaza `this` pentru inlantuire
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // NOTA: Returneaza `this` pentru inlantuire
     return this;
   }
 }
@@ -1274,24 +1269,18 @@ const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Prefer composition over inheritance
+### Prefera compunerea in locul mostenirii
 
-As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+Conform [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) de Gang of Four,
+ar trebui sa optezi pentru compunere in defavoarea mostenirii oriunde poti. Sunt foarte multe
+motive pentru a folosi mostenirea si extraordinar de multe motive pentru a folosi compunerea.
+Probabil te intrebi "cand sa folosesc mostenirea?". O lista unde mostenirea face mai mult
+sens decat compunerea este:
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
-
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-   relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-   (Change the caloric expenditure of all animals when they move).
+1. Mostenirea reprezinta o relatie "este un/o ...", nu "are un/o..." (Om->Animal vs Utilizator->DetaliiUtilizator).
+2. Poti reutiliza codul clasei de baza (Oamenii se pot misca la fle ca toate animalele).
+3. Doresti sa faci modificari globale la clasele derivate prin schimbarea unei clase de baza (Schimba cheltuielile calorice
+ale tuturor animalelor atunci cand se misca).
 
 **Gresit:**
 
@@ -1305,7 +1294,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Gresit pentru ca Employee "au" EmployeeTaxData. EmployeeTaxData nu este un tip de Employee.
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1348,14 +1337,10 @@ class Employee {
 
 ### Single Responsibility Principle (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+Conform Clean Code, "Niciodata nu ar rtebui sa ife mai mult de un motiv pentru a schimba o clasa".
+Este tentant sa supradotezi o clasa cu o multime de functionalitati, ca si cum ai lua o valiza pentru zbor.
+Problema cu aceasta mentalitate intervine atunci cand apar o multitudine de motive de a schimba componentele,
+fiecare schimbare implicand riscuri de a aparea efecte secundare in functionarea programului.
 
 **Gresit:**
 
@@ -1408,10 +1393,9 @@ class UserSettings {
 
 ### Open/Closed Principle (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+Conform lui Bertrand Meyer, "entitatile software (clase, module, functii etc.) ar trebui sa fie deschise
+pentru extindere, dar inchise pentru modificare. Practic, acest principiu enunta faptul ca trebuie sa permiti
+utilizatorilor sa adauge noi functionalitati fara a schimba codul existent.
 
 **Gresit:**
 
@@ -1438,22 +1422,22 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === "ajaxAdapter") {
       return makeAjaxCall(url).then(response => {
-        // transform response and return
+        // transforma raspunsul si returneaza
       });
     } else if (this.adapter.name === "nodeAdapter") {
       return makeHttpCall(url).then(response => {
-        // transform response and return
+        // transforma raspunsul si returneaza
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // trimite request si returneaza un promise
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // trimite request si returneaza un promise
 }
 ```
 
@@ -1467,7 +1451,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // trimite request si returneaza un promise
   }
 }
 
@@ -1478,7 +1462,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // trimite request si returneaza un promise
   }
 }
 
@@ -1489,7 +1473,7 @@ class HttpRequester {
 
   fetch(url) {
     return this.adapter.request(url).then(response => {
-      // transform response and return
+      // transforma raspunsul si returneaza
     });
   }
 }
@@ -1499,18 +1483,12 @@ class HttpRequester {
 
 ### Liskov Substitution Principle (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
-
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Formal, principiul este enuntat astfel: "Daca S este un subtip al lui T, atunci obiectele tip t
+pot fi inlocuite cu obiecte de tip S (obiectele tip S pot inlocui obiectele tip T) fara a modifica
+nicio proprietate a acelui program (corectitudine, sarcina efectuata etc.).". Cea mai buna explicatie
+pentru acest principiu este: daca aveti o clasa de parinti si o clasa de copii, atunci clasa de baza si clasa
+de copii pot fi utilizate in mod interschimbabil fara a obtine rezultate incorecte. Un exemplu cu siguranta
+va elucida misterul: patratul este un caz particular de dreptunghi.
 
 **Gresit:**
 
@@ -1558,7 +1536,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach(rectangle => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // Gresit: Returneaza 25 pentru patrat, trebuie sa fie 20.
     rectangle.render(area);
   });
 }
