@@ -1,69 +1,59 @@
 # clean-code-javascript
 
-## Table of Contents
+## Cuprins
 
-1. [Introduction](#introduction)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
+1. [Introducere](#introducere)
+2. [Variabile](#variabile)
+3. [Functii](#functii)
+4. [Obiecte si structuri de date](#obiecte-si-structuri-de-date)
+5. [Clase](#clase)
 6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+7. [Testare](#testare)
+8. [Concurenta](#concurenta)
+9. [Manipularea erorilor](#manipularea-erorilor)
+10. [Formatare](#formatare)
+11. [Comentarii](#comentarii)
+12. [Traduceri](#traduceri)
 
-## Introduction
+## Introducere
 
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
+![Imagine umoristica a estimarii calitatii software-ului drept numarul de momente de confuzie cand recitesti codul](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
+Principii de inginerie software din cartea lui Robert C. Martin
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+adaptate pentru JavaScript. Acesta este un ghid pentru a dezvolta software
+[citibil, reutilizabil si refactorabil](https://github.com/ryanmcdermott/3rs-of-software-architecture) in JavaScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-_Clean Code_.
+Nu toate principiile de aici trebuie respectate cu strictete, iar mai putine vor fi unanim agreate.
+Acestea sunt simple sfaturi in urma multor ani de experienta colectiva de catre autorii _Clean Code_.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+Iti reamintim faptul ca stiind aceste sfaturi nu te vei transforma imediat intr-un
+programator mai bun si, lucrand cu acestea pentru multi ani, nu inseamna ca nu vei mai face greseli.
+Fiecare bucata de cod incepe ca o schita, asemanator lutului care, prin modelare continua, ajunge in forma sa finala.
+In final, retusam imperfectiunile atunci cand il examinam alaturi de colegii nostri.
+Nu va lasati descurajati de primele proiecte care au nevoie de imbunatatire. In schimb, ambitionati-va sa deveniti mai buni!
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+## **Variabile**
 
-## **Variables**
+### Numele variabilelor trebuie sa fie sugestive si pronuntabile
 
-### Use meaningful and pronounceable variable names
-
-**Bad:**
+**Gresit:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Use the same vocabulary for the same type of variable
+### Foloseste acelasi vocabular pentru acelasi tip de variabila
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 getUserInfo();
@@ -71,45 +61,44 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Use searchable names
+### Foloseste nume cautabile
 
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
+Vom citi mai mult cod decat vom scrie vreodata. Este important ca acel cod
+pe care il scriem sa fie citibil si cautabil. _Nedenumind_ variabilele sugestiv
+pentru intelegerea programului nostru ii incurcam pe cititorii nostri.
+Alege sa denumesti variabilele cautabil. Unelte precum [buddy.js](https://github.com/danielstjules/buddy.js) si
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+pot ajuta la identificarea constantelor nedenumite.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
-// What the heck is 86400000 for?
+// Ce insemna 86400000 ?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
-// Declare them as capitalized named constants.
-const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
+// Numele unei variabile scrise integral cu majuscule sugereaza ca aceea este o constanta.
+const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; // 86400000;
 
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Use explanatory variables
+### Foloseste variabile explicative
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -120,7 +109,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -129,13 +118,13 @@ const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid Mental Mapping
+### Evita codificarea mentala
 
-Explicit is better than implicit.
+Codul explicit este mai bun decat cel implicit.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -145,12 +134,12 @@ locations.forEach(l => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Am uitat ce era `l`...
   dispatch(l);
 });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -164,14 +153,13 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't add unneeded context
+### Nu adauga context inutil
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+Daca numele clasei/obiectului este suficient de sugestiv, nu il repeta in numele variabilei.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const Car = {
@@ -185,7 +173,7 @@ function paintCar(car, color) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const Car = {
@@ -199,16 +187,15 @@ function paintCar(car, color) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Foloseste argumente implicite in loc de scurtcircuitari sau conditionari
 
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+Argumentele implicite sunt mai curate decat un scurtcircuit. Fii constient de faptul ca
+daca le folosesti functia ta va oferi doar valori implicite pentru argumente "undefined".
+Alte valori "false" precum `''`, `""`, `false`, `null`, `0` si `NaN` nu vor fi inlocuite cu o valoare implicita.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -217,7 +204,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
@@ -225,41 +212,35 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## **Functions**
+## **Functii**
 
-### Function arguments (2 or fewer ideally)
+### Argumentele functiei (ideal maxim 2)
 
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
+Limitarea numarului de parametri ai functiei este incredibil de importanta, deoarece
+face testarea functiei mai usoara. Mai mult de 3 parametri conduce la o explozie
+combinatorica unde vei avea prea multe cazuri diferite de testat pentru fiecare
+parametru in parte.
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
+Unul sau doua argumente reprezinta cazul ideal, chiar si trei, dar ar trebui evitat pe cat de mult posibil.
+De obicei, daca ai mai mult de 2 argumente inseamna ca functia ta face mai mult decat trebuie. In cazurile
+unde functia face exact cat trebuie si nu poate fi simplificata/sparta in mai multe subfunctii, un obiect servit
+drept argument va fi favorabil unei liste de argumente.
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+Deoarece JavaScript permite sa creezi obiecte ad-hoc, fara a defini neaparat o clasa separata si fara prea mult
+cod inutil ("boilerplate"), poti utiliza un obiect in locul unei multimi de argumente.
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+Pentru a face evident la ce proprietati se asteapta functia, poti folosi sintaxa destructuratoare din ES2015/ES6.
+Acest lucru are cateva avantaje:
 
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. It can be used to simulate named parameters.
-3. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-4. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+1. Cand cineva se uita la semnatura functiei, va vedea imediat ce proprietati sunt utilizate.
+2. Poate fi folosit pentru a simula parametrii denumiti.
+3. Destructurarea cloneaza valorile primitive specificate ale argumentului obiect trecut in functie. Acest lucru poate ajuta
+la prevenirea efectelor secundare. Nota: Obiectele si matricele (vectori, arrays) distruse din obiectul argument nu sunt clonate.
+4. Uneltele "Linters" va pot avertiza cu privire la proprietatile neutilizate, ceea ce ar fi imposibil fara destructurare.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -270,7 +251,7 @@ createMenu("Foo", "Bar", "Baz", true);
 
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
@@ -285,17 +266,16 @@ createMenu({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Functions should do one thing
+### Functiile ar trebui sa faca un singur lucru
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, it can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+Aceasta este de departe cea mai importanta regula in ingineria software.
+Cand functiile fac mai mult de un lucru, sunt mai greu de compus, gandit si testat.
+Cand puteti izola o functie sa serveasca unui singur rol, aceasta poate fi refactorizata
+cu usurinta si codul va deveni mult mai curat.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function emailClients(clients) {
@@ -308,7 +288,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function emailActiveClients(clients) {
@@ -321,11 +301,11 @@ function isActiveClient(client) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Function names should say what they do
+### Numele functiilor ar trebui sa fie sugestive, sa descrie rolul pe care il indeplinesc
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function addToDate(date, month) {
@@ -334,11 +314,11 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to tell from the function name what is added
+// Este greu de spus ce aduna aceasta functie judecand dupa denumirea sa
 addToDate(date, 1);
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function addMonthToDate(month, date) {
@@ -349,15 +329,14 @@ const date = new Date();
 addMonthToDate(1, date);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Functions should only be one level of abstraction
+### Functiile ar trebui sa reprezinte un singur nivel de abstractizare
 
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+Cand aveti mai mult de un nivel de abstractizare, functia indeplineste, de obicei,
+mai multe roluri. Divizarea functiilor duce la reutilizare si la testare facila.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -384,7 +363,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -421,32 +400,28 @@ function parse(tokens) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Remove duplicate code
+### Elimina codul duplicat
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+Fa tot ce iti sta in putinta pentru a evita codul duplicat. Codul duplicat este
+foarte rau, deoarece trebuie sa modifici in mai multe parti atunci cand trebuie
+sa schimbi ceva in logica de functionare a programului.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Imagineaza-ti ca ai un restaurant si tii evidenta inventarului materiei prime:
+rosii, ceapa, usturoi, condimente etc. Daca ai mai multe liste pe care tii evidenta,
+atunci trebuie actualizate toate atunci cand servesti un fel de mancare cu, spre exemplu,
+rosii. Daca ai o singura lista, este un singur loc unde trebuie sa faci actualizarea!
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+Adesea, codul duplicat apare, deoarece ai doua sau mai multe lucruri de indeplinit care
+sunt usor diferite, dar au multe in comun, insa diferentele te obliga sa ai mai multe
+functii separate cu roluri similare. Eliminarea codului duplicat inseamna abstractizarea care
+sa poata gestiona acest set de factori diferiti, folosindu-te de o singura functie / modul / clasa.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the _Classes_ section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Obtinerea corecta a abstractizarii este esentiala, de aceea ar trebui sa urmezi principiile SOLID
+din sectiunea _Clase_. Abstractizarea facuta gresit poate fi mai rea decat codul duplicat, deci fii atent!
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function showDeveloperList(developers) {
@@ -480,7 +455,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function showEmployeeList(employees) {
@@ -507,11 +482,11 @@ function showEmployeeList(employees) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Set default objects with Object.assign
+### Seteaza obiecte implicite cu Object.assign
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const menuConfig = {
@@ -532,12 +507,12 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const menuConfig = {
   title: "Order",
-  // User did not include 'body' key
+  // Utilizatorul nu a inclus cheia 'body'
   buttonText: "Send",
   cancellable: true
 };
@@ -553,20 +528,21 @@ function createMenu(config) {
     config
   );
   return finalConfig
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // Obiectul "config" este acum: { title: "Order", body: "Bar", buttonText: "Send", cancellable: true }
   // ...
 }
 
 createMenu(menuConfig);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't use flags as function parameters
+### Nu utiliza "flags" drept parametri ai functiei
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+"Flags" transmit programatorului ca functia face mai mult decat un singur lucru, iar functiile ar trebui sa faca un singur lucru!
+Divizeaza functiile tale daca urmaresc cai diferite bazate pe o variabila tip "boolean" (bool);
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function createFile(name, temp) {
@@ -578,7 +554,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function createFile(name) {
@@ -590,30 +566,29 @@ function createTempFile(name) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid Side Effects (part 1)
+### Evita efectele secundare (Partea I)
 
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+O functie produce efecte secundare daca face mai multe decat sa primeasca o valoare
+si sa returneze o alta valoare/valori. Un efect secundar ar putea fi scrierea intr-un
+fisier, modificarea unei variabile globale sau, accidental, sa transfere toti banii
+intr-un cont nedorit.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+In unele cazuri ai nevoie de efecte secundare. Ca in exemplul precedent, ai putea
+avea nevoie sa scrii intr-un fisier. Pentru a face acest lucru in siguranta, ai nevoie
+sa centralizezi codul. Nu trebuie sa ai multiple functii si clase care scriu intr-un anumit
+fisier, ci un singur serviciu care se ocupa de acest lucru.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+Ideea principala este sa eviti capcanele comune precum partajarea starii intre obiecte
+fara structura, folosirea de tipuri de date care pot fi scrise de oricine si necentralizarea unde
+pot aparea efecte secundare nedorite. Daca respecti acest sfat, vei fi ferit de multe batai de cap!
 
-**Bad:**
+**Gresit:**
 
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Variabila globala la care face referire urmatoarea functie.
+// Daca aveam o alta functie care folosea acest nume, acum ar fi fost un array care ar fi putut defecta programul.
 let name = "Ryan McDermott";
 
 function splitIntoFirstAndLastName() {
@@ -625,7 +600,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function splitIntoFirstAndLastName(name) {
@@ -639,47 +614,47 @@ console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid Side Effects (part 2)
+### Evita efectele secundare (Partea II)
 
-In JavaScript, some values are unchangeable (immutable) and some are changeable 
-(mutable). Objects and arrays are two kinds of mutable values so it's important 
-to handle them carefully when they're passed as parameters to a function. A 
-JavaScript function can change an object's properties or alter the contents of 
-an array which could easily cause bugs elsewhere.
+In JavaScript, unele valori sunt neschimbabile ("imutabile") si unele sunt
+schimbabile ("mutabile"). Obiectele si array-urile sunt 2 tipuri de valori
+mutabile, deci este important sa le manipulezi cu grija cand le trimiti drept
+parametrii spre o functie. O functie poate schimba o proprietate a unui obiect
+sau altera continutul unui array si poate genera un bug la care nici nu te-ai fi
+asteptat, totul intr-un mod foarte usor.
 
-Suppose there's a function that accepts an array parameter representing a 
-shopping cart. If the function makes a change in that shopping cart array - 
-by adding an item to purchase, for example - then any other function that 
-uses that same `cart` array will be affected by this addition. That may be 
-great, however it could also be bad. Let's imagine a bad situation:
+Presupunem ca este o functie care accepta un parametru array reprezentand un cos
+de cumparaturi. Daca functia face o modificare in array-ul cos de cumparaturi, adaugand
+un obiect spre cumparare, de exemplu, atunci orice alta functie care foloseste acelasi
+array drept cos va fi afectata de aceasta adaugare. Asta ar putea fi grozav, dar
+ar putea fi si groaznic! Sa ne imaginam o situatie nefavorabila:
 
-The user clicks the "Purchase" button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks an "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because the `cart` array was modified.
+Un utilizator apasa pe butonul de "Cumpara" care apeleaza functia `purchase`, trimitand
+un request si array-ul `cart` catre server. Din cauza unei probleme de Internet, functia
+`purchase` trebuie sa reincerce sa trimita request-ul. Acum, ce s-ar intampla daca utilizatorul
+apasa in acest timp, accidental, pe "Adauga in cos" la un obiect pe care nu il doreste, totul
+inainte ca request-ul sa fie finalizat cu succes? Daca presupunerea se intampla, atunci functia
+`purchase` va trimite accidental si obiectul adaugat din greseala in array-ul `cart`, deoarece
+array-ul va fi fost deja modificat.
 
-A great solution would be for the `addItemToCart` function to always clone the 
-`cart`, edit it, and return the clone. This would ensure that functions that are still
-using the old shopping cart wouldn't be affected by the changes.
+O solutie grozava ar fi pentru functia `addItemToCart` sa cloneze intotdeauna array-ul `cart`,
+sa-l editeze si sa returneze clona. Acest lucru ar asigura faptul ca functiile care folosesc in continuare
+array-ul vechi `cart` nu vor fi afectate de modificari.
 
-Two caveats to mention to this approach:
+Doua avertismente de mentionat pentru aceasta abordare:
 
-1. There might be cases where you actually want to modify the input object,
-   but when you adopt this programming practice you will find that those cases
-   are pretty rare. Most things can be refactored to have no side effects!
+1. Ar putea exista cazuri in care doriti sa modificati obiectul de input, dar cand adoptati
+aceasta practica de programare veti constata ca aceste cazuri sunt destul de rare. Majoritatea
+lucrurilor pot fi refactorizate pentru a nu avea efecte secundare.
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily,
-   this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
-   this kind of programming approach to be fast and not as memory intensive as
-   it would be for you to manually clone objects and arrays.
+2. Clonarea obiectelor mari poate fi foarte costisitoare din punct de vedere al performantei. Din fericire,
+aceasta nu este o problema importanta in practica, deoarece exista [librarii grozave](https://facebook.github.io/immutable-js/)
+care permit acest tip de abordare de programare sa fie rapida si nu la fel de intensa din punct de vedere
+al memoriei utilizate precum clonarea manuala de obiecte si array-uri.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -687,7 +662,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -695,21 +670,19 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't write to global functions
+### Nu suprascrie functii globale
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+Poluarea spatiului global este o practica foarte rea in JavaScript, deoarece te-ai putea
+ciocni de alta librarie care a pus in practica aceasta metoda nedorita. Un exemplu ar fi:
+ce ar fi daca ai vrea sa extinzi metoda nativa Array a JavaScript pentru a adauga metoda
+`diff` care sa arate diferenta dintre 2 array-uri? Ai putea scrie noua ta functie in `Array.prototype`,
+dar te-ai putea ciocni de alta librarie care a incercat sa faca acelasi lucru. Ce ar fi daca acea
+librarie folosea `diff` pentru a gasi diferenta dintre primul si ultimul element al unui array? De aceea este
+de dorit sa folosesti, datorita ES2015/ES6, clase si sa extinzi `Array` global.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -718,7 +691,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class SuperArray extends Array {
@@ -729,15 +702,15 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Favor functional programming over imperative programming
+### Favorieaza paradigma programarii functionale impotriva celei imperative
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript nu este un limbaj functional asa cum este Haskell, dar cu siguranta
+poate fi folosit astfel. Limbajele functionale sunt adesea mai curate si mai usor
+de testat. Alege intotdeauna acest stil de programare cand poti!
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const programmerOutput = [
@@ -766,7 +739,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const programmerOutput = [
@@ -794,11 +767,11 @@ const totalOutput = programmerOutput.reduce(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Encapsulate conditionals
+### Incapsuleaza conditiile
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 if (fsm.state === "fetching" && isEmpty(listNode)) {
@@ -806,7 +779,7 @@ if (fsm.state === "fetching" && isEmpty(listNode)) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
@@ -818,11 +791,11 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid negative conditionals
+### Evita conditiile negative
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function isDOMNodeNotPresent(node) {
@@ -834,7 +807,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function isDOMNodePresent(node) {
@@ -846,20 +819,17 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid conditionals
+### Evita conditiile
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+Aceasta pare o sarcina imposibila. La prima vedere, majoritatea oamenilor ar spune: "cum ar trebui sa fac ceva fara
+`if` ?" Raspunsul este ca puteti utiliza polimorfismul pentru a realiza aceeasi sarcina in multe cazuri. A doua intrebare
+este, de obicei, "Ok, dar de ce sa fac asta?", iar raspunsul este un concept mentionat anterior: o functie ar trebui sa faca
+un singur lucru. Cand aveti clase si functii cu instructiuni `if`, programatorul primeste informatia ca functia face mai mult de
+un lucru.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class Airplane {
@@ -877,7 +847,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class Airplane {
@@ -906,16 +876,16 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid type-checking (part 1)
+### Evita verificarea tipului variabilei (Partea I)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript nu impune tipuri stricte de date, ceea ce inseamna ca functiile pot primi
+orice tip de argument. Uneori aceasta libertate se intoarce impotriva ta si devine tentant
+sa faci verificarea tipului de date in interiorul functiei. Exista multe modalitati de a evita
+sa faci acest lucru. Primul lucru de luat in considerare sunt API-urile consistente.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -927,7 +897,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -935,21 +905,20 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid type-checking (part 2)
+### Evita verificarea tipului variabilei (Partea II)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Daca lucerzi cu valori primitive de baza, cum ar fi siruri si numere intregi,
+si nu poti folosi polimorfismul, dar simti nevoia sa verifici tipul variabilei,
+ia in considerare utilizarea TypeScript. Aceasta este o alternativa excelenta
+JavaScript-ului normal, deoarece ofera tipizare statica pe langa sintaxa standard
+JavaScript. Problema cu verificarea manuala a tipului variabilei este ca, pentru
+a o face corect, trebuie scris mult cod in plus, iar sentimentul fals de siguranta nu
+compenseaza cu lizibilitatea pierduta. Pastreaza codul curat, scrie teste multe si dese
+si cauta sa primesti recenzii pozitive pentru codul scris.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function combine(val1, val2) {
@@ -960,11 +929,11 @@ function combine(val1, val2) {
     return val1 + val2;
   }
 
-  throw new Error("Must be of type String or Number");
+  throw new Error("Trebuie sa fie de tipul String sau Number");
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function combine(val1, val2) {
@@ -972,27 +941,25 @@ function combine(val1, val2) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't over-optimize
+### Nu supraoptimiza
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+Browserele moderne fac multe optimizari in spate, la runtime. De multe ori, daca supraoptimizezi
+nu faci altceva decat sa pierzi mult timp. [Exista multe resurse](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+pentru a vedea unde lipsesc optimizari. Ocupa-te de acelea intre timp, pana cand sunt reparate, daca pot fi reparate.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// Pe browserele vechi, fiecare iteratie fara sa salvezi valoarea `list.length` este costisitoare
+// fiindca `list.length` este recalculat. In browserele moderne, acest lucru este optimizat.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 for (let i = 0; i < list.length; i++) {
@@ -1000,15 +967,15 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Remove dead code
+### Elimina codul neutilizat
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+Codul neutilizat este la fel de rau precum codul duplicat. Nu exista absolut niciun motiv
+pentru care sa nu il inlaturi. Daca nu este apelat, scapa de el! Va fi stocat in siguranta in
+istoricul sistemului de versionare daca vei avea vreodata nevoie de el.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function oldRequestModule(url) {
@@ -1023,7 +990,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function newRequestModule(url) {
@@ -1034,25 +1001,24 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## **Objects and Data Structures**
+## **Obiecte si structuri de date**
 
-### Use getters and setters
+### Foloseste getters si setters
 
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+Folosind getters si setters pentru a accesa proprietatile unui obiect este mult mai bine
+decat sa accesezi direct proprietatile obiectului. Daca te intrebi "de ce?", aici este o lista
+cu cateva motive:
 
-- When you want to do more beyond getting an object property, you don't have
-  to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a
-  server.
+- Cand vrei sa faci mai mult decat doar sa primesti valoarea proprietatii obiectului, nu trebuie
+sa schimbi asta peste tot in cod.
+- Este mai usor sa adaugi validare unei singure functii `set` decat sa adaugi validarea peste tot in cod.
+- Incapsuleaza reprezentarea interna.
+- Este mai usor sa adaugi loguri si sa manipulezi erorile folosind functii tip `getters` si `setters`.
+- Te poti folosi de avantajul "lazy loading" pentru proprietatile obiectului (spre exemplu, le primesti de la un server).
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function makeBankAccount() {
@@ -1068,21 +1034,21 @@ const account = makeBankAccount();
 account.balance = 100;
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // variabila privata
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // functie "getter", facuta publica prin returnare
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // functie "setter", facuta publica prin returnare
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... valideaza inainte sa actualizezi soldul
     balance = amount;
   }
 
@@ -1097,13 +1063,13 @@ const account = makeBankAccount();
 account.setBalance(100);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Make objects have private members
+### Faceti ca obiectele sa aiba membri privati
 
-This can be accomplished through closures (for ES5 and below).
+Acest lucru poate fi realizat prin "closures" (pentru ES5 si mai jos).
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const Employee = function(name) {
@@ -1120,7 +1086,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function makeEmployee(name) {
@@ -1137,18 +1103,17 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## **Classes**
+## **Clase**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### Alege clasele din ES2015/ES6 peste functiile simple din ES5
 
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+Este foarte dificil sa implementezi lizibil mostenirea, constructia si definitiile metodelor pentru clasele ES5 clasice.
+Daca ai nevoie de mostenire, atunci opteaza pentru clasele ES2015/ES6. Cu toate acestea, alege functiile mici peste
+clasele unde vei genera obiecte mari si complexe.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 const Animal = function(age) {
@@ -1188,7 +1153,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class Animal {
@@ -1224,17 +1189,16 @@ class Human extends Mammal {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Use method chaining
+### Foloseste metoda inlantuirii
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+Acest pattern este foarte util in JavaScript si poate fi observat adesea in
+multe librarii precum jQuery sau Lodash. Aceasta metoda permite codului sa fie expresiv
+si mai compact. Pentru a putea folosi aceasta metoda, pur si simplu returnati `this` la sfarsitul
+fiecarei functii din clasa, astfel puteti inlantui alte metode ale clasei asupra obiectului respectiv.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class Car {
@@ -1266,7 +1230,7 @@ car.setColor("pink");
 car.save();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class Car {
@@ -1278,25 +1242,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // NOTA: Returneaza `this` pentru inlantuire
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // NOTA: Returneaza `this` pentru inlantuire
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // NOTA: Returneaza `this` pentru inlantuire
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // NOTA: Returneaza `this` pentru inlantuire
     return this;
   }
 }
@@ -1304,28 +1268,22 @@ class Car {
 const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Prefer composition over inheritance
+### Prefera compunerea in locul mostenirii
 
-As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+Conform [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) de Gang of Four,
+ar trebui sa optezi pentru compunere in defavoarea mostenirii oriunde poti. Sunt foarte multe
+motive pentru a folosi mostenirea si extraordinar de multe motive pentru a folosi compunerea.
+Probabil te intrebi "cand sa folosesc mostenirea?". O lista unde mostenirea face mai mult
+sens decat compunerea este:
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+1. Mostenirea reprezinta o relatie "este un/o ...", nu "are un/o..." (Om->Animal vs Utilizator->DetaliiUtilizator).
+2. Poti reutiliza codul clasei de baza (Oamenii se pot misca la fle ca toate animalele).
+3. Doresti sa faci modificari globale la clasele derivate prin schimbarea unei clase de baza (Schimba cheltuielile calorice
+ale tuturor animalelor atunci cand se misca).
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-   relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-   (Change the caloric expenditure of all animals when they move).
-
-**Bad:**
+**Gresit:**
 
 ```javascript
 class Employee {
@@ -1337,7 +1295,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Gresit pentru ca Employee "au" EmployeeTaxData. EmployeeTaxData nu este un tip de Employee.
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1349,7 +1307,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class EmployeeTaxData {
@@ -1374,22 +1332,18 @@ class Employee {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ## **SOLID**
 
 ### Single Responsibility Principle (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+Conform Clean Code, "Niciodata nu ar rtebui sa ife mai mult de un motiv pentru a schimba o clasa".
+Este tentant sa supradotezi o clasa cu o multime de functionalitati, ca si cum ai lua o valiza pentru zbor.
+Problema cu aceasta mentalitate intervine atunci cand apar o multitudine de motive de a schimba componentele,
+fiecare schimbare implicand riscuri de a aparea efecte secundare in functionarea programului.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class UserSettings {
@@ -1409,7 +1363,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class UserAuth {
@@ -1436,16 +1390,15 @@ class UserSettings {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Open/Closed Principle (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+Conform lui Bertrand Meyer, "entitatile software (clase, module, functii etc.) ar trebui sa fie deschise
+pentru extindere, dar inchise pentru modificare. Practic, acest principiu enunta faptul ca trebuie sa permiti
+utilizatorilor sa adauge noi functionalitati fara a schimba codul existent.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1470,26 +1423,26 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === "ajaxAdapter") {
       return makeAjaxCall(url).then(response => {
-        // transform response and return
+        // transforma raspunsul si returneaza
       });
     } else if (this.adapter.name === "nodeAdapter") {
       return makeHttpCall(url).then(response => {
-        // transform response and return
+        // transforma raspunsul si returneaza
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // trimite request si returneaza un promise
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // trimite request si returneaza un promise
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1499,7 +1452,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // trimite request si returneaza un promise
   }
 }
 
@@ -1510,7 +1463,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // trimite request si returneaza un promise
   }
 }
 
@@ -1521,30 +1474,24 @@ class HttpRequester {
 
   fetch(url) {
     return this.adapter.request(url).then(response => {
-      // transform response and return
+      // transforma raspunsul si returneaza
     });
   }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Liskov Substitution Principle (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+Formal, principiul este enuntat astfel: "Daca S este un subtip al lui T, atunci obiectele tip t
+pot fi inlocuite cu obiecte de tip S (obiectele tip S pot inlocui obiectele tip T) fara a modifica
+nicio proprietate a acelui program (corectitudine, sarcina efectuata etc.).". Cea mai buna explicatie
+pentru acest principiu este: daca aveti o clasa de parinti si o clasa de copii, atunci clasa de baza si clasa
+de copii pot fi utilizate in mod interschimbabil fara a obtine rezultate incorecte. Un exemplu cu siguranta
+va elucida misterul: patratul este un caz particular de dreptunghi.
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
-
-**Bad:**
+**Gresit:**
 
 ```javascript
 class Rectangle {
@@ -1590,7 +1537,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach(rectangle => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // Gresit: Returneaza 25 pentru patrat, trebuie sa fie 20.
     rectangle.render(area);
   });
 }
@@ -1599,7 +1546,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class Shape {
@@ -1646,25 +1593,20 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Interface Segregation Principle (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+JavaScript nu are interfete, deci acest principiu nu poate fi aplicat la fel de strict.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+ISP afirma ca "Clientii nu trebuie obligati sa depinda de interfete pe care nu le folosesc.".
+"Interfetele sunt contracte implicite in JavaScript din cauza 'duck typing'-ului.".
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Un exemplu pentru acest principiu in JavaScript este cel al claselor care necesita obiecte mari pentru setari.
+Este benefic sa nu fie necesar pentru clienti sa configureze cantitati uriase de optiuni, deoarece de cele mai multe ori
+nu vor avea nevoie de toate setarile. Facand setari optionale ajuta la prevenirea unei interfete alambicate.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class DOMTraverser {
@@ -1685,12 +1627,12 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // De cele mai multe ori, nu va trebui sa animam in timp ce traversam.
   // ...
 });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class DOMTraverser {
@@ -1724,32 +1666,24 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
 ### Dependency Inversion Principle (DIP)
 
-This principle states two essential things:
+Acest principiu prevede doua lucruri esentiale:
 
-1. High-level modules should not depend on low-level modules. Both should
-   depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-   abstractions.
+1. Modulele de nivel superior nu ar trebui sa depinda de modulele de nivel inferior. Ambele ar trebui sa depinda de abstractii.
+2. Abstractiile nu ar trebui sa depinda de detalii. Detaliile ar trebui sa depinda de abstractii.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Daca ati lucrat cu AngularJS, ai obaservat o implementare a acestui principiu sub forma de "Dependency Injection" (DI). Desi nu sunt
+concepte identice, DIP impiedica modulele de nivel inalt sa cunoasca detaliile modulelor de nivel inferior si sa le configureze. Un avantaj
+imens al acestui fapt este ca reduce cuplarea intre module. Cuplarea este un model de dezvoltare gresit, deoarece face codul greu de refactorizat.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Dupa cum am mentionat anterior, JavaScript nu are interfete, deci abstractiile care depind de ele sunt contracte implicite, adica metodele si proprietatile
+pe care un obiect/clasa le expune unui alt obiect/clasa. In exemplul de mai jos, contractul implicit este ca orice modul Request pentru un `InventoryTracker`
+va avea o metoda `requestItems`.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class InventoryRequester {
@@ -1766,8 +1700,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // Gresit: Tocmai ce am creat o dependenta asupra unei implementari specifice de request.
+    // Ar trebui ca requestItems sa depinda de o metoda de request: `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1782,7 +1716,7 @@ const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class InventoryTracker {
@@ -1818,8 +1752,8 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Construind dependentele noastre extern si injectandu-le, putem sa inlocuim
+// cu usurinta modulul de request cu unul modern care foloseste WebSockets.
 const inventoryTracker = new InventoryTracker(
   ["apples", "bananas"],
   new InventoryRequesterV2()
@@ -1827,28 +1761,22 @@ const inventoryTracker = new InventoryTracker(
 inventoryTracker.requestItems();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## **Testing**
+## **Testare**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](https://gotwarlost.github.io/istanbul/).
+Testarea este mai importanta decat livrarea. Daca nu ai teste sau ai teste insuficiente,
+atunci cand livrezi codul nu poti fi sigur ca nu ai defectat ceva. Daca ai acoperire totala,
+vei avea incredere maxima in codul scris si vei fi mult mai linistit. Pe langa un framework grozav
+de testare, vei avea nevoie si de o [unealta buna de acoperire](https://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+Nu exista nicio scuza pentru a nu scrie teste. Exista [o multime de framework-uri pentru teste in JavaScript](https://jstherightway.org/#testare-tools),
+asa ca gaseste-o pe cea care o prefera echipa si testeaza tot! Daca metoda ta preferata este Test Driven Development (TDD), este perfect! Ideea principala
+este sa te asiguri ca ai acoperit codul ca sa nu apara erori neasteptate dupa lansarea actualizarilor in urma modificarilor sau refactorizarilor.
 
-### Single concept per test
+### Testeaza individual
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 import assert from "assert";
@@ -1872,7 +1800,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 import assert from "assert";
@@ -1898,16 +1826,16 @@ describe("MomentJS", () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## **Concurrency**
+## **Concurenta**
 
-### Use Promises, not callbacks
+### Foloseste Promises, nu callback-uri
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+Callback-urile nu mai reprezinta o metoda buna, generand "spaghetti code" (mult nesting).
+Cu ES2015/ES6, Promises sunt un tip global incorporat.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 import { get } from "request";
@@ -1931,7 +1859,7 @@ get(
 );
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1949,17 +1877,15 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await sunt si mai bune decat Promises
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Promises sunt o alternativa foarte buna pentru callback-uri, dar ES2017/ES8 a adus async si await, care ofera o solutie
+si mai curata. Tot ce ai nevoie este o functie cu prefixul `async` si poti scrie logica imperativa a programului fara un lant
+de functii `then`.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1977,7 +1903,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1998,25 +1924,21 @@ async function getCleanCodeArticle() {
 getCleanCodeArticle()
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## **Error Handling**
+## **Manipularea erorilor**
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Erorile sunt un lucru bun, deoarece inseamna ca au fost identificate cazuri in care programul
+tau nu functioneaza cum ar trebui si te instiinteaza de acest lucru, oferindu-ti, de asemenea,
+detalii cu privire la remedierea situatiei.
 
-### Don't ignore caught errors
+### Nu ignora erorile
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+Ignorand erorile nu inseamna ca le-ai reparat. Simpla notificare in consola (`console.log`) nu este varianta
+ideala, adesea fiind pierduta in marea de mesaje printate in consola. Daca infasori fiecare parte a codului in
+blocuri de `try/catch` vei avea control mai mare asupra erorilor.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 try {
@@ -2026,28 +1948,27 @@ try {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // O optiune (mai vizibila decat console.log):
   console.error(error);
-  // Another option:
+  // Alta optiune:
   notifyUserOfError(error);
-  // Another option:
+  // Alta optiune:
   reportErrorToService(error);
-  // OR do all three!
+  // Sau foloseste-le pe toate!
 }
 ```
 
-### Don't ignore rejected promises
+### Nu ignora "rejected promises"
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+Pentru acelasi motiv nu trebuie sa ignori erorile aruncate de `try/catch`.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 getdata()
@@ -2059,7 +1980,7 @@ getdata()
   });
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 getdata()
@@ -2067,36 +1988,30 @@ getdata()
     functionThatMightThrow(data);
   })
   .catch(error => {
-    // One option (more noisy than console.log):
+    // O optiune (mai vizibila decat console.log):
     console.error(error);
-    // Another option:
+    // Alta optiune:
     notifyUserOfError(error);
-    // Another option:
+    // Alta optiune:
     reportErrorToService(error);
-    // OR do all three!
+    // Sau foloseste-le pe toate!
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## **Formatting**
+## **Formatare**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+Formatarea este subiectiva. Foloseste-te de [tonele de programe](https://standardjs.com/rules.html) care automatizeaza formatarea.
+Este o risipa de timp si bani pentru programatori sa se certe asupra formatarii.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+### Foloseste majusculele cu incredere
 
-### Use consistent capitalization
+JavaScript este "untyped" (nu cere impunerea unui tip strict variabilelor), deci scrierea cu
+majuscule iti va spune multe despre variabilele, functiile, clasele tale. Aceste reguli sunt subiective,
+singurul lucru pe care trebuie sa il tii minte este sa fii consistent in notatie.
 
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
-
-**Bad:**
+**Gresit:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2112,7 +2027,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2128,15 +2043,15 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Function callers and callees should be close
+### Functiile apelante si functiile apelate trebuie sa fie aproape
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Daca o functie apeleaza o alta, tine-le aproape in codul sursa. Ideal este sa ai functia
+apelanta fix deasupra celei apelate. Tindem sa citim codul de sus in jos, ca un ziar.
+Din acest motiv, redacteaza codul pentru a putea fi citit natural.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 class PerformanceReview {
@@ -2176,7 +2091,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 class PerformanceReview {
@@ -2216,15 +2131,15 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## **Comments**
+## **Comentarii**
 
-### Only comment things that have business logic complexity.
+### Comenteaza doar liniile de cod care au complexitate ridicata
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+Comentariile sunt o scuza, nu o cerinta. Codul bun se autodocumenteaza in mare parte.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 function hashIt(data) {
@@ -2246,7 +2161,7 @@ function hashIt(data) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function hashIt(data) {
@@ -2263,13 +2178,13 @@ function hashIt(data) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't leave commented out code in your codebase
+### Nu lasa cod comentat printre liniile de cod curente
 
-Version control exists for a reason. Leave old code in your history.
+Versionarea exista dintr-un motiv. Lasa codul vechi in urma!
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 doStuff();
@@ -2278,20 +2193,20 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 doStuff();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't have journal comments
+### Nu tine un jurnal in comentarii
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Aminteste-ti, foloseste sisteme de versionare! Nu este nevoie de cod neutilizat, cod comentat si nici de comentarii inutile.
+Foloseste `git log` pentru a obtine istoricul modificarilor!
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 /**
@@ -2305,7 +2220,7 @@ function combine(a, b) {
 }
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 function combine(a, b) {
@@ -2313,14 +2228,13 @@ function combine(a, b) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid positional markers
+### Evita markerele pozitionale
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+Lasa functiile si numele variabilelor impreuna cu indentarea si formatarea corespunzatoare sa confere structura vizuala a codului.
 
-**Bad:**
+**Gresit:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
@@ -2339,7 +2253,7 @@ const actions = function() {
 };
 ```
 
-**Good:**
+**Corect:**
 
 ```javascript
 $scope.model = {
@@ -2352,11 +2266,11 @@ const actions = function() {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
 
-## Translation
+## Traduceri
 
-This is also available in other languages:
+Acest continut este disponibil in mai multe limbi:
 
 - ![am](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Armenia.png) **Armenian**: [hanumanum/clean-code-javascript/](https://github.com/hanumanum/clean-code-javascript)
 - ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Bangla(বাংলা)**: [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
@@ -2372,7 +2286,7 @@ This is also available in other languages:
 - ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/clean-code-javascript/](https://github.com/mitsuruog/clean-code-javascript/)
 - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [qkraudghgh/clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)
 - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [greg-dev/clean-code-javascript-pl](https://github.com/greg-dev/clean-code-javascript-pl)
-- ![ro](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Romania.png) **Romanian**: [dimaflorinalex/clean-code-javascript-ro](https://github.com/dimaflorinalex/clean-code-javascript-ro)
+- ![ro](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Romania.png) **Romanian**: [dimaflorinalex/clean-code-javascript](https://github.com/dimaflorinalex/clean-code-javascript)
 - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**:
   - [BoryaMogila/clean-code-javascript-ru/](https://github.com/BoryaMogila/clean-code-javascript-ru/)
   - [maksugr/clean-code-javascript](https://github.com/maksugr/clean-code-javascript)
@@ -2383,4 +2297,4 @@ This is also available in other languages:
 - ![ua](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Ukraine.png) **Ukrainian**: [mindfr1k/clean-code-javascript-ua](https://github.com/mindfr1k/clean-code-javascript-ua)
 - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ inapoi la cuprins](#cuprins)**
