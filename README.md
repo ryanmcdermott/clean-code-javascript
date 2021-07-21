@@ -215,35 +215,29 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 ## **Functii**
 
-### Function arguments (2 or fewer ideally)
+### Argumentele functiei (ideal maxim 2)
 
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
+Limitarea numarului de parametri ai functiei este incredibil de importanta, deoarece
+face testarea functiei mai usoara. Mai mult de 3 parametri conduce la o explozie
+combinatorica unde vei avea prea multe cazuri diferite de testat pentru fiecare
+parametru in parte.
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
+Unul sau doua argumente reprezinta cazul ideal, chiar si trei, dar ar trebui evitat pe cat de mult posibil.
+De obicei, daca ai mai mult de 2 argumente inseamna ca functia ta face mai mult decat trebuie. In cazurile
+unde functia face exact cat trebuie si nu poate fi simplificata/sparta in mai multe subfunctii, un obiect servit
+drept argument va fi favorabil unei liste de argumente.
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+Deoarece JavaScript permite sa creezi obiecte ad-hoc, fara a defini neaparat o clasa separata si fara prea mult
+cod inutil ("boilerplate"), poti utiliza un obiect in locul unei multimi de argumente.
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+Pentru a face evident la ce proprietati se asteapta functia, poti folosi sintaxa destructuratoare din ES2015/ES6.
+Acest lucru are cateva avantaje:
 
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. It can be used to simulate named parameters.
-3. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-4. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+1. Cand cineva se uita la semnatura functiei, va vedea imediat ce proprietati sunt utilizate.
+2. Poate fi folosit pentru a simula parametrii denumiti.
+3. Destructurarea cloneaza valorile primitive specificate ale argumentului obiect trecut in functie. Acest lucru poate ajuta
+la prevenirea efectelor secundare. Nota: Obiectele si matricele (vectori, arrays) distruse din obiectul argument nu sunt clonate.
+4. Uneltele "Linters" va pot avertiza cu privire la proprietatile neutilizate, ceea ce ar fi imposibil fara destructurare.
 
 **Gresit:**
 
@@ -273,13 +267,12 @@ createMenu({
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Functions should do one thing
+### Functiile ar trebui sa faca un singur lucru
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, it can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+Aceasta este de departe cea mai importanta regula in ingineria software.
+Cand functiile fac mai mult de un lucru, sunt mai greu de compus, gandit si testat.
+Cand puteti izola o functie sa serveasca unui singur rol, aceasta poate fi refactorizata
+cu usurinta si codul va deveni mult mai curat.
 
 **Gresit:**
 
@@ -309,7 +302,7 @@ function isActiveClient(client) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Function names should say what they do
+### Numele functiilor ar trebui sa fie sugestive, sa descrie rolul pe care il indeplinesc
 
 **Gresit:**
 
@@ -320,7 +313,7 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to tell from the function name what is added
+// Este greu de spus ce aduna aceasta functie judecand dupa denumirea sa
 addToDate(date, 1);
 ```
 
@@ -337,11 +330,10 @@ addMonthToDate(1, date);
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Functions should only be one level of abstraction
+### Functiile ar trebui sa reprezinte un singur nivel de abstractizare
 
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+Cand aveti mai mult de un nivel de abstractizare, functia indeplineste, de obicei,
+mai multe roluri. Divizarea functiilor duce la reutilizare si la testare facila.
 
 **Gresit:**
 
