@@ -1831,7 +1831,7 @@ describe("MomentJS", () => {
 
 ### Foloseste Promises, nu callback-uri
 
-Callback-urile nu mai reprezinta o metoda buna, generand "spaghetti code" (cantitati excesive de cod inconjurat de alte cantitati excesive de cod ("nesting")).
+Callback-urile nu mai reprezinta o metoda buna, generand "spaghetti code" (mult nesting).
 Cu ES2015/ES6, Promises sunt un tip global incorporat.
 
 **Gresit:**
