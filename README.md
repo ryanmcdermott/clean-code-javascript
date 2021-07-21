@@ -26,18 +26,11 @@ adaptate pentru JavaScript. Acesta este un ghid pentru a dezvolta software
 Nu toate principiile de aici trebuie respectate cu strictete, iar mai putine vor fi unanim agreate.
 Acestea sunt simple sfaturi in urma multor ani de experienta colectiva de catre autorii _Clean Code_.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
-
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Iti reamintim faptul ca stiind aceste sfaturi nu te vei transforma imediat intr-un
+programator mai bun si, lucrand cu acestea pentru multi ani, nu inseamna ca nu vei mai face greseli.
+Fiecare bucata de cod incepe ca o schita, asemanator lutului care, prin modelare continua, ajunge in forma sa finala.
+In final, retusam imperfectiunile atunci cand il examinam alaturi de colegii nostri.
+Nu va lasati descurajati de primele proiecte care au nevoie de imbunatatire. In schimb, ambitionati-va sa deveniti mai buni!
 
 ## **Variabile**
 
