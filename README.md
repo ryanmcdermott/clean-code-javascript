@@ -68,35 +68,34 @@ getUser();
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Use searchable names
+### Foloseste nume cautabile
 
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
+Vom citi mai mult cod decat vom scrie vreodata. Este important ca acel cod
+pe care il scriem sa fie citibil si cautabil. _Nedenumind_ variabilele sugestiv
+pentru intelegerea programului nostru ii incurcam pe cititorii nostri.
+Alege sa denumesti variabilele cautabil. Unelte precum [buddy.js](https://github.com/danielstjules/buddy.js) si
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+pot ajuta la identificarea constantelor nedenumite.
 
 **Gresit:**
 
 ```javascript
-// What the heck is 86400000 for?
+// Ce insemna 86400000 ?
 setTimeout(blastOff, 86400000);
 ```
 
 **Corect:**
 
 ```javascript
-// Declare them as capitalized named constants.
-const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
+// Numele unei variabile scrise integral cu majuscule sugereaza ca aceea este o constanta.
+const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; // 86400000;
 
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Use explanatory variables
+### Foloseste variabile explicative
 
 **Gresit:**
 
@@ -120,9 +119,9 @@ saveCityZipCode(city, zipCode);
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Avoid Mental Mapping
+### Evita codificarea mentala
 
-Explicit is better than implicit.
+Codul explicit este mai bun decat cel implicit.
 
 **Gresit:**
 
@@ -134,7 +133,7 @@ locations.forEach(l => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Am uitat ce era `l`...
   dispatch(l);
 });
 ```
@@ -155,10 +154,9 @@ locations.forEach(location => {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Don't add unneeded context
+### Nu adauga context inutil
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+Daca numele clasei/obiectului este suficient de sugestiv, nu il repeta in numele variabilei.
 
 **Gresit:**
 
@@ -190,12 +188,11 @@ function paintCar(car, color) {
 
 **[⬆ inapoi la cuprins](#cuprins)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Foloseste argumente implicite in loc de scurtcircuitari sau conditionari
 
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+Argumentele implicite sunt mai curate decat un scurtcircuit. Fii constient de faptul ca
+daca le folosesti functia ta va oferi doar valori implicite pentru argumente "undefined".
+Alte valori "false" precum `''`, `""`, `false`, `null`, `0` si `NaN` nu vor fi inlocuite cu o valoare implicita.
 
 **Gresit:**
 
