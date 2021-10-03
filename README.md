@@ -4,16 +4,18 @@
 
 1. [Introduction](#introduction)
 2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
-6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+3. [Conditionals](#conditionals)
+4. [Functions](#functions)
+5. [Objects and Data Structures](#objects-and-data-structures)
+6. [Classes](#classes)
+7. [SOLID](#solid)
+8. [Testing](#testing)
+9. [Concurrency](#concurrency)
+10. [Error Handling](#error-handling)
+11. [Formatting](#formatting)
+12. [Comments](#comments)
+13. [Translation](#translation)
+
 
 ## Introduction
 
@@ -222,6 +224,34 @@ function createMicrobrewery(name) {
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
   // ...
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+
+## **Conditionals**
+
+### Use ternary operators to set a value to a variable, or to reduce code if necessary. Use if-else statements for everything else.
+
+**Bad:**
+
+```javascript
+function getFee(isMember) {
+  if(isMember){
+    return '$4.00';
+  }
+  else {
+    return '$12.00'
+  }
+}
+```
+
+**Good:**
+
+```javascript
+function getFee(isMember) {
+  return (isMember ? '$4.00' : '$12.00');
 }
 ```
 
