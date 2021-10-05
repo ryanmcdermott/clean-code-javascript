@@ -227,6 +227,48 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 **[⬆ back to top](#table-of-contents)**
 
+### Use same type of casing style for same type of data in all the project
+
+For example- all variables should be camelCase, all constants should be uppercase words separated by underscore "_". This will increase code readability and consistency. The same goes for file names and folder names too.
+
+**Bad:**
+
+```javascript
+const aConstant = 0;
+const AnotherConstant = 0;
+
+let a_variable = 0;
+let anotherVariable = 0;
+
+function AFunction(){
+  // do something
+}
+
+function anotherFunction(){
+  // do something else
+}
+```
+
+**Good:**
+
+```javascript
+const A_CONSTANT = 0;
+const ANOTHER_CONSTANT = 0;
+
+let aVariable = 0;
+let anotherVariable = 0;
+
+function AFunction(){
+  // do something
+}
+
+function AnotherFunction(){
+  // do something else
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
 ## **Functions**
 
 ### Function arguments (2 or fewer ideally)
