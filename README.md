@@ -63,6 +63,8 @@ const currentDate = moment().format("YYYY/MM/DD");
 
 ### Use the same vocabulary for the same type of variable
 
+Have you declared a variable elsewhere that will do the work you need? If so, eliminate the redundant variables.
+
 **Bad:**
 
 ```javascript
@@ -75,6 +77,22 @@ getCustomerRecord();
 
 ```javascript
 getUser();
+```
+
+If you do need separate variables, keep naming style consistent.
+
+**Bad:**
+
+```javascript
+getUserInfo();
+getClientData();
+```
+
+**Good:**
+
+```javascript
+getUser();
+getClient();
 ```
 
 **[⬆ back to top](#table-of-contents)**
