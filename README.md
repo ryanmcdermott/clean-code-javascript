@@ -6,14 +6,14 @@
 2. [متغیرها (Variables)](#متغیرها-Variables)
 3. [توابع (Functions)](#توابع-functions)
 4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
-6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+5. [کلاسها (Classes)](#کلاسها-classes)
+6. [قاعده سالید (SOLID)](#قاعده-سالید-solid)
+7. [تست کردن (Testing)](#تست-کردن-testing)
+8. [همزمانی (Concurrency)](#همزمانی-concurrency)
+9. [رسیدگی به خطا (Error Handling)](#رسیدگی-به-خطا-error-handling)
+10. [قالب بندی (Formatting)](#قالب-بندی-formatting)
+11. [یادداشت ها (Comments)](#یادداشت-ها-comments)
+12. [ترجمه (Translation)](#ترجمه-translation)
 
 ## معرفی
 
@@ -1138,7 +1138,7 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **Classes**
+## **کلاسها (Classes)**
 
 ### Prefer ES2015/ES6 classes over ES5 plain functions
 
@@ -1375,7 +1375,7 @@ class Employee {
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **SOLID**
+## **قاعده سالید (SOLID)**
 
 ### Single Responsibility Principle (SRP)
 
@@ -1828,7 +1828,7 @@ inventoryTracker.requestItems();
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **Testing**
+## **تست کردن (Testing)**
 
 Testing is more important than shipping. If you have no tests or an
 inadequate amount, then every time you ship code you won't be sure that you
@@ -1899,7 +1899,7 @@ describe("MomentJS", () => {
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **Concurrency**
+## **همزمانی (Concurrency)**
 
 ### Use Promises, not callbacks
 
@@ -1997,7 +1997,7 @@ getCleanCodeArticle();
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **Error Handling**
+## **رسیدگی به خطا (Error Handling)**
 
 Thrown errors are a good thing! They mean the runtime has successfully
 identified when something in your program has gone wrong and it's letting
@@ -2076,7 +2076,7 @@ getdata()
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **Formatting**
+## **قالب بندی (Formatting)**
 
 Formatting is subjective. Like many rules herein, there is no hard and fast
 rule that you must follow. The main point is DO NOT ARGUE over formatting.
@@ -2215,7 +2215,7 @@ review.perfReview();
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **Comments**
+## **یادداشت ها (Comments)**
 
 ### Only comment things that have business logic complexity.
 
@@ -2351,7 +2351,7 @@ const actions = function () {
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## Translation
+## ترجمه (Translation)
 
 This is also available in other languages:
 
