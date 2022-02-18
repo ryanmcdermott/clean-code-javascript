@@ -1,4 +1,4 @@
-# کد تمیز در جاوا اسکریپت
+# کدنویسی تمیز (Clean Code) در جاوا اسکریپت
 
 ## فهرست مطالب
 
@@ -7,7 +7,7 @@
 3. [توابع (Functions)](#توابع-functions)
 4. [اشیاء و ساختارهای داده (Objects and Data Structures)](#اشیاء-و-ساختارهای-داده-objects-and-data-structures)
 5. [کلاسها (Classes)](#کلاسها-classes)
-6. [قاعده سالید (SOLID)](#قاعده-سالید-solid)
+6. [اصول سالید (SOLID)](#قاعده-سالید-solid)
 7. [تست کردن (Testing)](#تست-کردن-testing)
 8. [همزمانی (Concurrency)](#همزمانی-concurrency)
 9. [رسیدگی به خطا (Error Handling)](#رسیدگی-به-خطا-error-handling)
@@ -1375,7 +1375,7 @@ class Employee {
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **قاعده سالید (SOLID)**
+## **اصول سالید (SOLID)**
 
 ### Single Responsibility Principle (SRP)
 
