@@ -5,7 +5,7 @@
 1. [معرفی](#معرفی)
 2. [متغیرها (Variables)](#متغیرها-Variables)
 3. [توابع (Functions)](#توابع-functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
+4. [اشیاء و ساختارهای داده (Objects and Data Structures)](#اشیاء-و-ساختارهای-داده-objects-and-data-structures)
 5. [کلاسها (Classes)](#کلاسها-classes)
 6. [قاعده سالید (SOLID)](#قاعده-سالید-solid)
 7. [تست کردن (Testing)](#تست-کردن-testing)
@@ -1035,7 +1035,7 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 **[⬆ بازگشت به فهرست مطالب](#فهرست-مطالب)**
 
-## **Objects and Data Structures**
+## **اشیاء و ساختارهای داده (Objects and Data Structures)**
 
 ### Use getters and setters
 
