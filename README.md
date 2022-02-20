@@ -1718,9 +1718,8 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  options: {
-    animationModule() {}
-  }
+  options: {}  // Note how this part of the code doesn't even
+               // need to know that animationModule even exists.
 });
 ```
 
