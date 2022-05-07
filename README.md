@@ -1590,7 +1590,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach(rectangle => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 16.
     rectangle.render(area);
   });
 }
