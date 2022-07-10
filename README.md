@@ -1110,7 +1110,7 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 **[⬆ back to top](#table-of-contents)**
 
 ## **Objects and Data Structures**
-## **オブジェクとデータ構造**
+## **オブジェクトとデータ構造**
 
 ### Use getters and setters
 ### gettersとsettersを使うこと
