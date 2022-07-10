@@ -1795,7 +1795,7 @@ class DOMTraverser {
 
   setup() {
     this.rootNode = this.settings.rootNode;
-    this.animationModule.setup();
+    this.settings.animationModule.setup();
   }
 
   traverse() {
