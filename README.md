@@ -675,7 +675,7 @@ Two caveats to mention to this approach:
 
 2. Cloning big objects can be very expensive in terms of performance. Luckily,
    this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
+   [great libraries](https://immutable-js.com/) that allow
    this kind of programming approach to be fast and not as memory intensive as
    it would be for you to manually clone objects and arrays.
 
