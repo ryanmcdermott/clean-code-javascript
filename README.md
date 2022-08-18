@@ -1999,22 +1999,14 @@ getCleanCodeArticle()
 ```
 
 **[⬆ back to top](#table-of-contents)**
+## **اجرای خطا**
 
-## **Error Handling**
+مواجه شدن با پیغام خطا چیز خوبی است! این پیغام ها نشان می دهند مشکلاتی که دربرنامه شما در زمان اجرا وجود دارد تشخیص داده شده است و با توقف اجرای تابع در پشته جاری به شما اطلاع داده می شود. با از بین بردن پروسه در node شما در کنسول با ردی از پشته مطلع می شوید.
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+##خطایابی را نادیده نگیرید
 
-### Don't ignore caught errors
-
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+نادیده گرفتن خطای به وجود آمده توانایی واکنش و اصلاح آن را از شما می گیرد. ثبت خطا در کنسول هم راه حل بهتری نیست، چون اغلب اوقات در دریایی از چیزهای چاپ شده در کنسول گم می شود.
+{به جای آن} اگر شما هر قسمت از کد را که فکر می کنید ممکن است خطایی داشته باشد بین (try/catch) قرار بدهید مجبور خواهید بود برای مواجهه با خطا برنامه ای داشته باشید یا کد خاصی را برای آن اختصاص دهید.
 
 **Bad:**
 
@@ -2041,11 +2033,9 @@ try {
   // OR do all three!
 }
 ```
+### قرار های رد شده(Rejected Promises) را نادیده نگیرید
 
-### Don't ignore rejected promises
-
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+به همین دلیل شما نباید خطاهای گرفته شده توسط ‍` try/catch  ` را نیز نادیده بگیرید.
 
 **Bad:**
 
@@ -2079,22 +2069,22 @@ getdata()
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Formatting**
+## **قالب بندی**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+قالب بندی یک چیزی نسبی است. مانند بیشتری از قوانین، دنبال کردن هیج کدام از آنها اجباری نیست.
+نکته این است که با قالب بندی سر و کله نزنید.
+برای انجام قالب بندی بصورت خودکار ابزار های زیادی وجود دارند(https://standardjs.com/rules.html).
+{صرفاً} از یکی قالب استفاده کنید!
+بحث کردن در مورد {نوع} قالب برای انجنیر ها یک نوع اتلاف پول و زمان است.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
 
-### Use consistent capitalization
+برای مواردی مانند(indentation, tabs vs. spaces, double vs. single quotes, etc.) که جزیی از قالب بندی خودکار بشمار نمی روند به راهنمایی های زیر مراجعه نمایید.
 
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+### از حروف بزرگ بصورت یکدست استفاده کنید
+
+جاو اسکریپت یک زبان تایپ نشده است، در اینصورت بزرگ نویسی چیزهای زیادی در باره ای ` variable ` ها و ` function ` هایتان می گوید. این قوانین نسبی هستند، پس این اختیاری است که تیم شما چه را انتخاب کنند.
+پس مهم نیست چه انتخاب می کنید یک دستی مهم است. 
+
 
 **Bad:**
 
@@ -2130,11 +2120,12 @@ class Alpaca {}
 
 **[⬆ back to top](#table-of-contents)**
 
-### Function callers and callees should be close
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+
+### فراخواننده های توابع و تابع های فراخوانده شده باید نزدیک به هم باشند
+
+در فایل اصلی (source code ) اگر یک تابع، تابع دیگری را فراخوانی می کند از نظر عمودی باید به هم نزدیک نگهداشته شوند. بصورت ایده آل، تابع فراخواننده را درست بالای تابع فراخوانده شده نگهدارید.
+ما تمایل داریم مانند یک روزنامه کُد را از بالا به پایین بخوانیم، پس به همین دلیل نکات بالا را رعایت کنید.     
 
 **Bad:**
 
@@ -2218,11 +2209,12 @@ review.perfReview();
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Comments**
+## **کامنت ها**
 
-### Only comment things that have business logic complexity.
+### قسمت های را که در منطق کار پیچیده گی ایجاد میکنند کامنت گزاری کنید
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+کامنت ها یک نوع راهکارها هستند، نه یک نوع ضرورت.
+ کٌد خوب خود، خودش را مستند می کند.
 
 **Bad:**
 
@@ -2265,9 +2257,9 @@ function hashIt(data) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't leave commented out code in your codebase
-
-Version control exists for a reason. Leave old code in your history.
+### کد هایی کامنت شده را جا نگزارید
+ 
+ابزارهای ` Version Control ` به دلیلی وجود دارند که شما کد هایتان قدیمی تان را در تاریخچه قرار دهید.
 
 **Bad:**
 
@@ -2286,12 +2278,11 @@ doStuff();
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't have journal comments
+### کامنت های اخباری ننویسید
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+به یاد داشته باشید، از ` Version Control `  ها استفاده کنید! چون هیچ نیازی به کْد های ازبین رفته، کامنت شده و مخصوصاً کامنت های اخباری  نیست. از ` git log ` برای بدست آوردن تاریخچه کدهای تان استفاده کنید.
 
-**Bad:**
+ **Bad:**
 
 ```javascript
 /**
@@ -2312,13 +2303,11 @@ function combine(a, b) {
   return a + b;
 }
 ```
-
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid positional markers
+### از نشان گزاری مکانی خود داری کنید
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+آنها معمولا آلودگی ایجاد می کنند. استفاده از نام متغییر ها و تابع ها با فاصله گزاری و قالب بندی مناسب به کْد شما ساختار ظاهری مناسب می بخشد.
 
 **Bad:**
 
@@ -2354,9 +2343,10 @@ const actions = function() {
 
 **[⬆ back to top](#table-of-contents)**
 
-## Translation
+## ترجمه
 
-This is also available in other languages:
+این {فایل راهنما} به زبان های دیگر نیز در دسترس است:
+
 
 - ![am](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Armenia.png) **Armenian**: [hanumanum/clean-code-javascript/](https://github.com/hanumanum/clean-code-javascript)
 - ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Bangla(বাংলা)**: [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
