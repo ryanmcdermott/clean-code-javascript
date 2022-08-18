@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Variables](#variables)
+1. [Uvod](#uvod)
+2. [Spremenljivke](#spremenljivke)
 3. [Functions](#functions)
 4. [Objects and Data Structures](#objects-and-data-structures)
 5. [Classes](#classes)
@@ -43,7 +43,7 @@ shaped into its final form. Finally, we chisel away the imperfections when
 we review it with our peers. Don't beat yourself up for first drafts that need
 improvement. Beat up the code instead!
 
-## **Variables**
+## **Spremenljivke**
 
 ### Use meaningful and pronounceable variable names
 
