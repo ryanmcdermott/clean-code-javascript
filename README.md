@@ -1,6 +1,6 @@
 # clean-code-javascript
 
-## Table of Contents
+## Kazalo vsebine 
 
 1. [Uvod](#uvod)
 2. [Spremenljivke](#spremenljivke)
@@ -24,16 +24,15 @@ Načela programskega inženiringa iz knjige Roberta C. Martina
 prilagojena za JavaScript. To ni slogovni vodnik. To je vodnik za pisanje
 [berljive, ponovno uporabne in ponovljive](https://github.com/ryanmcdermott/3rs-of-software-architecture) programske opreme v jeziku JavaScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-_Clean Code_.
+Ni potrebno, da se vsi principi, kateri so opisani v vodiču natančno upoštevajo. 
+Ta vodič velja za smernice katere so avtorji knjige _Clean Code_ napisali na podlagi 
+dolgoletnih kolektivnih izkušenj.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+Naša stroka inženiringa programske opreme je stara le nekaj več kot 50 let, 
+mi pa se iz nje lahko še veliko naučimo. Ko bo arhitektura programske opreme 
+stara toliko kot arhitektura sama, bomo morda imeli boljša pravila, katera bi 
+morali upoštevati. Za zdaj naj te smernice služijo kot merilo, po katerem lahko 
+ocenimo kakovost JavaScript kode, ki jo ustvarjate vi in vaša ekipa.
 
 One more thing: knowing these won't immediately make you a better software
 developer, and working with them for many years doesn't mean you won't make
@@ -42,27 +41,36 @@ shaped into its final form. Finally, we chisel away the imperfections when
 we review it with our peers. Don't beat yourself up for first drafts that need
 improvement. Beat up the code instead!
 
+Samo še nekaj: če boste poznali smernice iz tega vodiča, ne boste takoj 
+postali boljši programer, tudi več letno delo z njimi ne pomeni, da ne boste delali
+več napak. Vsak kos kode se začne kot grobi osnutek, kot kos mokre gline, ki dobi 
+svojo končno obliko. Na koncu z dletom odstranimo nepravilnosti, ko pregledamo kodo 
+s sodelavci. Ne obremenjujte se s prvimi osnutki kode, ki potrebujejo
+izboljšave! :)
+
+
+
 ## **Spremenljivke**
 
-### Use meaningful and pronounceable variable names
+### Uporabite smiselna in izgovorljiva imena spremenljivk
 
-**Bad:**
+**Slabo:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Use the same vocabulary for the same type of variable
+### Uporaba istega besedišča za isto vrsto spremenljivke
 
-**Bad:**
+**Slabo:**
 
 ```javascript
 getUserInfo();
@@ -70,15 +78,15 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Use searchable names
+### Uporabite imena, po katerih je mogoče iskati
 
 We will read more code than we will ever write. It's important that the code we
 do write is readable and searchable. By _not_ naming variables that end up
@@ -88,23 +96,23 @@ Make your names searchable. Tools like
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 can help identify unnamed constants.
 
-**Bad:**
+**Slabo:**
 
 ```javascript
-// What the heck is 86400000 for?
+// Za kaj za vraga je 86400000?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
-// Declare them as capitalized named constants.
+// Deklarirajte jih kot poimenovane konstante z velikimi črkami.
 const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
 ### Use explanatory variables
 
