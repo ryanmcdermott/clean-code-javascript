@@ -34,20 +34,12 @@ stara toliko kot arhitektura sama, bomo morda imeli boljša pravila, katera bi
 morali upoštevati. Za zdaj naj te smernice služijo kot merilo, po katerem lahko 
 ocenimo kakovost JavaScript kode, ki jo ustvarjate vi in vaša ekipa.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
-
 Samo še nekaj: če boste poznali smernice iz tega vodiča, ne boste takoj 
 postali boljši programer, tudi več letno delo z njimi ne pomeni, da ne boste delali
 več napak. Vsak kos kode se začne kot grobi osnutek, kot kos mokre gline, ki dobi 
 svojo končno obliko. Na koncu z dletom odstranimo nepravilnosti, ko pregledamo kodo 
 s sodelavci. Ne obremenjujte se s prvimi osnutki kode, ki potrebujejo
-izboljšave! :)
-
+izboljšave!
 
 
 ## **Spremenljivke**
