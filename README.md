@@ -4,26 +4,24 @@
 
 1. [Uvod](#uvod)
 2. [Spremenljivke](#spremenljivke)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
+3. [Funkcije](#functions)
+4. [Objekti in podatkovne strukture](#objekti-in-podatkovne-strukture)
+5. [Razredi](#classes)
 6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+7. [Testiranje](#testiranje)
+8. [Asinhronost](#asinhronost)
+9. [Ravnanje z napakami](#ravnanje-z-napakami)
+10. [Oblikovanje](#oblikovanje)
+11. [Komentarji](#komentarji)
+12. [Prevanjanje](#prevajanje)
 
-## Introduction
+## Uvod
 
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
-
-Software engineering principles, from Robert C. Martin's book
+![Humoristična podoba ocenjevanja kakovosti programske opreme kot štetje števila izrečenih vzklikov med branjem kode](https://www.osnews.com/images/comics/wtfm.jpg)
+Načela programskega inženiringa iz knjige Roberta C. Martina
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+prilagojena za JavaScript. To ni slogovni vodnik. To je vodnik za pisanje
+[berljive, ponovno uporabne in ponovljive](https://github.com/ryanmcdermott/3rs-of-software-architecture) programske opreme v jeziku JavaScript.
 
 Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
