@@ -22,7 +22,7 @@
 Načela programskega inženiringa iz knjige Roberta C. Martina
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
 prilagojena za JavaScript. To ni slogovni vodnik. To je vodnik za pisanje
-[berljive, ponovno uporabne in ponovljive](https://github.com/ryanmcdermott/3rs-of-software-architecture) programske opreme v jeziku JavaScript.
+[berljive, ponovno uporabne in ponovljive](https://github.com/ryanmcdermott/3rs-of-software-architecture) kode v jeziku JavaScript.
 
 Ni potrebno, da se vsi principi, kateri so opisani v vodiču natančno upoštevajo. 
 Ta vodič velja za smernice katere so avtorji knjige _Clean Code_ napisali na podlagi 
