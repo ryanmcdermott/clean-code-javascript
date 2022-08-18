@@ -18,6 +18,7 @@
 ## Uvod
 
 ![Humoristična podoba ocenjevanja kakovosti programske opreme kot štetje števila izrečenih vzklikov med branjem kode](https://www.osnews.com/images/comics/wtfm.jpg)
+<br>
 Načela programskega inženiringa iz knjige Roberta C. Martina
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
 prilagojena za JavaScript. To ni slogovni vodnik. To je vodnik za pisanje
