@@ -88,6 +88,11 @@ Make your names searchable. Tools like
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 can help identify unnamed constants.
 
+Med kodiranjem bomo prebrali bomo več kode, kot je bomo kdajkoli napisali. Pomembno je, 
+da je koda berljiva in jo je mogoče iskati z funkcijo za iskanje v razvijalskem programu.
+Če spremenljivk ustrezno ne poimenujemo ali pa jih ne smisleno poimenujemo, s tem škodujemo
+bralcu naše kode. Imena naj bodo primerna za iskanje.
+
 **Slabo:**
 
 ```javascript
@@ -98,7 +103,7 @@ setTimeout(blastOff, 86400000);
 **Dobro:**
 
 ```javascript
-// Deklarirajte jih kot poimenovane konstante z velikimi črkami.
+// Deklarirajte jih kot konstante z velikimi črkami.
 const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
@@ -106,9 +111,9 @@ setTimeout(blastOff, MILLISECONDS_PER_DAY);
 
 **[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Use explanatory variables
+### Uporaba pojasnjevalnih spremenljivk
 
-**Bad:**
+**Slabo:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -119,7 +124,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -128,28 +133,28 @@ const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Avoid Mental Mapping
+### Izogibajte se miselnim zemljevidom
 
-Explicit is better than implicit.
+Eksplicitno je bolje kot implicitno.
 
-**Bad:**
+**Slabo:**
 
 ```javascript
-const locations = ["Austin", "New York", "San Francisco"];
+const lokacije = ["Austin", "New York", "San Francisco"];
 locations.forEach(l => {
   doStuff();
   doSomeOtherStuff();
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Torej kaj je že 'l'?
   dispatch(l);
 });
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -163,14 +168,13 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Don't add unneeded context
+### Ne dodajajte nepotrebnega konteksta
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+Če vam ime razreda/objekta nekaj pove, tega ne ponavljajte v svojem imenu spremenljivke.
 
-**Bad:**
+**Slabo:**
 
 ```javascript
 const Car = {
@@ -184,7 +188,7 @@ function paintCar(car, color) {
 }
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 const Car = {
@@ -198,16 +202,11 @@ function paintCar(car, color) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Uporabite privzete vrednosti
 
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
-
-**Bad:**
+**Slabo:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -216,7 +215,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
@@ -224,11 +223,11 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-## **Functions**
+## **Funkcije**
 
-### Function arguments (2 or fewer ideally)
+### Argumenti funkcije (2 ali manj v idelanem primeru)
 
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
