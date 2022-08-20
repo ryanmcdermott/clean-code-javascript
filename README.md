@@ -4,7 +4,7 @@
 
 1. [Uvod](#uvod)
 2. [Spremenljivke](#spremenljivke)
-3. [Funkcije](#functions)
+3. [Funkcije](#funkcije)
 4. [Objekti in podatkovne strukture](#objekti-in-podatkovne-strukture)
 5. [Razredi](#classes)
 6. [SOLID](#solid)
