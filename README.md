@@ -24,7 +24,7 @@ Načela programskega inženiringa iz knjige Roberta C. Martina
 prilagojena za JavaScript. To ni slogovni vodnik. To je vodnik za pisanje
 [berljive, ponovno uporabne in ponovljive](https://github.com/ryanmcdermott/3rs-of-software-architecture) kode v jeziku JavaScript.
 
-Ni potrebno, da se vsi principi, kateri so opisani v vodiču natančno upoštevajo. 
+Ni potrebno, da vse principe, kateri so opisani v vodiču natančno upoštevate. 
 Ta vodič velja za smernice katere so avtorji knjige _Clean Code_ napisali na podlagi 
 dolgoletnih kolektivnih izkušenj.
 
@@ -60,7 +60,7 @@ const currentDate = moment().format("YYYY/MM/DD");
 
 **[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Uporaba istega besedišča za isto vrsto spremenljivke
+### Uporabite isto besedišča za isto vrsto spremenljivke
 
 **Slabo:**
 
@@ -78,12 +78,12 @@ getUser();
 
 **[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Uporabite imena, katere boste kasneje najlažje našli
+### Uporabite imena, katere boste kasneje brez napora našli
 
-Med kodiranjem bomo prebrali bomo več kode, kot je bomo kdajkoli napisali. Pomembno je, 
-da je koda berljiva in jo je mogoče iskati z funkcijo za iskanje v razvijalskem programu.
-Če spremenljivk ustrezno ne poimenujemo ali pa jih ne smisleno poimenujemo, s tem škodujemo
-bralcu naše kode. Imena naj bodo primerna za iskanje.
+Med kodiranjem boste prebrali več kode, kot je boste kadarkoli napisali. Pomembno je, 
+da je vaša koda berljiva in jo je mogoče iskati s funkcijo za iskanje v razvijalskemu programu.
+Če spremenljivk ustrezno ne poimenujte ali jih nesmisleno poimenujete, s tem škodite bralcu vaše kode. 
+Imena naj bodo primerna za iskanje.
 [buddy.js](https://github.com/danielstjules/buddy.js) in
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 vam lahko pomagata prepoznati neimenovane konstante.
@@ -225,19 +225,19 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 ### Argumenti funkcije (2 ali manj v idelanem primeru)
 
 Omejitev števila parametrov funkcije je izjemno pomembna, saj
-olajša testiranje funkcije. Če imamo več kot tri argumente, bomo imeli težave saj
-bomo morali testirati na tone različnih primerov z vsakim argumentom funkcije.
+olajša testiranje funkcije. Če imate več kot tri argumente, boste imeli težave saj
+boste morali testirati na tone različnih primerov z vsakim argumentom funkcije.
 
-Idealno je, da uporabimo en ali dva argumenta, trem pa se je treba izogibati, če je 
-le mogoče. Če moramo uporabiti več kot dva argumenta, potem funkcija poskuša 
-narediti preveč. V primerih kjer temu ni tako in če se vam zdi, da potrebujete več 
-argumentov, JavaScript omogoča, enostavno ustvarjanje objektov, ki jih lahko nato 
+Idealno je, da uporabite en ali dva argumenta, trem pa se je potrebno izogibati, če je 
+le mogoče. Če morate uporabiti več kot dva argumenta, potem funkcija poskuša 
+narediti preveč. V primerih kjer se vam zdi, da potrebujete več argumentov, JavaScript 
+omogoča enostavno ustvarjanje objektov, ki jih lahko nato 
 uporabite kot argument v funkciji.
 
 Da bi bilo jasno, katere lastnosti funkcija pričakuje, lahko uporabite ES2015/ES6
 sintakso destrukturiranja. Prednosti so:
    
-1. Ko funkcijo pogledamo, je takoj jasno, katere lastnosti uporablja.
+1. Iz funkcije je takoj razvidno, katere lastnosti uporablja.
 2. Uporablja se lahko za simulacijo poimenovanih parametrov.
 3. Destrukturiranje klonira tudi določene primitivne vrednosti argumenta predmeta, 
    posredovanega v funkcijo. To lahko pomaga preprečiti stranske učinke. 
@@ -276,7 +276,7 @@ createMenu({
 ### Funkcije naj delajo samo eno stvar na enkrat
 
 Verjetno najpomembnejše pravilo kodiranja. Ko funkcije počnejo več kot eno stvar, 
-jih je težje sestaviti, preizkusiti in jih utemeljiti. Če lahko funkcijo izolirate 
+jih boste težje sestavii, preizkusili in jih utemeljili. Če lahko funkcijo izolirate 
 na eno samo dejanje, jo je mogoče zlahka preoblikovati, hkrati pa bo vaša koda čistejša za branje. 
 Če iz tega vodiča ne odnesete ničesar drugega, se držite tega pravila!
 
@@ -422,6 +422,11 @@ different things, that share a lot in common, but their differences force you
 to have two or more separate functions that do much of the same things. Removing
 duplicate code means creating an abstraction that can handle this set of
 different things with just one function/module/class.
+
+Pogosto kodo podvajamo na mestih kjer imamo , ki imajo veliko 
+skupnega med sabo, njihove razlike pa vas prisilijo <-- //TODO
+
+Pogosto se koda podvaja, ker imate dve ali več rahlo ali več različnih stvari, ki imajo veliko skupnega, vendar vas njihove razlike prisilijo, da da bi morali imeti dve ali več ločenih funkcij, ki počnejo večinoma iste stvari. Odstranjevanje podvojene kode pomeni ustvariti abstrakcijo, ki lahko obravnava ta sklop različnih stvari z eno samo funkcijo/modulom/razredom.
 
 Getting the abstraction right is critical, that's why you should follow the
 SOLID principles laid out in the _Classes_ section. Bad abstractions can be
