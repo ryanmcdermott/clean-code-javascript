@@ -308,7 +308,7 @@ function isActiveClient(client) {
 
 **[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Ime funkcije naj pojasnjuje za kaj je zadolžena
+### Ime funkcije naj pojasnjuje za kaj so zadolžene
 
 **Slabo:**
 
@@ -319,7 +319,7 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// Iz imena funkcije je težko razvidno zakaj je zadolžena
+// Iz imena funkcije je težko razvidno za kaj je zadolžena
 addToDate(date, 1);
 ```
 
@@ -336,13 +336,12 @@ addMonthToDate(1, date);
 
 **[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Functions should only be one level of abstraction
+### Funkcije naj imajo samo eno raven abstraktnosti
 
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+Kadar imate več kot eno raven abstrakcije, funkcija običajno počne preveč. 
+Razdelitev funkcij omogoča ponovno uporabnost in lažjo testiranje.
 
-**Bad:**
+**Slabo:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -369,7 +368,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -406,18 +405,17 @@ function parse(tokens) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Remove duplicate code
+### Odstranite podvojeno kodo
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+Po najboljših močeh se izogibajte podvojeni kodi. Podvojena koda je slaba,
+saj pomeni, da je v kodi več kot eno mesto, na katerem boste morali narediti spremembo.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Predstavljajte si, da vodite restavracijo in spremljate zalogo:
+paradižnik, čebulo, česen, začimbe itd. Če imate več seznamov, s katerimi vodite zalogo
+boste morali posodobiti vse, takoj ko postrežete jed z npr. paradižnikom. 
+Če imate samo en seznam, ga boste morali posodobiti samo na enem mestu!
 
 Oftentimes you have duplicate code because you have two or more slightly
 different things, that share a lot in common, but their differences force you
