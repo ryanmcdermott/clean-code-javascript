@@ -277,8 +277,8 @@ createMenu({
 
 Verjetno najpomembnejše pravilo kodiranja. Ko funkcije počnejo več kot eno stvar, 
 jih je težje sestaviti, preizkusiti in jih utemeljiti. Če lahko funkcijo izolirate 
-na eno samo dejanje, jo je mogoče zlahka preoblikovati, hkrati pa bo vača koda čistejša za branje. 
-Če iz tega vodiča ne odnesete ničesar drugega, se držite tega.
+na eno samo dejanje, jo je mogoče zlahka preoblikovati, hkrati pa bo vaša koda čistejša za branje. 
+Če iz tega vodiča ne odnesete ničesar drugega, se držite tega pravila!
 
 **Slabo:**
 
@@ -308,9 +308,9 @@ function isActiveClient(client) {
 
 **[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Function names should say what they do
+### Ime funkcije naj pojasnjuje za kaj je zadolžena
 
-**Bad:**
+**Slabo:**
 
 ```javascript
 function addToDate(date, month) {
@@ -319,11 +319,11 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to tell from the function name what is added
+// Iz imena funkcije je težko razvidno zakaj je zadolžena
 addToDate(date, 1);
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 function addMonthToDate(month, date) {
@@ -334,7 +334,7 @@ const date = new Date();
 addMonthToDate(1, date);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
 ### Functions should only be one level of abstraction
 
