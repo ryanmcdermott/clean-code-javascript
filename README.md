@@ -78,20 +78,15 @@ getUser();
 
 **[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Uporabite imena, po katerih je mogoče iskati
-
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
-[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+### Uporabite imena, katere boste kasneje najlažje našli
 
 Med kodiranjem bomo prebrali bomo več kode, kot je bomo kdajkoli napisali. Pomembno je, 
 da je koda berljiva in jo je mogoče iskati z funkcijo za iskanje v razvijalskem programu.
 Če spremenljivk ustrezno ne poimenujemo ali pa jih ne smisleno poimenujemo, s tem škodujemo
 bralcu naše kode. Imena naj bodo primerna za iskanje.
+[buddy.js](https://github.com/danielstjules/buddy.js) in
+[ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
+vam lahko pomaga prepoznati neimenovane konstante.
 
 **Slabo:**
 
