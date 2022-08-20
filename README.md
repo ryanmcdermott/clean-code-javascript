@@ -229,14 +229,13 @@ olajša testiranje funkcije. Če imamo več kot tri argumente, bomo imeli težav
 bomo morali testirati na tone različnih primerov z vsakim argumentom funkcije.
 
 Idealno je, da uporabimo en ali dva argumenta, trem pa se je treba izogibati, če je 
-le mogoče. Običajno, če imate več kot dva argumenta, potem vaša funkcija poskuša 
-narediti preveč. V primerih kjer temu ni tako, večinoma zadostuje objekt kot argument.
-
-Ker JavaScript omogoča, da lahko objekte ustvarjate sproti, lahko uporabite objekt, 
-če se vam zdi, da potrebujete več argumentov.
+le mogoče. Če moramo uporabiti več kot dva argumenta, potem funkcija poskuša 
+narediti preveč. V primerih kjer temu ni tako in če se vam zdi, da potrebujete več 
+argumentov, JavaScript omogoča, enostavno ustvarjanje objektov, ki jih lahko nato 
+uporabite kot argument v funkciji.
 
 Da bi bilo jasno, katere lastnosti funkcija pričakuje, lahko uporabite ES2015/ES6
-sintakso destrukturiranja. To ima nekaj prednosti:
+sintakso destrukturiranja. Prednosti so:
    
 1. Ko funkcijo pogledamo, je takoj jasno, katere lastnosti uporablja.
 2. Uporablja se lahko za simulacijo poimenovanih parametrov.
@@ -274,15 +273,14 @@ createMenu({
 
 **[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
-### Functions should do one thing
+### Funkcije naj delajo samo eno stvar na enkrat
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, it can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+Verjetno najpomembnejše pravilo kodiranja. Ko funkcije počnejo več kot eno stvar, 
+jih je težje sestaviti, preizkusiti in si jih utemeljiti. Če lahko funkcijo izolirate 
+na eno samo dejanje, jo je mogoče zlahka preoblikovati, hkrati pa bo vača koda čistejša za branje. 
+Če iz tega vodiča ne odnesete ničesar drugega, se držite tega.
 
-**Bad:**
+**Slabo:**
 
 ```javascript
 function emailClients(clients) {
@@ -295,7 +293,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 function emailActiveClients(clients) {
@@ -308,7 +306,7 @@ function isActiveClient(client) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
 ### Function names should say what they do
 
