@@ -276,7 +276,7 @@ createMenu({
 ### Funkcije naj delajo samo eno stvar na enkrat
 
 Verjetno najpomembnejše pravilo kodiranja. Ko funkcije počnejo več kot eno stvar, 
-jih je težje sestaviti, preizkusiti in si jih utemeljiti. Če lahko funkcijo izolirate 
+jih je težje sestaviti, preizkusiti in jih utemeljiti. Če lahko funkcijo izolirate 
 na eno samo dejanje, jo je mogoče zlahka preoblikovati, hkrati pa bo vača koda čistejša za branje. 
 Če iz tega vodiča ne odnesete ničesar drugega, se držite tega.
 
