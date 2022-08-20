@@ -86,7 +86,7 @@ da je koda berljiva in jo je mogoče iskati z funkcijo za iskanje v razvijalskem
 bralcu naše kode. Imena naj bodo primerna za iskanje.
 [buddy.js](https://github.com/danielstjules/buddy.js) in
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-vam lahko pomaga prepoznati neimenovane konstante.
+vam lahko pomagata prepoznati neimenovane konstante.
 
 **Slabo:**
 
@@ -229,30 +229,35 @@ makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
 each separate argument.
 
+Omejitev števila parametrov funkcije je izjemno pomembna, saj
+olajša testiranje funkcije. Če imamo več kot tri argumente, bomo imeli težave saj
+bomo morali testirati na tone različnih primerov z vsakim argumentom funkcije.
+
 One or two arguments is the ideal case, and three should be avoided if possible.
 Anything more than that should be consolidated. Usually, if you have
 more than two arguments then your function is trying to do too much. In cases
 where it's not, most of the time a higher-level object will suffice as an
 argument.
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+Idealno je, da uporabimo en ali dva argumenta, trem pa se je treba izogibati, če je 
+le mogoče. Običajno, če imate več kot dva argumenta, potem vaša funkcija poskuša 
+narediti preveč. V primerih kjer temu ni tako, večinoma zadostuje objekt kot argument.
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+Ker JavaScript omogoča, da lahko objekte ustvarjate sproti, lahko uporabite objekt, 
+če se vam zdi, da potrebujete več argumentov.
 
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. It can be used to simulate named parameters.
-3. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-4. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+Da bi bilo jasno, katere lastnosti funkcija pričakuje, lahko uporabite ES2015/ES6
+sintakso destrukturiranja. To ima nekaj prednosti:
+   
+1. Ko funkcijo pogledamo, je takoj jasno, katere lastnosti uporablja.
+2. Uporablja se lahko za simulacijo poimenovanih parametrov.
+3. Destrukturiranje klonira tudi določene primitivne vrednosti argumenta predmeta, 
+   posredovanega v funkcijo. To lahko pomaga preprečiti stranske učinke. 
+   Opomba: predmeti in polja, ki so destrukturirani iz objekta argumenta, SE NE klonirajo.
+4. Linter vas lahko opozori na neuporabljene lastnosti, kar bi bilo brez 
+   destrukturiranja nemogoče.
 
-**Bad:**
+**Slabo:**
 
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -263,7 +268,7 @@ createMenu("Foo", "Bar", "Baz", true);
 
 ```
 
-**Good:**
+**Dobro:**
 
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
@@ -278,7 +283,7 @@ createMenu({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Nazaj na vrh](#kazalo-vsebine)**
 
 ### Functions should do one thing
 
