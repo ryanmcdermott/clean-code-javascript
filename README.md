@@ -15,6 +15,17 @@
 11. [Komentarji](#komentarji)
 12. [Prevanjanje](#prevajanje)
 
+## **SOLID**
+
+#### S.O.L.I.D. STANDS FOR:
+#### S — Single responsibility principle
+#### O — Open closed principle
+#### L — Liskov substitution principle
+#### I — Interface segregation principle
+#### D — Dependency Inversion principle
+
+### Single Responsibility Principle ali Načelo enotne odgovornosti
+
 ## Uvod
 
 ![Humoristična podoba ocenjevanja kakovosti programske opreme kot štetje števila izrečenih vzklikov med branjem kode](https://www.osnews.com/images/comics/wtfm.jpg)
