@@ -1,69 +1,63 @@
-# clean-code-javascript
+# کدنویسی تمیز در جاوااسکریپت
 
-## Table of Contents
+## جدول محتوا
 
-1. [Introduction](#introduction)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
+1. [مقدمه](#introduction)
+2. [متغیرها](#variables)
+3. [تابع](#functions)
+4. [اشیاء و ساختار داده ها](#objects-and-data-structures)
+5. [کلاس ها](#classes)
 6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+7. [تست نویسی](#testing)
+8. [همزمانی](#concurrency)
+9. [مدیریت خطاها](#error-handling)
+10. [قالب بندی](#formatting)
+11. [نظرات](#comments)
+12. [ترجمه](#translation)
 
-## Introduction
+## مقدمه
 
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
+اصول مهندسی نرم افزار ، از کتاب رابرت سی مارتین
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+اقتباس برای JavaScript.این یک راهنمای سبک نیست.این راهنمایی برای تولید است
+[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) نرم افزار در JavaScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
+لازم نیست همه ی مطالبی که در این جا ذکر شده اجرایی شوند.
+این ها مواردی توافقی هستند که بصورت بین المللی توسط جمعی از نویسندگان در طی سالها جمع آوری شده اند.
+
 _Clean Code_.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+بیشینه ی ما در مهندسی نرم افزار کمی بیش از 50 سال قدمت داردو ما هنوز چیزهای زیادی داریم یاد می گیریم. زمانی که معماری نرم افزار با معماری آن هم سن است ، بهتر است که قوانین سخت گیرانه تری را دنبال کنیم .
+فعلا این موارد را مبنای کیفیت کد تولیدی شما و تیمتان قرار دهید.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+و اما یک نکته: دانستن این موارد نمی تواند شما را به سرعت یه یک توسعه دهنده ی بهتری تبدیل کند.
+هم چنین کار کردن طی سالهای زیاد به این معنی نیست که هیچ خطایی در آن وجود ندارد.
 
-## **Variables**
 
-### Use meaningful and pronounceable variable names
+## **متغیرها**
 
-**Bad:**
+### از نامهای متغیر معنی دار و قابل فهم استفاده کنید
+
+**بد:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**خوب:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ برگشت به بالا](#table-of-contents)**
 
-### Use the same vocabulary for the same type of variable
+### برای همان نوع متغیر از همان واژگان استفاده کنید
 
-**Bad:**
+**بد:**
 
 ```javascript
 getUserInfo();
@@ -71,32 +65,32 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**خوب:**
 
 ```javascript
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ برگشت به بالا](#table-of-contents)**
 
-### Use searchable names
+### از نامهای قابل جستجو استفاده کنید
 
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
+ما بیشتر کد میخوانیم تا اینکه کد بنویسیم.
+این مهم است کدی که نوشته می شود قابل خواندن و جستجو باشد.
+یعنی بتوان ثابت هایی که در کد های ما بکار رفته است را شناسایی و کاربرد آنها را فهمید.
+ابزارهایی مثل  
 [buddy.js](https://github.com/danielstjules/buddy.js) and
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+می تواند به شناسایی ثابت های بدون نام کمک کند.
 
-**Bad:**
+**بد:**
 
 ```javascript
 // What the heck is 86400000 for?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**خوب:**
 
 ```javascript
 // Declare them as capitalized named constants.
@@ -105,11 +99,11 @@ const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ برگشت به بالا](#table-of-contents)**
 
-### Use explanatory variables
+### از متغیرهای توضیحی استفاده کنید
 
-**Bad:**
+**بد:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -120,7 +114,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**خوب:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -129,13 +123,13 @@ const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ برگشت به بالا](#table-of-contents)**
 
-### Avoid Mental Mapping
+### خودداری از تفکرات ذهنی در عریف مقادیر
 
-Explicit is better than implicit.
+اشاره نکنید بلکه صریح اسم ببرید.
 
-**Bad:**
+**بد:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -150,7 +144,7 @@ locations.forEach(l => {
 });
 ```
 
-**Good:**
+**خوب:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -164,14 +158,13 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ برگشت به بالا](#table-of-contents)**
 
-### Don't add unneeded context
+### اسم ها و موارد غیر ضروری را اضافه نکنید
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+اگر اسم شئ یا کلاسی را که بکار برده اید ، به شما مفهومی را می رساند انرا دوباره در اسم متغیر های مربوط به آن تکرار نکنید.
 
-**Bad:**
+**بد:**
 
 ```javascript
 const Car = {
@@ -185,7 +178,7 @@ function paintCar(car, color) {
 }
 ```
 
-**Good:**
+**خوب:**
 
 ```javascript
 const Car = {
@@ -199,7 +192,7 @@ function paintCar(car, color) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ برگشت به بالا](#table-of-contents)**
 
 ### Use default arguments instead of short circuiting or conditionals
 
