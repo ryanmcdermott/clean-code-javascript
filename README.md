@@ -12,8 +12,9 @@
 8. [Concurrency](#concurrency)
 9. [Error Handling](#error-handling)
 10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+11. [Object Literals](#object-literals)
+12. [Comments](#comments)
+13. [Translation](#translation)
 
 ## Introduction
 
@@ -2214,6 +2215,93 @@ class PerformanceReview {
 
 const review = new PerformanceReview(employee);
 review.perfReview();
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+## **object-literals**
+
+### Replace switch and else if statements with Object literals
+
+**Bad:**
+
+```javascript
+  const getSiteTheme = () => {
+    const theme = localStorage.getItem('site.theme');
+
+    if (theme === 'default') {
+      return {
+        palette: {...},
+        shadows: {...},
+      }
+    } else if (theme === 'light') {
+      return {
+        palette: {...},
+        shadows: {...},
+      }
+    } else {
+      return {
+        palette: {...},
+        shadows: {...},
+      }
+    }
+  }
+```
+
+**Also Bad:**
+
+```javascript
+  const getSiteTheme = () => {
+    const theme = localStorage.getItem('site.theme');
+
+    switch(theme) {
+      case 'default':
+        return {
+          palette: {...},
+          shadows: {...},
+        };
+      case 'light':
+        return {
+          palette: {...},
+          shadows: {...},
+        };
+      case 'dark':
+        return {
+          palette: {...},
+          shadows: {...},
+        };
+    }
+  }
+```
+
+**Good:**
+
+```javascript
+  const SITE_THEME_LS_KEY = 'site.theme';
+
+  const themes = {
+    default: {
+      palette: {...},
+      shadows: {...},
+    },
+    lightnes: {
+      palette: {...},
+      shadows: {...},
+    },
+    dark: {
+      palette: {...},
+      shadows: {...},
+    },
+  };
+
+  const getSiteTheme = () => {
+    const theme = localStorage.getItem(SITE_THEME_LS_KEY);
+    const result = themes[theme];
+
+    if (!theme) throw new Error('Theme can only be default, light or dark.')
+
+    return theme
+  }
 ```
 
 **[⬆ back to top](#table-of-contents)**
