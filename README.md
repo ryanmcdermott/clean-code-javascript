@@ -509,7 +509,7 @@ function showEmployeeList(employees) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Set default objects with Object.assign
+### Set default objects with Object spread syntax (...)
 
 **Bad:**
 
@@ -543,16 +543,17 @@ const menuConfig = {
 };
 
 function createMenu(config) {
-  let finalConfig = Object.assign(
-    {
-      title: "Foo",
-      body: "Bar",
-      buttonText: "Baz",
-      cancellable: true
-    },
-    config
-  );
-  return finalConfig
+  const defaultConfig = {
+    title: "Foo",
+    body: "Bar",
+    buttonText: "Baz",
+    cancellable: true,
+  };
+  const finalConfig = {
+    ...defaultConfig,
+    ...config,
+  };
+  return finalConfig;
   // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
