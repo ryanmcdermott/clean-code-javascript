@@ -2382,5 +2382,6 @@ This is also available in other languages:
 - ![ua](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Ukraine.png) **Ukrainian**: [mindfr1k/clean-code-javascript-ua](https://github.com/mindfr1k/clean-code-javascript-ua)
 - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
 - ![ar](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Palestine.png) **Arabic**: [muh-osman/clean-code-javascript-arabic](https://github.com/muh-osman/clean-code-javascript-arabic)
+- ![ir](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Iran.png) **Persian**: [hamettio/clean-code-javascript](https://github.com/hamettio/clean-code-javascript)
 
 **[⬆ back to top](#table-of-contents)**
