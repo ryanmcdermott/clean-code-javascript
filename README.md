@@ -809,11 +809,11 @@ if (fsm.state === "fetching" && isEmpty(listNode)) {
 **Good:**
 
 ```javascript
-function shouldShowSpinner(fsm, listNode) {
-  return fsm.state === "fetching" && isEmpty(listNode);
+function shouldShowSpinner(state, listNode) {
+  return state === "fetching" && isEmpty(listNode);
 }
 
-if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
+if (shouldShowSpinner(fsmInstance.state, listNodeInstance)) {
   // ...
 }
 ```
@@ -882,6 +882,8 @@ class Airplane {
 ```javascript
 class Airplane {
   // ...
+  getMaxAltitude(){
+  }
 }
 
 class Boeing777 extends Airplane {
@@ -1125,7 +1127,8 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```javascript
 function makeEmployee(name) {
   return {
-    getName() {
+    name,
+    getName() {      
       return name;
     }
   };
