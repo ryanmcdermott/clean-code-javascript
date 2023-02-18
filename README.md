@@ -105,6 +105,15 @@ const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
+_Note: depending on context using multiply can hit performance. Most modern browsers are now support numeric separator feature which allows to do the following:_
+
+```javascript
+const MILLISECONDS_PER_DAY = 86_400_000; //86400000;
+
+setTimeout(blastOff, MILLISECONDS_PER_DAY);
+```
+More info can be found here: https://caniuse.com/mdn-javascript_grammar_numeric_separators
+
 **[⬆ back to top](#table-of-contents)**
 
 ### Use explanatory variables
