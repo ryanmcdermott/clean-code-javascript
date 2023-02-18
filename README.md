@@ -183,7 +183,7 @@ const rank = 0.95;
 ```javascript
 const customerName = "Jonh";
 const customerAge = 20;
-customerRank = 0.95;
+const customerRank = 0.95;
 ```
 
 **[⬆ back to top](#table-of-contents)**
