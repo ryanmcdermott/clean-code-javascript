@@ -1995,7 +1995,7 @@ async function getCleanCodeArticle() {
   }
 }
 
-getCleanCodeArticle()
+await getCleanCodeArticle()
 ```
 
 **[⬆ back to top](#table-of-contents)**
