@@ -50,13 +50,13 @@ improvement. Beat up the code instead!
 **Bad:**
 
 ```javascript
-const yyyymmdstr = moment().format("YYYY/MM/DD");
+const yyyymmdstr = DateTime.now().toFormat('yyyy/MM/dd');
 ```
 
 **Good:**
 
 ```javascript
-const currentDate = moment().format("YYYY/MM/DD");
+const currentDate = DateTime.now().toFormat('yyyy/MM/dd');
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -1853,21 +1853,21 @@ or refactoring an existing one.
 ```javascript
 import assert from "assert";
 
-describe("MomentJS", () => {
+describe("Luxon", () => {
   it("handles date boundaries", () => {
     let date;
 
-    date = new MomentJS("1/1/2015");
-    date.addDays(30);
-    assert.equal("1/31/2015", date);
+    date = DateTime.fromISO("2015-01-01");
+    date = date.plus({ days: 30 });
+    assert.equal(+DateTime.fromISO("2015-01-31"), +date);
 
-    date = new MomentJS("2/1/2016");
-    date.addDays(28);
-    assert.equal("02/29/2016", date);
+    date = DateTime.fromISO("2016-02-01");
+    date = date.plus({ days: 28 });
+    assert.equal(+DateTime.fromISO("2016-02-29"), +date);
 
-    date = new MomentJS("2/1/2015");
-    date.addDays(28);
-    assert.equal("03/01/2015", date);
+    date = DateTime.fromISO("2015-02-01");
+    date = date.plus({ days: 28 });
+    assert.equal(+DateTime.fromISO("2015-03-01"), +date);
   });
 });
 ```
@@ -1877,23 +1877,24 @@ describe("MomentJS", () => {
 ```javascript
 import assert from "assert";
 
-describe("MomentJS", () => {
+describe("Luxon", () => {
   it("handles 30-day months", () => {
-    const date = new MomentJS("1/1/2015");
-    date.addDays(30);
-    assert.equal("1/31/2015", date);
+    let date = DateTime.fromISO("2015-01-01");
+    date = date.plus({ days: 30 });
+    assert.equal(+DateTime.fromISO("2015-01-31"), +date);
   });
 
   it("handles leap year", () => {
-    const date = new MomentJS("2/1/2016");
-    date.addDays(28);
-    assert.equal("02/29/2016", date);
+    let date = DateTime.fromISO("2016-02-01");
+    date = date.plus({ days: 28);
+    assert.equal(+DateTime.fromISO("2016-02-29"), +date);
+
   });
 
   it("handles non-leap year", () => {
-    const date = new MomentJS("2/1/2015");
-    date.addDays(28);
-    assert.equal("03/01/2015", date);
+    let date = DateTime.fromISO("2015-02-01");
+    date = date.plus({ days: 28 });
+    assert.equal(+DateTime.fromISO("2015-03-01"), +date);
   });
 });
 ```
