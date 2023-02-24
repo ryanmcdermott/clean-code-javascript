@@ -1101,7 +1101,8 @@ account.setBalance(100);
 
 ### Make objects have private members
 
-This can be accomplished through closures (for ES5 and below).
+This can be accomplished through closures (for ES5 and below),
+So it will prevent accidentally/wrong movements via other teammates.
 
 **Bad:**
 
