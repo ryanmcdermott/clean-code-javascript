@@ -509,7 +509,9 @@ function showEmployeeList(employees) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Set default objects with Object.assign
+### Set default objects with Spread Operator
+
+When using the same name for your properties in an Object, the second property will overwrite the first.
 
 **Bad:**
 
@@ -543,18 +545,14 @@ const menuConfig = {
 };
 
 function createMenu(config) {
-  let finalConfig = Object.assign(
-    {
-      title: "Foo",
-      body: "Bar",
-      buttonText: "Baz",
-      cancellable: true
-    },
-    config
-  );
-  return finalConfig
+  const defaultConfig = {
+    title: "Foo",
+    body: "Bar",
+    buttonText: "Baz",
+    cancellable: true,
+  };
+  return { ...defaultConfig, ...config };
   // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
-  // ...
 }
 
 createMenu(menuConfig);
