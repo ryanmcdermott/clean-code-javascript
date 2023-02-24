@@ -15,6 +15,8 @@
 11. [Comments](#comments)
 12. [Translation](#translation)
 
+The provided [flashcards](https://ankiweb.net/shared/info/768010903) for [Anki](https://apps.ankiweb.net/) use spaced repetition method to help you remember these concepts.
+
 ## Introduction
 
 ![Humorous image of software quality estimation as a count of how many expletives
