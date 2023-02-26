@@ -312,7 +312,7 @@ function emailClients(clients) {
 
 ```javascript
 function emailActiveClients(clients) {
-  clients.filter(isActiveClient).forEach(email);
+  clients.filter(isActiveClient(client)).forEach(email);
 }
 
 function isActiveClient(client) {
