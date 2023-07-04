@@ -139,7 +139,7 @@ Explicit is better than implicit.
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
-locations.forEach(l => {
+locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
   // ...
@@ -154,7 +154,7 @@ locations.forEach(l => {
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
-locations.forEach(location => {
+locations.forEach((location) => {
   doStuff();
   doSomeOtherStuff();
   // ...
@@ -177,7 +177,7 @@ variable name.
 const Car = {
   carMake: "Honda",
   carModel: "Accord",
-  carColor: "Blue"
+  carColor: "Blue",
 };
 
 function paintCar(car, color) {
@@ -191,7 +191,7 @@ function paintCar(car, color) {
 const Car = {
   make: "Honda",
   model: "Accord",
-  color: "Blue"
+  color: "Blue",
 };
 
 function paintCar(car, color) {
@@ -229,22 +229,25 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 ### Use same type of casing style for same type of data in all the project
 
-For example- all variables should be camelCase, all constants should be uppercase words separated by underscore "_". This will increase code readability and consistency. The same goes for file names and folder names too.
+For example- all variables should be camelCase, all constants should be uppercase words separated by underscore "\_". This will increase code readability and consistency. The same goes for file names and folder names too.
 
 **Bad:**
 
 ```javascript
+// here two different cases are used to declare constants
 const aConstant = 0;
 const AnotherConstant = 0;
 
+// here two different cases are used to define variable
 let a_variable = 0;
-let anotherVariable = 0;
+let AnotherVariable = 0;
 
-function AFunction(){
+// here two different cases are used to define functions
+function AFunction() {
   // do something
 }
 
-function anotherFunction(){
+function another_Function() {
   // do something else
 }
 ```
@@ -252,17 +255,20 @@ function anotherFunction(){
 **Good:**
 
 ```javascript
+// here same cases are used to define constants
 const A_CONSTANT = 0;
 const ANOTHER_CONSTANT = 0;
 
+// here same cases are used to define variables
 let aVariable = 0;
 let anotherVariable = 0;
 
-function AFunction(){
+// here same cases are used to define functions
+function aFunction() {
   // do something
 }
 
-function AnotherFunction(){
+function anotherFunction() {
   // do something else
 }
 ```
@@ -309,7 +315,6 @@ function createMenu(title, body, buttonText, cancellable) {
 }
 
 createMenu("Foo", "Bar", "Baz", true);
-
 ```
 
 **Good:**
@@ -323,7 +328,7 @@ createMenu({
   title: "Foo",
   body: "Bar",
   buttonText: "Baz",
-  cancellable: true
+  cancellable: true,
 });
 ```
 
@@ -341,7 +346,7 @@ this guide other than this, you'll be ahead of many developers.
 
 ```javascript
 function emailClients(clients) {
-  clients.forEach(client => {
+  clients.forEach((client) => {
     const clientRecord = database.lookup(client);
     if (clientRecord.isActive()) {
       email(client);
@@ -409,18 +414,18 @@ function parseBetterJSAlternative(code) {
 
   const statements = code.split(" ");
   const tokens = [];
-  REGEXES.forEach(REGEX => {
-    statements.forEach(statement => {
+  REGEXES.forEach((REGEX) => {
+    statements.forEach((statement) => {
       // ...
     });
   });
 
   const ast = [];
-  tokens.forEach(token => {
+  tokens.forEach((token) => {
     // lex...
   });
 
-  ast.forEach(node => {
+  ast.forEach((node) => {
     // parse...
   });
 }
@@ -432,7 +437,7 @@ function parseBetterJSAlternative(code) {
 function parseBetterJSAlternative(code) {
   const tokens = tokenize(code);
   const syntaxTree = parse(tokens);
-  syntaxTree.forEach(node => {
+  syntaxTree.forEach((node) => {
     // parse...
   });
 }
@@ -444,8 +449,8 @@ function tokenize(code) {
 
   const statements = code.split(" ");
   const tokens = [];
-  REGEXES.forEach(REGEX => {
-    statements.forEach(statement => {
+  REGEXES.forEach((REGEX) => {
+    statements.forEach((statement) => {
       tokens.push(/* ... */);
     });
   });
@@ -455,7 +460,7 @@ function tokenize(code) {
 
 function parse(tokens) {
   const syntaxTree = [];
-  tokens.forEach(token => {
+  tokens.forEach((token) => {
     syntaxTree.push(/* ... */);
   });
 
@@ -492,14 +497,14 @@ updating multiple places anytime you want to change one thing.
 
 ```javascript
 function showDeveloperList(developers) {
-  developers.forEach(developer => {
+  developers.forEach((developer) => {
     const expectedSalary = developer.calculateExpectedSalary();
     const experience = developer.getExperience();
     const githubLink = developer.getGithubLink();
     const data = {
       expectedSalary,
       experience,
-      githubLink
+      githubLink,
     };
 
     render(data);
@@ -507,14 +512,14 @@ function showDeveloperList(developers) {
 }
 
 function showManagerList(managers) {
-  managers.forEach(manager => {
+  managers.forEach((manager) => {
     const expectedSalary = manager.calculateExpectedSalary();
     const experience = manager.getExperience();
     const portfolio = manager.getMBAProjects();
     const data = {
       expectedSalary,
       experience,
-      portfolio
+      portfolio,
     };
 
     render(data);
@@ -526,13 +531,13 @@ function showManagerList(managers) {
 
 ```javascript
 function showEmployeeList(employees) {
-  employees.forEach(employee => {
+  employees.forEach((employee) => {
     const expectedSalary = employee.calculateExpectedSalary();
     const experience = employee.getExperience();
 
     const data = {
       expectedSalary,
-      experience
+      experience,
     };
 
     switch (employee.type) {
@@ -560,7 +565,7 @@ const menuConfig = {
   title: null,
   body: "Bar",
   buttonText: null,
-  cancellable: true
+  cancellable: true,
 };
 
 function createMenu(config) {
@@ -581,7 +586,7 @@ const menuConfig = {
   title: "Order",
   // User did not include 'body' key
   buttonText: "Send",
-  cancellable: true
+  cancellable: true,
 };
 
 function createMenu(config) {
@@ -590,11 +595,11 @@ function createMenu(config) {
       title: "Foo",
       body: "Bar",
       buttonText: "Baz",
-      cancellable: true
+      cancellable: true,
     },
     config
   );
-  return finalConfig
+  return finalConfig;
   // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
@@ -685,16 +690,16 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 ### Avoid Side Effects (part 2)
 
-In JavaScript, some values are unchangeable (immutable) and some are changeable 
-(mutable). Objects and arrays are two kinds of mutable values so it's important 
-to handle them carefully when they're passed as parameters to a function. A 
-JavaScript function can change an object's properties or alter the contents of 
+In JavaScript, some values are unchangeable (immutable) and some are changeable
+(mutable). Objects and arrays are two kinds of mutable values so it's important
+to handle them carefully when they're passed as parameters to a function. A
+JavaScript function can change an object's properties or alter the contents of
 an array which could easily cause bugs elsewhere.
 
-Suppose there's a function that accepts an array parameter representing a 
-shopping cart. If the function makes a change in that shopping cart array - 
-by adding an item to purchase, for example - then any other function that 
-uses that same `cart` array will be affected by this addition. That may be 
+Suppose there's a function that accepts an array parameter representing a
+shopping cart. If the function makes a change in that shopping cart array -
+by adding an item to purchase, for example - then any other function that
+uses that same `cart` array will be affected by this addition. That may be
 great, however it could also be bad. Let's imagine a bad situation:
 
 The user clicks the "Purchase" button which calls a `purchase` function that
@@ -705,7 +710,7 @@ button on an item they don't actually want before the network request begins?
 If that happens and the network request begins, then that purchase function
 will send the accidentally added item because the `cart` array was modified.
 
-A great solution would be for the `addItemToCart` function to always clone the 
+A great solution would be for the `addItemToCart` function to always clone the
 `cart`, edit it, and return the clone. This would ensure that functions that are still
 using the old shopping cart wouldn't be affected by the changes.
 
@@ -756,7 +761,7 @@ would be much better to just use ES2015/ES6 classes and simply extend the `Array
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
   const hash = new Set(comparisonArray);
-  return this.filter(elem => !hash.has(elem));
+  return this.filter((elem) => !hash.has(elem));
 };
 ```
 
@@ -766,7 +771,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 class SuperArray extends Array {
   diff(comparisonArray) {
     const hash = new Set(comparisonArray);
-    return this.filter(elem => !hash.has(elem));
+    return this.filter((elem) => !hash.has(elem));
   }
 }
 ```
@@ -785,20 +790,20 @@ Favor this style of programming when you can.
 const programmerOutput = [
   {
     name: "Uncle Bobby",
-    linesOfCode: 500
+    linesOfCode: 500,
   },
   {
     name: "Suzie Q",
-    linesOfCode: 1500
+    linesOfCode: 1500,
   },
   {
     name: "Jimmy Gosling",
-    linesOfCode: 150
+    linesOfCode: 150,
   },
   {
     name: "Gracie Hopper",
-    linesOfCode: 1000
-  }
+    linesOfCode: 1000,
+  },
 ];
 
 let totalOutput = 0;
@@ -814,20 +819,20 @@ for (let i = 0; i < programmerOutput.length; i++) {
 const programmerOutput = [
   {
     name: "Uncle Bobby",
-    linesOfCode: 500
+    linesOfCode: 500,
   },
   {
     name: "Suzie Q",
-    linesOfCode: 1500
+    linesOfCode: 1500,
   },
   {
     name: "Jimmy Gosling",
-    linesOfCode: 150
+    linesOfCode: 150,
   },
   {
     name: "Gracie Hopper",
-    linesOfCode: 1000
-  }
+    linesOfCode: 1000,
+  },
 ];
 
 const totalOutput = programmerOutput.reduce(
@@ -1101,7 +1106,7 @@ function makeBankAccount() {
   // ...
 
   return {
-    balance: 0
+    balance: 0,
     // ...
   };
 }
@@ -1131,7 +1136,7 @@ function makeBankAccount() {
   return {
     // ...
     getBalance,
-    setBalance
+    setBalance,
   };
 }
 
@@ -1148,7 +1153,7 @@ This can be accomplished through closures (for ES5 and below).
 **Bad:**
 
 ```javascript
-const Employee = function(name) {
+const Employee = function (name) {
   this.name = name;
 };
 
@@ -1169,7 +1174,7 @@ function makeEmployee(name) {
   return {
     getName() {
       return name;
-    }
+    },
   };
 }
 
@@ -1193,7 +1198,7 @@ classes until you find yourself needing larger and more complex objects.
 **Bad:**
 
 ```javascript
-const Animal = function(age) {
+const Animal = function (age) {
   if (!(this instanceof Animal)) {
     throw new Error("Instantiate Animal with `new`");
   }
@@ -1203,7 +1208,7 @@ const Animal = function(age) {
 
 Animal.prototype.move = function move() {};
 
-const Mammal = function(age, furColor) {
+const Mammal = function (age, furColor) {
   if (!(this instanceof Mammal)) {
     throw new Error("Instantiate Mammal with `new`");
   }
@@ -1216,7 +1221,7 @@ Mammal.prototype = Object.create(Animal.prototype);
 Mammal.prototype.constructor = Mammal;
 Mammal.prototype.liveBirth = function liveBirth() {};
 
-const Human = function(age, furColor, languageSpoken) {
+const Human = function (age, furColor, languageSpoken) {
   if (!(this instanceof Human)) {
     throw new Error("Instantiate Human with `new`");
   }
@@ -1511,11 +1516,11 @@ class HttpRequester {
 
   fetch(url) {
     if (this.adapter.name === "ajaxAdapter") {
-      return makeAjaxCall(url).then(response => {
+      return makeAjaxCall(url).then((response) => {
         // transform response and return
       });
     } else if (this.adapter.name === "nodeAdapter") {
-      return makeHttpCall(url).then(response => {
+      return makeHttpCall(url).then((response) => {
         // transform response and return
       });
     }
@@ -1562,7 +1567,7 @@ class HttpRequester {
   }
 
   fetch(url) {
-    return this.adapter.request(url).then(response => {
+    return this.adapter.request(url).then((response) => {
       // transform response and return
     });
   }
@@ -1629,7 +1634,7 @@ class Square extends Rectangle {
 }
 
 function renderLargeRectangles(rectangles) {
-  rectangles.forEach(rectangle => {
+  rectangles.forEach((rectangle) => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
     const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
@@ -1678,7 +1683,7 @@ class Square extends Shape {
 }
 
 function renderLargeShapes(shapes) {
-  shapes.forEach(shape => {
+  shapes.forEach((shape) => {
     const area = shape.getArea();
     shape.render(area);
   });
@@ -1727,7 +1732,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {}, // Most of the time, we won't need to animate when traversing.
   // ...
 });
 ```
@@ -1761,8 +1766,8 @@ class DOMTraverser {
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
   options: {
-    animationModule() {}
-  }
+    animationModule() {},
+  },
 });
 ```
 
@@ -1814,7 +1819,7 @@ class InventoryTracker {
   }
 
   requestItems() {
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       this.requester.requestItem(item);
     });
   }
@@ -1834,7 +1839,7 @@ class InventoryTracker {
   }
 
   requestItems() {
-    this.items.forEach(item => {
+    this.items.forEach((item) => {
       this.requester.requestItem(item);
     });
   }
@@ -1961,7 +1966,7 @@ get(
     if (requestErr) {
       console.error(requestErr);
     } else {
-      writeFile("article.html", body, writeErr => {
+      writeFile("article.html", body, (writeErr) => {
         if (writeErr) {
           console.error(writeErr);
         } else {
@@ -1980,13 +1985,13 @@ import { get } from "request-promise";
 import { writeFile } from "fs-extra";
 
 get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
-  .then(body => {
+  .then((body) => {
     return writeFile("article.html", body);
   })
   .then(() => {
     console.log("File written");
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
   });
 ```
@@ -2008,13 +2013,13 @@ import { get } from "request-promise";
 import { writeFile } from "fs-extra";
 
 get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
-  .then(body => {
+  .then((body) => {
     return writeFile("article.html", body);
   })
   .then(() => {
     console.log("File written");
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
   });
 ```
@@ -2027,9 +2032,7 @@ import { writeFile } from "fs-extra";
 
 async function getCleanCodeArticle() {
   try {
-    const body = await get(
-      "https://en.wikipedia.org/wiki/Robert_Cecil_Martin"
-    );
+    const body = await get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin");
     await writeFile("article.html", body);
     console.log("File written");
   } catch (err) {
@@ -2037,7 +2040,7 @@ async function getCleanCodeArticle() {
   }
 }
 
-getCleanCodeArticle()
+getCleanCodeArticle();
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -2093,10 +2096,10 @@ from `try/catch`.
 
 ```javascript
 getdata()
-  .then(data => {
+  .then((data) => {
     functionThatMightThrow(data);
   })
-  .catch(error => {
+  .catch((error) => {
     console.log(error);
   });
 ```
@@ -2105,10 +2108,10 @@ getdata()
 
 ```javascript
 getdata()
-  .then(data => {
+  .then((data) => {
     functionThatMightThrow(data);
   })
-  .catch(error => {
+  .catch((error) => {
     // One option (more noisy than console.log):
     console.error(error);
     // Another option:
@@ -2370,13 +2373,13 @@ proper indentation and formatting give the visual structure to your code.
 ////////////////////////////////////////////////////////////////////////////////
 $scope.model = {
   menu: "foo",
-  nav: "bar"
+  nav: "bar",
 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Action setup
 ////////////////////////////////////////////////////////////////////////////////
-const actions = function() {
+const actions = function () {
   // ...
 };
 ```
@@ -2386,10 +2389,10 @@ const actions = function() {
 ```javascript
 $scope.model = {
   menu: "foo",
-  nav: "bar"
+  nav: "bar",
 };
 
-const actions = function() {
+const actions = function () {
   // ...
 };
 ```
