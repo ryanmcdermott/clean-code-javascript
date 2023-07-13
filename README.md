@@ -50,16 +50,17 @@ improvement. Beat up the code instead!
 It makes debugging and finding errors in code much easier.
 
 **Bad:**
-```
+
+```javascript
 let hasDriversLiscense = false;
 const passTest = true;
   
 if(passTest) hasDriverLiscense = true; //error
 if(hasDriversLiscense) console.log("I can drive!");
-
 ```
 **Good:**
-```
+
+```javascript
 'use strict'
 
 let hasDriversLiscense = false;
@@ -67,7 +68,6 @@ const passTest = true;
   
 if(passTest) hasDriverLiscense = true; //error
 if(hasDriversLiscense) console.log("I can drive!");
-
 ```
 **[⬆ back to top](#table-of-contents)**
 
