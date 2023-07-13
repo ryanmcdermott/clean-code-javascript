@@ -3,17 +3,18 @@
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
-6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+2. [Strict Mode](#strict-mode)
+3. [Variables](#variables)
+4. [Functions](#functions)
+5. [Objects and Data Structures](#objects-and-data-structures)
+6. [Classes](#classes)
+7. [SOLID](#solid)
+8. [Testing](#testing)
+9. [Concurrency](#concurrency)
+10. [Error Handling](#error-handling)
+11. [Formatting](#formatting)
+12. [Comments](#comments)
+13. [Translation](#translation)
 
 ## Introduction
 
@@ -42,6 +43,33 @@ mistakes. Every piece of code starts as a first draft, like wet clay getting
 shaped into its final form. Finally, we chisel away the imperfections when
 we review it with our peers. Don't beat yourself up for first drafts that need
 improvement. Beat up the code instead!
+
+## **strict mode** 
+ Strict mode is a special mode that we can activate in JavaScript, which makes it easier for us to write a secure JavaScript code.And all we have to do to activate strict mode is to write this ring at the beginning of the script.
+  i.e "use strict" 
+It makes debugging and finding errors in code much easier.
+
+**Bad:**
+```
+let hasDriversLiscense = false;
+const passTest = true;
+  
+if(passTest) hasDriverLiscense = true; //error
+if(hasDriversLiscense) console.log("I can drive!");
+
+```
+**Good:**
+```
+'use strict'
+
+let hasDriversLiscense = false;
+const passTest = true;
+  
+if(passTest) hasDriverLiscense = true; //error
+if(hasDriversLiscense) console.log("I can drive!");
+
+```
+**[⬆ back to top](#table-of-contents)**
 
 ## **Variables**
 
