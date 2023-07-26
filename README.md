@@ -1,69 +1,59 @@
 # clean-code-javascript
 
-## Table of Contents
+## İçindəkilər
 
-1. [Introduction](#introduction)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
-5. [Classes](#classes)
+1. [Giriş](#giriş)
+2. [Dəyişənlər](#dəyişənlər)
+3. [Funksiyalar](#funksiyalar)
+4. [Obyekt və Data Sturkturlar](#obyekt-və-data-sturkturlar)
+5. [Siniflər](#siniflər)
 6. [SOLID](#solid)
-7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+7. [Testlər](#testlər)
+8. [Asinxrom](#asinxrom)
+9. [Xəta İdaraetmə](#xəta-İdaraetmə)
+10. [Formatlaşdırma](#formatlaşdırma)
+11. [Şərhlər](#şərhlər)
+12. [Tərcümələr](#tərcümələr)
 
-## Introduction
+## Giriş
 
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
+![İki fərqli tip kodu oxuyarkən verəcəyiniz reaksiyanın yumorostik təsviri.](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-_Clean Code_.
+Robert C. Martinin proqram mühəndisliyi prinsiplərini özündə birləşdirən [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) kitabının JavaScript versiyası. Bu üslub bələdçisi deyil. JavaScript-də [oxuna bilən, təkrar istifadə edilə bilən və yenidən redaktə edilə bilən](https://github.com/ryanmcdermott/3rs-of-software-architecture) kodların  yaradılması üçün bələdçidir.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Burada hər bir prinsipə ciddi şəkildə əməl edilməməlidir və daha azı hamılıqla qəbul ediləcəkdir. Bunlar təlimatlardır başqa bir şey deyil, lakin onlar _Clean Code_ müəllifləri tərəfindən uzun illər təcrübə əsasında kodlaşdırılıb.
 
-## **Variables**
 
-### Use meaningful and pronounceable variable names
 
-**Bad:**
+Proqram mühəndisliyi sənətimizin 50 ildən bir qədər artıq yaşı var və biz hələ də çox şey öyrənirik. Proqram arxitekturası arxitekturanın özü qədər köhnə olduqda, bəlkə də o zaman riayət etməli olduğumuz daha çətin qaydalarımız olacaq. Hələlik bu təlimatlar sizin və komandanızın hazırladığı JavaScript kodunun keyfiyyətini artırmaq üçün rol oynayacaq.
+
+
+Daha bir şey: bunları bilmək sizi dərhal daha yaxşı proqram tərtibatçısı etməyəcək və uzun illər onlarla işləmək səhv etməyəcəksiniz mənasına gəlmir.Hər bir kod parçası nəm gilin son formaya çevrilməsi kimi ilk qaralama olaraq başlayır.Nəhayət, həmkarlarımızla birlikdə nəzərdən keçirərkən qüsurları aradan qaldırırıq. Təkmilləşdirməyə ehtiyacı olan ilk qaralamalar üçün özünüzü incitməyin. Bunun əvəzinə kodu incidin!
+
+
+## **Dəyişənlər**
+
+### Mənalı və anlaşıqlı dəyişən adlarından istifadə edin
+
+**Pis:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Use the same vocabulary for the same type of variable
+### Eyni növ dəyişən üçün eyni metoddan istifadə edin
 
-**Bad:**
+**Pis:**
 
 ```javascript
 getUserInfo();
@@ -71,45 +61,42 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Use searchable names
+### Axtarıla bilən adlardan istifadə edin
 
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
+Biz yazacağımızdan daha çox kod oxuyacağıq. Yazdığımız kodun oxuna bilən və axtarıla bilən olması vacibdir. Dəyişənləri mənalı və axtarıla bilən adlarla _adlandırmamaqla_ biz oxucularımızı incidirik .
+[buddy.js](https://github.com/danielstjules/buddy.js) və
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+adsız sabitləri müəyyən etməyə kömək edə bilər.
 
-**Bad:**
+**Pis:**
 
 ```javascript
-// What the heck is 86400000 for?
+// 86400000 nəyə lazımdır?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
-// Declare them as capitalized named constants.
+//Onları böyük hərflə yazılmış sabitlər kimi adlandırın.
 const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Use explanatory variables
+### İzahedici dəyişənlərdən istifadə edin
 
-**Bad:**
+**Pis:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -120,7 +107,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -129,13 +116,13 @@ const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Avoid Mental Mapping
+### Ağlınızda planlamaqdan çəkinin
 
-Explicit is better than implicit.
+Açıq olmaq eyham etməkdən yaxşıdır.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -145,12 +132,12 @@ locations.forEach(l => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  //Bir dəqiqə, l nə idi ?
   dispatch(l);
 });
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -164,14 +151,13 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Don't add unneeded context
+### Lazımsız kontekst əlavə etməyin
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+Sinif/obyekt adınız sizə bir şey deyirsə, bunu dəyişən adınızda təkrarlamayın.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 const Car = {
@@ -185,7 +171,7 @@ function paintCar(car, color) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 const Car = {
@@ -199,16 +185,16 @@ function paintCar(car, color) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Use default parameters instead of short circuiting or conditionals
+### Qısa yol və şərti parametrlər əvəzinə standart parametrlərdən istifadə edin
 
-Default parameters are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+Standart arqumentlər ümumiyyətlə qısa dövrələrdən daha təmizdir. Nəzərə alın ki, onlardan istifadə etsəniz, funksiyanız yalnız `undefined` arqumentlər üçün standart dəyərlər təmin edəcək. `''`, `""`, `false`, `null`, `0`, və
+`NaN` kimi , "saxta" dəyərlər standart bir deyerlə dəyiştirilə bilməz.
 
-**Bad:**
+
+
+**Pis:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -217,7 +203,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
@@ -225,41 +211,26 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## **Functions**
+## **Funksiyalar**
 
-### Function arguments (2 or fewer ideally)
+### Funksiya arqumentləri (ideal olaraq 2 və ya daha az)
 
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
+Funksiya parametrlərinin miqdarının məhdudlaşdırılması olduqca vacibdir, çünki bu, funksiyanızı sınamağı asanlaşdırır. Üçdən çox olması kombinator partlayışına gətirib çıxarır ki, burada hər bir ayrı arqumentlə tonlarla fərqli işi sınamalısan.
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
+Bir və ya iki arqument ideal haldır və mümkünsə üçdən qaçınmaq lazımdır. Bundan çoxu birləşdirilməlidir. Adətən, ikidən çox arqumentiniz varsa, funksiyanız çox şey etməyə çalışır. Olmadığı hallarda, çox vaxt daha yüksək səviyyəli bir obyekt arqument kimi kifayət edəcəkdir.
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+JavaScript sizə obyektlər yaratmağa imkan verdiyi üçün, bir çox obyektdən istifadə etmədən, bir çox sinif konstruksiyalarına ehtiyac olmadan bir obyektdən istifadə edə bilərsiniz.
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+Funksiyanın hansı özəllikləri daşıdığını aydınlaşdırmaq üçün ES2015 / ES6 təhlil sintaksisindən istifadə edə bilərsiniz. Bunun bir sıra üstünlükləri var:
 
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. It can be used to simulate named parameters.
-3. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-4. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+1. Kimsə funksiya imzasına baxdıqda, hansı xüsusiyyətlərin istifadə edildiyi dərhal aydın olur.
+2. Adlandırılmış parametrləri simulyasiya etmək üçün istifadə edilə bilər.
+3. Təhlil prosesi həmçinin funksiyaya ötürülən arqument obyektinin müəyyən edilmiş ilkin qiymətlərini klonlaşdırır. Bu, yan təsirlərin qarşısını almağa kömək edə bilər. Qeyd: Arqument obyektlərindən təhlil edilən obyektlər və massivlər klonlaşdırılmır!
+4. Linters sizi istifadə olunmamış xassələr barədə xəbərdar edə bilər ki, bu da sökülmədən qeyri-mümkündür.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -270,7 +241,7 @@ createMenu("Foo", "Bar", "Baz", true);
 
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
@@ -285,17 +256,13 @@ createMenu({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Functions should do one thing
+### Funksiyalar bir şeyi etməlidir
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, it can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+Bu proqram mühəndisliyində ən vacib qaydadır. Funksiyalar birdən çox şeyi yerinə yetirdikdə, onları tərtib etmək, test etmək və əsaslandırmaq daha çətindir. Bir funksiyanı yalnız bir hərəkətə cəlb etdiyiniz zaman, onu asanlıqla redaktə etmək olar və kodunuz daha təmiz oxunacaqdır.Bu məqalədən başqa bir şey almasanız belə, tək bununla bir çox tərtibatçıdan öndə olacaqsınız.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 function emailClients(clients) {
@@ -308,7 +275,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function emailActiveClients(clients) {
@@ -321,11 +288,11 @@ function isActiveClient(client) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Function names should say what they do
+### Funksiya adları nə etdiklərini bildirməlidir
 
-**Bad:**
+**Pis:**
 
 ```javascript
 function addToDate(date, month) {
@@ -334,11 +301,11 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to tell from the function name what is added
+// Funksiyanın adından onun nəyi əlavə etdiyini anlamaq çətindir.
 addToDate(date, 1);
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function addMonthToDate(month, date) {
@@ -349,15 +316,13 @@ const date = new Date();
 addMonthToDate(1, date);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Functions should only be one level of abstraction
+### Funksiyalar mücərrədləşdirmədən yalnız bir səviyyə uzaqda olmalıdır  
 
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+Birdən çox mücərrədləşdirmə səviyyəsinə malik olduğunuz zaman funksiyanız adətən çox iş görür. Funksiyaların bölünməsi təkrar istifadəyə və asan test edilməsinə səbəb olur.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -384,7 +349,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -421,32 +386,19 @@ function parse(tokens) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Remove duplicate code
+### Təkrarlanan kodu silin
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+Təkrarlanan kodun qarşısını almaq üçün əlinizdən gələni edin. Təkrarlanan kod pisdir, çünki bu o deməkdir ki, bəzi məntiqi dəyişməlisinizsə nəyisə dəyişdirmək üçün birdən çox yerdə dəyişdirməlisiniz.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Təsəvvür edin ki, siz restoran işlədirsinizsə və stoklarınızı izləyirsiniz: bütün pomidorlarınız, soğanlarınız və s. Əgər bunu saxladığınız bir çox siyahılarınız varsa, içərisində pomidor olan yeməyi təqdim edərkən hamısı yenilənməlidir. Yalnız bir siyahınız varsa, yeniləmək üçün yalnız bir yer var!
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+Çox vaxt Təkrarlanan kodunuz olur, çünki sizin iki və ya daha çox bir qədər fərqli şeylər, lakin çoxlu ortaq cəhətləri olan səhifələriniz olur. Təkrarlanan kodun silinməsi bu müxtəlif şeylər toplusunu yalnız bir funksiya/modul/siniflə idarə edə biləcək bir təsvir yaratmaq deməkdir.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the _Classes_ section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Təsviri düzgün əldə etmək çox vacibdir, buna görə də siz _Siniflər_ bölməsində verilmiş SOLID prinsiplərinə əməl etməlisiniz. Pis təsvirlər təkrarlanan koddan daha pis ola bilər, ona görə də diqqətli olun! Bunu bildikdən sonra yaxşı bir təsvir edə bilirsinizsə, bunu edin! Kodunuzu təkrarlamayın, əks halda bir şeyi dəyişmək istədiyiniz zaman birdən çox yeri yeniləyəcəksiniz.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 function showDeveloperList(developers) {
@@ -480,7 +432,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function showEmployeeList(employees) {
@@ -507,11 +459,11 @@ function showEmployeeList(employees) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Set default objects with Object.assign
+### Object.assign ilə standart obyektləri təyin edin
 
-**Bad:**
+**Pis:**
 
 ```javascript
 const menuConfig = {
@@ -532,12 +484,12 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 const menuConfig = {
   title: "Order",
-  // User did not include 'body' key
+  // İstifadəçi 'body' əlavə etmədi.
   buttonText: "Send",
   cancellable: true
 };
@@ -553,20 +505,21 @@ function createMenu(config) {
     config
   );
   return finalConfig
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // config nəticəsi: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
 createMenu(menuConfig);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Don't use flags as function parameters
+### Funksiya parametirlərində işarələmə istifadə etmə
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+İşarələmələr funksiyanızın birdən çox iş gördüyünü göstərir. Funksiyalar yalnız bir şeyi etməlidir. Aşağıdakı kimi dəyişiklikləri və məntiqi operatorları olan funksiyalarınız varsa, funksiyalarınızı ayırın.
 
-**Bad:**
+
+**Pis:**
 
 ```javascript
 function createFile(name, temp) {
@@ -578,7 +531,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function createFile(name) {
@@ -590,30 +543,21 @@ function createTempFile(name) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Avoid Side Effects (part 1)
+### Yan təsirlərdən qaçın (1-ci hissə)
 
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+Funksiya bir dəyər götürüb başqa bir dəyər və ya dəyərləri qaytarmaqdan başqa bir şey edərsə, yan təsir yaradır. Yan təsiri  fayla yazmaq, bəzi qlobal dəyişəni dəyişdirmək və ya təsadüfən bütün pulunuzu bir qəribə ötürmək ola bilər.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+Bu mühüm bir məsələdir. Zaman-zaman bir proqramda yan təsirlərə sahib olmağınız tələb oluna bilər. Əvvəlki nümunədə olduğu kimi, bir fayla yazmağınız lazım ola bilər. Sizə tövsiyə etdiyimiz, bu əməliyyatı mərkəzləşdirməkdir. Birdən çox yazma əməliyyatı yerinə yetirən funksiya və ya siniflər yaratmayın. Bunun üçün yalnız və yalnız bir xidmətiniz olsun.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+Burada əsas məqam heç bir strukturu olmayan obyektlər arasında vəziyyəti paylaşmaq, hər hansı bir şeyə yazıla bilən dəyişkən məlumat növlərindən istifadə etmək və yan təsirlərinizin baş verdiyi yerləri mərkəzləşdirməmək kimi ümumi tələlərdən qaçmaqdır. Əgər bunu bacarsanız, digər proqramçıların böyük əksəriyyətindən daha xoşbəxt olacaqsınız.
 
-**Bad:**
+**Pis:**
 
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Aşağıdakı funksiya Qlobal dəyişənə istinad edir
+// Bu addan istifadə edən başqa bir funksiyamız olsaydı, indi massiv olardı və onu pozardı.
 let name = "Ryan McDermott";
 
 function splitIntoFirstAndLastName() {
@@ -625,7 +569,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function splitIntoFirstAndLastName(name) {
@@ -639,47 +583,30 @@ console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Avoid Side Effects (part 2)
+### Yan təsirlərdən qaçın (2-ci hissə)
 
-In JavaScript, some values are unchangeable (immutable) and some are changeable 
-(mutable). Objects and arrays are two kinds of mutable values so it's important 
-to handle them carefully when they're passed as parameters to a function. A 
-JavaScript function can change an object's properties or alter the contents of 
-an array which could easily cause bugs elsewhere.
 
-Suppose there's a function that accepts an array parameter representing a 
-shopping cart. If the function makes a change in that shopping cart array - 
-by adding an item to purchase, for example - then any other function that 
-uses that same `cart` array will be affected by this addition. That may be 
-great, however it could also be bad. Let's imagine a bad situation:
+JavaScript'de, bəzi dəyərlər dəyişdirilə bilməz (immutable) və bəziləri dəyişdirilə bilər (mutable). Obyektlər və sıralamalar (arrays) iki növ dəyişən dəyərdir, bu səbəbdən onları bir funksiyaya parametr kimi ötürdüyünüzdə diqqətli olmaq vacibdir. Bir JavaScript funksiyası obyektin xüsusiyyətlərini dəyişdirə və sıralamanın içindəki məzmunu dəyişdirə bilər ki, bu da başqa yerlərdə asanlıqla səhvlər yaradabilir.
 
-The user clicks the "Purchase" button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks an "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because the `cart` array was modified.
+Tutaq ki, alış-veriş səbətini təmsil edən massiv parametrini qəbul edən funksiya var. Əgər funksiya həmin alış-veriş səbəti massivində dəyişiklik edərsə - məsələn, almaq üçün element əlavə etməklə - o zaman həmin `səbət` massivdən istifadə edən hər hansı digər funksiya bu əlavədən təsirlənəcək. Bu əla ola bilər, amma pis də ola bilər. Gəlin pis bir vəziyyəti təsəvvür edək:
 
-A great solution would be for the `addItemToCart` function to always clone the 
-`cart`, edit it, and return the clone. This would ensure that functions that are still
-using the old shopping cart wouldn't be affected by the changes.
+İstifadəçi `Al` düyməsini sıxır və bu alış funksiyası serverə sorğu göndərərək `səbət` massivini serverə göndərir. Zəif şəbəkə bağlantısı səbəbindən `Al` funksiyası sorğunu təkrar etməyə davam etməlidir.
+İndi, bu arada, əgər istifadəçi şəbəkə sorğusu başlamazdan əvvəl istəmədiyi elementdə təsadüfən `Səbətə əlavə et` düyməsini klikləsə nə olacaq? 
 
-Two caveats to mention to this approach:
+Əgər bu baş verərsə və şəbəkə sorğusu başlayarsa, o, təsadüfən alınmış elementi göndərəcək, çünki onun `səbətə əlavə et` funksiyasının arzuolunmaz elementi əlavə etməklə dəyişdirdiyi `səbət` massivinə istinad var. Səbətə məhsul əlavə etmək həmişə səbəti klonlaşdırmaq, redaktə etmək və klonu qaytarmaq üçün əla həll olacaq. Bu, alış-veriş səbətinə istinadı saxlayan heç bir digər funksiyaların hər hansı dəyişiklikdən təsirlənməyəcəyini təmin edir.
 
-1. There might be cases where you actually want to modify the input object,
-   but when you adopt this programming practice you will find that those cases
-   are pretty rare. Most things can be refactored to have no side effects!
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily,
-   this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
-   this kind of programming approach to be fast and not as memory intensive as
-   it would be for you to manually clone objects and arrays.
 
-**Bad:**
+Bu yanaşmaya dair iki xəbərdarlıq:
+
+1. Giriş obyektini həqiqətən dəyişdirmək istədiyiniz hallar ola bilər, lakin bu proqramlaşdırma təcrübəsini qəbul etdiyiniz zaman bu halların olduqca nadir olduğunu görəcəksiniz. Əksər şeylər heç bir yan təsir göstərməmək üçün yenidən düzəldilə bilər!
+
+2. Böyük obyektlərin klonlanması performans baxımından çox bahalı ola bilər. Xoşbəxtlikdən, praktikada bu böyük problem deyil, çünki bu cür proqramlaşdırma yanaşmasının sürətli olmasına və obyektləri və massivləri əl ilə klonlamaq üçün yaddaş tutumunu tələb etməyən [böyük kitabxanalar](https://facebook.github.io/immutable-js/) var .
+
+
+**Pis:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -687,7 +614,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -695,21 +622,19 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Don't write to global functions
+### Qlobal funksiyalara yazmayın
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 
-**Bad:**
+Qlobalları çirkləndirmək JavaScript-də pis bir təcrübədir, çünki siz başqa kitabxana ilə toqquşa bilərsiniz və API istifadəçisi proyekt istifadəyə verilənə qədər bu halın fərqinə varmıya bilər.
+
+Məsələn: Tutaq ki, siz JavaScript-in doğma kitabxanasında massiv `diff` metodunu genişləndirmək və iki massivin fərqlərini göstərmək istəyirsiniz.
+JavaScript-in yerli Array metodunu iki massiv arasındakı fərqi göstərə bilən "diff" metoduna genişləndirmək istəyirsiniz?
+Siz yeni funksiyanızı `Array.prototype`-da yaza bilərsiniz, lakin o, eyni şeyi etməyə çalışan başqa kitabxana ilə ziddiyyət təşkil edə bilər. Bəs əgər digər kitabxana massivin birinci və sonuncu elementləri arasındakı fərqi tapmaq üçün sadəcə olaraq `diff` istifadə edirsə? Beləliklə, sadəcə ES2015 / ES6 siniflərindən istifadə etmək və Array qlobalı genişləndirmək daha yaxşı olardı.
+
+
+**Pis:**
 
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -718,7 +643,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class SuperArray extends Array {
@@ -729,15 +654,13 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Favor functional programming over imperative programming
+### İmperativ proqramlaşdırmadan daha çox funksional proqramlaşdırmaya üstünlük verin
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript Haskell kimi funksional bir dil deyil, lakin onun funksional ləzzəti var. Funksional dillər daha təmiz və sınaqdan keçirilməsi asan ola bilər. Bacardığınız zaman bu proqramlaşdırma tərzinə üstünlük verin.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 const programmerOutput = [
@@ -766,7 +689,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 const programmerOutput = [
@@ -794,11 +717,11 @@ const totalOutput = programmerOutput.reduce(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Encapsulate conditionals
+### Şərtiləri əhatə edin
 
-**Bad:**
+**Pis:**
 
 ```javascript
 if (fsm.state === "fetching" && isEmpty(listNode)) {
@@ -806,7 +729,7 @@ if (fsm.state === "fetching" && isEmpty(listNode)) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
@@ -818,11 +741,11 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Avoid negative conditionals
+### Mənfi şərtlərdən çəkinin
 
-**Bad:**
+**Pis:**
 
 ```javascript
 function isDOMNodeNotPresent(node) {
@@ -834,7 +757,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function isDOMNodePresent(node) {
@@ -846,20 +769,13 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Avoid conditionals
+### Şərtlərdən çəkinin
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+Bu, qeyri-mümkün bir iş kimi görünür. Bunu ilk dəfə eşidəndə əksəriyyət “ifadəsiz mən necə bir iş görüm `if`?” deyir. Cavab budur ki, bir çox hallarda eyni tapşırığa nail olmaq üçün polimorfizmdən istifadə edə bilərsiniz. İkinci sual adətən, "yaxşı, bu əladır, amma niyə bunu etmək istərdim?" Cavab öyrəndiyimiz əvvəlki təmiz kod anlayışıdır: funksiya yalnız bir işi görməlidir. İfadələri olan siniflər və funksiyalarınız olduqda `if`, istifadəçiyə funksiyanızın birdən çox şey etdiyini söyləyirsiniz. Unutma, yalnız bir şey et.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 class Airplane {
@@ -877,7 +793,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class Airplane {
@@ -906,16 +822,13 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Avoid type-checking (part 1)
+### Növ yoxlamasından çəkinin (1-ci hissə)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript tipsizdir, yəni funksiyalarınız istənilən növ arqument qəbul edə bilər. Bəzən bu azadlıq sizi dişləyir və funksiyalarınızda tip yoxlaması etmək cazibədar olur. Bunu etmək məcburiyyətində qalmamağın bir çox yolu var. Nəzərə alınacaq ilk şey ardıcıl API-lərdir.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -927,7 +840,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -935,21 +848,15 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Avoid type-checking (part 2)
+### Növ yoxlamasından çəkinin (2-ci hissə)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Əgər siz sətirlər və tam ədədlər kimi əsas primitiv dəyərlərlə işləyirsinizsə və polimorfizmdən istifadə edə bilmirsinizsə, lakin hələ də yazın yoxlanılması ehtiyacı hiss edirsinizsə, TypeScript-dən istifadə etməyi düşünməlisiniz. Bu, adi JavaScript-ə əla alternativdir, çünki standart JavaScript sintaksisinin üstündə statik yazmağı təmin edir. Normal JavaScript-ni əl ilə yazın yoxlanılması ilə bağlı problem ondan ibarətdir ki, bunu yaxşı etmək o qədər əlavə söz tələb edir ki, əldə etdiyiniz saxta "tip-təhlükəsizlik" itirilmiş oxunaqlılığı kompensasiya etmir. JavaScript-inizi təmiz saxlayın, yaxşı testlər yazın və yaxşı kod nəzərdən keçirin. Əks halda, TypeScript-dən başqa bütün bunları edin (bu, dediyim kimi, əla alternativdir!).
 
-**Bad:**
+
+
+**Pis:**
 
 ```javascript
 function combine(val1, val2) {
@@ -964,7 +871,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function combine(val1, val2) {
@@ -972,27 +879,25 @@ function combine(val1, val2) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Don't over-optimize
+### Həddindən artıq optimallaşdırmayın
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+Müasir brauzerlər iş zamanı başlıq altında çoxlu optimallaşdırmalar edirlər. Çox vaxt, əgər siz optimallaşdırırsınızsa, sadəcə vaxtınızı itirirsiniz. Optimallaşdırmanın çatışmadığı yerləri görmək üçün [yaxşı mənbələr](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) var . Mümkünsə, düzələnə qədər onları hədəfləyin.
 
-**Bad:**
+
+
+**Pis:**
 
 ```javascript
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+//Köhnə brauzerlərdə “list.length”  olmayan hər bir yeniləmə baha başa gələcək
+// Çünki "list.length" yenidən hesablanması. Müasir brauzerlərdə optimallaşdırılıb.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 for (let i = 0; i < list.length; i++) {
@@ -1000,15 +905,13 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Remove dead code
+### İstifadə olunmayan kodları silin
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+Ölü kod dublikat kod qədər pisdir. Onu kod bazanızda saxlamaq üçün heç bir səbəb yoxdur. Əgər çağırılmırsa, ondan qurtulun! Sizə hələ də ehtiyacınız varsa, o, versiya tarixçənizdə hələ də təhlükəsiz olacaq.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 function oldRequestModule(url) {
@@ -1023,7 +926,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function newRequestModule(url) {
@@ -1034,25 +937,21 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## **Objects and Data Structures**
+## **Obyekt və Data Sturkturlar**
 
-### Use getters and setters
+### Alıcı(getters) və təyinedici(setters) istifadə edin
 
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+Obyektlərdəki məlumatlara daxil olmaq üçün alıcılardan və təyinedicilərdən istifadə obyektdə xassə axtarmaqdan daha yaxşı ola bilər. "Niyə?" soruşa bilərsən. Yaxşı, buda səbəblərin siyahısı:
 
-- When you want to do more beyond getting an object property, you don't have
+- Obyekt xassəsini əldə etməkdən daha çox şey etmək istədiyiniz zaman kod bazanızdakı hər bir aksessuarı axtarıb dəyişmək lazım deyil.
   to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a
-  server.
-
-**Bad:**
+- `set` sadə şəkildə həyata keçirilə bilər.
+- Daxili təmsili əhatə edir.
+- Alarkən və qurarkən giriş və səhvlərin idarə edilməsini(error handling) əlavə etmək asandır.
+- Siz obyektinizin xassələrini tənbəl(lazy load) yükləyə bilərsiniz, deyək ki, onu serverdən əldə edə bilərsiniz.
+**Pis:**
 
 ```javascript
 function makeBankAccount() {
@@ -1068,21 +967,21 @@ const account = makeBankAccount();
 account.balance = 100;
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // Bu funksiya özəldir (private)
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  //  "Alıcı",  İctimai(public) obyekti qaytarmaqla et
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  //  "Təyinedici",  İctimai(public) obyekti qaytarmaqla et
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... balansı yeniləməzdən əvvəl doğrulayın
     balance = amount;
   }
 
@@ -1097,13 +996,13 @@ const account = makeBankAccount();
 account.setBalance(100);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Make objects have private members
+### Obyektlərin şəxsi üzvlərinə sahib olun
 
-This can be accomplished through closures (for ES5 and below).
+Bu, bağlamalar vasitəsilə həyata keçirilə bilər (ES5 və aşağıda).
 
-**Bad:**
+**Pis:**
 
 ```javascript
 const Employee = function(name) {
@@ -1120,7 +1019,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function makeEmployee(name) {
@@ -1137,18 +1036,14 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## **Classes**
+## **Siniflər**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### ES5 sadə funksiyalarındansa ES2015/ES6 siniflərinə üstünlük verin
 
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
-
-**Bad:**
+Klassik ES5 sinifləri üçün oxunaqlı sinif irsi, quruluşu və metod təriflərini əldə etmək çox çətindir. Əgər varisliyə(inheritance) ehtiyacınız varsa (Nəzərə alın ki, ehtiyacınız olmaya bilər), o zaman ES2015/ES6 siniflərinə üstünlük verin. Bununla belə, daha böyük və daha mürəkkəb obyektlərə ehtiyac duyduğunuzu görənə qədər siniflər üzərində kiçik funksiyalara üstünlük verin.
+**Pis:**
 
 ```javascript
 const Animal = function(age) {
@@ -1188,7 +1083,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class Animal {
@@ -1224,17 +1119,13 @@ class Human extends Mammal {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Use method chaining
+### Zəncirləmə metodundan istifadə edin
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+Bu nümunə JavaScript-də çox faydalıdır və siz onu jQuery və Lodash kimi bir çox kitabxanada görürsünüz. Bu, kodunuzun ifadəli və daha az təfərrüatlı olmasına imkan verir. Bu səbəbdən deyirəm ki, zəncirləmə metodundan istifadə edin və kodunuzun nə qədər təmiz olacağına baxın. Sinif funksiyalarınızda sadəcə olaraq `this` hər funksiyanın sonunda qayıdın və siz ona əlavə sinif metodlarını birləşdirə bilərsiniz.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 class Car {
@@ -1266,7 +1157,7 @@ car.setColor("pink");
 car.save();
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class Car {
@@ -1278,25 +1169,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+    // QEYD: Zəncirləmə üçün "this" qaytarın
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+       // QEYD: Zəncirləmə üçün "this" qaytarın
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+       // QEYD: Zəncirləmə üçün "this" qaytarın
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+       // QEYD: Zəncirləmə üçün "this" qaytarın
     return this;
   }
 }
@@ -1304,28 +1195,22 @@ class Car {
 const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Prefer composition over inheritance
+### Vərəsəlikdən kompozisiyaya üstünlük verin
 
-As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+Dördlər Dəstəsinin [Dizayn Nümunələrində](https://en.wikipedia.org/wiki/Design_Patterns) deyildiyi kimi , bacardığınız yerdə mirasdan daha çox kompozisiyaya üstünlük verməlisiniz. Mirasdan istifadə etmək üçün çoxlu yaxşı səbəblər və kompozisiyadan istifadə etmək üçün çoxlu yaxşı səbəblər var. Bu maksim üçün əsas məqam ondan ibarətdir ki, əgər ağlınız instinktiv olaraq miras almağa gedirsə, kompozisiyanın probleminizi daha yaxşı modelləşdirə biləcəyini düşünməyə çalışın. Bəzi hallarda ola bilər.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-   relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-   (Change the caloric expenditure of all animals when they move).
 
-**Bad:**
+
+Bəs, "mən mirasdan nə vaxt istifadə etməliyəm?" Bu, əlinizdə olan probleminizdən asılıdır, lakin bu, mirasın kompozisiyadan daha mənalı olduğu zamanların layiqli siyahısıdır:
+
+1. Sizin mirasınız "has-a" əlaqəsini deyil, "is-a" əlaqəsini təmsil edir (İnsan->Heyvan vs. İstifadəçi->İstifadəçi təfərrüatları).
+2. Siz əsas siniflərdən kodu təkrar istifadə edə bilərsiniz (İnsanlar bütün heyvanlar kimi hərəkət edə bilər).
+3. Siz əsas sinfi dəyişdirərək törəmə siniflərə qlobal dəyişikliklər etmək istəyirsiniz. (Hərəkət edərkən bütün heyvanların kalori xərclərini dəyişdirin).
+
+**Pis:**
 
 ```javascript
 class Employee {
@@ -1337,7 +1222,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Pisdir, çünki İşçilər vergi məlumatlarına malikdirlər. İşçilərinvergiməlumatları(EmployeeTaxData) bir növ İşçi (İşçi) deyil.
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1349,7 +1234,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class EmployeeTaxData {
@@ -1374,22 +1259,15 @@ class Employee {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
 ## **SOLID**
 
-### Single Responsibility Principle (SRP)
+### Vahid Məsuliyyət Prinsipi (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+Təmiz Kodeksdə deyildiyi kimi, "Sinifin dəyişməsi üçün heç vaxt birdən çox səbəb olmamalıdır". Uçuşunuza yalnız bir çamadan götürə bildiyiniz zaman kimi bir çox funksionallığı olan bir sinfi yığmaq cazibədardır. Bununla bağlı problem ondadır ki, sinifiniz konseptual olaraq birləşməyəcək və bu, ona dəyişmək üçün bir çox səbəb verəcək. Bir sinfi dəyişmək üçün lazım olan vaxtların sayını minimuma endirmək vacibdir. Bu vacibdir, çünki bir sinifdə çox funksionallıq varsa və siz onun bir hissəsini dəyişdirsəniz, bunun kod bazanızdakı digər asılı modullara necə təsir edəcəyini anlamaq çətin ola bilər.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 class UserSettings {
@@ -1409,7 +1287,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class UserAuth {
@@ -1436,16 +1314,13 @@ class UserSettings {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Open/Closed Principle (OCP)
+### Açıq/Qapalı Prinsip (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+Bertrand Meyerin qeyd etdiyi kimi, “proqram təminatı obyektləri (siniflər, modullar, funksiyalar və s.) genişləndirmək üçün açıq, lakin modifikasiya üçün bağlanmalıdır”. Bəs bu nə deməkdir? Bu prinsip əsasən bildirir ki, siz istifadəçilərə mövcud kodu dəyişmədən yeni funksiyalar əlavə etməyə icazə verməlisiniz.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1470,26 +1345,26 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === "ajaxAdapter") {
       return makeAjaxCall(url).then(response => {
-        // transform response and return
+        // cavabı çevirmək və qayıtmaq
       });
     } else if (this.adapter.name === "nodeAdapter") {
       return makeHttpCall(url).then(response => {
-        // transform response and return
+        // cavabı çevirmək və qayıtmaq
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // tələb və geri qaytarma 
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // tələb və geri qaytarma 
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1499,7 +1374,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // tələb və geri qaytarma 
   }
 }
 
@@ -1510,7 +1385,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // tələb və geri qaytarma 
   }
 }
 
@@ -1527,24 +1402,15 @@ class HttpRequester {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Liskov Substitution Principle (LSP)
+### Liskov Əvəzetmə Prinsipi (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+Bu, çox sadə bir konsepsiya üçün qorxulu bir termindir. Formal olaraq "S T-nin alt növüdürsə, T tipli obyektlər S tipli obyektlərlə əvəz edilə bilər (yəni, S tipli obyektlər T tipli obyektləri əvəz edə bilər) bu proqramın istənilən xassələrini dəyişdirmədən (düzgünlük, yerinə yetirilən tapşırıq və s.)." Bu daha qorxulu tərifdir.
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Bunun ən yaxşı izahı odur ki, əgər valideyn(parent) sinifiniz və uşaq(child) sinifiniz varsa, o zaman əsas sinif və uşaq sinif səhv nəticələr əldə etmədən bir-birini əvəz edə bilər. Bu hələ də çaşdırıcı ola bilər, ona görə də klassik Kvadrat-Dördbucaqlı nümunəsinə nəzər salaq. Riyazi olaraq kvadrat düzbucaqlıdır, lakin siz onu miras yolu ilə “is-a” münasibətindən istifadə edərək modelləşdirsəniz, tez bir zamanda problem yaranır.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 class Rectangle {
@@ -1590,7 +1456,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach(rectangle => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // Pis: kıvadırat üçün 25 qaytarır.20 olmalıdır.
     rectangle.render(area);
   });
 }
@@ -1599,7 +1465,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class Shape {
@@ -1646,25 +1512,17 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Interface Segregation Principle (ISP)
+### İnterfeys Ayrılma Prinsipi (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+JavaScript-in interfeysləri yoxdur, ona görə də bu prinsip digərləri kimi ciddi şəkildə tətbiq edilmir. Bununla belə, JavaScript-in tip sisteminin olmaması ilə belə vacib və aktualdır.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+ISP bildirir ki, "Müştərilər istifadə etmədikləri interfeyslərdən asılı olmağa məcbur edilməməlidirlər." İnterfeyslər `Duck Typing` səbəbindən JavaScript-də gizli müqavilələrdir.
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+JavaScript-də bu prinsipi nümayiş etdirən yaxşı nümunə böyük parametrlər obyektləri tələb edən siniflər üçündür. Müştərilərdən böyük miqdarda seçimlər qurmağı tələb etməmək faydalıdır, çünki çox vaxt onlar bütün parametrlərə ehtiyac duymayacaqlar. Onları isteğe bağlı etmək "yağ interfeysi"nin qarşısını almağa kömək edir.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 class DOMTraverser {
@@ -1685,12 +1543,12 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // Çox vaxt bunu canlandırmaq lazım olmayacaq
   // ...
 });
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class DOMTraverser {
@@ -1724,32 +1582,20 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Dependency Inversion Principle (DIP)
+### Asılılığın inversiya prinsipi (DIP)
 
-This principle states two essential things:
+Bu prinsip iki əsas şeyi ifadə edir:
 
-1. High-level modules should not depend on low-level modules. Both should
-   depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-   abstractions.
+1. Yüksək səviyyəli modullar aşağı səviyyəli modullardan asılı olmamalıdır. Hər ikisi abstraksiyalardan asılı olmalıdır.
+2. Abstraksiyalar təfərrüatlardan asılı olmamalıdır. Detallar abstraksiyalardan asılı olmalıdır.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Əvvəlcə bunu başa düşmək çətin ola bilər, lakin siz AngularJS ilə işləmisinizsə, bu prinsipin Dependency Injection (DI) şəklində həyata keçirildiyini görmüsünüz. Eyni anlayışlar olmasa da, DIP yüksək səviyyəli modulları aşağı səviyyəli modullarının təfərrüatlarını bilməkdən və onları qurmaqdan saxlayır. Bunu DI vasitəsilə həyata keçirə bilər. Bunun böyük bir faydası modullar arasındakı əlaqəni azaltmasıdır. Birləşmə çox pis inkişaf nümunəsidir, çünki kodunuzun yenidən qurulmasını çətinləşdirir.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Daha əvvəl qeyd edildiyi kimi, JavaScript-in interfeysləri yoxdur, ona görə də asılı olan abstraksiyalar gizli müqavilələrdir. Yəni, bir obyektin/sinfin başqa bir obyektə/sinifa məruz qoyduğu metodlar və xüsusiyyətlər. Aşağıdakı misalda gizli müqavilə ondan ibarətdir ki, `InventoryTracker` üçün hər hansı Sorğu modulunda `requestItems` metodu olacaq.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 class InventoryRequester {
@@ -1766,8 +1612,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // PİS: Biz xüsusi sorğunun həyata keçirilməsindən asılılıq yaratdıq.
+    // Sadəcə olaraq, sorğu elementlərinin(requestItems) sorğu metodundan asılı olması lazımdır: `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1782,7 +1628,7 @@ const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class InventoryTracker {
@@ -1818,8 +1664,8 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Asılılığımızı xaricdən qurmaqla və onları inyeksiya etməklə asanlıqla edə bilərik
+// Sorğu modulumuzu WebSockets istifadə edən dəbdəbəli yenisi ilə əvəz edin.
 const inventoryTracker = new InventoryTracker(
   ["apples", "bananas"],
   new InventoryRequesterV2()
@@ -1827,28 +1673,19 @@ const inventoryTracker = new InventoryTracker(
 inventoryTracker.requestItems();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## **Testing**
+## **Testlər**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](https://gotwarlost.github.io/istanbul/).
+Test canlı yayımdan daha vacibdir. Əgər testiniz yoxdursa, kodu hər dəfə təqdim edəndə nəyinsə pozulduğuna əmin olmayacaqsınız. 100% əhatəyə malik olmaq (bütün bəyanatlar və filiallar) sizə inam və dinclik bəxş edən kifayət qədər nədən ibarət olduğuna qərar vermək sizin komandanızdan asılıdır.
+Bu o deməkdir ki, əla sınaq çərçivəsinə malik olmaqla yanaşı, [yaxşı əhatə aləti](https://gotwarlost.github.io/istanbul/) istifadə etməlisiniz.
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
 
-### Single concept per test
+Testləri yazmamaq üçün heç bir bəhanə yoxdur. [Çoxlu yaxşı JS test çərçivələri](https://jstherightway.org/#testing-tools) var, ona görə də komandanızın üstünlük verdiyi birini tapın. Komandanız üçün işləyən birini tapdığınız zaman, təqdim etdiyiniz hər yeni funksiya/modul üçün həmişə testlər yazmağı hədəfləyin. Tercih etdiyiniz metod Test Əsaslı İnkişafdırsa (TDD), bu əladır, lakin əsas məqam hər hansı bir funksiyanı işə salmazdan və ya mövcud funksiyanı yenidən nəzərdən keçirməzdən əvvəl əhatə dairəsi məqsədlərinizə çatdığınızdan əmin olmaqdır.
 
-**Bad:**
+### Hər test üçün tək konsepsiya
+
+**Pis:**
 
 ```javascript
 import assert from "assert";
@@ -1872,7 +1709,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 import assert from "assert";
@@ -1898,16 +1735,15 @@ describe("MomentJS", () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## **Concurrency**
+## **Asinxrom**
 
-### Use Promises, not callbacks
+### Promise istifadə et, callback deyil.
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+callback səliqəli deyil və həddindən artıq miqdarda qarışıqlığa səbəb olur. ES2015/ES6 ilə Promises daxili qlobal tipdir. Onlardan istifadə edin!
 
-**Bad:**
+**Pis:**
 
 ```javascript
 import { get } from "request";
@@ -1931,7 +1767,7 @@ get(
 );
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1949,17 +1785,13 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await Promisedən daha təmizdir
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Promise'lər callback'lərə görə çox daha təmiz alternativdir.Lakin ES2017/ES8 daha təmiz həll təklif edir. Sadəcə funksiyanın başına `async`və sonra siz məntiqinizi `then` funksiyalar zənciri olmadan yaza bilərsiniz.Bu gün ES2017/ES8 xüsusiyyətlərindən yararlana bilsəniz, bundan istifadə edin!
 
-**Bad:**
+**Pis:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1977,7 +1809,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1998,25 +1830,17 @@ async function getCleanCodeArticle() {
 getCleanCodeArticle()
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## **Error Handling**
+## **Xəta İdaraetmə**
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Atılan səhvlər yaxşı bir şeydir! Onlar o deməkdir ki, icra müddətiniz proqramınızda nəyinsə səhv getdiyini uğurla müəyyən edib və o, cari yığında funksiyanın icrasını dayandırmaqla, prosesi (Node-da) dayandırmaqla və yığın izi ilə konsolda sizi xəbərdar etməklə sizə xəbər verir.
 
-### Don't ignore caught errors
+### Səhvləri görməzdən gəlməyin
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+Tutulan xəta ilə heç nə etməmək sizə qeyd olunan xətanı düzəltmək və ya ona reaksiya vermək imkanı vermir.Konsolda(`console.log`)  qeyd olunan səhvlər konsolda qeyd olunan şeylər arasında itə bilər.Hər hansı bir kodu `try/catch` bloku ilə bürümək deməkdir ki, o yerdə bir səhv baş verə biləcəyinizi düşünürsünüz və bu səhvin baş verdiyi vaxt üçün bir planınız, ya da onun baş verdiyi hal üçün bir kod yolunuz olmalıdır.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 try {
@@ -2026,28 +1850,27 @@ try {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // Bir seçim (console.log-dan daha nəzərə çarpan)
   console.error(error);
-  // Another option:
+  // Başqa seçim:
   notifyUserOfError(error);
-  // Another option:
+  // Başqa seçim:
   reportErrorToService(error);
-  // OR do all three!
+  // Ya da hamısını edin!
 }
 ```
 
-### Don't ignore rejected promises
+### Rədd edilmiş promisləri görməzdən gəlməyin
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+Eyni səbəblərə görə siz `try/catch` zamanı baş verən xətaları nəzərdən qaçırmamalısınız
 
-**Bad:**
+**Pis:**
 
 ```javascript
 getdata()
@@ -2059,7 +1882,7 @@ getdata()
   });
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 getdata()
@@ -2067,36 +1890,29 @@ getdata()
     functionThatMightThrow(data);
   })
   .catch(error => {
-    // One option (more noisy than console.log):
+    // Bir seçim (console.log-dan daha nəzərə çarpan)
     console.error(error);
-    // Another option:
+    //  Başqa seçim:
     notifyUserOfError(error);
-    // Another option:
+    //  Başqa seçim:
     reportErrorToService(error);
-    // OR do all three!
+    // Ya da hamısını edin!
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## **Formatting**
+## **Formatlaşdırma**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+Formatlaşdırma subyektivdir. Buradakı bir çox qaydalar kimi, riayət etməli olduğunuz çətin və sürətli qayda yoxdur. Əsas odur ki, formatla bağlı MÜBAHİSƏ ETMƏYİN. Bunu avtomatlaşdırmaq üçün [çoxlu alətlər](https://standardjs.com/rules.html) var . Birini istifadə edin! Mühəndislərin formatlama üzərində mübahisə etməsi vaxt və pul itkisidir.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+Avtomatik formatlaşdırmanın səlahiyyətlərinə aid olmayan şeylər üçün (gizinti, nişanlar və boşluqlar, cüt və tək dırnaq işarələri və s.) bəzi təlimatlar üçün buraya baxın.
 
-### Use consistent capitalization
+### Ardıcıl böyük hərflərdən istifadə edin
 
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+JavaScript tipsizdir, ona görə də böyük hərf sizə dəyişənləriniz, funksiyalarınız və s. haqqında çox şey deyir. Bu qaydalar subyektivdir, ona görə də komandanız istədiklərini seçə bilər. Məsələ ondadır ki, hamınız nə seçsəniz də, sadəcə ardıcıl olun.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2112,7 +1928,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2128,15 +1944,13 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Function callers and callees should be close
+### Funksiya çağıranlar  və çağırılanlar yaxın olmalıdır
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Əgər funksiya digərini çağırırsa, mənbə faylında həmin funksiyaları şaquli olaraq yaxın saxlayın. İdeal olaraq, zəng edəni zəng edənin üstündə saxlayın. Biz qəzet kimi kodu yuxarıdan aşağıya oxumağa meylli oluruq. Buna görə kodunuzun oxunmasını təmin edin.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 class PerformanceReview {
@@ -2176,7 +1990,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 class PerformanceReview {
@@ -2216,37 +2030,39 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## **Comments**
+## **Şərhlər**
 
-### Only comment things that have business logic complexity.
+### Yalnız iş məntiqi mürəkkəbliyi olan şeyləri şərh edin.
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+Şərhlər üzrxahlıqdır, tələb deyil. Yaxşı kod _əsasən_ özünü sənədləşdirir.
 
-**Bad:**
+
+
+**Pis:**
 
 ```javascript
 function hashIt(data) {
-  // The hash
+  // Karma
   let hash = 0;
 
-  // Length of string
+  // Sətrin uzunluğu
   const length = data.length;
 
-  // Loop through every character in data
+  // Məlumatdakı hər bir simvolu nəzərdən keçirin
   for (let i = 0; i < length; i++) {
-    // Get character code.
+    // Simvol kodunu əldə edin
     const char = data.charCodeAt(i);
-    // Make the hash
+    // Qarışdır
     hash = (hash << 5) - hash + char;
-    // Convert to 32-bit integer
+    // 32 bitlik tam ədədə çevirin
     hash &= hash;
   }
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function hashIt(data) {
@@ -2257,19 +2073,19 @@ function hashIt(data) {
     const char = data.charCodeAt(i);
     hash = (hash << 5) - hash + char;
 
-    // Convert to 32-bit integer
+    // 32 bitlik tam ədədə çevirin
     hash &= hash;
   }
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Don't leave commented out code in your codebase
+### Kodunuzu  şərh edilmiş kod olaraq tərk etməyin
 
-Version control exists for a reason. Leave old code in your history.
+Versiya nəzarəti bir səbəbdən mövcuddur. Köhnə kodu tarixçənizdə buraxın.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 doStuff();
@@ -2278,20 +2094,19 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 doStuff();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Don't have journal comments
+### Gündəlik şərhlər verməyin
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Unutmayın, versiya nəzarətindən(`GİT`) istifadə edin! İstifadə edilməmiş koda, şərh edilmiş kodlara və xüsusən də log kodlarına ehtiyac yoxdur. Tarix üçün `git log` istifadə edin.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 /**
@@ -2305,7 +2120,7 @@ function combine(a, b) {
 }
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 function combine(a, b) {
@@ -2313,14 +2128,13 @@ function combine(a, b) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-### Avoid positional markers
+### Mövqe işarələrindən çəkinin
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+Bunlar çox vaxt çirklənmə yaradır. Düzgün girinti və formatlaşdırma, həmçinin funksiyalar və dəyişən adlar kodunuza vizual quruluş versin.
 
-**Bad:**
+**Pis:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
@@ -2339,7 +2153,7 @@ const actions = function() {
 };
 ```
 
-**Good:**
+**Yaxşı:**
 
 ```javascript
 $scope.model = {
@@ -2352,12 +2166,12 @@ const actions = function() {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
 
-## Translation
+## Tərcümələr
 
-This is also available in other languages:
-
+Bu digər dillərdə də mövcuddur:
+- ![aze](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Azerbaijan.png) **Azerbaijani**: [huseynovelmir/clean-code-javascript/](https://github.com/huseynovelmir/clean-code-javascript)
 - ![am](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Armenia.png) **Armenian**: [hanumanum/clean-code-javascript/](https://github.com/hanumanum/clean-code-javascript)
 - ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Bangla(বাংলা)**: [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
 - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [fesnt/clean-code-javascript](https://github.com/fesnt/clean-code-javascript)
@@ -2383,4 +2197,4 @@ This is also available in other languages:
 - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
 - ![ir](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Iran.png) **Persian**: [hamettio/clean-code-javascript](https://github.com/hamettio/clean-code-javascript)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Başa qayıt](#İçindəkilər)**
