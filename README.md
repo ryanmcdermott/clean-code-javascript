@@ -1537,7 +1537,7 @@ is a subtype of T, then objects of type T may be replaced with objects of type S
 of the desirable properties of that program (correctness, task performed,
 etc.)." That's an even scarier definition.
 
-The best explanation for this is if you have a parent class and a child class,
+The best explanation for this is , if you have a parent class and a child class,
 then the base class and child class can be used interchangeably without getting
 incorrect results. This might still be confusing, so let's take a look at the
 classic Square-Rectangle example. Mathematically, a square is a rectangle, but
@@ -2081,7 +2081,7 @@ getdata()
 
 ## **Formatting**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
+Formatting is subjective. Like many rules here in, there is no hard and fast
 rule that you must follow. The main point is DO NOT ARGUE over formatting.
 There are [tons of tools](https://standardjs.com/rules.html) to automate this.
 Use one! It's a waste of time and money for engineers to argue over formatting.
