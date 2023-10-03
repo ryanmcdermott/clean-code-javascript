@@ -56,6 +56,7 @@ const yyyymmdstr = moment().format("YYYY/MM/DD");
 **Good:**
 
 ```javascript
+// Getting current date in format"YYYY/MM/DD"
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
