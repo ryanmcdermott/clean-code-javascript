@@ -2086,7 +2086,7 @@ rule that you must follow. The main point is DO NOT ARGUE over formatting.
 There are [tons of tools](https://standardjs.com/rules.html) to automate this.
 Use one! It's a waste of time and money for engineers to argue over formatting.
 
-For things that don't fall under the purview of automatic formatting
+For things that don't fall under the preview of automatic formatting
 (indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
 for some guidance.
 
