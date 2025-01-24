@@ -1,0 +1,35 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+root = true
+
+[*]
+# Set the max line length to 80 characters
+max_line_length = 80
+
+# Use 2 spaces for indentation
+indent_style = space
+indent_size = 2
+
+# End files with a newline
+insert_final_newline = true
+
+# Don't use tabs for indentation
+tab_width = 2
+
+# Use double quotes
+quote_type = double
+
+# Don't add trailing commas
+trim_trailing_whitespace = true
+
+# Keep spaces between brackets
+space_inside_brackets = true
+
+# Avoid parentheses for single-argument arrow functions
+arrow_function_parentheses = avoid
+
+# Don't wrap prose
+wrap_prose = never
+
+# Add semicolons at the end of statements
+end_of_line = lf
