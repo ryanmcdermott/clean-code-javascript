@@ -1033,6 +1033,40 @@ function newRequestModule(url) {
 const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
+**[⬆ back to top](#table-of-contents)**
+
+#### Pure Functions vs. Side Effects
+
+- A **pure function** only uses its input values and doesn’t change anything outside itself.
+- A **side effect** is any change to external state (mutating arguments, globals, etc.).
+
+**Why?**  
+- Predictable: gives the same result every time for the same inputs. 
+- Easy to test: no hidden state to reset or mock.
+- Safe to reuse and refactor without unintended consequences.
+
+**Bad:**
+```js
+let total = 0;
+
+function addToCart(cart, item) {
+  cart.push(item);       // ← side effect: changing external cart
+  total += item.price;   // ← side effect: changes external `total`
+  return cart.length;
+}
+```
+**Good:**
+```js
+function addToCart(cart, item) {
+  // returns a new cart array without touching the original
+  return [...cart, item];
+}
+
+function calculateTotal(cart) {
+  // pure computation: only reads input, never writes out
+  return cart.reduce((sum, item) => sum + item.price, 0);
+}
+```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1135,6 +1169,35 @@ const employee = makeEmployee("John Doe");
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
+```
+**[⬆ back to top](#table-of-contents)**
+
+#### Destructuring Defaults & Nested Destructuring
+
+It lets you set default values for object properties right in the function signature and prevents errors if a nested object isn’t provided.
+
+**Why?**  
+- Eliminates repetitive `||` defaulting.
+- You can see what values the function uses and their fallback values right in its definition.
+- Prevents runtime errors when nested objects are omitted. 
+
+**Bad:**
+```js
+function connectToDatabase(opts) {
+  const host = opts.host || 'localhost';
+  const port = opts.port || 80;
+  const db   = opts.db   || { name: 'test' };
+}
+```
+
+**Good:**
+```js
+function connectToDatabase({
+  host = 'localhost',
+  port = 80,
+  db: { name = 'test' } = {}
+} = {}) {
+}
 ```
 
 **[⬆ back to top](#table-of-contents)**
