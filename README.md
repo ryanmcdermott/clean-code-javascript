@@ -2047,17 +2047,16 @@ try {
 For the same reason you shouldn't ignore caught errors
 from `try/catch`.
 
-**Bad:**
 
-```javascript
+**Good:**
 getdata()
-  .then(data => {
-    functionThatMightThrow(data);
+  .then(user => {
+    return getOrders(user.id);
   })
   .catch(error => {
-    console.log(error);
+    console.error(error);
   });
-```
+
 
 **Good:**
 
