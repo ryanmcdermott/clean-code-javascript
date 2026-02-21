@@ -543,22 +543,26 @@ const menuConfig = {
 };
 
 function createMenu(config) {
-  let finalConfig = Object.assign(
-    {
-      title: "Foo",
-      body: "Bar",
-      buttonText: "Baz",
-      cancellable: true
-    },
-    config
-  );
-  return finalConfig
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // The spread operator merges defaults with the provided config.
+  // Properties in `config` override defaults; missing ones fall back to defaults.
+  const finalConfig = {
+    title: "Foo",
+    body: "Bar",
+    buttonText: "Baz",
+    cancellable: true,
+    ...config
+  };
+  return finalConfig;
+  // finalConfig equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
 createMenu(menuConfig);
 ```
+
+> **Note:** If you need to support environments without ES2018 spread syntax, you
+> can use `Object.assign({}, defaults, config)` as an equivalent alternative.
+> Both approaches create a new object and do not mutate the original `config`.
 
 **[⬆ back to top](#table-of-contents)**
 
