@@ -2050,24 +2050,24 @@ from `try/catch`.
 **Bad:**
 
 ```javascript
-getdata()
+getData()
   .then(data => {
     functionThatMightThrow(data);
   })
   .catch(error => {
-    console.log(error);
+    console.log(error); // Just logging is not enough — the error is silently swallowed
   });
 ```
 
 **Good:**
 
 ```javascript
-getdata()
+getData()
   .then(data => {
     functionThatMightThrow(data);
   })
   .catch(error => {
-    // One option (more noisy than console.log):
+    // One option (more visible than console.log):
     console.error(error);
     // Another option:
     notifyUserOfError(error);
