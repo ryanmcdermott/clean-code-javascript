@@ -2050,7 +2050,7 @@ from `try/catch`.
 **Bad:**
 
 ```javascript
-getdata()
+getData()
   .then(data => {
     functionThatMightThrow(data);
   })
@@ -2062,7 +2062,7 @@ getdata()
 **Good:**
 
 ```javascript
-getdata()
+getData()
   .then(data => {
     functionThatMightThrow(data);
   })
