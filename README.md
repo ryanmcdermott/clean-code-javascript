@@ -552,7 +552,7 @@ function createMenu(config) {
     },
     config
   );
-  return finalConfig
+  return finalConfig;
   // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
